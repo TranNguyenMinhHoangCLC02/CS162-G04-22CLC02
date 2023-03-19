@@ -66,4 +66,20 @@ struct Course
     Student *student_head; //Points to the student
 };
 
+struct Year
+{
+    string year_name;
+    Class *class_head; //Points to the Class
+    Semester *semester_head; //Points to the Semester
+    Year *year_next; //Next Year
+};
+
+struct Semester
+{
+    unsigned int Semester_Ord; //Ordinal number
+    Course course_head; //Points to the Course
+    Semester *semester_next; //Next Semester
+};
+
+
 #endif
