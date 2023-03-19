@@ -46,14 +46,17 @@ struct Class
 
 struct Student
 {   
-    unsigned int stu_No;
-    string stu_ID;
-    string stu_name;
-    Class stu_class;
+    unsigned int student_No;
+    string student_ID;
+    string student_socialID;
+    string student_fisrtname;
+    string student_lastname;
+    Class student_class;
     bool gender; //0: Male, 1: Female
     Date DOB; // Date of Birth
     Course *course_head; // Points to the Course
     Student *student_next; // Next student
+
 };
 
 struct Course
@@ -79,6 +82,16 @@ struct Semester
     unsigned int Semester_Ord; //Ordinal number
     Course course_head; //Points to the Course
     Semester *semester_next; //Next Semester
+};
+
+struct Scoreboard
+{
+    float total_mark;
+    float midterm_mark;
+    float final_mark;
+    float other_mark;
+    Student *student_head;
+    
 };
 
 
