@@ -11,7 +11,7 @@ void changePass(string username, bool isStudent)
     ifstream ifs;
     ofstream ofs;
     //choose which file to read
-    if (isStudent==true)
+    if (isStudent == true)
         ifs.open("acc_student.csv");
     else
         ifs.open("acc_staff.csv");
@@ -28,12 +28,12 @@ void changePass(string username, bool isStudent)
         return;
     }
     string line;
-    bool found=false;
+    bool found = false;
     //read input form file and change password in the temporary file
     while (getline(ifs, line))
     {
-        string user=line.substr(0, line.find(','));
-        if (user==username)
+        string user = line.substr(0, line.find(','));
+        if (user == username)
         {
             string new_pass;
             cout << "New password: ";
@@ -49,14 +49,14 @@ void changePass(string username, bool isStudent)
     ifs.close();
     ofs.close();
     //check available username
-    if (found==false)
+    if (found == false)
     {
         cerr << "Error: Username not found\n";
         remove("temp.csv");
         return;
     }
     //delete old file and rename temporary file to old file
-    if (isStudent==true)
+    if (isStudent == true)
     {
         remove("acc_student.csv");
         rename("temp.csv", "acc_student.csv");
