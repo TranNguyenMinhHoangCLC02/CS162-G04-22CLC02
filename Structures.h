@@ -80,7 +80,7 @@ struct Year
 struct Semester
 {
     unsigned int Semester_Ord; //Ordinal number
-    Course course_head; //Points to the Course
+    Course *course_head; //Points to the Course
     Semester *semester_next; //Next Semester
 };
 
