@@ -40,7 +40,7 @@ void login()
             }
         }
     }
-    esle if (!isStaff())
+    else if (!isStaff())
     {
         // Request user to input login information
         string username, password;
