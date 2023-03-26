@@ -4,6 +4,7 @@ Year* getYearListFromFile()
 {
     std::ifstream ifs;
 
+    //Open file
     ifs.open("schoolyear.txt");
     if (!ifs.is_open())
     {
@@ -16,6 +17,7 @@ Year* getYearListFromFile()
 
     while (!ifs.eof())
     {
+        //Get node from file and add it at the end of year list
         getline(ifs, year_name, '\n');
 
         if (ifs.eof())

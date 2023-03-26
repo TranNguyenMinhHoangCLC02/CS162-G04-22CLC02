@@ -1,7 +1,12 @@
 #include "Structures.h"
 
+/*
+School Year Creation Function: This function should allow academic staff members to create a new school year in the system.
+*/
+
 bool checkSyntaxOfSchoolYear (string year_name)
 {
+    //Get start year in string year_name
     int startyear = 0; int indexstring = 0; int len_year = year_name.size();
 
     while (indexstring < len_year && year_name[indexstring] >= '0' && year_name[indexstring] <= '9')
@@ -10,11 +15,11 @@ bool checkSyntaxOfSchoolYear (string year_name)
         indexstring++;
     }
 
-    if (indexstring == len_year)
+    if (indexstring == len_year) //when year_name includes only number letters
         return false;
     else
     {
-        if (year_name[indexstring] != '-')
+        if (year_name[indexstring] != '-') //Violate the first and third principles
             return false;
 
         indexstring++;
@@ -28,18 +33,18 @@ bool checkSyntaxOfSchoolYear (string year_name)
         indexstring++;
     }
 
-    if (indexstring == len_year)
+    if (indexstring == len_year) 
     {
         if (endyear - startyear == 1)
             return true;
-        else
+        else //Violate the first principle
             return false;
     }
-    else
+    else //Violate the first and third principles
         return false;
 }
 
-bool checkExistingYear (Year* &year_head, string year_name)
+bool checkExistingYear (Year* &year_head, string year_name) //Check violation the second principle
 {
     if (!year_head)
         return true;
@@ -78,6 +83,7 @@ void addNewSchoolYear (Year* &year_head)
     cout << "Please type the school year you want to add (Ensure that your syntax follows our given principles: ";
     getline(cin, new_year->year_name);
 
+    //If user's input is wrong, input again
     while (!checkSyntaxOfSchoolYear(new_year->year_name) || !checkExistingYear(year_head, new_year->year_name))
     {
         if (!checkSyntaxOfSchoolYear(new_year->year_name))
@@ -97,6 +103,7 @@ void addNewSchoolYear (Year* &year_head)
 
     new_year->year_next = nullptr;
 
+    //Add new_year node at the end of year list
     if (!year_head)
     {
         year_head = new_year;
@@ -111,6 +118,7 @@ void addNewSchoolYear (Year* &year_head)
         temp->year_next = new_year;
     }
 
+    //Print year list after changed out file temp.txt
     Year* temp_year = year_head;
     while (temp_year)
     {
@@ -118,12 +126,15 @@ void addNewSchoolYear (Year* &year_head)
         temp_year = temp_year->year_next;
     }
 
+    //Remove file schoolyear.txt and rename temp.txt
     ofs.close();
     remove("schoolyear.txt");
     rename("temp.txt", "schoolyear.txt");
 
+    //Announce for user
     cout << "You created a new school year successfully!\n\n";
 
+    //Require user input 0 for returning back
     int option;
     cout << "Please type the number 0 for returning back: ";
     cin >> option;
