@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <iomanip>
 using namespace std;
 
 struct Scoreboard;
@@ -94,5 +95,8 @@ struct Scoreboard
     
 };
 
+bool isLoggedIn();
+void login(bool isStudent);
+void logout();
 
 #endif
