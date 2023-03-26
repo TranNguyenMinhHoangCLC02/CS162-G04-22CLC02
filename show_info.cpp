@@ -1,4 +1,4 @@
-#pragma once
+
 #include "Structures.h"
 #include "Staff.h"
 #include "Student.h"

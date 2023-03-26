@@ -1,4 +1,4 @@
-#pragma once
+
 #include "Staff.h"
 #include "Student.h"
 
@@ -53,10 +53,7 @@ int Main_Staff_Screen(string username)
         Year *year_head = getYearListFromFile();
         addNewSchoolYear(year_head);
     }
-    else
-    {
 
-    }
 }
 
 
