@@ -1,5 +1,3 @@
-
-#include "Structures.h"
 #include "Staff.h"
 #include "Student.h"
 
@@ -15,7 +13,6 @@ bool isLoggedIn() {
 
 void login(bool isStudent, string &username) 
 {
-
     // Check whether the login information is correct by comparing it with the acc_student.csv file or acc_staf.csv
     if (!isStudent)
     {

@@ -1,5 +1,8 @@
-#pragma once
+#ifndef Student_h
+#define Student_h
+
 #include "Structures.h"
-#include "Staff.h"
-#include "Student.h"
+
 void student_info(string username);
+
+#endif

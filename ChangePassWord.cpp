@@ -1,14 +1,12 @@
-
-#include "Structures.h"
 #include "Staff.h"
 #include "Student.h"
-
 
 /*
 Password Change Function: The user should be able to change their password after logging in. 
 This function should allow the user to enter their current password and a new password, 
 and then update the password in the database.
 */
+
 void changePass(string username, bool isStudent)
 {
     ifstream ifs;
