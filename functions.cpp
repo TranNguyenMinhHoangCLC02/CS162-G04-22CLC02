@@ -39,7 +39,7 @@ void changePass(string username, bool isStudent)
             cout << "New password: ";
             cin >> new_pass;
             ofs << user << "," << new_pass << "\n";
-            found=true;
+            found = true;
         }
         else
         {
