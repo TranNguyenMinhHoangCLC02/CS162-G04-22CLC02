@@ -1,4 +1,6 @@
-#include "Structures.h"
+#pragma once
+#include "Staff.h"
+#include "Student.h"
 
 /*
 bool check;
@@ -21,6 +23,7 @@ int firstScreen(bool &check)
     int option;
     do
     {
+        cout << "Input option: ";
         cin >> option;
     } while (option != 0 && option != 1 && option != 2);
     if (option == 0)
@@ -32,39 +35,51 @@ int firstScreen(bool &check)
     }
 }
 
-void interface(int option)
-{
-    system("cls");
-    if (option == 1)
-    {
-        login(option);
-        Main_Staff_Screen();
-    }
-    else
-    {
-        login(option);
-        Main_Student_Screen();
-    }
-
-}
-
-int Main_Staff_Screen()
+int Main_Staff_Screen(string username)
 {
     int option; bool check;
     cout << "0." << setw(2) << right << "Log out\n";
     cout << "1." << setw(2) << right << "View profile\n";
-    if (option==0)
+    cout << "2." << setw(2) << right << "Add a new school year\n";
+    cout << "3." << setw(2) << right << "Access a school year\n";
+    cout << "Input option: ";
+    cin >> option;
+    if (option == 0)
         return firstScreen(check);
-    
+    if (option == 1)
+        staff_info(username);
+    else if (option == 2)
+    {
+        Year *year_head = getYearListFromFile();
+        addNewSchoolYear(year_head);
+    }
+    else
+    {
 
+    }
 }
 
-int Sub_Staff_Screen()
+
+void Main_Student_Screen(string username)
 {
-    cout << "1." << setw(2) << right << "Return back\n";
+    int option; bool check;
+    cout << "0." << setw(2) << right << "Log out\n";
+    cout << "1." << setw(2) << right << "View profile\n";
+    cout << "2." << setw(2) << right << "View courses\n";
 }
 
-void Main_Student_Screen()
+void interface(int option)
 {
-
+    system("cls");
+    string username;
+    if (option == 1)
+    {
+        login(option, username);
+        Main_Staff_Screen(username);
+    }
+    else
+    {
+        login(option, username);
+        Main_Student_Screen(username);
+    }
 }
