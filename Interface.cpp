@@ -33,6 +33,7 @@ int firstScreen(bool &check)
         check = true;
         return option;
     }
+    return 0;
 }
 
 int Main_Staff_Screen(string username)
@@ -53,7 +54,7 @@ int Main_Staff_Screen(string username)
         Year *year_head = getYearListFromFile();
         addNewSchoolYear(year_head);
     }
-
+    return 0;
 }
 
 
