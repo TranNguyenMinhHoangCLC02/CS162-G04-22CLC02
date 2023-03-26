@@ -1,5 +1,8 @@
 #pragma once
 #include "Structures.h"
+#include "Staff.h"
+#include "Student.h"
+
 
 /*
 Password Change Function: The user should be able to change their password after logging in. 

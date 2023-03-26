@@ -1,7 +1,12 @@
+#pragma once
 #include "Structures.h"
+#include "Staff.h"
+#include "Student.h"
+
 
 /*
-School Year Creation Function: This function should allow academic staff members to create a new school year in the system.
+School Year Creation Function: This function should allow academic staff members to create 
+a new school year in the system.
 */
 
 bool checkSyntaxOfSchoolYear (string year_name)
@@ -29,7 +34,7 @@ bool checkSyntaxOfSchoolYear (string year_name)
 
     while (indexstring < len_year && year_name[indexstring] >= '0' && year_name[indexstring] <= '9')
     {
-        endyear = endyear * 10 + (int)year_name[indexstring] - 48;
+        endyear = endyear * 10 + (int)year_name[indexstring] - 48; // '0' = 48
         indexstring++;
     }
 

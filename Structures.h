@@ -5,6 +5,7 @@
 #include <string>
 #include <fstream>
 #include <iomanip>
+#include <sstream>
 using namespace std;
 
 struct Scoreboard;
@@ -22,7 +23,18 @@ struct Date
     unsigned int day, month, year;
 };
 
-void convertTime_slot(Class *a)
+
+struct Class
+{
+    string class_name;
+    string class_id;
+    Student *student_head; // Points to the Student
+    Class *next_class; // Next class
+    string slot;
+    void convertTime_slot(Class *a);
+};
+
+void Class::convertTime_slot(Class *a)
 {
     if (a->slot == time_slot[0])
         cout << "7:30";
@@ -35,15 +47,6 @@ void convertTime_slot(Class *a)
     else
         cout << "Invalid time slot";
 }
-
-struct Class
-{
-    string class_name;
-    string class_id;
-    Student *student_head; // Points to the Student
-    Class *next_class; // Next class
-    string slot;
-};
 
 struct Student
 {   
@@ -96,7 +99,13 @@ struct Scoreboard
 };
 
 bool isLoggedIn();
-void login(bool isStudent);
+void login(bool isStudent, string &username);
 void logout();
+void staff_info(string username);
+void student_info(string username);
+int firstScreen(bool &check);
+int Main_Staff_Screen(string username);
+void Main_Student_Screen(string username);
+void interface(int option);
 
 #endif

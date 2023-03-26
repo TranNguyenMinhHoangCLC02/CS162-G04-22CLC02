@@ -1,4 +1,8 @@
+#pragma once
 #include "Structures.h"
+#include "Staff.h"
+#include "Student.h"
+
 
 bool isLoggedIn() {
     // Check whether the user is currently logged in by checking the isLoggedIn.txt file
@@ -9,14 +13,14 @@ bool isLoggedIn() {
     return (line == "1");
 }
 
-void login(bool isStudent) 
+void login(bool isStudent, string &username) 
 {
 
     // Check whether the login information is correct by comparing it with the acc_student.csv file or acc_staf.csv
     if (!isStudent)
     {
         // Request user to input login information
-        string username, password;
+        string password;
         cout << "User: ";
         cin >> username;
         cout << "Password: ";
@@ -69,7 +73,7 @@ void login(bool isStudent)
     // If the login is unsuccessful, display an error message and request the user to login again
     system("cls");
     cout << "Incorrect login information! \n";
-	login(isStudent);
+	login(isStudent, username);
 }
 
 void logout() {
