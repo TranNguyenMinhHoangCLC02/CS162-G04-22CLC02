@@ -1,8 +1,5 @@
-
-#include "Structures.h"
 #include "Staff.h"
 #include "Student.h"
-
 
 /*
 School Year Creation Function: This function should allow academic staff members to create 
@@ -85,6 +82,7 @@ void addNewSchoolYear (Year* &year_head)
     cout << "2. Don't input an available school year!\n";
     cout << "3. Your input will be false if it includes another letter that is not number and a hyphen between 2 years\n\n";
 
+    cin.ignore();
     cout << "Please type the school year you want to add (Ensure that your syntax follows our given principles: ";
     getline(cin, new_year->year_name);
 
@@ -146,7 +144,7 @@ void addNewSchoolYear (Year* &year_head)
 
     while (option)
     {
-        cout << "the number is different from 0, please input again!: ";
+        cout << "The number is different from 0, please input again!: ";
         cin >> option;
     }
 }
