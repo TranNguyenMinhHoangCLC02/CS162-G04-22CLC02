@@ -1,5 +1,4 @@
-#include "Student.h"
-#include <fstream>
+#include "Structures.h"
 
 bool isLoggedIn() {
     // Check whether the user is currently logged in by checking the isLoggedIn.txt file
@@ -10,11 +9,11 @@ bool isLoggedIn() {
     return (line == "1");
 }
 
-void login() 
+void login(bool isStudent) 
 {
 
     // Check whether the login information is correct by comparing it with the acc_student.csv file or acc_staf.csv
-    if (!isStudent())
+    if (!isStudent)
     {
         // Request user to input login information
         string username, password;
@@ -40,7 +39,7 @@ void login()
             }
         }
     }
-    else if (!isStaff())
+    else
     {
         // Request user to input login information
         string username, password;
@@ -69,7 +68,7 @@ void login()
 
     // If the login is unsuccessful, display an error message and request the user to login again
     cout << "Incorrect login information! \n";
-	login();
+	login(isStudent);
 }
 
 void logout() {
