@@ -1,6 +1,6 @@
 #include "Staff.h"
 #include "Student.h"
-
+#include "Structures.h"
 
 bool isLoggedIn() {
     // Check whether the user is currently logged in by checking the isLoggedIn.txt file
