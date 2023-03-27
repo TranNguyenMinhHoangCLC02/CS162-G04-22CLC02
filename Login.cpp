@@ -43,7 +43,7 @@ void login(bool isStudent, string &username)
     else
     {
         // Request user to input login information
-        string username, password;
+        string password;
         cout << "User: ";
         cin >> username;
         cout << "Password: ";

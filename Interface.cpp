@@ -38,7 +38,7 @@ int firstScreen(bool &check)
     return 0;
 }
 
-int Main_Staff_Screen(string username)
+int Main_Staff_Screen(string &username)
 {
     int option; bool check;
 
@@ -47,15 +47,22 @@ int Main_Staff_Screen(string username)
     cout << "2." << setw(2) << right << "Add a new school year\n";
     cout << "3." << setw(2) << right << "Access a school year\n";
 
-    cout << "Input option: ";
-    cin >> option;
+    do
+    {
+        cout << "Input option: ";
+        cin >> option;
+    } while (option != 0 && option != 1 && option != 2 && option != 3);
 
-    if (option == 0)
+    if (option == 0){
+        system("cls");
         return firstScreen(check);
-    if (option == 1)
+    }
+    else if(option == 1)
     {
         system("cls");
         staff_info(username);
+        system("cls");
+        return Main_Staff_Screen(username);
     }
     else if (option == 2)
     {
