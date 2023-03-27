@@ -83,8 +83,8 @@ void login(bool isStudent, string &username);
 void logout();
 int firstScreen(bool &check);
 int Main_Staff_Screen(string &username);
-void Main_Student_Screen(string username);
+int Main_Student_Screen(string username);
 void interface(int option);
 void convertTime_slot(Class *a);
-
+int main();
 #endif
