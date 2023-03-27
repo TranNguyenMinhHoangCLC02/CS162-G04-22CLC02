@@ -126,4 +126,12 @@ void student_info(string username){
             }
         }
     }
+    int choice;
+    cout << "\n\n0." << setw(2) << right << "Go Back\n";
+    do
+    {
+        cout << "Input option: ";
+        cin >> choice;
+    } while (choice != 0);
+    ifs.close();
 }

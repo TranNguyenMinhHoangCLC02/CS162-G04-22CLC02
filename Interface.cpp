@@ -1,6 +1,6 @@
 #include "Staff.h"
 #include "Student.h"
-
+#include "Structures.h"
 /*
 bool check;
 int option=firstScreen(check);
@@ -56,7 +56,7 @@ int Main_Staff_Screen(string &username)
     if (option == 0)
     {
         system("cls");
-        return firstScreen(check);
+        return main();
     }
     if (option == 1)
     {
@@ -76,12 +76,36 @@ int Main_Staff_Screen(string &username)
 }
 
 
-void Main_Student_Screen(string username)
+int Main_Student_Screen(string username)
 {
     int option; bool check;
     cout << "0." << setw(2) << right << "Log out\n";
     cout << "1." << setw(2) << right << "View profile\n";
     cout << "2." << setw(2) << right << "View courses\n";
+    
+    do
+    {
+        cout << "Input option: ";
+        cin >> option;
+    } while (option != 0 && option != 1 && option != 2);
+
+    if (option == 0){
+        system("cls");
+        return main();
+    }
+    else if(option == 1)
+    {
+        system("cls");
+        student_info(username);
+        system("cls");
+        return Main_Student_Screen(username);
+    }
+    else if (option == 2)
+    {
+
+    }
+
+    return 0;
 }
 
 void interface(int option)
