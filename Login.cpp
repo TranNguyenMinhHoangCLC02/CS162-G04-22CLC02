@@ -14,7 +14,7 @@ bool isLoggedIn() {
 void login(bool isStudent, string &username) 
 {
     // Check whether the login information is correct by comparing it with the acc_student.csv file or acc_staf.csv
-    if (!isStudent)
+    if (isStudent)
     {
         // Request user to input login information
         string password;

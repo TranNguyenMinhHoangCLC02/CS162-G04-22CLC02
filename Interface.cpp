@@ -51,7 +51,10 @@ int Main_Staff_Screen(string username)
     cin >> option;
 
     if (option == 0)
+    {
+        system("cls");
         return firstScreen(check);
+    }
     if (option == 1)
     {
         system("cls");
@@ -82,13 +85,13 @@ void interface(int option)
     string username;
     if (option == 1)
     {
-        login(option, username);
+        login(option - 1, username);
         system("cls");
         Main_Staff_Screen(username);
     }
     else
     {
-        login(option, username);
+        login(option - 1, username);
         system("cls");
         Main_Student_Screen(username);
     }
