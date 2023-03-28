@@ -15,7 +15,8 @@ void login(bool isStudent, string &username)
 {
     // Check whether the login information is correct by comparing it with the acc_student.csv file or acc_staf.csv
     if (isStudent)
-    {
+    {   
+        cout << "-------------STUDENT-LOG-IN--------------\n\n";
         // Request user to input login information
         string password;
         cout << "User: ";
@@ -42,6 +43,7 @@ void login(bool isStudent, string &username)
     }
     else
     {
+        cout << "--------------STAFF-LOG-IN---------------\n\n";
         // Request user to input login information
         string password;
         cout << "User: ";
