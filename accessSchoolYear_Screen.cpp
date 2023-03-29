@@ -21,7 +21,10 @@ int accessSchoolYear(string username, Year* &year_head)
     } while (option < 0 || option > 4);
 
     if (option == 0)
-        return Main_Staff_Screen(username, year_head);
+    {
+        system("cls");
+        return viewSchoolYear_Screen(username, getYearListFromFile());
+    }
     else if(option == 1){
         
     }
