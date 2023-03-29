@@ -1,17 +1,6 @@
 #include "Staff.h"
 #include "Student.h"
 #include "Structures.h"
-/*
-bool check;
-int option=firstScreen(check);
-if (check==false)
-    return 0;
-if (option==1)
-    interface_Staff();
-else
-    interface_Student();
-*/
-
 
 int firstScreen(bool &check)
 {
@@ -41,6 +30,7 @@ int firstScreen(bool &check)
 int Main_Staff_Screen(string &username, Year *&year_head)
 {
     int option; bool check;
+    
     cout << "0." << setw(2) << right << "Log out\n";
     cout << "1." << setw(2) << right << "View profile\n";
     cout << "2." << setw(2) << right << "Add a new school year\n";

@@ -2,7 +2,7 @@
 #include "Student.h"
 
 /*
-School Year Creation Function: This function should allow academic staff members to create 
+School Year Creation Function: This function allows academic staff members to create 
 a new school year in the system.
 */
 
