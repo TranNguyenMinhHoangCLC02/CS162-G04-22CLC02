@@ -40,6 +40,7 @@ int firstScreen(bool &check)
 
 int Main_Staff_Screen(string &username, Year *&year_head)
 {
+    cout << "------------------STAFF------------------\n";
     int option; bool check;
     cout << "0." << setw(2) << right << "Log out\n";
     cout << "1." << setw(2) << right << "View profile\n";
@@ -84,6 +85,7 @@ int Main_Staff_Screen(string &username, Year *&year_head)
 
 int Main_Student_Screen(string username)
 {
+    cout << "------------------STUDENT---------------\n";
     int option; bool check;
     cout << "0." << setw(2) << right << "Log out\n";
     cout << "1." << setw(2) << right << "View profile\n";
