@@ -114,10 +114,9 @@ int Main_Student_Screen(string username)
     return 0;
 }
 
-void interface(int option)
+void interface(int option, Year* &year_head)
 {
     system("cls");
-    Year *year_head = nullptr;
     string username;
     if (option == 1)
     {

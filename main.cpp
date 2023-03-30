@@ -1,6 +1,6 @@
 #include "Staff.h"
 #include "Student.h"
-
+Year *year_head = nullptr;
 int main()
 {
     bool check;
@@ -10,6 +10,6 @@ int main()
     if (check == false)
         return 0;
 
-    interface(option);
+    interface(option, year_head);
     return 0;
 }

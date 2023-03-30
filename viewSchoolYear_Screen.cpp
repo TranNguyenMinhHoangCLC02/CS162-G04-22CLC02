@@ -2,10 +2,12 @@
 #include "Staff.h"
 #include "Student.h"
 int viewSchoolYear_Screen(string username, Year* year_head){
-    cout << "Choose the year: ";
+    system("cls");
+    cout << setw(2) << "------------ACCESS-A-YEAR--------------\n";
+    cout << "Choose the year you have created: ";
     Year* cur = year_head;
     if(cur == nullptr){
-        cout << "\n\nNothing to choose";
+        cout << "\nNothing to choose";
     }
     cout << endl;
     int i = 1;
@@ -28,15 +30,19 @@ int viewSchoolYear_Screen(string username, Year* year_head){
     }
     else if(option == 1){
         accessSchoolYear(username, year_head);
+        return viewSchoolYear_Screen(username, year_head);
     }
     else if(option == 2){
         accessSchoolYear(username, year_head->year_next);
+        return viewSchoolYear_Screen(username, year_head);
     }
     else if(option == 3){
         accessSchoolYear(username, year_head->year_next->year_next);
+        return viewSchoolYear_Screen(username, year_head);
     }
     else if(option == 4){
         accessSchoolYear(username, year_head->year_next->year_next->year_next);
+        return viewSchoolYear_Screen(username, year_head);
     }
     return 0;
 }
