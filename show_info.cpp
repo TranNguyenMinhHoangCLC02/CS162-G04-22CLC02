@@ -99,7 +99,7 @@ void student_info(string username){
                 }
                 else if(count == 3){
                     cout << "\nFull name: ";
-                    cout << field;
+                    cout << field << " ";
                     getline(ss, field, ',');
                     cout << field;
                     count++;

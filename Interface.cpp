@@ -1,17 +1,6 @@
 #include "Staff.h"
 #include "Student.h"
 #include "Structures.h"
-/*
-bool check;
-int option=firstScreen(check);
-if (check==false)
-    return 0;
-if (option==1)
-    interface_Staff();
-else
-    interface_Student();
-*/
-
 
 int firstScreen(bool &check)
 {
@@ -38,9 +27,11 @@ int firstScreen(bool &check)
     return 0;
 }
 
-int Main_Staff_Screen(string &username, Year *&year_head)
+int Main_Staff_Screen(string &username, Year* &year_head)
 {
+    cout << "------------------STAFF------------------\n";
     int option; bool check;
+
     cout << "0." << setw(2) << right << "Log out\n";
     cout << "1." << setw(2) << right << "View profile\n";
     cout << "2." << setw(2) << right << "Add a new school year\n";
@@ -76,6 +67,7 @@ int Main_Staff_Screen(string &username, Year *&year_head)
     else if (option == 3)
     {
         system("cls");
+        year_head = getYearListFromFile();
         viewSchoolYear_Screen(username, year_head);
     }
     else if (option == 4)
@@ -91,6 +83,7 @@ int Main_Staff_Screen(string &username, Year *&year_head)
 
 int Main_Student_Screen(string username)
 {
+    cout << "------------------STUDENT---------------\n";
     int option; bool check;
     cout << "0." << setw(2) << right << "Log out\n";
     cout << "1." << setw(2) << right << "View profile\n";
@@ -127,10 +120,9 @@ int Main_Student_Screen(string username)
     return 0;
 }
 
-void interface(int option)
+void interface(int option, Year* &year_head)
 {
     system("cls");
-    Year *year_head = nullptr;
     string username;
     if (option == 1)
     {
