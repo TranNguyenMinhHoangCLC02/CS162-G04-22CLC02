@@ -1,6 +1,5 @@
 #include "Staff.h"
 #include "Student.h"
-#include "Structures.h"
 
 int firstScreen(bool &check)
 {
@@ -74,7 +73,7 @@ int Main_Staff_Screen(string &username, Year* &year_head)
     {
         system("cls");
         changePass(username, false);
-        interface(1);
+        interface(1, year_head);
     }
 
     return 0;
@@ -110,11 +109,12 @@ int Main_Student_Screen(string username)
     {
 
     }
-    else if (option==3)
+    else if (option == 3)
     {
+        Year* year_head = nullptr;
         system("cls");
         changePass(username, true);
-        interface(0);
+        interface(0, year_head);
     }
 
     return 0;

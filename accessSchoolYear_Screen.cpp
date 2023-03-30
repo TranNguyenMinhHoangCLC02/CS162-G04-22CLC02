@@ -1,7 +1,9 @@
 #include "Staff.h"
-#include "Student.h"
-int accessSchoolYear(string username, Year* &year_head){
+
+int accessSchoolYear(string username, Year* &year_head)
+{
     system("cls");
+    cout << "\n";
     cout << "------------"<< year_head->year_name <<"--------------\n";
     cout << "0." << setw(2) << right << "Return back\n";
     cout << "1." << setw(2) << right << "Add a semester\n";
@@ -15,8 +17,10 @@ int accessSchoolYear(string username, Year* &year_head){
         cout << "Input option: ";
         cin >> option;
     } while (option < 0 || option > 4);
-    if (option == 0){
-        return viewSchoolYear_Screen(username, year_head);
+
+    if (option == 0)
+    {
+        return viewSchoolYear_Screen(username, getYearListFromFile());
     }
     else if(option == 1)
     {
