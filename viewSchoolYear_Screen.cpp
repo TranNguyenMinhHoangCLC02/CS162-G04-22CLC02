@@ -2,13 +2,15 @@
 
 int viewSchoolYear_Screen(string username, Year* year_head)
 {
-    cout << "Please choose the year you want to access";
+    system("cls");
+    cout << setw(2) << "------------ACCESS-A-YEAR--------------\n";
+    cout << "Please choose the year you have created you want to access";
     
     Year* cur = year_head; int numYears = 0;
 
     //Show list of years the staff has created before
     if (cur == nullptr) //Data is empty
-        cout << "\n\n" << "Oops, there is nothing for you to choose" << "\n";
+        cout << "\n" << "Oops, there is nothing for you to choose" << "\n";
     else
     {
         cout << "\n\n" << "Here are some years you created" << "\n";
@@ -66,10 +68,7 @@ int viewSchoolYear_Screen(string username, Year* year_head)
             cout << "Please input again: ";
             cin >> opt;
         }
-
-        system("cls");
-        return Main_Staff_Screen(username, year_head);
     }
-
-    return 0;
+    system("cls");
+    return Main_Staff_Screen(username, year_head);
 }

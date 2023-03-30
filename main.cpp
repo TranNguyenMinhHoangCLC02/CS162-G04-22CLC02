@@ -1,6 +1,6 @@
 #include "Staff.h"
 #include "Student.h"
-
+Year *year_head = nullptr;
 int main()
 {
     //Design the introduction for project
@@ -13,7 +13,7 @@ int main()
     if (check == false) //Out the program
         return 0;
 
-    interface(option); //Continue with 1 of 2 rest options
+    interface(option, year_head); //Continue with 1 of 2 rest options
 
     return 0;
 }

@@ -85,7 +85,7 @@ int firstScreen(bool &check);
 int viewSchoolYear_Screen(string username, Year* year_head);
 int Main_Staff_Screen(string &username, Year *&year_head);
 int Main_Student_Screen(string username);
-void interface(int option);
+void interface(int option, Year* &year_head);
 void convertTime_slot(Class *a);
 int main();
 #endif
