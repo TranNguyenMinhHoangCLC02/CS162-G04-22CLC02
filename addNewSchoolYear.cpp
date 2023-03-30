@@ -1,5 +1,4 @@
 #include "Staff.h"
-#include "Student.h"
 
 /*
 School Year Creation Function: This function allows academic staff members to create 
@@ -67,13 +66,6 @@ void addNewSchoolYear (Year* &year_head)
 {
     ofstream ofs;
 
-    ofs.open("temp.txt");
-    if (!ofs.is_open())
-    {
-        cerr << "Error: Unable to open file for writing\n";
-        return;
-    }
-
     //Create new node for linked list year_head
     Year* new_year = new Year;
 
@@ -103,25 +95,29 @@ void addNewSchoolYear (Year* &year_head)
 
     new_year->class_head = nullptr;
     new_year->semester_head = nullptr;
-
     new_year->year_next = nullptr;
 
     //Add new_year node at the end of year list
     if (!year_head)
-    {
         year_head = new_year;
-    }
     else
     {
         Year* temp = year_head;
+
         while (temp->year_next)
-        {
             temp = temp->year_next;
-        }
+    
         temp->year_next = new_year;
     }
 
-    //Print year list after changed out file temp.txt
+    //Print year list after changed out file schoolyear.txt
+    ofs.open("schoolyear.txt");
+    if (!ofs.is_open())
+    {
+        cerr << "Error: Unable to open file for writing\n";
+        return;
+    }
+
     Year* temp_year = year_head;
     while (temp_year)
     {
@@ -129,13 +125,20 @@ void addNewSchoolYear (Year* &year_head)
         temp_year = temp_year->year_next;
     }
 
-    //Remove file schoolyear.txt and rename temp.txt
     ofs.close();
-    remove("schoolyear.txt");
-    rename("temp.txt", "schoolyear.txt");
 
     //Announce for user
     cout << "You created a new school year successfully!\n\n";
+
+    //Create file including semesters of created year
+    string name_file = new_year->year_name + "semester.txt";
+    ofs.open(name_file);
+    if (!ofs.is_open())
+    {
+        cerr << "Error: Unable to open file for writing\n";
+        return;
+    }
+    ofs.close();
 
     //Require user input 0 for returning back
     int option;
@@ -144,7 +147,7 @@ void addNewSchoolYear (Year* &year_head)
 
     while (option)
     {
-        cout << "The number is different from 0, please input again!: ";
+        cout << "The number is different from 0, please input again: ";
         cin >> option;
     }
 }

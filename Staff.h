@@ -9,6 +9,10 @@ void addNewSchoolYear (Year* &year_head);
 Year* getYearListFromFile();
 void staff_info(string username);
 int accessSchoolYear(string username, Year* &year_head);
-Semester* getSemesterListFromFile();
+
+Semester* getSemesterListFromFile(Year* &year_head);
+bool checkInvalidSemester (string input);
+bool checkExistingSemester (Semester* &semester_head, string input);
+int addNewSemester (string username, Year* &year_head);
 
 #endif
