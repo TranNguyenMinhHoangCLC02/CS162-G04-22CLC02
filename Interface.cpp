@@ -45,12 +45,13 @@ int Main_Staff_Screen(string &username, Year *&year_head)
     cout << "1." << setw(2) << right << "View profile\n";
     cout << "2." << setw(2) << right << "Add a new school year\n";
     cout << "3." << setw(2) << right << "Access a school year\n";
-
+    cout << "4." << setw(2) << right << "Change password\n";
+    
     do
     {
         cout << "Input option: ";
         cin >> option;
-    } while (option != 0 && option != 1 && option != 2 && option != 3);
+    } while (option != 0 && option != 1 && option != 2 && option != 3 && option != 4);
 
     if (option == 0)
     {
@@ -77,6 +78,12 @@ int Main_Staff_Screen(string &username, Year *&year_head)
         system("cls");
         viewSchoolYear_Screen(username, year_head);
     }
+    else if (option == 4)
+    {
+        system("cls");
+        changePass(username, false);
+        interface(1);
+    }
 
     return 0;
 }
@@ -88,12 +95,12 @@ int Main_Student_Screen(string username)
     cout << "0." << setw(2) << right << "Log out\n";
     cout << "1." << setw(2) << right << "View profile\n";
     cout << "2." << setw(2) << right << "View courses\n";
-    
+    cout << "3." << setw(2) << right << "Change password\n";
     do
     {
         cout << "Input option: ";
         cin >> option;
-    } while (option != 0 && option != 1 && option != 2);
+    } while (option != 0 && option != 1 && option != 2 && option != 3);
 
     if (option == 0){
         system("cls");
@@ -109,6 +116,12 @@ int Main_Student_Screen(string username)
     else if (option == 2)
     {
 
+    }
+    else if (option==3)
+    {
+        system("cls");
+        changePass(username, true);
+        interface(0);
     }
 
     return 0;
