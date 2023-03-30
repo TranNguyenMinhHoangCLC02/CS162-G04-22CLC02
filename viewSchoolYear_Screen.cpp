@@ -67,8 +67,7 @@ int viewSchoolYear_Screen(string username, Year* year_head)
             cout << "Please input again: ";
             cin >> opt;
         }
-
-        system("cls");
-        return Main_Staff_Screen(username, year_head);
     }
+    system("cls");
+    return Main_Staff_Screen(username, year_head);
 }

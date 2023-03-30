@@ -1,7 +1,9 @@
 #include "Staff.h"
 #include "Student.h"
 int accessSchoolYear(string username, Year* &year_head){
-    cout << "0." << setw(2) << right << "Go back\n";
+    system("cls");
+    cout << "------------"<< year_head->year_name <<"--------------\n";
+    cout << "0." << setw(2) << right << "Return back\n";
     cout << "1." << setw(2) << right << "Add a semester\n";
     cout << "2." << setw(2) << right << "Access a semester\n";
     cout << "3." << setw(2) << right << "Add a class\n";
