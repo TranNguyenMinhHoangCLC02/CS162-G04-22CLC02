@@ -1,10 +1,8 @@
 #include "Staff.h"
-#include "Student.h"
-
 
 Year* getYearListFromFile()
 {
-    std::ifstream ifs;
+    ifstream ifs;
 
     //Open file
     ifs.open("schoolyear.txt");
