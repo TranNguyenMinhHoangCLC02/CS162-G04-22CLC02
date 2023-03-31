@@ -24,6 +24,7 @@ int viewSchoolYear_Screen(string username, Year* year_head)
     }
     cout << "\n";
 
+    //If users don't want to manipulate with this page, they can return back
     cout << "0. Return back" << "\n";
 
     //Move the pointer cur to the pointer year_head again

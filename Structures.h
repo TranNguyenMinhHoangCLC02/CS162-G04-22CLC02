@@ -81,6 +81,7 @@ struct Scoreboard
 bool isLoggedIn();
 void login(bool isStudent, string &username);
 void logout();
+void changePass(string username, bool isStudent);
 int firstScreen(bool &check);
 int viewSchoolYear_Screen(string username, Year* year_head);
 int Main_Staff_Screen(string &username, Year *&year_head);
