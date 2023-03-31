@@ -34,7 +34,9 @@ int accessSchoolYear(string username, Year* &year_head)
     }
     else if(option == 3)
     {
-        
+        system("cls");
+        year_head->class_head = getClassListFromFile(year_head);
+        return addNewClass(year_head, username);
     }
     else if(option == 4)
     {
