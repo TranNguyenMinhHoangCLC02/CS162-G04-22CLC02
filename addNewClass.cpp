@@ -11,7 +11,7 @@ Class* getClassListFromFile(Year *&year_head)
         cerr << "Error: Unable to open file for reading\n";
         return nullptr;
     }
-    year_head->class_head=nullptr;
+    year_head->class_head = nullptr;
     Class* temp = nullptr;
     string class_name;
 
