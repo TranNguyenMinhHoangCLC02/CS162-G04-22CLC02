@@ -28,13 +28,16 @@ int accessSchoolYear(string username, Year* &year_head)
         year_head->semester_head = getSemesterListFromFile(year_head);
         return addNewSemester(username, year_head);
     }
-    else if(option == 2){
+    else if(option == 2)
+    {
         
     }
-    else if(option == 3){
+    else if(option == 3)
+    {
         
     }
-    else if(option == 4){
+    else if(option == 4)
+    {
         
     }
     return 0;

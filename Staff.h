@@ -14,5 +14,6 @@ Semester* getSemesterListFromFile(Year* &year_head);
 bool checkInvalidSemester (string input);
 bool checkExistingSemester (Semester* &semester_head, string input);
 int addNewSemester (string username, Year* &year_head);
+Class* getClassListFromFile(Year *&year_head);
 
 #endif
