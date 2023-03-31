@@ -89,7 +89,7 @@ int addNewSemester (string username, Year* &year_head) //Now, year_head is the s
     }
 
     //Print semester list after changed out file txt corresponding with the semester
-    string file_name = year_head->year_name + "semester.txt";
+    string file_name = year_head->year_name + "_semester.txt";
     ofs.open(file_name);
     if (!ofs.is_open())
     {
