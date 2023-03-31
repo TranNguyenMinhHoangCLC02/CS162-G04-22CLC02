@@ -28,7 +28,7 @@ int accessSchoolYear(string username, Year* &year_head){
         
     }
     else if(option == 4){
-        
+        accessClassScr(username, year_head);
     }
     return 0;
 }

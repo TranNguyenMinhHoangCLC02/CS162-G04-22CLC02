@@ -71,7 +71,7 @@ void login(bool isStudent, string &username)
 
     // If the login is unsuccessful, display an error message and request the user to login again
     system("cls");
-    cout << "Incorrect login information! \n";
+    cout << "Incorrect login information! \n\n";
 	login(isStudent, username);
 }
 

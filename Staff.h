@@ -10,5 +10,6 @@ Year* getYearListFromFile();
 void staff_info(string username);
 int accessSchoolYear(string username, Year* &year_head);
 Semester* getSemesterListFromFile();
+int accessClassScr(string username, Year* &year_head);
 
 #endif
