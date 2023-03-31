@@ -1,6 +1,8 @@
 #include "Staff.h"
 #include "Student.h"
-int accessClassScr(string username, Year* &year_head){
+
+int accessClassScr(string username, Year* &year_head)
+{
     system("cls");
     cout << "------------ACCESS-A-CLASS------------\n";
     cout << "Please choose the class you have created you want to access";
@@ -47,7 +49,6 @@ int accessClassScr(string username, Year* &year_head){
             }
 
             //Show some more options
-            
         }
         else
         {

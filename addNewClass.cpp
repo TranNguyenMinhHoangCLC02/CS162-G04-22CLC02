@@ -21,7 +21,7 @@ Class* getClassListFromFile(Year *&year_head)
         if (ifs.eof())
             break;
 
-        Class* new_class = new Class();
+        Class* new_class = new Class;
         new_class->class_name = class_name;
         new_class->student_head = nullptr;
         new_class->next_class = nullptr;
@@ -45,7 +45,7 @@ Class* getClassListFromFile(Year *&year_head)
 int addNewClass (Year* &year_head, string username)
 {
     ofstream ofs;
-    Class* new_class = new Class();
+    Class* new_class = new Class;
     string class_name_pattern = "\\d{2}[A-Z]{3}\\d{2}";
 
     // Keep asking for input until a valid class name is provided
@@ -118,7 +118,7 @@ int addNewClass (Year* &year_head, string username)
     cin >> option;
     cin.ignore();
 
-    while (option!="0") {
+    while (option != "0") {
         cout << "The number is different from 0, please input again: ";
         cin >> option;
         cin.ignore();
