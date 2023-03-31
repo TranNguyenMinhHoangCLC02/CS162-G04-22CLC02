@@ -6,6 +6,7 @@
 #include <fstream>
 #include <iomanip>
 #include <sstream>
+#include <regex>
 using namespace std;
 
 struct Scoreboard;

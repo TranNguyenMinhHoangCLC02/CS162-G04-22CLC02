@@ -28,13 +28,18 @@ int accessSchoolYear(string username, Year* &year_head)
         year_head->semester_head = getSemesterListFromFile(year_head);
         return addNewSemester(username, year_head);
     }
-    else if(option == 2){
+    else if(option == 2)
+    {
         
     }
-    else if(option == 3){
-        
+    else if(option == 3)
+    {
+        system("cls");
+        year_head->class_head = getClassListFromFile(year_head);
+        return addNewClass(year_head, username);
     }
-    else if(option == 4){
+    else if(option == 4)
+    {
         accessClassScr(username, year_head);
     }
     return 0;
