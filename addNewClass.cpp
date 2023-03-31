@@ -2,46 +2,6 @@
 
 /*Class Creation Function: Academic staff members will be able to create new classes for a school year.*/
 
-Class* getClassListFromFile(Year *&year_head)
-{
-    ifstream ifs;
-    ifs.open("class.txt");
-    if (!ifs.is_open())
-    {
-        cerr << "Error: Unable to open file for reading\n";
-        return nullptr;
-    }
-    year_head->class_head=nullptr;
-    Class* temp = nullptr;
-    string class_name;
-
-    while (!ifs.eof())
-    {
-        getline(ifs, class_name, '\n');
-        if (ifs.eof())
-            break;
-
-        Class* new_class = new Class();
-        new_class->class_name = class_name;
-        new_class->student_head = nullptr;
-        new_class->next_class = nullptr;
-
-        if (!year_head->class_head)
-        {
-            year_head->class_head = new_class;
-            temp = year_head->class_head;
-        }
-        else
-        {
-            temp->next_class = new_class;
-            temp = temp->next_class;
-        }
-    }
-
-    ifs.close();
-    return year_head->class_head;
-}
-
 int addNewClass (Year* &year_head, string username)
 {
     ofstream ofs;
@@ -110,7 +70,7 @@ int addNewClass (Year* &year_head, string username)
     cin >> option;
     cin.ignore();
 
-    while (option!="0") {
+    while (option != "0") {
         cout << "The number is different from 0, please input again: ";
         cin >> option;
         cin.ignore();

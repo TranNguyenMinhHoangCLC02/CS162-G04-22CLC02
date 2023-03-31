@@ -28,7 +28,6 @@ struct Class
     string class_id;
     Student *student_head; // Points to the Student
     Class *next_class; // Next class
-    string slot;
 };
 
 struct Student
@@ -50,6 +49,11 @@ struct Course
     string teacher_name;
     string course_ID;
     string course_name;
+    string class_name;
+    int numCredits;
+    int maxNumStudents; //default 50
+    string dayInWeek;
+    string Session;
     Scoreboard *scoreboard_head; //Points to the ScoreBoard
     Course *course_next; //Next Course
     Student *student_head; //Points to the student
@@ -88,6 +92,6 @@ int viewSchoolYear_Screen(string username, Year* year_head);
 int Main_Staff_Screen(string &username, Year *&year_head);
 int Main_Student_Screen(string username);
 void interface(int option, Year* &year_head);
-void convertTime_slot(Class *a);
+void convertTime_slot(Course *a);
 int main();
 #endif

@@ -5,7 +5,7 @@ Semester* getSemesterListFromFile(Year* &year_head)
     std::ifstream ifs;
 
     //Open file
-    string file_name = year_head->year_name + "semester.txt";
+    string file_name = year_head->year_name + "_semester.txt";
     ifs.open(file_name);
     if (!ifs.is_open())
     {
@@ -40,7 +40,6 @@ Semester* getSemesterListFromFile(Year* &year_head)
             temp->semester_next = new_semester;
             temp = temp->semester_next;
         }
-
     }
 
     //Close file and return created list
