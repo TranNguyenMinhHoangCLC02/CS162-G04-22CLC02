@@ -2,7 +2,7 @@
 
 Semester* getSemesterListFromFile(Year* &year_head)
 {
-    std::ifstream ifs;
+    ifstream ifs;
 
     //Open file
     string file_name = year_head->year_name + "_semester.txt";
