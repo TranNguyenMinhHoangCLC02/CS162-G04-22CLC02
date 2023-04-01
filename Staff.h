@@ -17,5 +17,10 @@ int addNewSemester (string username, Year* &year_head);
 int accessClassScr(string username, Year* &year_head);
 Class* getClassListFromFile(Year *&year_head);
 int addNewClass (Year* &year_head, string username);
+void addTail(Student* &student_head, Student* tmp);
+void getDate(Student* &tmp , string date_string);
+Student* getStudentListFromFile(Year *year_head);
+int addNewStudent(string username, Year *&year_head, Class *cur);
+int viewAccessClass(string username, Year* &year_head, Class *cur);
 
 #endif
