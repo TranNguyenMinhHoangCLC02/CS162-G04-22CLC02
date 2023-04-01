@@ -2,52 +2,6 @@
 
 Course* getCourseListFromFile(Year* &year_head)
 {
-    /*
-    ifstream ifs;
-
-    //Open file
-    string file_name = year_head->year_name + "_semester.txt";
-    ifs.open(file_name);
-    if (!ifs.is_open())
-    {
-        cerr << "Error: Unable to open file for reading\n";
-        return nullptr;
-    }
-
-    //Get semester list from file
-    Semester* temp = nullptr;
-    int ordinal_term;
-
-    while (!ifs.eof())
-    {
-        ifs >> ordinal_term;
-
-        if (ifs.eof())
-            break;
-
-        Semester* new_semester = new Semester;
-
-        new_semester->Semester_Ord = ordinal_term;
-        new_semester->course_head = nullptr;
-        new_semester->semester_next = nullptr;
-
-        if (!year_head->semester_head)
-        {
-            year_head->semester_head = new_semester;
-            temp = year_head->semester_head;
-        }
-        else
-        {
-            temp->semester_next = new_semester;
-            temp = temp->semester_next;
-        }
-    }
-
-    //Close file and return created list
-    ifs.close();
-    return year_head->semester_head;
-    */
-
     ifstream ifs;
 
     //Open file
@@ -61,33 +15,49 @@ Course* getCourseListFromFile(Year* &year_head)
 
     //Get course list from file
     Course* temp = nullptr;
-    int ordinal_term;
+    string line;
+    getline(ifs, line);
 
-    while (!ifs.eof())
+    while (getline(ifs, line))
     {
-        ifs >> ordinal_term;
+        Course* new_course = new Course;
+        string tmp;
+        stringstream ss(line);
 
-        if (ifs.eof())
-            break;
+        getline(ss, tmp, ',');
+        new_course->course_ID = tmp;
+        getline(ss, tmp, ',');
+        new_course->course_name = tmp; 
+        getline(ss, tmp, ','); 
+        new_course->class_name = tmp;
+        getline(ss, tmp, ',');
+        new_course->teacher_name = tmp;
+        getline(ss, tmp, ',');
+        new_course->numCredits = stoi(tmp);
+        getline(ss, tmp, ',');
+        new_course->maxNumStudents = stoi(tmp);
+        getline(ss, tmp, ',');
+        new_course->dayInWeek = tmp;
+        getline(ss, tmp, '\n');
+        new_course->Session = tmp;
+        
+        new_course->student_head = nullptr;
+        new_course->scoreboard_head = nullptr;
+        new_course->course_next = nullptr;
 
-        Semester* new_semester = new Semester;
-
-        new_semester->Semester_Ord = ordinal_term;
-        new_semester->course_head = nullptr;
-        new_semester->semester_next = nullptr;
-
-        if (!year_head->semester_head)
+        if (!year_head->semester_head->course_head)
         {
-            year_head->semester_head = new_semester;
-            temp = year_head->semester_head;
+            year_head->semester_head->course_head = new_course;
+            temp = year_head->semester_head->course_head;
         }
         else
         {
-            temp->semester_next = new_semester;
-            temp = temp->semester_next;
+            temp->course_next = new_course;
+            temp = temp->course_next;
         }
     }
 
     //Close file and return created list
     ifs.close();
+    return year_head->semester_head->course_head;
 }

@@ -34,9 +34,10 @@ Class* upload_info_class(ifstream &file)
     while(getline(file,line))
     {
         Student* dummy = new Student(); 
-        dummy->student_No = count;
         string tmp;
         stringstream ss(line);
+
+        dummy->student_No = count;
         getline(ss, tmp, ',');
         dummy->student_ID = tmp;
         getline(ss, tmp, ',');
@@ -56,7 +57,6 @@ Class* upload_info_class(ifstream &file)
         count++;
     }
     class_return->student_head = student_head;
-    class_return->slot = to_string(count-1);
     class_return->class_id = class_return->class_name;
     class_return->next_class = NULL;
 
