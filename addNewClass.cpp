@@ -5,20 +5,15 @@
 int addNewClass (Year* &year_head, string username)
 {
     ofstream ofs;
-    Class* new_class = new Class;
-    string class_name_pattern = "\\d{2}[A-Z]{3}\\d{2}";
+    Class* new_class = new Class();
 
     // Keep asking for input until a valid class name is provided
     bool valid_class_name = false;
     cin.ignore();
     while (!valid_class_name) 
     {
-        cout << "Input class (format: 00ABC00): ";
+        cout << "Input class: ";
         getline(cin, new_class->class_name);
-
-        // Check if input format is correct
-        if (regex_match(new_class->class_name, regex(class_name_pattern)))
-        {
             // Check if class already exists in class.txt file
             ifstream ifs("class.txt");
             if (ifs.is_open()) 
@@ -37,9 +32,6 @@ int addNewClass (Year* &year_head, string username)
                     continue; // class name already exists, try again
             }
             valid_class_name = true; // class name is valid, exit outer loop
-        }
-        else
-            cout << "Invalid format! Please input class again.\n";
     }
     // Class name input is valid
     year_head->class_head->student_head = nullptr;
