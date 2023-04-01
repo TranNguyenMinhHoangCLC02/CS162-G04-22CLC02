@@ -4,6 +4,7 @@
 int accessClassScr(string username, Year* &year_head)
 {
     system("cls");
+    year_head->class_head=getClassListFromFile(year_head);
     cout << "------------ACCESS-A-CLASS------------\n";
     cout << "Please choose the class you have created you want to access";
     
@@ -26,7 +27,6 @@ int accessClassScr(string username, Year* &year_head)
     cout << "\n";
 
     cout << "0. Return back" << "\n";
-
     //Move the pointer cur to the pointer class_head again
     cur = year_head->class_head;
 
@@ -49,6 +49,7 @@ int accessClassScr(string username, Year* &year_head)
             }
 
             //Show some more options
+            viewAccessClass(username, year_head, cur);
         }
         else
         {
