@@ -29,4 +29,6 @@ int accessCourse(string username, Year* &year_head, Semester* &semester_head, Co
 int viewSemester_Screen(string username, Year* year_head);
 int viewCourse_Screen(string username, Year* year_head, Semester* semester_head);
 
+int viewStudentInClass(string username, Year* &year_head, Class *class_head);
+int viewStudentInCourse(string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 #endif
