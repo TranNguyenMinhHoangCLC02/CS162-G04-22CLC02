@@ -2,6 +2,9 @@
 #include "Staff.h"
 
 int viewStudentInCourse(string username, Year* &year_head, Semester* &semester_head, Course* &course_head){
+    system("cls");
+    cout << "------------"<< course_head->course_name <<"--------------\n";
+
     //Show list of students the staff has added before
     if (course_head->student_head == nullptr) //Data is empty
         cout << "\n" << "Oops, there is nothing for you to choose" << "\n";
