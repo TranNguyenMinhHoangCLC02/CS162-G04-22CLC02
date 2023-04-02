@@ -77,7 +77,7 @@ int addNewClass (Year* &year_head, string username)
     }
     if (option == "0") {
         system ("cls");
-        return viewSchoolYear_Screen(username, getYearListFromFile());
+        return accessSchoolYear(username, year_head);
     }
     return 0;
 }
