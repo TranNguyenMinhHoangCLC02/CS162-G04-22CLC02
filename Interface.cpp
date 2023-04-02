@@ -26,7 +26,7 @@ int firstScreen(bool &check)
     return 0;
 }
 
-int Main_Staff_Screen(string &username, Year* &year_head)
+void Main_Staff_Screen(string &username, Year* &year_head)
 {
     cout << "------------------STAFF------------------\n";
     int option; bool check;
@@ -46,14 +46,16 @@ int Main_Staff_Screen(string &username, Year* &year_head)
     if (option == 0)
     {
         system("cls");
-        return main();
+        main();
+        return;
     }
-    if (option == 1)
+    else if (option == 1)
     {
         system("cls");
         staff_info(username);
         system("cls");
-        return Main_Staff_Screen(username, year_head);
+        Main_Staff_Screen(username, year_head);
+        return;
     }
     else if (option == 2)
     {
@@ -61,26 +63,27 @@ int Main_Staff_Screen(string &username, Year* &year_head)
         year_head = getYearListFromFile();
         addNewSchoolYear(year_head);
         system("cls");
-        return Main_Staff_Screen(username, year_head);
+        Main_Staff_Screen(username, year_head);
+        return;
     }
     else if (option == 3)
     {
         system("cls");
         year_head = getYearListFromFile();
         viewSchoolYear_Screen(username, year_head);
+        return;
     }
-    else if (option == 4)
+    else
     {
         system("cls");
         changePass(username, false);
         interface(1, year_head);
+        return;
     }
-
-    return 0;
 }
 
 
-int Main_Student_Screen(string username)
+void Main_Student_Screen(string username)
 {
     cout << "------------------STUDENT---------------\n";
     int option; bool check;
@@ -96,14 +99,16 @@ int Main_Student_Screen(string username)
 
     if (option == 0){
         system("cls");
-        return main();
+        main();
+        return;
     }
     else if(option == 1)
     {
         system("cls");
         student_info(username);
         system("cls");
-        return Main_Student_Screen(username);
+        Main_Student_Screen(username);
+        return;
     }
     else if (option == 2)
     {
@@ -115,9 +120,8 @@ int Main_Student_Screen(string username)
         system("cls");
         changePass(username, true);
         interface(0, year_head);
+        return;
     }
-
-    return 0;
 }
 
 void interface(int option, Year* &year_head)
@@ -129,11 +133,13 @@ void interface(int option, Year* &year_head)
         login(option - 1, username);
         system("cls");
         Main_Staff_Screen(username, year_head);
+        return;
     }
     else
     {
         login(option - 1, username);
         system("cls");
         Main_Student_Screen(username);
+        return;
     }
 }

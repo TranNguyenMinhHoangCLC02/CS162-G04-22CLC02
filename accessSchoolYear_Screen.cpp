@@ -1,6 +1,6 @@
 #include "Staff.h"
 
-int accessSchoolYear(string username, Year* &year_head)
+void accessSchoolYear(string username, Year* &year_head)
 {
     system("cls");
     cout << "\n";
@@ -20,29 +20,34 @@ int accessSchoolYear(string username, Year* &year_head)
 
     if (option == 0)
     {
-        return viewSchoolYear_Screen(username, getYearListFromFile());
+        system("cls");
+        viewSchoolYear_Screen(username, getYearListFromFile());
+        return;
     }
-    else if(option == 1)
+
+    if (option == 1)
     {
         system("cls");
         year_head->semester_head = getSemesterListFromFile(year_head);
-        return addNewSemester(username, year_head);
+        addNewSemester(username, year_head);
+        return;
     }
-    else if(option == 2)
+
+    if (option == 2)
     {
         system("cls");
-        return viewSemester_Screen(username, year_head);
+        viewSemester_Screen(username, year_head);
+        return;
     }
-    else if(option == 3)
+
+    if (option == 3)
     {
         system("cls");
         year_head->class_head = getClassListFromFile(year_head);
-        return addNewClass(year_head, username);
+        addNewClass(year_head, username);
+        return;
     }
-    else if(option == 4)
-    {
-        system("cls");
-        return viewClass_Screen(username, year_head);
-    }
-    return 0;
+    
+    system("cls");
+    viewClass_Screen(username, year_head);
 }

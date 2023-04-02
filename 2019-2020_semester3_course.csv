@@ -1,5 +1,5 @@
 Course ID,Course Name,Class Name,Teacher Name,Number Of Credits,Maximum Number Students,Day In Week,Session
-CSC10002,Ky Thuat Lap Trinh,19CLC02,Dinh Ba Tien,4,48,WED,S1
-BAA00101,Triet Hoc Mac-Lenin,19CLC02,Ngo Tuan Phuong,2,90,FRI,S1
-PHY00005,Vat Ly Dai Cuong 1,19CLC02,Le Cong Hao,3,90,MON,S2
-MTH00005,Vi Tich Phan 1,19CLC02,Nguyen Vu Huy,4,90,TUE,S1
+CSC10002,Ky Thuat Lap Trinh,19CLC02,Dinh Ba Tien,4,48,WED,7:30
+BAA00101,Triet Hoc Mac-Lenin,19CLC02,Ngo Tuan Phuong,2,90,FRI,7:30
+PHY00005,Vat Ly Dai Cuong 1,19CLC02,Le Cong Hao,3,90,MON,9:30
+MTH00005,Vi Tich Phan 1,19CLC02,Nguyen Vu Huy,4,90,TUE,7:30

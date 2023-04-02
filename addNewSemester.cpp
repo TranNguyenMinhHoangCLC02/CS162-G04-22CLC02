@@ -31,7 +31,7 @@ bool checkExistingSemester (Semester* &semester_head, string input)
     return true;
 }
 
-int addNewSemester (string username, Year* &year_head) //Now, year_head is the school year you are accessing
+void addNewSemester (string username, Year* &year_head) //Now, year_head is the school year you are accessing
 {
     ofstream ofs;
 
@@ -64,7 +64,7 @@ int addNewSemester (string username, Year* &year_head) //Now, year_head is the s
     if (input == "0")
     {
         system ("cls");
-        return viewSchoolYear_Screen(username, getYearListFromFile());
+        viewSchoolYear_Screen(username, getYearListFromFile());
     }
     else
     {
@@ -94,7 +94,7 @@ int addNewSemester (string username, Year* &year_head) //Now, year_head is the s
     if (!ofs.is_open())
     {
         cerr << "Error: Unable to open file for writing\n";
-        return 0;
+        return;
     }
 
     Semester* temp_semester = year_head->semester_head;
@@ -118,6 +118,4 @@ int addNewSemester (string username, Year* &year_head) //Now, year_head is the s
         cout << "The number is different from 0, please input again: ";
         getline(cin, option);
     }
-
-    return 0;
 }

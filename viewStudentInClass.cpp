@@ -1,6 +1,7 @@
 #include "Staff.h"
 
-int viewStudentInClass(string username, Year* &year_head, Class *class_head){
+void viewStudentInClass(string username, Year* &year_head, Class *class_head)
+{
     system("cls");
     cout << "------------"<< class_head->class_name <<"--------------\n";
     //Show list of students the staff has added before
@@ -29,5 +30,5 @@ int viewStudentInClass(string username, Year* &year_head, Class *class_head){
         cin >> opt;
     }
     system("cls");
-    return accessClass(username, year_head, class_head);
+    accessClass(username, year_head, class_head);
 }

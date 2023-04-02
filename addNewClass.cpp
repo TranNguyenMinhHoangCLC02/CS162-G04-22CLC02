@@ -2,7 +2,7 @@
 
 /*Class Creation Function: Academic staff members will be able to create new classes for a school year.*/
 
-int addNewClass (Year* &year_head, string username)
+void addNewClass (Year* &year_head, string username)
 {
     ofstream ofs;
     Class* new_class = new Class();
@@ -51,7 +51,7 @@ int addNewClass (Year* &year_head, string username)
     ofs.open("class.txt", ios::app);
     if (!ofs.is_open()) {
         cerr << "Error: Unable to open file for writing\n";
-        return 0;
+        return;
     }
     ofs << new_class->class_name << "\n";
     ofs.close();
@@ -61,7 +61,7 @@ int addNewClass (Year* &year_head, string username)
     ofs.open(name_file);
     if (!ofs.is_open()) {
         cerr << "Error: Unable to open file for writing\n";
-        return 0;
+        return;
     }
     ofs.close();
 
@@ -77,7 +77,6 @@ int addNewClass (Year* &year_head, string username)
     }
     if (option == "0") {
         system ("cls");
-        return accessSchoolYear(username, year_head);
+        accessSchoolYear(username, year_head);
     }
-    return 0;
 }

@@ -46,7 +46,7 @@ int accessSchoolYear(string username, Year* &year_head)
     return 0;
 }
 */
-int accessSemester(string username, Year* &year_head, Semester* &semester_head)
+void accessSemester(string username, Year* &year_head, Semester* &semester_head)
 {
     return 0;
 }
