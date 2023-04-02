@@ -1,5 +1,6 @@
 #include "Staff.h"
 
+/*
 int accessSchoolYear(string username, Year* &year_head)
 {
     system("cls");
@@ -43,4 +44,9 @@ int accessSchoolYear(string username, Year* &year_head)
         viewClass_Screen(username, year_head);
     }
     return 0;
+}
+*/
+int accessSemester(string username, Year* &year_head, Semester* &semester_head)
+{
+
 }

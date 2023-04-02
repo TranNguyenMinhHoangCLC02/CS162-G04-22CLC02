@@ -1,34 +1,34 @@
 #include "Staff.h"
-#include "Student.h"
 
-int accessClassScr(string username, Year* &year_head)
+int viewSemester_Screen(string username, Year* year_head)
 {
     system("cls");
-    cout << "------------ACCESS-A-CLASS------------\n";
-    cout << "Please choose the class you have created you want to access";
+    cout << setw(2) << "------------ACCESS-A-SEMESTER--------------\n";
+    cout << "Please choose the semester you have created you want to access";
     
-    Class* cur = year_head->class_head; int numClasses = 0;
+    Semester* cur = year_head->semester_head; int numSemesters = 0;
 
     //Show list of years the staff has created before
     if (cur == nullptr) //Data is empty
         cout << "\n" << "Oops, there is nothing for you to choose" << "\n";
     else
     {
-        cout << "\n\n" << "Here are some classes you created" << "\n";
+        cout << "\n\n" << "Here are some semesters you created" << "\n";
 
         while (cur)
         {
-            cout << numClasses + 1 << "." << setw(2) << right << cur->class_name<< "\n";
-            cur = cur->next_class;
-            numClasses++;
+            cout << numSemesters + 1 << "." << setw(2) << right << "Semester " << cur->Semester_Ord << "\n";
+            cur = cur->semester_next;
+            numSemesters++;
         }
     }
     cout << "\n";
 
+    //If users don't want to manipulate with this page, they can return back
     cout << "0. Return back" << "\n";
 
-    //Move the pointer cur to the pointer class_head again
-    cur = year_head->class_head;
+    //Move the pointer cur to the pointer semester_head again
+    cur = year_head->semester_head;
 
     if (cur)
     {
@@ -38,17 +38,18 @@ int accessClassScr(string username, Year* &year_head)
         {
             cout << "Please input your option: ";
             cin >> option;
-        } while (option < 0 || option > numClasses);
+        } while (option < 0 || option > numSemesters);
 
         if (option)
         {
-            //Move it to the Node including suitable class
+            //Move it to the Node including suitable year
             for (int i = 0; i < option - 1; ++i)
             {
-                cur = cur->next_class;
+                cur = cur->semester_next;
             }
 
             //Show some more options
+            accessSemester(username, year_head, cur);
         }
         else
         {

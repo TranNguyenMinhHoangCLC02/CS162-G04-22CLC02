@@ -14,8 +14,11 @@ Semester* getSemesterListFromFile(Year* &year_head);
 bool checkInvalidSemester (string input);
 bool checkExistingSemester (Semester* &semester_head, string input);
 int addNewSemester (string username, Year* &year_head);
-int accessClassScr(string username, Year* &year_head);
+int viewClass_Screen(string username, Year* &year_head);
 Class* getClassListFromFile(Year *&year_head);
 int addNewClass (Year* &year_head, string username);
+
+int accessSemester(string username, Year* &year_head, Semester* &semester_head);
+int accessCourse(string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 
 #endif
