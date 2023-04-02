@@ -1,6 +1,6 @@
 #include "Staff.h"
 
-int viewSemester_Screen(string username, Year* year_head)
+void viewSemester_Screen(string username, Year* year_head)
 {
     system("cls");
     cout << setw(2) << "------------ACCESS-A-SEMESTER--------------\n";
@@ -50,25 +50,26 @@ int viewSemester_Screen(string username, Year* year_head)
 
             //Show some more options
             accessSemester(username, year_head, cur);
+            return;
         }
         else
         {
             system("cls");
-            return accessSchoolYear(username, year_head);
+            accessSchoolYear(username, year_head);
+            return;
         }
     }
-    else
-    {
-        int opt;
-        cout << "Please input 0 for returning back to the previous screen: ";
-        cin >> opt;
 
-        while (opt != 0)
-        {
-            cout << "Please input again: ";
-            cin >> opt;
-        }
+    int opt;
+    cout << "Please input 0 for returning back to the previous screen: ";
+    cin >> opt;
+
+    while (opt != 0)
+    {
+        cout << "Please input again: ";
+        cin >> opt;
     }
+    
     system("cls");
-    return accessSchoolYear(username, year_head);
+    accessSchoolYear(username, year_head);
 }

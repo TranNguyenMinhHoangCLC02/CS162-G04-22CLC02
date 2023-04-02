@@ -1,6 +1,6 @@
 #include "Staff.h"
 
-int accessClass(string username, Year* &year_head, Class *class_head)
+void accessClass(string username, Year* &year_head, Class *class_head)
 {
     system("cls");
     cout << "\n";
@@ -16,14 +16,15 @@ int accessClass(string username, Year* &year_head, Class *class_head)
 
     if (option == 0)
     {
-        return accessSchoolYear(username, year_head);
+        system("cls");
+        accessSchoolYear(username, year_head);
+        return;
     }
-    else if(option == 1)
+    else if (option == 1)
     {
-        system ("cls");
-        year_head->class_head->student_head= getStudentListFromFile(year_head);
-        return addNewStudent(username, year_head, class_head);
+        system("cls");
+        year_head->class_head->student_head = getStudentListFromFile(year_head);
+        addNewStudent(username, year_head, class_head);
+        return;
     }
-
-    return 0;
 }

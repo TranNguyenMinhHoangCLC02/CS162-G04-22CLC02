@@ -1,9 +1,9 @@
 #include "Staff.h"
 
-int viewClass_Screen(string username, Year* &year_head)
+void viewClass_Screen(string username, Year* &year_head)
 {
     system("cls");
-    year_head->class_head=getClassListFromFile(year_head);
+    year_head->class_head = getClassListFromFile(year_head);
     cout << "------------ACCESS-A-CLASS------------\n";
     cout << "Please choose the class you have created you want to access";
     
@@ -49,25 +49,26 @@ int viewClass_Screen(string username, Year* &year_head)
 
             //Show some more options
             accessClass(username, year_head, cur);
+            return;
         }
         else
         {
             system("cls");
-            return accessSchoolYear(username, year_head);
+            accessSchoolYear(username, year_head);
+            return;
         }
     }
-    else
-    {
-        int opt;
-        cout << "Please input 0 for returning back to the previous screen: ";
-        cin >> opt;
 
-        while (opt != 0)
-        {
-            cout << "Please input again: ";
-            cin >> opt;
-        }
+    int opt;
+    cout << "Please input 0 for returning back to the previous screen: ";
+    cin >> opt;
+
+    while (opt != 0)
+    {
+        cout << "Please input again: ";
+        cin >> opt;
     }
+
     system("cls");
-    return accessSchoolYear(username, year_head);
+    accessSchoolYear(username, year_head);
 }

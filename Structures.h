@@ -88,10 +88,9 @@ void login(bool isStudent, string &username);
 void logout();
 void changePass(string username, bool isStudent);
 int firstScreen(bool &check);
-int viewSchoolYear_Screen(string username, Year* year_head);
-int Main_Staff_Screen(string &username, Year *&year_head);
-int Main_Student_Screen(string username);
+void viewSchoolYear_Screen(string username, Year* year_head);
+void Main_Staff_Screen(string &username, Year* &year_head);
+void Main_Student_Screen(string username);
 void interface(int option, Year* &year_head);
-void convertTime_slot(Course *a);
 int main();
 #endif

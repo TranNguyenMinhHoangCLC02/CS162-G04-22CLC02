@@ -1,7 +1,7 @@
 #include "Staff.h"
 #include "Student.h"
 
-int addNewStudent(string username, Year *&year_head, Class *cur)
+void addNewStudent(string username, Year *&year_head, Class *cur)
 {
     string filename= cur->class_name + "-" + year_head->year_name + ".txt";
     cout << filename << "\n";
@@ -9,7 +9,7 @@ int addNewStudent(string username, Year *&year_head, Class *cur)
     ofs.open(filename, ios::app);
      if (!ofs.is_open()) {
         cerr << "Error: Unable to open file for writing\n";
-        return 0;
+        return;
     }
     Student *temp= year_head->class_head->student_head;
     while (temp!=nullptr)
@@ -37,6 +37,6 @@ int addNewStudent(string username, Year *&year_head, Class *cur)
     if (option == "0") 
     {
         system ("cls");
-        return accessClass(username, year_head, cur);
+        accessClass(username, year_head, cur);
     }
 }
