@@ -24,13 +24,14 @@ int accessSchoolYear(string username, Year* &year_head)
     }
     else if(option == 1)
     {
-        system ("cls");
+        system("cls");
         year_head->semester_head = getSemesterListFromFile(year_head);
         return addNewSemester(username, year_head);
     }
     else if(option == 2)
     {
-        
+        system("cls");
+        return viewSemester_Screen(username, year_head);
     }
     else if(option == 3)
     {
@@ -40,7 +41,8 @@ int accessSchoolYear(string username, Year* &year_head)
     }
     else if(option == 4)
     {
-        viewClass_Screen(username, year_head);
+        system("cls");
+        return viewClass_Screen(username, year_head);
     }
     return 0;
 }

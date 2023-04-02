@@ -37,6 +37,6 @@ int addNewStudent(string username, Year *&year_head, Class *cur)
     if (option == "0") 
     {
         system ("cls");
-        return viewAccessClass(username, year_head, cur);
+        return accessClass(username, year_head, cur);
     }
 }

@@ -48,7 +48,7 @@ int viewClass_Screen(string username, Year* &year_head)
             }
 
             //Show some more options
-            viewAccessClass(username, year_head, cur);
+            accessClass(username, year_head, cur);
         }
         else
         {

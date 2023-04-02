@@ -21,9 +21,12 @@ void addTail(Student* &student_head, Student* tmp);
 void getDate(Student* &tmp , string date_string);
 Student* getStudentListFromFile(Year *year_head);
 int addNewStudent(string username, Year *&year_head, Class *cur);
-int viewAccessClass(string username, Year* &year_head, Class *cur);
+int accessClass(string username, Year* &year_head, Class *class_head);
 
 int accessSemester(string username, Year* &year_head, Semester* &semester_head);
 int accessCourse(string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
+
+int viewSemester_Screen(string username, Year* year_head);
+int viewCourse_Screen(string username, Year* year_head, Semester* semester_head);
 
 #endif
