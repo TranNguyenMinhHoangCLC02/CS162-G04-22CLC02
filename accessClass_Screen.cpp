@@ -28,7 +28,8 @@ void accessClass(string username, Year* &year_head, Class *class_head)
         addNewStudent(username, year_head, class_head);
         return;
     }
-    else if(option == 2){
+    else if(option == 2)
+    {
         viewStudentInClass(username, year_head, class_head);
     }
 }

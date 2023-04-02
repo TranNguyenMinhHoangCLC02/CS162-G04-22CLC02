@@ -1,7 +1,7 @@
 #include "Student.h"
 #include "Staff.h"
 
-int viewStudentInCourse(string username, Year* &year_head, Semester* &semester_head, Course* &course_head){
+void viewStudentInCourse(string username, Year* &year_head, Semester* &semester_head, Course* &course_head){
     system("cls");
     cout << "------------"<< course_head->course_name <<"--------------\n";
 
@@ -31,5 +31,5 @@ int viewStudentInCourse(string username, Year* &year_head, Semester* &semester_h
         cin >> opt;
     }
     system("cls");
-    return accessCourse(username, year_head, semester_head, course_head);
+    accessCourse(username, year_head, semester_head, course_head);
 }

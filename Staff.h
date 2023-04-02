@@ -31,6 +31,6 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
 void viewSemester_Screen(string username, Year* year_head);
 void viewCourse_Screen(string username, Year* year_head, Semester* semester_head);
 
-int viewStudentInClass(string username, Year* &year_head, Class *class_head);
-int viewStudentInCourse(string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
+void viewStudentInClass(string username, Year* &year_head, Class *class_head);
+void viewStudentInCourse(string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 #endif
