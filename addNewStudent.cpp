@@ -34,9 +34,8 @@ int addNewStudent(string username, Year *&year_head, Class *cur)
         cin >> option;
         cin.ignore();
     }
-    if (option == "0") 
-    {
-        system ("cls");
-        return accessClass(username, year_head, cur);
-    }
+
+    system ("cls");
+    return accessClass(username, year_head, cur);
+    
 }
