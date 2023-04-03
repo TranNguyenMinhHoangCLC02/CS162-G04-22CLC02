@@ -43,7 +43,9 @@ void accessSchoolYear(string username, Year* &year_head)
     if (option == 3)
     {
         system("cls");
-        year_head->class_head = getClassListFromFile(year_head);
+        string filename;
+        filename = "class.txt";       
+        year_head->class_head = getClassListFromFile(year_head, filename);
         addNewClass(year_head, username);
         return;
     }

@@ -20,8 +20,9 @@ void addNewStudent(string username, Year *&year_head, Class *cur)
             ofs << temp->student_fisrtname << "," << temp->student_lastname << ",";
             ofs << temp->gender << "," << temp->student_class.class_name << ",";
             ofs << temp->DOB.day << "/" << temp->DOB.month << "/" << temp->DOB.year << "\n";
-            temp = temp->student_next;
-        } 
+
+        }
+        temp = temp->student_next;
     }
 
     string option;

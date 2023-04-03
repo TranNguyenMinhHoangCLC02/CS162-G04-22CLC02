@@ -24,5 +24,5 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
         system ("cls");
         return viewStudentInCourse(username, year_head, semester_head, course_head);
     }
-    return 0;
+    return ;
 }

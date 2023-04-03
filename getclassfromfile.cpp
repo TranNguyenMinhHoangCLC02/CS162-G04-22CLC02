@@ -1,9 +1,9 @@
 #include "Staff.h"
 
-Class* getClassListFromFile(Year *&year_head)
+Class* getClassListFromFile(Year *&year_head, string filename)
 {
     ifstream ifs;
-    ifs.open("class.txt");
+    ifs.open(filename);
     if (!ifs.is_open())
     {
         cerr << "Error: Unable to open file for reading\n";

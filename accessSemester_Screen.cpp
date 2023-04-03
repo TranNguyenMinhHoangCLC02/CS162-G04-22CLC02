@@ -48,5 +48,5 @@ int accessSchoolYear(string username, Year* &year_head)
 */
 void accessSemester(string username, Year* &year_head, Semester* &semester_head)
 {
-    return 0;
+    return ;
 }
