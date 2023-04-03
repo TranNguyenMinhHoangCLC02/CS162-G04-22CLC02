@@ -17,12 +17,13 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
     if (option == 0)
     {
         system("cls");
-        return accessSemester(username, year_head, semester_head);
+        accessSemester(username, year_head, semester_head);
+        return;
     }
     else if(option == 1)
     {
         system ("cls");
-        return viewStudentInCourse(username, year_head, semester_head, course_head);
+        viewStudentInCourse(username, year_head, semester_head, course_head);
+        return;
     }
-    return 0;
 }
