@@ -33,4 +33,7 @@ void viewCourse_Screen(string username, Year* year_head, Semester* semester_head
 
 void viewStudentInClass(string username, Year* &year_head, Class *class_head);
 void viewStudentInCourse(string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
+
+void updateInformationOfCourse (string username, Year* year_head, Semester* semester_head, Course* accessed_course);
+void viewUpdateCourseInformation (string username, Year* year_head, Semester* semester_head);
 #endif
