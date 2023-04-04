@@ -23,8 +23,6 @@ Student* getStudentListFromFile(Year *year_head);
 void addNewStudent(string username, Year *&year_head, Class *cur);
 void accessClass(string username, Year* &year_head, Class *class_head);
 
-void convertTime_slot(Course *course_head);
-
 void accessSemester(string username, Year* &year_head, Semester* &semester_head);
 void accessCourse(string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 
@@ -36,4 +34,12 @@ void viewStudentInCourse(string username, Year* &year_head, Semester* &semester_
 
 void updateInformationOfCourse (string username, Year* year_head, Semester* semester_head, Course* accessed_course);
 void viewUpdateCourseInformation (string username, Year* year_head, Semester* semester_head);
+
+bool checkCourseID (string Course_ID);
+string Normalization (string input);
+bool checkClassName (string Class_Name);
+bool checkTeacherName (string Teacher_Name);
+void showDayOptions();
+void showSessionOptions();
+void addNewCourse (string username, Year* year_head, Semester* semester_head);
 #endif

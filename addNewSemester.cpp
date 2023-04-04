@@ -35,7 +35,7 @@ void addNewSemester (string username, Year* &year_head) //Now, year_head is the 
 {
     ofstream ofs;
 
-    //Create new node for linked list year_head
+    //Create new node for linked list semester_head
     cout << "Principles when inputing a new semester\n";
     cout << "1. You must input a number from 1 to 3 because there are at most 3 semesters in a school year\n";
     cout << "2. Don't input an available semester in your chosen school year!\n";
