@@ -42,4 +42,5 @@ bool checkTeacherName (string Teacher_Name);
 void showDayOptions();
 void showSessionOptions();
 void addNewCourse (string username, Year* year_head, Semester* semester_head);
+void import_scoreboard(Course *course_head);
 #endif
