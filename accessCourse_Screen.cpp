@@ -14,7 +14,7 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
     {
         cout << "Input option: ";
         cin >> option;
-    } while (option < 0 || option > 2);
+    } while (option < 0 || option > 3);
 
     if (option == 0)
     {
@@ -34,5 +34,12 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
         string filename;
         filename=course_head->course_name + "_" + year_head->year_name;
         viewScoreBoard(filename, username, year_head, semester_head, course_head);
+    }
+    else if (option == 3)
+    {
+        system("cls");
+        string filename;
+        filename=course_head->course_name + "_" + year_head->year_name;
+        updateStudentsScore(filename, username, year_head, semester_head, course_head);
     }
 }

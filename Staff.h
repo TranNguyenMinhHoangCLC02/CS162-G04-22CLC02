@@ -44,4 +44,5 @@ void showSessionOptions();
 void addNewCourse (string username, Year* year_head, Semester* semester_head);
 void import_scoreboard(Course *course_head);
 void viewScoreBoard(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
+void updateStudentsScore(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 #endif
