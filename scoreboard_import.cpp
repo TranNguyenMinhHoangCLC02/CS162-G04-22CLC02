@@ -1,8 +1,8 @@
 #include "Staff.h"
 #include "Student.h"
 
-void import_scoreboard(Course *course_head){    
-    string name = course_head->course_name;
+void import_scoreboard(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head){    
+    system("cls");
     //Check if any students existed
     if(!course_head->student_head){
         cout << "There is no student in this course. Please input 0 to return back.\n Your option:";
@@ -14,17 +14,18 @@ void import_scoreboard(Course *course_head){
             cout << "Please input again: ";
             cin >> opt;
         }
-        //Return to the .....
+        //Return to the access course screen
+        accessCourse(username, year_head, semester_head, course_head);
         return;
     }
     
     //Create a CSV file
-    ofstream ofs (name);
-    int i = 1;
+    filename = filename + ".csv";
+    ofstream ofs (filename);
+    ofs << "StudentID,Fullname,Total Mark,Final Mark,Midterm Mark,Other Mark/n";
 
     Student *cur = course_head->student_head;
     while(cur){
-        ofs << i << ",";
         ofs << cur->student_ID << ",";
         ofs << cur->student_fisrtname << " " << cur->student_lastname << ",";
         ofs << ",,,," << endl;
@@ -40,5 +41,6 @@ void import_scoreboard(Course *course_head){
         cout << "Please input again: ";
         cin >> opt;
     }
+    accessCourse(username, year_head, semester_head, course_head);
     ofs.close();
 }

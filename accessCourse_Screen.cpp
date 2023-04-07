@@ -9,6 +9,7 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
     cout << "1." << setw(2) << right << "View all students in this course\n";
     cout << "2. " << setw(2) << right << "View the scoreboard of this course\n";
     cout << "3. " << setw(2) << right << "Update the scoreboard of this course\n";
+    cout << "4. " << setw(2) << right << "Export file scoreboard.csv for teacher\n";
     int option;
     do
     {
@@ -39,7 +40,14 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
     {
         system("cls");
         string filename;
-        filename=course_head->course_name + "_" + year_head->year_name;
+        filename=course_head->course_name + "_" + year_head->year_name + ".csv";
         updateStudentsScore(filename, username, year_head, semester_head, course_head);
+    }
+    else if (option == 4)
+    {
+        system("cls");
+        string filename;
+        filename=course_head->course_name + "_" + year_head->year_name;
+        import_scoreboard(filename, username, year_head, semester_head, course_head);
     }
 }
