@@ -22,7 +22,7 @@ void import_scoreboard(string filename, string username, Year* &year_head, Semes
     //Create a CSV file
     filename = filename + "_Scoreboard.csv";
     ofstream ofs (filename);
-    ofs << "StudentID,Fullname,Total Mark,Final Mark,Midterm Mark,Other Mark" << "\n";
+    ofs << "StudentID,Fullname,Midterm Mark,Final Mark,Other Mark,Total Mark" << "\n";
 
     Student *cur = course_head->student_head;
     while(cur){
