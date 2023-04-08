@@ -47,7 +47,7 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
     {
         system("cls");
         string filename;
-        filename=course_head->course_name + "_" + year_head->year_name;
+        filename=course_head->course_name;
         import_scoreboard(filename, username, year_head, semester_head, course_head);
     }
 }
