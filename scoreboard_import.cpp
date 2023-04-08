@@ -20,7 +20,7 @@ void import_scoreboard(string filename, string username, Year* &year_head, Semes
     }
     
     //Create a CSV file
-    filename = filename + ".csv";
+    filename = filename + "_Scoreboard.csv";
     ofstream ofs (filename);
     ofs << "StudentID,Fullname,Total Mark,Final Mark,Midterm Mark,Other Mark" << "\n";
 

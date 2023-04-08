@@ -43,6 +43,7 @@ void showDayOptions();
 void showSessionOptions();
 void addNewCourse (string username, Year* year_head, Semester* semester_head);
 void import_scoreboard(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
-void viewScoreBoard(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
+void viewScoreBoard_Course(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 void updateStudentsScore(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
+void viewScoreBoard_Class(string username, Year *&year_head, Class *class_head);
 #endif
