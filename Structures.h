@@ -32,7 +32,6 @@ struct Class
 
 struct Student
 {   
-    unsigned int student_No;
     string student_ID;
     string student_socialID;
     string student_fisrtname;

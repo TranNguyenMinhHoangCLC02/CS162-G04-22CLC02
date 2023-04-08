@@ -37,7 +37,6 @@ Class* upload_info_class(ifstream &file)
         string tmp;
         stringstream ss(line);
 
-        dummy->student_No = count;
         getline(ss, tmp, ',');
         dummy->student_ID = tmp;
         getline(ss, tmp, ',');
