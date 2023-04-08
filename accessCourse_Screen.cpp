@@ -34,7 +34,7 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
         system("cls");
         string filename;
         filename=course_head->course_name + "_" + year_head->year_name;
-        viewScoreBoard(filename, username, year_head, semester_head, course_head);
+        viewScoreBoard_Course(filename, username, year_head, semester_head, course_head);
     }
     else if (option == 3)
     {

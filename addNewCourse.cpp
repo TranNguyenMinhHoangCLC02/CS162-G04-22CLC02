@@ -396,6 +396,29 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
         temp_course = temp_course->course_next;
     }
     ofs.close();
+    // create files for each classes
+    
+    Course *current_course=year_head->semester_head->course_head;
+    while (current_course!=nullptr)
+    {
+        string Class_name=current_course->class_name;
+        string file_name = Class_name + "_courses.csv";
+        ofstream ofs(file_name, ios::app);
+        if (!ofs.is_open())
+        {
+            cerr << "Error: Unable to open file " << file_name << " for writing\n";
+            return;
+        }
+        if (current_course->class_name==Class_name)
+        {
+            ofs << current_course->course_ID << "," << current_course->course_name << "," 
+            << current_course->class_name << "," << current_course->teacher_name << "," 
+            << current_course->numCredits << "," << current_course->maxNumStudents << "," 
+            << current_course->dayInWeek << "," << current_course->Session << "\n";
+        }
+        ofs.close();
+        current_course=current_course->course_next;
+    }
 
     //Announce for user
     cout << "You created a new course successfully!\n\n";

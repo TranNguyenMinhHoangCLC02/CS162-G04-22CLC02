@@ -1,7 +1,7 @@
 #include "Staff.h"
 #include "Student.h"
 
-void viewScoreBoard(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head)
+void viewScoreBoard_Course(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head)
 {
     system("cls");
     cout << "------------"<< course_head->course_name <<"--------------\n";
