@@ -91,11 +91,12 @@ void Main_Student_Screen(string username)
     cout << "1." << setw(2) << right << "View profile\n";
     cout << "2." << setw(2) << right << "View courses\n";
     cout << "3." << setw(2) << right << "Change password\n";
+    cout << "4." << setw(2) << right << "View Scoreboard\n";
     do
     {
         cout << "Input option: ";
         cin >> option;
-    } while (option != 0 && option != 1 && option != 2 && option != 3);
+    } while (option != 0 && option != 1 && option != 2 && option != 3 && option!=4);
 
     if (option == 0){
         system("cls");
@@ -121,6 +122,10 @@ void Main_Student_Screen(string username)
         changePass(username, true);
         interface(0, year_head);
         return;
+    }
+    else if (option == 4)
+    {
+        viewScoreBoard_Student(username);
     }
 }
 

@@ -397,12 +397,13 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
     }
     ofs.close();
     // create files for each classes
-    
+
     Course *current_course=year_head->semester_head->course_head;
     while (current_course!=nullptr)
     {
         string Class_name=current_course->class_name;
-        string file_name = Class_name + "_courses.csv";
+        char char_semester=static_cast<char>(semester_head->Semester_Ord+48);
+         string filename=Class_name + "_" + "Semester" + char_semester + "_" + year_head->year_name + "_courses.csv";
         ofstream ofs(file_name, ios::app);
         if (!ofs.is_open())
         {

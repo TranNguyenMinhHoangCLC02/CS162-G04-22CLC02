@@ -4,5 +4,6 @@
 #include "Structures.h"
 
 void student_info(string username);
+void viewScoreBoard_Student(string username);
 
 #endif

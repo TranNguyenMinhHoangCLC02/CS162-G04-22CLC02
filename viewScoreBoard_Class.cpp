@@ -62,7 +62,7 @@ void viewScoreBoard_Class(string username, Year *&year_head, Class *class_head)
     while (check!=nullptr)
     {
         string filename1;
-        filename1=check->course_ID+"_Scoreboard.csv";
+        filename1=check->course_ID+ "_Semester" + char_semester + "_" + year_head->year_name +"_Scoreboard.csv";
         ifstream ifs;
         ifs.open(filename1);
         cout << "------------"<< check->course_name <<"--------------\n";

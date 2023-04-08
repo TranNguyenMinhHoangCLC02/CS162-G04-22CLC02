@@ -33,7 +33,8 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
     {
         system("cls");
         string filename;
-        filename=course_head->course_name + "_" + year_head->year_name;
+        char ch_semester=static_cast<char>(semester_head->Semester_Ord + 48);
+        filename=course_head->course_name + "_" + "Semester" + ch_semester + "_" + year_head->year_name + "_Scoreboard.csv";
         viewScoreBoard_Course(filename, username, year_head, semester_head, course_head);
     }
     else if (option == 3)
