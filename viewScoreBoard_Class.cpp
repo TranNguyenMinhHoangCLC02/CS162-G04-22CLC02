@@ -4,7 +4,17 @@
 void viewScoreBoard_Class(string username, Year *&year_head, Class *class_head)
 {
     string filename;
-    filename=class_head->class_name+"_courses.csv";
+    int semester;
+    cout << "Choose a semester (1->3): ";
+    cin >> semester;
+    while (semester<1 && semester>3)
+    {
+        cout << "Invalid input!";
+        cout << "Please input again: ";
+        cin >> semester;
+    }
+    char char_semester=static_cast<char>(semester+48);
+    filename=class_head->class_name+ "_" + "Semester" + char_semester + "_" + year_head->year_name + "_courses.csv";
     Course *class_course=nullptr;
     Course *temp=nullptr;
     ifstream ifs;
