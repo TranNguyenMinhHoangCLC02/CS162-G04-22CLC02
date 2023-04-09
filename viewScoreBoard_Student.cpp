@@ -4,7 +4,7 @@
 void viewScoreBoard_Student(string username)
 {
     string year;
-    Student *user=new Student();
+    Student *user = new Student();
     ifstream ifs;
     ifs.open("student_info.csv");
     string dummy;
@@ -13,7 +13,7 @@ void viewScoreBoard_Student(string username)
     while (!ifs.eof())
     {
         getline(ifs, student_ID, ',');
-        if (student_ID==username)
+        if (student_ID == username)
         {
             user->student_ID = student_ID;
             getline(ifs, social_ID, ',');
@@ -34,18 +34,16 @@ void viewScoreBoard_Student(string username)
             getline(ifs, dummy);
     }
     ifs.close();
-    string year;
     cout << "Choose a year(0000-0000): ";
     getline(cin, year);
     cin.ignore();
     int semester;
     cout << "Choose a semester(1->3): ";
     cin >> semester;
-    char ch_semester=static_cast<char>(semester + 48);
-    string filename=user->student_class.class_name + "_Semester" + ch_semester + "_" + year +  "_courses.csv";
-    Course *class_course=nullptr;
-    Course *temp=nullptr;
-    ifstream ifs;
+    char ch_semester = static_cast<char>(semester + 48);
+    string filename = user->student_class.class_name + "_Semester" + ch_semester + "_" + year +  "_courses.csv";
+    Course *class_course = nullptr;
+    Course *temp = nullptr;
     ifs.open(filename);
     if (!ifs.is_open())
     {
@@ -56,8 +54,8 @@ void viewScoreBoard_Student(string username)
         cin.ignore();
         cout << "Choose a semester(1->3): ";
         cin >> semester;
-        ch_semester=static_cast<char>(semester + 48);
-        filename=user->student_class.class_name + "_Semester" + ch_semester + "_" + year +  "_courses.csv";
+        ch_semester = static_cast<char>(semester + 48);
+        filename = user->student_class.class_name + "_Semester" + ch_semester + "_" + year +  "_courses.csv";
         ifs.open(filename);
     }
     string line;
