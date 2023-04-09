@@ -168,7 +168,6 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
     {
         //Input the name of course
         string CourseName;
-        cin.ignore();
         cout << "Course Name (inputting 0 for returning back): ";
         getline(cin, CourseName);
 
@@ -184,7 +183,6 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
 
             //Input the class having course
             string CourseClass;
-            cin.ignore();
             cout << "Class Name (inputting 0 for returning back): ";
             getline(cin, CourseClass);
 
@@ -204,7 +202,6 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
             {
                 //Input the teacher teaching course
                 string TeacherName;
-                cin.ignore();
                 cout << "Teacher Name (inputting 0 for returning back): ";
                 getline(cin, TeacherName);
 

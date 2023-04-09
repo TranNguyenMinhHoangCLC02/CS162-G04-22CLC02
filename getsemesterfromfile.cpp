@@ -14,19 +14,32 @@ Semester* getSemesterListFromFile(Year* &year_head)
     }
 
     //Get semester list from file
-    Semester* temp = nullptr;
-    int ordinal_term;
+    year_head->semester_head = nullptr; Semester* temp = nullptr;
+    string line;
 
-    while (!ifs.eof())
+    while (getline(ifs, line))
     {
-        ifs >> ordinal_term;
-
-        if (ifs.eof())
-            break;
-
         Semester* new_semester = new Semester;
+        string tmp;
+        stringstream ss(line);
 
-        new_semester->Semester_Ord = ordinal_term;
+        getline(ss, tmp, ',');
+        new_semester->Semester_Ord = stoi(tmp);
+
+        getline(ss, tmp, '/');
+        new_semester->start_date.day = stoi(tmp);
+        getline(ss, tmp, '/');
+        new_semester->start_date.month = stoi(tmp);
+        getline(ss, tmp, ',');
+        new_semester->start_date.year = stoi(tmp);
+
+        getline(ss, tmp, '/');
+        new_semester->end_date.day = stoi(tmp);
+        getline(ss, tmp, '/');
+        new_semester->end_date.month = stoi(tmp);
+        getline(ss, tmp, '/');
+        new_semester->end_date.year = stoi(tmp);
+
         new_semester->course_head = nullptr;
         new_semester->semester_next = nullptr;
 
