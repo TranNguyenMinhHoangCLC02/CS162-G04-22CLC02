@@ -1,7 +1,7 @@
 #include "Student.h"
-#include "Structures.h"
 
-void printCourseInfo(Course* course) {
+void printCourseInfo(Course* course) 
+{
     // Create an array containing the names of the columns
     string column_names[8] = {"Teacher Name", "Course ID", "Course Name", "Class Name", "Number of Credits", "Max Number of Students", "Day of Week", "Session"};
     
