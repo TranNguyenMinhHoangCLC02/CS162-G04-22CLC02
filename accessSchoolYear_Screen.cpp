@@ -36,6 +36,7 @@ void accessSchoolYear(string username, Year* &year_head)
     if (option == 2)
     {
         system("cls");
+        year_head->semester_head = getSemesterListFromFile(year_head);
         viewSemester_Screen(username, year_head);
         return;
     }
