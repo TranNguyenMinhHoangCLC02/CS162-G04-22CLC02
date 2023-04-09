@@ -6,7 +6,7 @@ void viewSemester_Screen(string username, Year* year_head)
     cout << setw(2) << "------------ACCESS-A-SEMESTER--------------\n";
     cout << "Please choose the semester you have created you want to access";
     
-    Semester* cur = getSemesterListFromFile(year_head); int numSemesters = 0;
+    Semester* cur = year_head->semester_head; int numSemesters = 0;
 
     //Show list of years the staff has created before
     if (cur == nullptr) //Data is empty
