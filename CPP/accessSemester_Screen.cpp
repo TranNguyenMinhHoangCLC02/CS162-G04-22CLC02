@@ -13,7 +13,7 @@ void accessSemester(string username, Year* &year_head, Semester* &semester_head)
     {
         cout << "Input option: ";
         cin >> option;
-    } while (option < 0 || option > 2);
+    } while (option < 0 || option > 3);
 
     if (option == 0)
     {   
@@ -21,16 +21,22 @@ void accessSemester(string username, Year* &year_head, Semester* &semester_head)
         accessSchoolYear(username, year_head);
         return;
     }
-    else if(option == 1)
+    else if (option == 1)
     {
         system ("cls");
         addNewCourse(username, year_head, semester_head);
         return;
     }
-    else if(option == 2)
+    else if (option == 2)
     {
         system("cls");
         viewCourse_Screen(username, year_head, semester_head);
+        return;
+    }
+    else if (option == 3)
+    {
+        system("cls");
+        
         return;
     }
 }
