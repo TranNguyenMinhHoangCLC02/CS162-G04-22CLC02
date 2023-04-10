@@ -57,9 +57,23 @@ bool checkTeacherName (string Teacher_Name);
 void showDayOptions();
 void showSessionOptions();
 
+//Update course functions
+void updateACourse (string username, Year* year_head, Semester* semester_head, Course* course_head);
+void updateCourseID (string username, Year* year_head, Semester* semester_head, Course* accessed_course);
+void updateCourseName (string username, Year* year_head, Semester* semester_head, Course* accessed_course);
+void updateClassName(string username, Year* year_head, Semester* semester_head, Course* accessed_course);
+void updateTeacherName (string username, Year* year_head, Semester* semester_head, Course* accessed_course);
+void updateNumCredits (string username, Year* year_head, Semester* semester_head, Course* accessed_course);
+void updateMaxStudents (string username, Year* year_head, Semester* semester_head, Course* accessed_course);
+void updateDayOfCourse (string username, Year* year_head, Semester* semester_head, Course* accessed_course);
+void updateSession (string username, Year* year_head, Semester* semester_head, Course* accessed_course);
+void uploadStudentFileToCourse (string username, Year* year_head, Semester* semester_head, Course* course_head);
+
 //Scoreboard functions
 void import_scoreboard(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 void viewScoreBoard_Course(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 void updateStudentsScore(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 void viewScoreBoard_Class(string username, Year *&year_head, Class *class_head);
+
+
 #endif
