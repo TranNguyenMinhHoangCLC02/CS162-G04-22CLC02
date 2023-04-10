@@ -5,7 +5,7 @@ void updateStudentsScore(string filename, string username, Year* &year_head, Sem
 {
     system("cls");
     cout << "------------"<< course_head->course_name <<"--------------\n";
-    int option=0;
+    int option = 0;
     do
     {
         string id;
@@ -19,7 +19,7 @@ void updateStudentsScore(string filename, string username, Year* &year_head, Sem
             return;
         }
         ofstream ofs;
-        ofs.open("temp.csv");
+        ofs.open("../Txt_Csv/temp.csv");
         if (!ofs)
         {
             cerr << "Error: Unable to open file for writing\n";
@@ -36,6 +36,7 @@ void updateStudentsScore(string filename, string username, Year* &year_head, Sem
         {
             if (ifs.eof())
                 break;
+        
             getline(ifs, student_id, ',');
             getline(ifs, fullname, ',');
             getline(ifs, temp, ',');
@@ -88,19 +89,19 @@ void updateStudentsScore(string filename, string username, Year* &year_head, Sem
         ofs.close();
         const char* newfilename = filename.c_str();
         remove(newfilename);
-        rename("temp.csv", newfilename);
+        rename("../Txt_Csv/temp.csv", newfilename);
         cout << "Update Successful!\n";
         cout << "0. Return back\n";
         cout << "1. Continue updating\n";
         cout << "Please input your option: ";
         cin >> option;
-        while (option!=0 && option!=1)
+        while (option != 0 && option != 1)
         {
             cout << "Please input again: ";
             cin >> option;
         }
         
-    } while (option==1);
+    } while (option == 1);
     system("cls");
     accessCourse(username, year_head, semester_head, course_head);
 }

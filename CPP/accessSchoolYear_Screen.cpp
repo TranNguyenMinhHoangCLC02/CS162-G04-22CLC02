@@ -45,7 +45,8 @@ void accessSchoolYear(string username, Year* &year_head)
     {
         system("cls");
         string filename;
-        filename = "class.txt";       
+        filename = "class.txt"; 
+        filename = "../Txt_Csv/" + filename;      
         year_head->class_head = getClassListFromFile(year_head, filename);
         addNewClass(year_head, username);
         return;

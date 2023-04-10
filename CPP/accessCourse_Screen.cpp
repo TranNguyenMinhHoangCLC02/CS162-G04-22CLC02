@@ -40,8 +40,9 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
     {
         system("cls");
         string filename;
-        char ch_semester=static_cast<char>(semester_head->Semester_Ord + 48);
-        filename=course_head->course_name + "_" + "Semester" + ch_semester + "_" + year_head->year_name + "_Scoreboard.csv";
+        char ch_semester = static_cast<char>(semester_head->Semester_Ord + 48);
+        filename = course_head->course_name + "_" + "Semester" + ch_semester + "_" + year_head->year_name + "_Scoreboard.csv";
+        filename = "../Txt_Csv/" + filename;
         viewScoreBoard_Course(filename, username, year_head, semester_head, course_head);
         return;
     }
@@ -50,7 +51,8 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
         system("cls");
         string filename;
         char ch_semester=static_cast<char>(semester_head->Semester_Ord + 48);
-        filename=course_head->course_name + "_" + "Semester" + ch_semester + "_" + year_head->year_name + "_Scoreboard.csv";
+        filename = course_head->course_name + "_" + "Semester" + ch_semester + "_" + year_head->year_name + "_Scoreboard.csv";
+        filename = "../Txt_Csv/" + filename;
         updateStudentsScore(filename, username, year_head, semester_head, course_head);
         return;
     }
@@ -59,7 +61,8 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
         system("cls");
         string filename;
         char ch_semester=static_cast<char>(semester_head->Semester_Ord + 48);
-        filename=course_head->course_name + "_" + "Semester" + ch_semester + "_" + year_head->year_name;
+        filename = course_head->course_name + "_" + "Semester" + ch_semester + "_" + year_head->year_name;
+        filename = "../Txt_Csv/" + filename;
         import_scoreboard(filename, username, year_head, semester_head, course_head);
         return;
     }

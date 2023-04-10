@@ -13,16 +13,16 @@ void changePass(string username, bool isStudent)
     ofstream ofs;
     //choose which file to read
     if (isStudent == true)
-        ifs.open("acc_student.csv");
+        ifs.open("../Txt_Csv/acc_student.csv");
     else
-        ifs.open("acc_staff.csv");
+        ifs.open("../Txt_Csv/acc_staff.csv");
     if (!ifs)
     {
         cerr << "Error: Unable to open file for reading\n";
         return;
     }
     //create temporary file to write
-    ofs.open("temp.csv");
+    ofs.open("../Txt_Csv/temp.csv");
     if (!ofs)
     {
         cerr << "Error: Unable to open file for writing\n";
@@ -53,19 +53,19 @@ void changePass(string username, bool isStudent)
     if (found == false)
     {
         cerr << "Error: Username not found\n";
-        remove("temp.csv");
+        remove("../Txt_Csv/temp.csv");
         return;
     }
     //delete old file and rename temporary file to old file
     if (isStudent == true)
     {
-        remove("acc_student.csv");
-        rename("temp.csv", "acc_student.csv");
+        remove("../Txt_Csv/acc_student.csv");
+        rename("../Txt_Csv/temp.csv", "../Txt_Csv/acc_student.csv");
     }
     else
     {
-        remove("acc_staff.csv");
-        rename("temp.csv", "acc_staff.csv");
+        remove("../Txt_Csv/acc_staff.csv");
+        rename("../Txt_Csv/temp.csv", "../Txt_Csv/acc_staff.csv");
     }
     cout << "Change successful!\n";
 }

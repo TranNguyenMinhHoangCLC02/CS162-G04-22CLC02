@@ -1,10 +1,12 @@
 #include "../Header/Staff.h"
 #include "../Header/Student.h"
 
-void import_scoreboard(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head){    
+void import_scoreboard(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head)
+{    
     system("cls");
     //Check if any students existed
-    if(!course_head->student_head){
+    if(!course_head->student_head)
+    {
         cout << "There is no student in this course. Please input 0 to return back.\n Your option:";
         int opt = 1;
         cin >> opt;
@@ -25,7 +27,8 @@ void import_scoreboard(string filename, string username, Year* &year_head, Semes
     ofs << "StudentID,Fullname,Midterm Mark,Final Mark,Other Mark,Total Mark" << "\n";
 
     Student *cur = course_head->student_head;
-    while(cur){
+    while(cur)
+    {
         ofs << cur->student_ID << ",";
         ofs << cur->student_fisrtname << " " << cur->student_lastname << ",";
         ofs << ",,,," << endl;

@@ -121,7 +121,7 @@ void addNewSchoolYear (Year* &year_head)
     }
 
     //Print year list after changed out file schoolyear.txt
-    ofs.open("schoolyear.txt");
+    ofs.open("../Txt_Csv/schoolyear.txt");
     if (!ofs.is_open())
     {
         cerr << "Error: Unable to open file for writing\n";
@@ -142,6 +142,7 @@ void addNewSchoolYear (Year* &year_head)
 
     //Create file including semesters of created year
     string name_file = new_year->year_name + "semester.txt";
+    name_file = "../Txt_Csv/" + name_file;
     ofs.open(name_file);
     if (!ofs.is_open())
     {

@@ -3,7 +3,7 @@
 Student* getStudentListFromFile(Year *year_head)
 {
     ifstream ifs;
-    ifs.open("student_info.csv");
+    ifs.open("../Txt_Csv/student_info.csv");
     if (!ifs.is_open())
     {
         cerr << "Error: Unable to open file for reading\n";
@@ -18,6 +18,7 @@ Student* getStudentListFromFile(Year *year_head)
     {
         if (ifs.eof())
             break;
+        
         Student* new_student = new Student;
         getline(ifs, student_ID, ',');
         new_student->student_ID = student_ID;

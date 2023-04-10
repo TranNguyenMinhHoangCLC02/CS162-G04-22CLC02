@@ -6,6 +6,7 @@ Semester* getSemesterListFromFile(Year* &year_head)
 
     //Open file
     string file_name = year_head->year_name + "_semester.txt";
+    file_name = "../Txt_Csv/" + file_name;
     ifs.open(file_name);
     if (!ifs.is_open())
     {

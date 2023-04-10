@@ -377,6 +377,7 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
 
     //Print course list after changed out file txt corresponding with the year and the semester including courses
     string file_name = year_head->year_name + "_semester" + (char)(year_head->semester_head->Semester_Ord + 48) + "_course.csv";
+    file_name = "../Txt_Csv/" + file_name;
     ofs.open(file_name);
     if (!ofs.is_open())
     {
@@ -395,12 +396,13 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
     ofs.close();
     // create files for each classes
 
-    Course *current_course=year_head->semester_head->course_head;
-    while (current_course!=nullptr)
+    Course *current_course = year_head->semester_head->course_head;
+    while (current_course != nullptr)
     {
-        string Class_name=current_course->class_name;
-        char char_semester=static_cast<char>(semester_head->Semester_Ord+48);
-         string filename=Class_name + "_" + "Semester" + char_semester + "_" + year_head->year_name + "_courses.csv";
+        string Class_name = current_course->class_name;
+        char char_semester = static_cast<char>(semester_head->Semester_Ord+48);
+        string filename = Class_name + "_" + "Semester" + char_semester + "_" + year_head->year_name + "_courses.csv";
+        filename = "../Txt_Csv/" + filename;
         ofstream ofs(file_name, ios::app);
         if (!ofs.is_open())
         {

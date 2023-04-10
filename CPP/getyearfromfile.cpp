@@ -5,7 +5,7 @@ Year* getYearListFromFile()
     ifstream ifs;
 
     //Open file
-    ifs.open("schoolyear.txt");
+    ifs.open("../Txt_Csv/schoolyear.txt");
     if (!ifs.is_open())
     {
         cerr << "Error: Unable to open file for reading\n";

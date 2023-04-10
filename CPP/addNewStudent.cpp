@@ -5,9 +5,10 @@ void addNewStudent(string username, Year* &year_head, Class* cur)
 {
     string filename = cur->class_name + "-" + year_head->year_name + ".txt";
     cout << filename << "\n";
+    filename = "../Txt_Csv/" + filename;
     ofstream ofs;
     ofs.open(filename, ios::app);
-     if (!ofs.is_open()) {
+    if (!ofs.is_open()) {
         cerr << "Error: Unable to open file for writing\n";
         return;
     }

@@ -6,6 +6,7 @@ Course* getCourseListFromFile(Year* &year_head)
 
     //Open file
     string file_name = year_head->year_name + "_semester" + (char)(year_head->semester_head->Semester_Ord + 48) + "_course.csv";
+    file_name = "../Txt_Csv/" + file_name;
     ifs.open(file_name);
     if (!ifs.is_open())
     {

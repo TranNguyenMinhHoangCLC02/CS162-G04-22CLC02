@@ -5,6 +5,7 @@ void viewClass_Screen(string username, Year* &year_head)
     system("cls");
     string filename;
     filename = "class_" + year_head->year_name + ".txt";
+    filename = "../Txt_Csv/" + filename;
     year_head->class_head = getClassListFromFile(year_head, filename);
     cout << "------------ACCESS-A-CLASS------------\n";
     cout << "Please choose the class you have created you want to access";
