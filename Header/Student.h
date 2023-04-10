@@ -6,6 +6,10 @@
 void student_info(string username);
 void viewScoreBoard_Student(string username);
 
+void addTail(Student* &student_head, Student* tmp);
+void getDate(Student* &tmp , string date_string);
+Class* upload_info_class(ifstream &file);
+
 int numOfStudent(Course* course);
 void addStudentToCourse(Course* &course, Student* &student);
 

@@ -13,14 +13,23 @@ void addTail(Student* &student_head, Student* tmp)
     }
 }
 
-void getDate(Student* &tmp , string date_string) 
+void getDate(Student* &tmp, string date_string)
 {
-    string day_string = date_string.substr(0, 2);
-    string month_string = date_string.substr(3, 2);
-    string year_string = date_string.substr(6, 4);
-    tmp->DOB.day = stoi(day_string);
-    tmp->DOB.month = stoi(month_string);
-    tmp->DOB.year = stoi(year_string);
+    stringstream ss(date_string); // Use stringstream to extract the day, month, and year values
+
+    string token;
+
+    // Extract the day
+    getline(ss, token, '/');
+    tmp->DOB.day = stoi(token);
+
+    // Extract the month
+    getline(ss, token, '/');
+    tmp->DOB.month = stoi(token);
+
+    // Extract the year
+    getline(ss, token, '/');
+    tmp->DOB.year = stoi(token);
 }
 
 Class* upload_info_class(ifstream &file)
