@@ -84,15 +84,29 @@ struct Scoreboard
     Student *student_head;
 };
 
+//Authentication functions
 bool isLoggedIn();
 void login(bool isStudent, string &username);
 void logout();
+
+//Password management function
 void changePass(string username, bool isStudent);
+
+//Screen functions
 int firstScreen(bool &check);
 void viewSchoolYear_Screen(string username, Year* year_head);
 void Main_Staff_Screen(string &username, Year* &year_head);
 void Main_Student_Screen(string username);
 void interface(int option, Year* &year_head);
+
+//Memory management functions
 void dellocateCourses(Course *&head_course);
+void dellocateStudents(Student *&head_student);
+
+//Helper function
+void addTail(Student* &student_head, Student* tmp);
+void getDate(Student* &tmp , string date_string);
+
+//Main function
 int main();
 #endif
