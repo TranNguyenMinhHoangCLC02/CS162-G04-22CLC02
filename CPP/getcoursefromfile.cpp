@@ -22,6 +22,9 @@ Course* getCourseListFromFile(Year* &year_head)
     while (getline(ifs, line))
     {
         Course* new_course = new Course;
+        new_course->course_next = nullptr;
+        new_course->student_head = nullptr;
+
         string tmp;
         stringstream ss(line);
 

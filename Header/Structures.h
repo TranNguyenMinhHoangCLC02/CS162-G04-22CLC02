@@ -93,5 +93,6 @@ void viewSchoolYear_Screen(string username, Year* year_head);
 void Main_Staff_Screen(string &username, Year* &year_head);
 void Main_Student_Screen(string username);
 void interface(int option, Year* &year_head);
+void dellocateCourses(Course *&head_course);
 int main();
 #endif
