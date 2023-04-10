@@ -69,6 +69,8 @@ struct Year
 struct Semester
 {
     unsigned int Semester_Ord; //Ordinal number
+    Date start_date;
+    Date end_date;
     Course *course_head; //Points to the Course
     Semester *semester_next; //Next Semester
 };

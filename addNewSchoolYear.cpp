@@ -72,11 +72,15 @@ void addNewSchoolYear (Year* &year_head)
     cout << "Principles when inputing a new school year\n";
     cout << "1. Your typed school year must be follows the syntax startyear-endyear, and the end year will after the start year exactly 1 year, for instance: 2019-2020\n";
     cout << "2. Don't input an available school year!\n";
-    cout << "3. Your input will be false if it includes another letter that is not number and a hyphen between 2 years\n\n";
+    cout << "3. Your input will be false if it includes another letter that is not number and a hyphen between 2 years\n";
+    cout << "4. You can input 0 whenever you want to return back\n\n";
 
     cin.ignore();
     cout << "Please type the school year you want to add (Ensure that your syntax follows our given principles: ";
     getline(cin, new_year->year_name);
+
+    if (new_year->year_name == "0")
+        return;
 
     //If user's input is wrong, input again
     while (!checkSyntaxOfSchoolYear(new_year->year_name) || !checkExistingYear(year_head, new_year->year_name))
@@ -85,11 +89,17 @@ void addNewSchoolYear (Year* &year_head)
         {
             cout << "Your input was wrong in its syntax, please input again: ";
             getline(cin, new_year->year_name);
+
+            if (new_year->year_name == "0")
+                return;
         }
         else
         {
             cout << "Your inputed school year was existed, please input another school year: ";
             getline(cin, new_year->year_name);
+
+            if (new_year->year_name == "0")
+                return;
         }
     }
 
@@ -141,13 +151,13 @@ void addNewSchoolYear (Year* &year_head)
     ofs.close();
 
     //Require user input 0 for returning back
-    int option;
+    string option;
     cout << "Please type the number 0 for returning back: ";
-    cin >> option;
+    getline(cin, option);
 
-    while (option)
+    while (option != "0")
     {
         cout << "The number is different from 0, please input again: ";
-        cin >> option;
+        getline(cin, option);
     }
 }

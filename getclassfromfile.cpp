@@ -16,8 +16,9 @@ Class* getClassListFromFile(Year *&year_head, string filename)
     while (!ifs.eof())
     {
         getline(ifs, class_name, '\n');
-        if (ifs.eof())
-            break;
+
+        // if (ifs.eof())
+        //     break;
 
         Class* new_class = new Class;
         new_class->class_name = class_name;

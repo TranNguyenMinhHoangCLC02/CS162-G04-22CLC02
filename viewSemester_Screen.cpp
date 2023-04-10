@@ -17,7 +17,11 @@ void viewSemester_Screen(string username, Year* year_head)
 
         while (cur)
         {
-            cout << numSemesters + 1 << "." << setw(2) << right << "Semester " << cur->Semester_Ord << "\n";
+            cout << numSemesters + 1 << "." << setw(2) << right << "Semester " << cur->Semester_Ord << "(" 
+                << setw(2) << setfill('0') << cur->start_date.day << "/" << setw(2) << setfill('0') << 
+                cur->start_date.month << "/" << setw(4) << setfill('0') << cur->start_date.year << " --> " 
+                << setw(2) << setfill('0') << cur->end_date.day << "/" << setw(2) << setfill('0') << 
+                cur->end_date.month << "/" << setw(4) << setfill('0') << cur->end_date.year << ")" << "\n";
             cur = cur->semester_next;
             numSemesters++;
         }
