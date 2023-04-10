@@ -6,7 +6,7 @@ void viewScoreBoard_Student(string username)
     string year;
     Student *user = new Student();
     ifstream ifs;
-    ifs.open("student_info.csv");
+    ifs.open("../Txt_Csv/student_info.csv");
     string dummy;
     getline(ifs, dummy);
     string first_name, last_name, student_class, student_ID, social_ID, DOB, gender;
@@ -42,6 +42,7 @@ void viewScoreBoard_Student(string username)
     cin >> semester;
     char ch_semester = static_cast<char>(semester + 48);
     string filename = user->student_class.class_name + "_Semester" + ch_semester + "_" + year +  "_courses.csv";
+    filename = "../Txt_Csv/" + filename;
     Course *class_course = nullptr;
     Course *temp = nullptr;
     ifs.open(filename);
@@ -56,6 +57,7 @@ void viewScoreBoard_Student(string username)
         cin >> semester;
         ch_semester = static_cast<char>(semester + 48);
         filename = user->student_class.class_name + "_Semester" + ch_semester + "_" + year +  "_courses.csv";
+        filename = "../Txt_Csv/" + filename;
         ifs.open(filename);
     }
     string line;
@@ -105,12 +107,12 @@ void viewScoreBoard_Student(string username)
     while (class_course!=nullptr)
     {
         cout << setw(12) << left << class_course->course_name;
-        ifs.open(class_course->course_ID + "_Semester" + ch_semester + "_" + year + "_Scoreboard.csv");
+        ifs.open("../Txt_Csv/" + class_course->course_ID + "_Semester" + ch_semester + "_" + year + "_Scoreboard.csv");
         getline(ifs, dummy);
         while (!ifs.eof())
         {
             getline(ifs, student_id, ',');
-            if (student_id==username)
+            if (student_id == username)
             {
                 getline(ifs, fullname, ',');
                 getline(ifs, dummy, ',');
@@ -129,7 +131,7 @@ void viewScoreBoard_Student(string username)
             else
                 getline(ifs, dummy);
         }
-        class_course=class_course->course_next;
+        class_course = class_course->course_next;
     }
     cout << "0. Return back" << "\n";
     int opt = 1;

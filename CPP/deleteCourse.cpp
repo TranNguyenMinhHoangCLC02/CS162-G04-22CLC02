@@ -1,6 +1,7 @@
 #include "../Header/Staff.h"
 
-void deleteCourse(Course *&course_head, Course* course) {
+void deleteCourse(Course *&course_head, Course* course) 
+{
     Course *curr = course_head;
     Course *prev = nullptr;
 

@@ -19,6 +19,7 @@ void uploadStudentFileToCourse (string username, Year* year_head, Semester* seme
     ifstream ifs;
 
     //Open file
+    file_name = "../Txt_Csv/" + file_name;
     ifs.open (file_name);
     while (!ifs.is_open())
     {

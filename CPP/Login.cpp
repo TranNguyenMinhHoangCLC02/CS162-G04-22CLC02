@@ -3,7 +3,7 @@
 
 bool isLoggedIn() {
     // Check whether the user is currently logged in by checking the isLoggedIn.txt file
-    ifstream file("isLoggedIn.txt");
+    ifstream file("../Txt_Csv/isLoggedIn.txt");
     string line;
     getline(file, line);
     file.close();
@@ -23,7 +23,7 @@ void login(bool isStudent, string &username)
         cout << "Password: ";
         cin >> password;
 
-        fstream file("acc_student.csv");
+        fstream file("../Txt_Csv/acc_student.csv");
         string line;
         getline(file, line);  // Skip the first line of the file as it is a header
         while (getline(file, line)) 
@@ -32,7 +32,7 @@ void login(bool isStudent, string &username)
                 string passwordFromFile = line.substr(line.find(',') + 1);
                 if (password == passwordFromFile) {
                     // If the login is successful, write the login status to the isLoggedIn.txt file and exit the function
-                    ofstream file("isLoggedIn.txt");
+                    ofstream file("../Txt_Csv/isLoggedIn.txt");
                     file << "1";
                     file.close();
                     return;
@@ -50,16 +50,17 @@ void login(bool isStudent, string &username)
         cout << "Password: ";
         cin >> password;
 
-        fstream file("acc_staff.csv");
+        fstream file("../Txt_Csv/acc_staff.csv");
         string line;
         getline(file, line);  // Skip the first line of the file as it is a header
         while (getline(file, line)) 
         {
-            if (line.substr(0, line.find(',')) == username) {
+            if (line.substr(0, line.find(',')) == username) 
+            {
                 string passwordFromFile = line.substr(line.find(',') + 1);
                 if (password == passwordFromFile) {
                     // If the login is successful, write the login status to the isLoggedIn.txt file and exit the function
-                    ofstream file("isLoggedIn.txt");
+                    ofstream file("../Txt_Csv/isLoggedIn.txt");
                     file << "1";
                     file.close();
                     return;
@@ -74,9 +75,10 @@ void login(bool isStudent, string &username)
 	login(isStudent, username);
 }
 
-void logout() {
+void logout() 
+{
     // Write the logout status to the isLoggedIn.txt file
-    ofstream file("isLoggedIn.txt");
+    ofstream file("../Txt_Csv/isLoggedIn.txt");
     file << "0";
     file.close();
 }

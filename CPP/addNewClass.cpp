@@ -48,7 +48,7 @@ void addNewClass (Year* &year_head, string username)
     }
 
     // Append new class to class.txt file
-    ofs.open("class.txt", ios::app);
+    ofs.open("../Txt_Csv/class.txt", ios::app);
     if (!ofs.is_open()) {
         cerr << "Error: Unable to open file for writing\n";
         return;
@@ -56,9 +56,11 @@ void addNewClass (Year* &year_head, string username)
     ofs << new_class->class_name << "\n";
     // Append new class to a specific class year
     ofs.close();
-        string filename = "class_" + year_head->year_name + ".txt";
+    string filename = "class_" + year_head->year_name + ".txt";
+    filename = "../Txt_Csv/" + filename;
     ofs.open(filename, ios::app);
-    if (!ofs.is_open()){
+    if (!ofs.is_open())
+    {
         cerr << "Error: Unable to open file for writing\n";
         return;
     }
@@ -67,8 +69,10 @@ void addNewClass (Year* &year_head, string username)
 
     cout << "You created a new class successfully!\n\n";
     string name_file = new_class->class_name + "-" + year_head->year_name + ".txt";
+    name_file = "../Txt_Csv/" + name_file;
     ofs.open(name_file);
-    if (!ofs.is_open()) {
+    if (!ofs.is_open()) 
+    {
         cerr << "Error: Unable to open file for writing\n";
         return;
     }

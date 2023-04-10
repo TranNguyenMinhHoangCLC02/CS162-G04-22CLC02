@@ -715,6 +715,7 @@ void addNewSemester (string username, Year* &year_head) //Now, year_head is the 
 
     //Print semester list after changed out file txt corresponding with the semester
     string file_name = year_head->year_name + "_semester.txt";
+    file_name = "../Txt_Csv/" + file_name;
     ofs.open(file_name);
     if (!ofs.is_open())
     {

@@ -14,7 +14,7 @@ void viewScoreBoard_Course(string filename, string username, Year* &year_head, S
     }
     string dummy;
     getline(ifs, dummy);
-    int counter=1;
+    int counter = 1;
     string student_id, fullname;
     float total, final1, midterm, other;
     string temp;

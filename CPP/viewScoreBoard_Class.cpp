@@ -7,16 +7,17 @@ void viewScoreBoard_Class(string username, Year *&year_head, Class *class_head)
     int semester;
     cout << "Choose a semester (1->3): ";
     cin >> semester;
-    while (semester<1 && semester>3)
+    while (semester < 1 && semester > 3)
     {
         cout << "Invalid input!";
         cout << "Please input again: ";
         cin >> semester;
     }
-    char char_semester=static_cast<char>(semester+48);
-    filename=class_head->class_name+ "_" + "Semester" + char_semester + "_" + year_head->year_name + "_courses.csv";
-    Course *class_course=nullptr;
-    Course *temp=nullptr;
+    char char_semester = static_cast<char>(semester + 48);
+    filename = class_head->class_name+ "_" + "Semester" + char_semester + "_" + year_head->year_name + "_courses.csv";
+    filename = "../Txt_Csv/" + filename;
+    Course *class_course = nullptr;
+    Course *temp = nullptr;
     ifstream ifs;
     ifs.open(filename);
     string line;
@@ -58,15 +59,16 @@ void viewScoreBoard_Class(string username, Year *&year_head, Class *class_head)
         }
     }
     ifs.close();
-    Course *check=class_course;
-    while (check!=nullptr)
+    Course *check = class_course;
+    while (check != nullptr)
     {
         string filename1;
-        filename1=check->course_ID+ "_Semester" + char_semester + "_" + year_head->year_name +"_Scoreboard.csv";
+        filename1 = check->course_ID + "_Semester" + char_semester + "_" + year_head->year_name + "_Scoreboard.csv";
+        filename1 = "../Txt_Csv/" + filename1;
         ifstream ifs;
         ifs.open(filename1);
         cout << "------------"<< check->course_name <<"--------------\n";
-        int counter=1;
+        int counter = 1;
         string student_id, fullname;
         float total, final1, midterm, other;
         string dummy;
@@ -95,7 +97,7 @@ void viewScoreBoard_Class(string username, Year *&year_head, Class *class_head)
         }
         cout << "\n";
         ifs.close();
-        check=check->course_next;
+        check = check->course_next;
     }
     cout << "0. Return back" << "\n";
     int opt = 1;

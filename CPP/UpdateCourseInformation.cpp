@@ -402,6 +402,7 @@ void updateInformationOfCourse (string username, Year* year_head, Semester* seme
             //Open file for updating information
             ofstream ofs;
             string file_name = year_head->year_name + "_semester" + (char)(year_head->semester_head->Semester_Ord + 48) + "_course.csv";
+            file_name = "../Txt_Csv/" + file_name;
             ofs.open(file_name);
             if (!ofs.is_open())
             {
