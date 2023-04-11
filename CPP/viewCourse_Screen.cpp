@@ -6,7 +6,7 @@ void viewCourse_Screen(string username, Year* year_head, Semester* semester_head
     cout << setw(2) << "------------ACCESS-A-COURSE--------------\n";
     cout << "Please choose the course you have created you want to access";
     
-    Course* cur = year_head->semester_head->course_head; int numCourses = 0;
+    Course* cur = semester_head->course_head; int numCourses = 0;
 
     //Show list of years the staff has created before
     if (cur == nullptr) //Data is empty
@@ -28,7 +28,7 @@ void viewCourse_Screen(string username, Year* year_head, Semester* semester_head
     cout << "0. Return back" << "\n";
 
     //Move the pointer cur to the pointer semester_head again
-    cur = year_head->semester_head->course_head;
+    cur = semester_head->course_head;
 
     if (cur)
     {

@@ -129,11 +129,12 @@ void addNewSchoolYear (Year* &year_head)
     }
 
     Year* temp_year = year_head;
-    while (temp_year)
+    while (temp_year->year_next)
     {
         ofs << temp_year->year_name << "\n";
         temp_year = temp_year->year_next;
     }
+    ofs << temp_year->year_name;
 
     ofs.close();
 
@@ -141,7 +142,7 @@ void addNewSchoolYear (Year* &year_head)
     cout << "You created a new school year successfully!\n\n";
 
     //Create file including semesters of created year
-    string name_file = new_year->year_name + "semester.txt";
+    string name_file = new_year->year_name + "_semester.txt";
     name_file = "../Txt_Csv/" + name_file;
     ofs.open(name_file);
     if (!ofs.is_open())

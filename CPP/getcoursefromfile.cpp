@@ -1,11 +1,11 @@
 #include "../Header/Staff.h"
 
-Course* getCourseListFromFile(Year* &year_head)
+Course* getCourseListFromFile(Year* year_head, Semester* &semester_head)
 {
     ifstream ifs;
 
     //Open file
-    string file_name = year_head->year_name + "_semester" + (char)(year_head->semester_head->Semester_Ord + 48) + "_course.csv";
+    string file_name = year_head->year_name + "_semester" + (char)(semester_head->Semester_Ord + 48) + "_course.csv";
     file_name = "../Txt_Csv/" + file_name;
     ifs.open(file_name);
     if (!ifs.is_open())
@@ -15,16 +15,12 @@ Course* getCourseListFromFile(Year* &year_head)
     }
 
     //Get course list from file
-    Course* temp = nullptr;
+    semester_head->course_head = nullptr; Course* temp = nullptr;
     string line;
-    getline(ifs, line);
 
     while (getline(ifs, line))
     {
         Course* new_course = new Course;
-        new_course->course_next = nullptr;
-        new_course->student_head = nullptr;
-
         string tmp;
         stringstream ss(line);
 
@@ -49,10 +45,10 @@ Course* getCourseListFromFile(Year* &year_head)
         new_course->scoreboard_head = nullptr;
         new_course->course_next = nullptr;
 
-        if (!year_head->semester_head->course_head)
+        if (!semester_head->course_head)
         {
-            year_head->semester_head->course_head = new_course;
-            temp = year_head->semester_head->course_head;
+            semester_head->course_head = new_course;
+            temp = semester_head->course_head;
         }
         else
         {
@@ -63,5 +59,5 @@ Course* getCourseListFromFile(Year* &year_head)
 
     //Close file and return created list
     ifs.close();
-    return year_head->semester_head->course_head;
+    return semester_head->course_head;
 }
