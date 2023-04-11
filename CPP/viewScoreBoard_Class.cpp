@@ -4,6 +4,7 @@
 void viewScoreBoard_Class(string username, Year *&year_head, Class *class_head)
 {
     string filename;
+    cout << "------------"<< class_head->class_name << "_" << year_head->year_name <<"--------------\n";
     int semester;
     cout << "Choose a semester (1->3): ";
     cin >> semester;
@@ -99,7 +100,7 @@ void viewScoreBoard_Class(string username, Year *&year_head, Class *class_head)
         ifs.close();
         check = check->course_next;
     }
-    cout << "0. Return back" << "\n";
+    cout << "0. Return back" << "\nYour input is: ";
     int opt = 1;
     cin >> opt;
 

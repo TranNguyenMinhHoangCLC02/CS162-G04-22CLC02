@@ -4,7 +4,7 @@
 void viewScoreBoard_Course(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head)
 {
     system("cls");
-    cout << "------------"<< course_head->course_name <<"--------------\n";
+    cout << "------------"<< course_head->course_name << "_" << year_head->year_name <<"--------------\n";
     ifstream ifs;
     ifs.open(filename);
     if (!ifs.is_open())
@@ -39,7 +39,7 @@ void viewScoreBoard_Course(string filename, string username, Year* &year_head, S
         cout << setw(5) << right << fixed << setprecision(1) << total << endl;
         counter++;
     }
-    cout << "0. Return back" << "\n";
+    cout << "0. Return back" << "\nYour input is: ";
     int opt = 1;
     cin >> opt;
 
