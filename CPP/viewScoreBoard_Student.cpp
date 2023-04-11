@@ -133,7 +133,7 @@ void viewScoreBoard_Student(string username)
         }
         class_course = class_course->course_next;
     }
-    cout << "0. Return back" << "\n";
+    cout << "0. Return back" << "\nYour input is: ";
     int opt = 1;
     cin >> opt;
 
