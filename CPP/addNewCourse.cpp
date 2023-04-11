@@ -394,13 +394,13 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
         temp_course = temp_course->course_next;
     }
     ofs.close();
-    // create files for each classes
-
+    
+    // Create files for each classes
     Course *current_course = year_head->semester_head->course_head;
     while (current_course != nullptr)
     {
         string Class_name = current_course->class_name;
-        char char_semester = static_cast<char>(semester_head->Semester_Ord+48);
+        char char_semester = static_cast<char>(semester_head->Semester_Ord + 48);
         string filename = Class_name + "_" + "Semester" + char_semester + "_" + year_head->year_name + "_courses.csv";
         filename = "../Txt_Csv/" + filename;
         ofstream ofs(file_name, ios::app);
@@ -409,7 +409,7 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
             cerr << "Error: Unable to open file " << file_name << " for writing\n";
             return;
         }
-        if (current_course->class_name==Class_name)
+        if (current_course->class_name == Class_name)
         {
             ofs << current_course->course_ID << "," << current_course->course_name << "," 
             << current_course->class_name << "," << current_course->teacher_name << "," 
@@ -417,8 +417,24 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
             << current_course->dayInWeek << "," << current_course->Session << "\n";
         }
         ofs.close();
-        current_course=current_course->course_next;
+        current_course = current_course->course_next;
     }
+
+    //Create file including students of created course
+    Course* temp_course = year_head->semester_head->course_head;
+
+    while (temp_course->course_next)
+        temp_course = temp_course->course_next;
+
+    string name_file = temp_course->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + ".csv";
+    name_file = "../Txt_Csv/" + name_file;
+    ofs.open(name_file);
+    if (!ofs.is_open())
+    {
+        cerr << "Error: Unable to open file for writing\n";
+        return;
+    }
+    ofs.close();
 
     //Announce for user
     cout << "You created a new course successfully!\n\n";

@@ -738,6 +738,22 @@ void addNewSemester (string username, Year* &year_head) //Now, year_head is the 
     //Announce for user
     cout << "You created a new semester successfully!\n\n";
 
+    //Create file including courses of created semester
+    Semester* temp_semester = year_head->semester_head;
+
+    while (temp_semester->semester_next)
+        temp_semester = temp_semester->semester_next;
+
+    string name_file = year_head->year_name + "_semester" + (char)(temp_semester->Semester_Ord + 48) + "_course.csv";
+    name_file = "../Txt_Csv/" + name_file;
+    ofs.open(name_file);
+    if (!ofs.is_open())
+    {
+        cerr << "Error: Unable to open file for writing\n";
+        return;
+    }
+    ofs.close();
+
     //Require user input 0 for returning back
     string option;
     cout << "Please type the number 0 for returning back: ";

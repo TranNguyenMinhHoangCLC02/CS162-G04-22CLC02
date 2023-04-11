@@ -108,10 +108,16 @@ void updateACourse (string username, Year* year_head, Semester* semester_head, C
     else if (option == 2)
     {
         system("cls");
-        viewCourse_Screen(username, year_head, semester_head);
+        //addStudentToCourse(course_head)
         return;
     }
     else if (option == 3)
+    {
+        system("cls");
+        //removeStudentFromCourse
+        return;
+    }
+    else if (option == 4)
     {
         system("cls");
         
