@@ -46,7 +46,9 @@ void removeStudentFromCourse(Course* &course, Student* &student);
 void addNewCourse (string username, Year* year_head, Semester* semester_head);
 void viewStudentInCourse(string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 int numOfStudent(Course* course);
-void addStudentToCourse(Course* &course, Student* &student);
+bool isStudentInCourse(Course* course, Student* student);
+Student* createStudent();
+void addStudentToCourse(Course* &course);
 void printCourseInfo(Course* course);
 
 //Helper functions for course
