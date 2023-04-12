@@ -35,6 +35,7 @@ void import_scoreboard(string filename, string username, Year* &year_head, Semes
         cur = cur->student_next;
     }
     cout << endl;
+    cout << "The file " << filename << " has been created successfully.\n";
     cout << "Please input 0 to return back.\n Your option:" << "\n";
     int opt = 1;
     cin >> opt;

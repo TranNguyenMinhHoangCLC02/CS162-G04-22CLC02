@@ -99,5 +99,19 @@ void addStudentToCourse(Course* &course)
             current->student_next = student;
         }
     }
+
+    cout << "Student added successfully.";
+    int option;
+    cout << "Do you want to add another student? (1 for Yes, 0 for No): ";
+    cin >> option;
+    while (option != 0 && option != 1){
+        cout << "Invalid input. Please enter again: ";
+        cin >> option;
+    }
+    if (option == 1)
+        addStudentToCourse(course);
+    else
+        return;
+
 }
 
