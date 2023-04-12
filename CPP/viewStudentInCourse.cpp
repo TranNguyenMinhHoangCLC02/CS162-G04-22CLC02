@@ -22,7 +22,7 @@ void viewStudentInCourse(string username, Year* &year_head, Semester* &semester_
         }
     }
     cout << "\n";
-    cout << "0. Return back" << "\n";
+    cout << "0. Return back" << "\nInput option: ";
     int opt = 1;
     cin >> opt;
 
