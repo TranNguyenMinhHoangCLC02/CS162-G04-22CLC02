@@ -1,6 +1,6 @@
 #include "../Header/Staff.h"
 
-Student* getStudentListFromFile(Year *year_head)
+Student* getStudentListFromFile(Year *year_head, Class* class_head)
 {
     ifstream ifs;
     ifs.open("../Txt_Csv/student_info.csv");
@@ -9,7 +9,7 @@ Student* getStudentListFromFile(Year *year_head)
         cerr << "Error: Unable to open file for reading\n";
         return nullptr;
     }
-    year_head->class_head->student_head = nullptr;
+    class_head->student_head = nullptr;
     Student* temp = nullptr;
     string dummy;
     getline(ifs, dummy);
@@ -47,9 +47,9 @@ Student* getStudentListFromFile(Year *year_head)
         //     temp->student_next = new_student;
         //     temp = temp->student_next;
         // }
-        addTail(year_head->class_head->student_head, new_student);
+        addTail(class_head->student_head, new_student);
     }
 
     ifs.close();
-    return year_head->class_head->student_head;
+    return class_head->student_head;
 }

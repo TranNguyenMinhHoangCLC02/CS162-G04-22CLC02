@@ -1,6 +1,6 @@
 #include "../Header/Structures.h"
 
-void dellocateStudents(Student *&head_student)
+void deallocateStudents(Student *&head_student)
 {
     while (head_student != nullptr)
     {

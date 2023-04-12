@@ -282,7 +282,7 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
                                 }
                                 else
                                 {
-                                    //Create new semester
+                                    //Create new course
                                     Course* new_course = new Course;
                                     new_course->course_ID = CourseID;
                                     new_course->course_name = CourseName;
@@ -330,7 +330,7 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
                                         }
                                     }
 
-                                    switch(SessionOption)
+                                    switch (SessionOption)
                                     {
                                         case 1:
                                         {
@@ -354,12 +354,16 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
                                         }
                                     }
 
-                                    //Add new semester at the end of semester list of corresponding year
-                                    if (!year_head->semester_head->course_head)
-                                        year_head->semester_head->course_head = new_course;
+                                    new_course->scoreboard_head = nullptr;
+                                    new_course->student_head = nullptr;
+                                    new_course->course_next = nullptr;
+
+                                    //Add new course at the end of course list of corresponding year
+                                    if (!semester_head->course_head)
+                                        semester_head->course_head = new_course;
                                     else
                                     {
-                                        Course* temp_course = year_head->semester_head->course_head;
+                                        Course* temp_course = semester_head->course_head;
 
                                         while (temp_course->course_next)
                                             temp_course = temp_course->course_next;
@@ -376,7 +380,7 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
     }
 
     //Print course list after changed out file txt corresponding with the year and the semester including courses
-    string file_name = year_head->year_name + "_semester" + (char)(year_head->semester_head->Semester_Ord + 48) + "_course.csv";
+    string file_name = year_head->year_name + "_semester" + (char)(semester_head->Semester_Ord + 48) + "_course.csv";
     file_name = "../Txt_Csv/" + file_name;
     ofs.open(file_name);
     if (!ofs.is_open())
@@ -385,28 +389,32 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
         return;
     }
 
-    Course* temp_course = year_head->semester_head->course_head;
-    while (temp_course)
+    Course* temp_course = semester_head->course_head;
+    while (temp_course->course_next)
     {
         ofs << temp_course->course_ID << "," << temp_course->course_name << "," << temp_course->class_name << "," 
             << temp_course->teacher_name << "," << temp_course->numCredits << "," << temp_course->maxNumStudents 
             << "," << temp_course->dayInWeek << "," << temp_course->Session << "\n";
+        
         temp_course = temp_course->course_next;
     }
+    ofs << temp_course->course_ID << "," << temp_course->course_name << "," << temp_course->class_name << "," 
+        << temp_course->teacher_name << "," << temp_course->numCredits << "," << temp_course->maxNumStudents 
+        << "," << temp_course->dayInWeek << "," << temp_course->Session;
     ofs.close();
     
     // Create files for each classes
-    Course *current_course = year_head->semester_head->course_head;
+    Course *current_course = semester_head->course_head;
     while (current_course != nullptr)
     {
         string Class_name = current_course->class_name;
         char char_semester = static_cast<char>(semester_head->Semester_Ord + 48);
         string filename = Class_name + "_" + "Semester" + char_semester + "_" + year_head->year_name + "_courses.csv";
         filename = "../Txt_Csv/" + filename;
-        ofstream ofs(file_name, ios::app);
+        ofstream ofs(filename, ios::app);
         if (!ofs.is_open())
         {
-            cerr << "Error: Unable to open file " << file_name << " for writing\n";
+            cerr << "Error: Unable to open file " << filename << " for writing\n";
             return;
         }
         if (current_course->class_name == Class_name)
@@ -421,12 +429,12 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
     }
 
     //Create file including students of created course
-    Course* temp_course = year_head->semester_head->course_head;
+    Course* temp_course1 = semester_head->course_head;
 
-    while (temp_course->course_next)
-        temp_course = temp_course->course_next;
+    while (temp_course1->course_next)
+        temp_course1 = temp_course1->course_next;
 
-    string name_file = temp_course->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + ".csv";
+    string name_file = temp_course1->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + ".csv";
     name_file = "../Txt_Csv/" + name_file;
     ofs.open(name_file);
     if (!ofs.is_open())
@@ -449,4 +457,7 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
         cout << "The number is different from 0, please input again: ";
         getline(cin, option);
     }
+
+    system("cls");
+    accessSemester(username, year_head, semester_head);
 }

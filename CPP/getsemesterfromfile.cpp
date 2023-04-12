@@ -21,9 +21,6 @@ Semester* getSemesterListFromFile(Year* &year_head)
     while (getline(ifs, line))
     {
         Semester* new_semester = new Semester;
-        new_semester->course_head = nullptr;
-        new_semester->semester_next = nullptr;
-
         string tmp;
         stringstream ss(line);
 

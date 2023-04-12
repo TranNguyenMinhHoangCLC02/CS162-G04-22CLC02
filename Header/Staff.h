@@ -28,7 +28,7 @@ void viewStudentInClass(string username, Year* &year_head, Class *class_head);
 Class* upload_info_class(ifstream &file);
 
 //Student functions
-Student* getStudentListFromFile(Year *year_head);
+Student* getStudentListFromFile(Year *year_head, Class* class_head);
 void addNewStudent(string username, Year *&year_head, Class *cur);
 
 //Semester functions
@@ -37,6 +37,7 @@ void viewSemester_Screen(string username, Year* year_head);
 void viewCoursesInSemester(Student* student, Semester* semester);
 
 //Course functions
+Course* getCourseListFromFile(Year* year_head, Semester* &semester_head);
 void accessCourse(string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 void viewCourse_Screen(string username, Year* year_head, Semester* semester_head);
 void updateInformationOfCourse (string username, Year* year_head, Semester* semester_head, Course* accessed_course);

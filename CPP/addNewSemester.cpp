@@ -724,7 +724,7 @@ void addNewSemester (string username, Year* &year_head) //Now, year_head is the 
     }
 
     Semester* temp_semester = year_head->semester_head;
-    while (temp_semester)
+    while (temp_semester->semester_next)
     {
         ofs << temp_semester->Semester_Ord << "," << setw(2) << setfill('0') << temp_semester->start_date.day
             << "/" << setw(2) << setfill('0') << temp_semester->start_date.month << "/" << setw(4) << setfill('0') 
@@ -733,18 +733,22 @@ void addNewSemester (string username, Year* &year_head) //Now, year_head is the 
 
         temp_semester = temp_semester->semester_next;
     }
+    ofs << temp_semester->Semester_Ord << "," << setw(2) << setfill('0') << temp_semester->start_date.day
+        << "/" << setw(2) << setfill('0') << temp_semester->start_date.month << "/" << setw(4) << setfill('0') 
+        << temp_semester->start_date.year << "," << setw(2) << setfill('0') << temp_semester->end_date.day
+        << "/" << setw(2) << setfill('0') << temp_semester->end_date.month << "/" << setw(4) << setfill('0') << temp_semester->end_date.year;
     ofs.close();
 
     //Announce for user
     cout << "You created a new semester successfully!\n\n";
 
     //Create file including courses of created semester
-    Semester* temp_semester = year_head->semester_head;
+    Semester* temp_semester1 = year_head->semester_head;
 
-    while (temp_semester->semester_next)
-        temp_semester = temp_semester->semester_next;
+    while (temp_semester1->semester_next)
+        temp_semester1 = temp_semester1->semester_next;
 
-    string name_file = year_head->year_name + "_semester" + (char)(temp_semester->Semester_Ord + 48) + "_course.csv";
+    string name_file = year_head->year_name + "_semester" + (char)(temp_semester1->Semester_Ord + 48) + "_course.csv";
     name_file = "../Txt_Csv/" + name_file;
     ofs.open(name_file);
     if (!ofs.is_open())
@@ -765,5 +769,6 @@ void addNewSemester (string username, Year* &year_head) //Now, year_head is the 
         getline(cin, option);
     }
 
+    system("cls");
     accessSchoolYear(username, year_head);
 }

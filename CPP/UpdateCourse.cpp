@@ -6,7 +6,7 @@ void viewUpdateCourseInformation (string username, Year* year_head, Semester* se
     cout << setw(2) << "------------UPDATE-A-COURSE--------------\n";
     cout << "Please choose the course you have created you want to access for seeing information";
     
-    Course* cur = year_head->semester_head->course_head; int numCourses = 0;
+    Course* cur = semester_head->course_head; int numCourses = 0;
 
     //Show list of years the staff has created before
     if (cur == nullptr) //Data is empty
@@ -17,7 +17,7 @@ void viewUpdateCourseInformation (string username, Year* year_head, Semester* se
 
         while (cur)
         {
-            cout << numCourses + 1 << "\t" << setw(2) << right << cur->course_name << "-" << cur->course_ID << "_" << cur->class_name << "\n";
+            cout << numCourses + 1 << "." << setw(2) << right << cur->course_name << "-" << cur->course_ID << "_" << cur->class_name << "\n";
             cur = cur->course_next;
             numCourses++;
         }
@@ -28,7 +28,7 @@ void viewUpdateCourseInformation (string username, Year* year_head, Semester* se
     cout << "0. Return back" << "\n";
 
     //Move the pointer cur to the pointer semester_head again
-    cur = year_head->semester_head->course_head;
+    cur = semester_head->course_head;
 
     if (cur)
     {
@@ -79,19 +79,20 @@ void updateACourse (string username, Year* year_head, Semester* semester_head, C
 {
     system("cls");
     cout << "\n";
-    cout << "------------UPDATE_COURSE_" << course_head->class_name << "--------------\n";
+    cout << "------------UPDATE_COURSE_" << course_head->course_ID << "--------------\n";
     cout << "0." << setw(2) << right << "Return back\n";
-    cout << "1." << setw(2) << right << "Upload student file\n";
-    cout << "2." << setw(2) << right << "Add a student\n";
-    cout << "3." << setw(2) << right << "Remove a student\n";
-    cout << "4." << setw(2) << right << "Delete course\n";
+    cout << "1." << setw(2) << right << "Update course information\n";
+    cout << "2." << setw(2) << right << "Upload student file\n";
+    cout << "3." << setw(2) << right << "Add a student\n";
+    cout << "4." << setw(2) << right << "Remove a student\n";
+    cout << "5." << setw(2) << right << "Delete course\n";
 
     int option;
     do
     {
         cout << "Input option: ";
         cin >> option;
-    } while (option < 0 || option > 4);
+    } while (option < 0 || option > 5);
 
     if (option == 0)
     {   
@@ -101,23 +102,29 @@ void updateACourse (string username, Year* year_head, Semester* semester_head, C
     }
     else if (option == 1)
     {
-        system ("cls");
-        uploadStudentFileToCourse(username, year_head, semester_head, course_head);
+        system("cls");
+        updateInformationOfCourse(username, year_head, semester_head, course_head);
         return;
     }
     else if (option == 2)
     {
-        system("cls");
-        //addStudentToCourse(course_head)
+        system ("cls");
+        uploadStudentFileToCourse(username, year_head, semester_head, course_head);
         return;
     }
     else if (option == 3)
     {
         system("cls");
-        //removeStudentFromCourse
+        //addStudentToCourse(course_head)
         return;
     }
     else if (option == 4)
+    {
+        system("cls");
+        //removeStudentFromCourse
+        return;
+    }
+    else if (option == 5)
     {
         system("cls");
         

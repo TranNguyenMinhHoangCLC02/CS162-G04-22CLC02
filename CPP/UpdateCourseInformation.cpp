@@ -39,6 +39,7 @@ void updateCourseID (string username, Year* year_head, Semester* semester_head, 
         getline(cin, opt);
     }
 
+    system("cls");
     updateInformationOfCourse(username, year_head, semester_head, accessed_course);
 }
 
@@ -75,6 +76,7 @@ void updateCourseName (string username, Year* year_head, Semester* semester_head
         getline(cin, opt);
     }
 
+    system("cls");
     updateInformationOfCourse(username, year_head, semester_head, accessed_course);
 }
 
@@ -116,6 +118,7 @@ void updateClassName(string username, Year* year_head, Semester* semester_head, 
         getline(cin, opt);
     }
 
+    system("cls");
     updateInformationOfCourse(username, year_head, semester_head, accessed_course);
 }
 
@@ -156,6 +159,7 @@ void updateTeacherName (string username, Year* year_head, Semester* semester_hea
         getline(cin, opt);
     }
 
+    system("cls");
     updateInformationOfCourse(username, year_head, semester_head, accessed_course);
 }
 
@@ -189,6 +193,7 @@ void updateNumCredits (string username, Year* year_head, Semester* semester_head
         getline(cin, opt);
     }
 
+    system("cls");
     updateInformationOfCourse(username, year_head, semester_head, accessed_course);
 }
 
@@ -222,6 +227,7 @@ void updateMaxStudents (string username, Year* year_head, Semester* semester_hea
         getline(cin, opt);
     }
 
+    system("cls");
     updateInformationOfCourse(username, year_head, semester_head, accessed_course);
 }
 
@@ -299,6 +305,7 @@ void updateDayOfCourse (string username, Year* year_head, Semester* semester_hea
         getline(cin, opt);
     }
 
+    system("cls");
     updateInformationOfCourse(username, year_head, semester_head, accessed_course);
 }
 
@@ -361,6 +368,7 @@ void updateSession (string username, Year* year_head, Semester* semester_head, C
         getline(cin, opt);
     }
 
+    system("cls");
     updateInformationOfCourse(username, year_head, semester_head, accessed_course);
 }
 
@@ -401,7 +409,7 @@ void updateInformationOfCourse (string username, Year* year_head, Semester* seme
         {
             //Open file for updating information
             ofstream ofs;
-            string file_name = year_head->year_name + "_semester" + (char)(year_head->semester_head->Semester_Ord + 48) + "_course.csv";
+            string file_name = year_head->year_name + "_semester" + (char)(semester_head->Semester_Ord + 48) + "_course.csv";
             file_name = "../Txt_Csv/" + file_name;
             ofs.open(file_name);
             if (!ofs.is_open())
@@ -410,12 +418,14 @@ void updateInformationOfCourse (string username, Year* year_head, Semester* seme
                 return;
             }
 
-            Course* temp = year_head->semester_head->course_head;
+            Course* temp = semester_head->course_head;
             while (temp)
             {
                 ofs << temp->course_ID << "," << temp->course_name << "," << temp->class_name << "," 
                     << temp->teacher_name << "," << temp->numCredits << "," << temp->maxNumStudents 
                     << "," << temp->dayInWeek << "," << temp->Session << "\n";
+
+                temp = temp->course_next;
             }
             ofs.close();
 

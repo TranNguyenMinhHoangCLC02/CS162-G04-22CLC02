@@ -1,6 +1,6 @@
 #include "../Header/Structures.h"
 
-void dellocateCourses(Course *&head_course)
+void deallocateCourses(Course *&head_course)
 {
     while (head_course != nullptr)
     {
