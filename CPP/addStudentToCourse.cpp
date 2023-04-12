@@ -60,6 +60,7 @@ Student* createStudent()
     student->gender = gender;
     student->DOB = DOB;
     student->student_class.class_name = class_name;
+    student->student_next = NULL;
 
     // return the pointer to the new student object
     return student;
