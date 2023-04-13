@@ -62,6 +62,7 @@ void Main_Staff_Screen(string &username, Year* &year_head)
         system("cls");
         year_head = getYearListFromFile();
         addNewSchoolYear(year_head);
+        deallocateYears(year_head);
         system("cls");
         Main_Staff_Screen(username, year_head);
         return;
@@ -71,6 +72,7 @@ void Main_Staff_Screen(string &username, Year* &year_head)
         system("cls");
         year_head = getYearListFromFile();
         viewSchoolYear_Screen(username, year_head);
+        deallocateYears(year_head);
         return;
     }
     else

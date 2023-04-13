@@ -28,6 +28,7 @@ void accessSemester(string username, Year* &year_head, Semester* &semester_head)
         system ("cls");
         semester_head->course_head = getCourseListFromFile(year_head, semester_head);
         addNewCourse(username, year_head, semester_head);
+        deallocateCourses(semester_head->course_head);
         return;
     }
     else if (option == 2)
@@ -35,6 +36,7 @@ void accessSemester(string username, Year* &year_head, Semester* &semester_head)
         system("cls");
         semester_head->course_head = getCourseListFromFile(year_head, semester_head);
         viewCourse_Screen(username, year_head, semester_head);
+        deallocateCourses(semester_head->course_head);
         return;
     }
     else if (option == 3)
@@ -42,6 +44,7 @@ void accessSemester(string username, Year* &year_head, Semester* &semester_head)
         system("cls");
         semester_head->course_head = getCourseListFromFile(year_head, semester_head);
         viewUpdateCourseInformation(username, year_head, semester_head);
+        deallocateCourses(semester_head->course_head);
         return;
     }
 }

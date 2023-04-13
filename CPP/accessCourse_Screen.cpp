@@ -27,6 +27,7 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
     else if(option == 1){
         system("cls");
         addStudentToCourse(course_head);
+        deallocateStudents(course_head->student_head);
         accessCourse(username, year_head, semester_head, course_head);
         return;
     }
