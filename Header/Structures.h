@@ -100,8 +100,11 @@ void Main_Student_Screen(string username);
 void interface(int option, Year* &year_head);
 
 //Memory management functions
-void dellocateCourses(Course *&head_course);
-void dellocateStudents(Student *&head_student);
+void deallocateCourses(Course *&head_course);
+void deallocateStudents(Student *&head_student);
+void deallocateClasses(Class *&class_head);
+void deallocateSemesters(Semester *&head_semester);
+void deallocateYears(Year *&year_head);
 
 //Helper function
 void addTail(Student* &student_head, Student* tmp);

@@ -64,9 +64,14 @@ void addNewClass (Year* &year_head, string username)
         cerr << "Error: Unable to open file for writing\n";
         return;
     }
-    ofs << new_class->class_name << "\n";
+    ifstream checkEmpty;
+    checkEmpty.open(filename);
+    if (checkEmpty.peek() == ifstream::traits_type::eof())
+        ofs << new_class->class_name;
+    else
+        ofs << "\n" << new_class->class_name;
     ofs.close();
-
+    checkEmpty.close();
     cout << "You created a new class successfully!\n\n";
     string name_file = new_class->class_name + "-" + year_head->year_name + ".txt";
     name_file = "../Txt_Csv/" + name_file;
