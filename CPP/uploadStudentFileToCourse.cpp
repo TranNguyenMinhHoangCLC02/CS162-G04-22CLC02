@@ -144,5 +144,5 @@ void uploadStudentFileToCourse (string username, Year* year_head, Semester* seme
         getline(cin, option);
     }
 
-    accessCourse(username, year_head, semester_head, course_head);
+    updateACourse(username, year_head, semester_head, course_head);
 }
