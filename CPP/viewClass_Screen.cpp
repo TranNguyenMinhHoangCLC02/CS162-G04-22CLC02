@@ -57,6 +57,7 @@ void viewClass_Screen(string username, Year* &year_head)
         else
         {
             system("cls");
+            deallocateClasses(year_head->class_head);
             accessSchoolYear(username, year_head);
             return;
         }
@@ -73,5 +74,6 @@ void viewClass_Screen(string username, Year* &year_head)
     }
 
     system("cls");
+    deallocateClasses(year_head->class_head);
     accessSchoolYear(username, year_head);
 }

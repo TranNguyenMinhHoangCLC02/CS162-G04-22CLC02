@@ -110,5 +110,6 @@ void viewScoreBoard_Class(string username, Year *&year_head, Class *class_head)
         cin >> opt;
     }
     system("cls");
+    deallocateCourses(class_course);
     accessClass(username, year_head, class_head);
 }
