@@ -11,6 +11,7 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
     cout << "3. " << setw(2) << right << "View the scoreboard of this course\n";
     cout << "4. " << setw(2) << right << "Update the scoreboard of this course\n";
     cout << "5. " << setw(2) << right << "Export file scoreboard.csv for teacher\n";
+    cout << "6. " << setw(2) << right << "Update file scoreboard.csv to the system\n";
     int option;
     do
     {
@@ -27,6 +28,7 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
     else if(option == 1){
         system("cls");
         addStudentToCourse(course_head);
+        deallocateStudents(course_head->student_head);
         accessCourse(username, year_head, semester_head, course_head);
         return;
     }
@@ -63,7 +65,14 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
         char ch_semester = static_cast<char>(semester_head->Semester_Ord + 48);
         filename = course_head->course_name + "_" + "Semester" + ch_semester + "_" + year_head->year_name;
         filename = "../Txt_Csv/" + filename;
-        import_scoreboard(filename, username, year_head, semester_head, course_head);
+        export_scoreboard(filename, username, year_head, semester_head, course_head);
+        return;
+    }
+    else if (option == 6)
+    {
+        system("cls");
+        string filename;
+        update_scoreBoard(filename, username, year_head, semester_head, course_head);
         return;
     }
 }

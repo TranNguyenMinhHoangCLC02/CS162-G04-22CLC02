@@ -449,6 +449,7 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
 
     //Require user input 0 for returning back
     string option;
+    cin.ignore();
     cout << "Please type the number 0 for returning back: ";
     getline(cin, option);
 

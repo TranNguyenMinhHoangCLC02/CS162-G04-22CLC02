@@ -27,6 +27,7 @@ void accessClass(string username, Year* &year_head, Class *class_head)
         system("cls");
         year_head->class_head->student_head = getStudentListFromFile(year_head, class_head);
         addNewStudent(username, year_head, class_head);
+        deallocateStudents(year_head->class_head->student_head);
         return;
     }
     else if(option == 2)

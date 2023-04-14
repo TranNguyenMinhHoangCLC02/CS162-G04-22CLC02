@@ -30,6 +30,7 @@ void accessSchoolYear(string username, Year* &year_head)
         system("cls");
         year_head->semester_head = getSemesterListFromFile(year_head);
         addNewSemester(username, year_head);
+        deallocateSemesters(year_head->semester_head);
         return;
     }
 
@@ -38,6 +39,7 @@ void accessSchoolYear(string username, Year* &year_head)
         system("cls");
         year_head->semester_head = getSemesterListFromFile(year_head);
         viewSemester_Screen(username, year_head);
+        deallocateSemesters(year_head->semester_head);
         return;
     }
 
@@ -49,6 +51,7 @@ void accessSchoolYear(string username, Year* &year_head)
         filename = "../Txt_Csv/" + filename;      
         year_head->class_head = getClassListFromFile(year_head, filename);
         addNewClass(year_head, username);
+        deallocateClasses(year_head->class_head);
         return;
     }
     

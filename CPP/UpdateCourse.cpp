@@ -97,7 +97,7 @@ void updateACourse (string username, Year* year_head, Semester* semester_head, C
     if (option == 0)
     {   
         system("cls");
-        accessSemester(username, year_head, semester_head);
+        viewUpdateCourseInformation(username, year_head, semester_head);
         return;
     }
     else if (option == 1)
