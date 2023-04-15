@@ -17,7 +17,7 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
     {
         cout << "Input option: ";
         cin >> option;
-    } while (option < 0 || option > 5);
+    } while (option < 0 || option > 6);
 
     if (option == 0)
     {

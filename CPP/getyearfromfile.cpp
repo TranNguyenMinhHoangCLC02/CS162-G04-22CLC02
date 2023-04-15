@@ -15,14 +15,8 @@ Year* getYearListFromFile()
     Year* year_head = nullptr; Year* temp = nullptr;
     string year_name;
 
-    while (!ifs.eof())
+    while (getline(ifs, year_name))
     {
-        //Get node from file and add it at the end of year list
-        getline(ifs, year_name, '\n');
-
-        // if (ifs.eof())
-        //     break;
-
         Year* new_year = new Year;
         new_year->year_name = year_name;
         new_year->class_head = nullptr;

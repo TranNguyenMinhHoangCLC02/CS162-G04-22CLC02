@@ -54,7 +54,7 @@ void export_scoreboard(string filename, string username, Year* &year_head, Semes
     }
     cout << endl;
     cout << "The file " << filename << " has been created successfully.\n";
-    cout << "Please input 0 to return back.\n Your option:" << "\n";
+    cout << "Please input 0 to return back.\n\nYour option: " << "\n";
     int opt = 1;
     cin >> opt;
 
