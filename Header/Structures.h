@@ -7,6 +7,8 @@
 #include <iomanip>
 #include <sstream>
 #include <regex>
+#include <Windows.h>
+#include <conio.h>
 using namespace std;
 
 struct Scoreboard;
@@ -97,7 +99,7 @@ int firstScreen(bool &check);
 void viewSchoolYear_Screen(string username, Year* year_head);
 void Main_Staff_Screen(string &username, Year* &year_head);
 void Main_Student_Screen(string username);
-void interface(int option, Year* &year_head);
+void Myinterface(int option, Year* &year_head);
 
 //Memory management functions
 void deallocateCourses(Course *&head_course);
