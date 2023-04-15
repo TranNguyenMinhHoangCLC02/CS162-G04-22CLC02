@@ -1,22 +1,39 @@
 #include "../Header/Staff.h"
 
-void deleteCourse(Course *&course_head, Course* course) 
+void deleteCourse(Semester *semester, Course *&course_head, Course* course) 
 {
+    int option;
+    cout<< "Are you sure you want to delete? (1 for Yes, 0 for No)";
+    cin>> option;
+    while (option != 0 && option != 1){
+            cout << "Invalid input. Please enter again: ";
+            cin >> option;
+        }        
+    if (option == 0)
+        return;
+
+    // Delete Course in Semester
+    Course *cur = semester->course_head;
+    Course *pre = nullptr;
+    while (cur != course)
+    {
+        pre = cur;
+        cur = cur->course_next;
+    }
+    if (pre == nullptr)
+        semester->course_head = semester->course_head->course_next;
+    else 
+        pre->course_next = cur->course_next;
+    
+    // Delete Course in Course list
     Course *curr = course_head;
     Course *prev = nullptr;
 
     // Search for the course in the list
-    while (curr != nullptr && curr != course) 
+    while (curr != course) 
     {
         prev = curr;
         curr = curr->course_next;
-    }
-
-    // If the course is not found
-    if (curr == nullptr) 
-    {
-        cout << "Course not found!" << endl;
-        return;
     }
 
     // Remove the course from the list
@@ -50,6 +67,7 @@ void deleteCourse(Course *&course_head, Course* course)
     }
 
     // Delete the course node
+    delete cur;
     delete curr;
 }
 
