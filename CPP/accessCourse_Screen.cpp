@@ -3,6 +3,13 @@
 
 
 int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head, Course* &course_head){
+    gotoXY(67,2); std::cout <<"     _____ ____  _    _ _____   _____ ______ ";
+    gotoXY(67,3); std::cout <<"    / ____/ __ \\| |  | |  __ \\ / ____|  ____|";
+    gotoXY(67,4); std::cout <<"   | |   | |  | | |  | | |__) | (___ | |__   ";
+    gotoXY(67,4); std::cout <<"   | |   | |  | | |  | |  _  / \\___ \\|  __|  ";
+    gotoXY(67,5); std::cout <<"   | |___| |__| | |__| | | \\ \\ ____) | |____ ";
+    gotoXY(67,6); std::cout <<"    \\_____\\____/ \\____/|_|  \\_\\_____/|______|";
+    gotoXY(67,8); std::cout << "---------------------" << course_head->course_ID << "---------------------";
     Create_A_Box_1(67,10,2,50,14,14,0,"            ADD STUDENT ONE BY ONE");
     Create_A_Box_1(67,12,2,50,14,14,0,"            VIEW ALL STUDENTS IN THIS COURSE");
     gotoXY(67,12); std::cout << (char)(195);
