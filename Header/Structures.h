@@ -7,6 +7,9 @@
 #include <iomanip>
 #include <sstream>
 #include <regex>
+#include <Windows.h>
+#include <conio.h>
+#include <vector>
 using namespace std;
 
 struct Scoreboard;
@@ -86,18 +89,18 @@ struct Scoreboard
 
 //Authentication functions
 bool isLoggedIn();
-void login(bool isStudent, string &username);
+void login(bool isStudent, string &username, bool &opt);
 void logout();
 
 //Password management function
-void changePass(string username, bool isStudent);
+void changePass(string username, bool isStudent, int& opt);
 
 //Screen functions
 int firstScreen(bool &check);
 void viewSchoolYear_Screen(string username, Year* year_head);
 void Main_Staff_Screen(string &username, Year* &year_head);
 void Main_Student_Screen(string username);
-void interface(int option, Year* &year_head);
+void Myinterface(int option, Year* &year_head);
 
 //Memory management functions
 void deallocateCourses(Course *&head_course);

@@ -4,7 +4,7 @@
 #include "Structures.h"
 
 //View info function
-void staff_info(string username);
+void staff_info(string username, Year* &year_head);
 
 //Year functions
 bool checkSyntaxOfSchoolYear (string year_name);
@@ -20,6 +20,7 @@ bool checkExistingSemester (Semester* &semester_head, string input);
 void addNewSemester (string username, Year* &year_head);
 
 //Class functions
+int CLASS_Interface(string &username, Year* &year_head, Class *class_head);
 void viewClass_Screen(string username, Year* &year_head);
 Class* getClassListFromFile(Year *&year_head, string filename);
 void addNewClass (Year* &year_head, string username);
@@ -37,6 +38,7 @@ void viewSemester_Screen(string username, Year* year_head);
 void viewCoursesInSemester(Student* student, Semester* semester);
 
 //Course functions
+int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 Course* getCourseListFromFile(Year* year_head, Semester* &semester_head);
 void accessCourse(string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 void viewCourse_Screen(string username, Year* year_head, Semester* semester_head);
