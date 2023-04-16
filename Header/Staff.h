@@ -4,6 +4,7 @@
 #include "Structures.h"
 
 //View info function
+int Staff_Interface(string &username, Year* &year_head);
 void staff_info(string username);
 
 //Year functions
