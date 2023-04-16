@@ -9,54 +9,55 @@ void staff_info(string username)
         cout << "Cannot open file";
         return;
     }
-
+    else{
     //Ignore the first line
-    string ignore_line;
-    getline(ifs, ignore_line);
+        string ignore_line;
+        getline(ifs, ignore_line);
 
 
-    while(getline(ifs, ignore_line)){
-        //find the username
-        size_t pos = ignore_line.find(',');
-        string first_column = ignore_line.substr(0, pos);
+        while(getline(ifs, ignore_line)){
+            //find the username
+            size_t pos = ignore_line.find(',');
+            string first_column = ignore_line.substr(0, pos);
 
 
-        if(username == first_column)
-        {
-            stringstream ss(ignore_line);
-            string field;
-            int count = 1;
-            while(getline(ss, field, ','))
+            if(username == first_column)
             {
-                if(count == 1)
+                stringstream ss(ignore_line);
+                string field;
+                int count = 1;
+                while(getline(ss, field, ','))
                 {
-                    cout << "Username: ";
-                    cout << field;
-                    count++;
-                }
-                else if(count == 2)
-                {
-                    cout << "\nFull name: ";
-                    cout << field;
-                    count++;
-                }
-                else if(count == 3)
-                {
-                    cout << "\nGmail: ";
-                    cout << field;
-                    count++;
-                }
-                else if(count == 4)
-                {
-                    cout << "\nPhone Number: ";
-                    cout << field;
-                    count++;
-                }
-                else if(count == 5)
-                {
-                    cout << "\nDOB: ";
-                    cout << field;
-                    count++;
+                    if(count == 1)
+                    {
+                        cout << "Username: ";
+                        cout << field;
+                        count++;
+                    }
+                    else if(count == 2)
+                    {
+                        cout << "\nFull name: ";
+                        cout << field;
+                        count++;
+                    }
+                    else if(count == 3)
+                    {
+                        cout << "\nGmail: ";
+                        cout << field;
+                        count++;
+                    }
+                    else if(count == 4)
+                    {
+                        cout << "\nPhone Number: ";
+                        cout << field;
+                        count++;
+                    }
+                    else if(count == 5)
+                    {
+                        cout << "\nDOB: ";
+                        cout << field;
+                        count++;
+                    }
                 }
             }
         }
