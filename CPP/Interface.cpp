@@ -189,6 +189,7 @@ void Main_Staff_Screen(string &username, Year* &year_head)
     {
         system("cls");
         staff_info(username);
+        system("cls");
         Main_Staff_Screen(username, year_head);
         return;
     }
