@@ -183,22 +183,19 @@ void Main_Staff_Screen(string &username, Year* &year_head)
     Create_A_Box_1(67,10,2,30,14,14,0,"           LOG OUT");
     Create_A_Box_1(67,12,2,30,14,14,0,"         VIEW PROFILE");
     gotoXY(67,12); std::cout << (char)(195);
-    gotoXY(97,12); std::cout << (char)(180);
-
-    Create_A_Box_1(67,14,2,30,14,14,0,"    ADD A NEW SCHOOL YEAR");
+    gotoXY(107,12); std::cout << (char)(180);
+    Create_A_Box_1(67,14,2,40,14,14,0,"            ACCESS SCHOOL YEAR");
     gotoXY(67,14); std::cout << (char)(195);
-    gotoXY(97,14); std::cout << (char)(180);
-
-    Create_A_Box_1(67,16,2,30,14,14,0,"     ACCESS A SCHOOL YEAR");
+    gotoXY(107,14); std::cout << (char)(180);
+    Create_A_Box_1(67,16,2,40,14,14,0,"            CHANGE PASSWORD");
     gotoXY(67,16); std::cout << (char)(195);
-    gotoXY(97,16); std::cout << (char)(180);
+    gotoXY(107,16); std::cout << (char)(180);
 
-    Create_A_Box_1(67,18,2,30,14,14,0,"       CHANGE PASSWORD");
+    Create_A_Box_1(67,18,2,40,14,14,0,"            LOG OUT PROGRAM");
     gotoXY(67,18); std::cout << (char)(195);
-    gotoXY(97,18); std::cout << (char)(180);
+    gotoXY(107,18); std::cout << (char)(180);
     ShowConsoleCursor(false);
-
-    int x_temp = 67; int y_temp = 10;
+    int x_temp = 67, y_temp = 10;
     bool flag = true;
     while (true)
     {
@@ -215,7 +212,7 @@ void Main_Staff_Screen(string &username, Year* &year_head)
                 }
 
                 gotoXY(x_temp + 1, y_temp + 1);
-                std::cout << "           LOG OUT";
+                std::cout << "            VIEW PROFILE";
                 ShowConsoleCursor(false);
             }
             else if (y_temp == 12)
@@ -229,10 +226,10 @@ void Main_Staff_Screen(string &username, Year* &year_head)
                 }
 
                 gotoXY(x_temp + 1, y_temp + 1);
-                std::cout << "         VIEW PROFILE";
+                std::cout << "            ADD NEW SCHOOL YEAR";
                 ShowConsoleCursor(false);
             }
-            else if (y_temp == 14)
+            else if(y_temp == 14)
             {
                 system("color E0");
                 SetColor1(15,0);
@@ -243,10 +240,10 @@ void Main_Staff_Screen(string &username, Year* &year_head)
                 }
 
                 gotoXY(x_temp + 1, y_temp + 1);
-                std::cout << "    ADD A NEW SCHOOL YEAR";
+                std::cout << "            ACCESS SCHOOL YEAR";
                 ShowConsoleCursor(false);
             }
-            else if (y_temp == 16)
+            else if(y_temp == 16)
             {
                 system("color E0");
                 SetColor1(15,0);
@@ -257,11 +254,10 @@ void Main_Staff_Screen(string &username, Year* &year_head)
                 }
 
                 gotoXY(x_temp + 1, y_temp + 1);
-                std::cout << "     ACCESS A SCHOOL YEAR";
+                std::cout << "            CHANGE PASSWORD";
                 ShowConsoleCursor(false);
             }
-
-            else
+            else if(y_temp == 18)
             {
                 system("color E0");
                 SetColor1(15,0);
@@ -272,7 +268,7 @@ void Main_Staff_Screen(string &username, Year* &year_head)
                 }
 
                 gotoXY(x_temp + 1, y_temp + 1);
-                std::cout << "       CHANGE PASSWORD";
+                std::cout << "            LOG OUT PROGRAM";
                 ShowConsoleCursor(false);
             }
 
@@ -285,8 +281,15 @@ void Main_Staff_Screen(string &username, Year* &year_head)
                 char c = _getch();
 
                 system("color E0");
+                system("color E0");
                 if (y_temp == 10)
                 {
+                    SetColor1(14,0);
+                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
                     SetColor1(14,0);
                     for (int i = x_temp + 1; i <= x_temp + 29; ++i)
                     {
@@ -308,7 +311,7 @@ void Main_Staff_Screen(string &username, Year* &year_head)
                     }
 
                     gotoXY(x_temp + 1, y_temp + 1);
-                    std::cout << "         VIEW PROFILE";
+                    std::cout << "            ADD NEW SCHOOL YEAR";
                     ShowConsoleCursor(false);
                 }
                 else if (y_temp == 14)
@@ -321,7 +324,7 @@ void Main_Staff_Screen(string &username, Year* &year_head)
                     }
 
                     gotoXY(x_temp + 1, y_temp + 1);
-                    std::cout << "    ADD A NEW SCHOOL YEAR";
+                    std::cout << "            ACCESS SCHOOL YEAR";
                     ShowConsoleCursor(false);
                 }
                 else if (y_temp == 16)
@@ -334,10 +337,9 @@ void Main_Staff_Screen(string &username, Year* &year_head)
                     }
 
                     gotoXY(x_temp + 1, y_temp + 1);
-                    std::cout << "     ACCESS A SCHOOL YEAR";
+                    std::cout << "            CHANGE PASSWORD";
                     ShowConsoleCursor(false);
                 }
-
                 else
                 {
                     SetColor1(14,0);
@@ -348,7 +350,7 @@ void Main_Staff_Screen(string &username, Year* &year_head)
                     }
 
                     gotoXY(x_temp + 1, y_temp + 1);
-                    std::cout << "       CHANGE PASSWORD";
+                    std::cout << "            LOG OUT PROGRAM";
                     ShowConsoleCursor(false);
                 }
 
@@ -357,15 +359,22 @@ void Main_Staff_Screen(string &username, Year* &year_head)
                 if (c == UP)
                 {
                     if (y_temp == 10)
+                    {
                         y_temp = 18;
+                    }
                     else
+                    {
                         y_temp -= 2;
+                    }
                 }
-                else if (c == DOWN)
+                else if (c == 80)
                 {
                     if (y_temp == 18)
+                    {
                         y_temp = 10;
+                    }
                     else
+                    {
                         y_temp += 2;
                 }
                 else if (c == ENTER)
@@ -423,8 +432,8 @@ void Main_Staff_Screen(string &username, Year* &year_head)
             }
         }
     }
+    return 0;
 }
-
 
 void Main_Student_Screen(string username)
 {
