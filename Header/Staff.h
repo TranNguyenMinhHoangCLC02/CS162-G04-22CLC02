@@ -4,7 +4,7 @@
 #include "Structures.h"
 
 //View info function
-void staff_info(string username);
+void staff_info(string username, Year* &year_head);
 
 //Year functions
 bool checkSyntaxOfSchoolYear (string year_name);

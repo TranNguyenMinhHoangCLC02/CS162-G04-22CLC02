@@ -180,6 +180,81 @@ void Create_A_Box_2 (int x_coord, int y_coord, int height, int width, int highli
     std::cout << keyword;
 }
 
+void Create_A_Box_3 (int x_coord, int y_coord, int height, int width)
+{
+    //Create two horizontal lines
+    for (int i = x_coord; i <= x_coord + width; ++i)
+    {
+        gotoXY(i, y_coord);
+        std::cout << (char)(196); //196 is -
+        gotoXY(i, y_coord + height);
+        std::cout << (char)(196);
+    }
+
+    //Create two vertical lines
+    for (int i = y_coord; i <= y_coord + height; ++i)
+    {
+        gotoXY(x_coord, i);
+        std::cout << (char)(179); //179 is |
+        gotoXY(x_coord + width, i);
+        std::cout << (char)(179);
+    }
+
+    //Create 4 corners
+    gotoXY(x_coord,y_coord); std::cout << (char)(218); //top left
+    gotoXY(x_coord + width, y_coord); std::cout << (char)(191); //Top right
+    gotoXY(x_coord + width, y_coord + height); std::cout << (char)(217); //Bottom right
+    gotoXY(x_coord, y_coord + height); std::cout << (char)(192); //Bottom left
+}
+
+void Create_A_Box_4 (int x_coord, int y_coord, int height, int width, int highlight_color_1, int highlight_color_2, int text_color, std::string keyword, std::string content)
+{
+    SetColor1(highlight_color_1,text_color);
+    for (int i = x_coord + 1; i <= x_coord + width - 1; ++i)
+    {
+        for (int j = y_coord + 1; j <= y_coord + height - 1; ++j)
+        {
+            gotoXY(i,j);
+            std::cout << " ";
+        }
+    }
+
+    SetColor1(highlight_color_1,text_color);
+    gotoXY(x_coord + 1,y_coord + 1);
+    std::cout << content;
+
+    SetColor1(highlight_color_2,0);
+    if (height <= 1 || width <= 2)
+        return;
+
+    //Create two horizontal lines
+    for (int i = x_coord; i <= x_coord + width; ++i)
+    {
+        gotoXY(i, y_coord);
+        std::cout << (char)(196); //196 is -
+        gotoXY(i, y_coord + height);
+        std::cout << (char)(196);
+    }
+
+    //Create two vertical lines
+    for (int i = y_coord; i <= y_coord + height; ++i)
+    {
+        gotoXY(x_coord, i);
+        std::cout << (char)(179); //179 is |
+        gotoXY(x_coord + width, i);
+        std::cout << (char)(179);
+    }
+
+    //Create 4 corners
+    gotoXY(x_coord,y_coord); std::cout << (char)(218); //top left
+    gotoXY(x_coord + width, y_coord); std::cout << (char)(191); //Top right
+    gotoXY(x_coord + width, y_coord + height); std::cout << (char)(217); //Bottom right
+    gotoXY(x_coord, y_coord + height); std::cout << (char)(192); //Bottom left
+
+    gotoXY(x_coord + 2, y_coord - 1);
+    std::cout << keyword;
+}
+
 //Hide/Unhide cursor
 void ShowConsoleCursor(bool visible)
 {

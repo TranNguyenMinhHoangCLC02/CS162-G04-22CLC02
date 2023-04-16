@@ -9,6 +9,7 @@
 #include <regex>
 #include <Windows.h>
 #include <conio.h>
+#include <vector>
 using namespace std;
 
 struct Scoreboard;
@@ -88,11 +89,11 @@ struct Scoreboard
 
 //Authentication functions
 bool isLoggedIn();
-void login(bool isStudent, string &username);
+void login(bool isStudent, string &username, bool &opt);
 void logout();
 
 //Password management function
-void changePass(string username, bool isStudent);
+void changePass(string username, bool isStudent, int& opt);
 
 //Screen functions
 int firstScreen(bool &check);

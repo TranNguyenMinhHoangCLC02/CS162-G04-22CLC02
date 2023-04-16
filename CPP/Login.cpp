@@ -11,11 +11,12 @@ bool isLoggedIn() {
     return (line == "1");
 }
 
-void login(bool isStudent, string &username) 
+void login(bool isStudent, string &username, bool &opt) 
 {
     // Check whether the login information is correct by comparing it with the acc_student.csv file or acc_staf.csv
     if (isStudent)
     {   
+        opt = 1;
         SetScreenBufferSize(1000,1000);
         system("color E0");
 
@@ -32,7 +33,7 @@ void login(bool isStudent, string &username)
         gotoXY(43,7);
         std::cout << "  \\____/  \\_/  \\___/|___/ \\____/\\_| \\_/ \\_/      \\_____/\\___/ \\____/    \\___/\\_| \\_/";
 
-        std::string username = ""; std::string password = ""; int count = 0;
+        username = ""; std::string password = ""; int count = 0;
 
         Create_A_Box_2(68,11,2,30,14,14,0,"USERNAME");
         Create_A_Box_2(68,16,2,30,14,14,0,"PASSWORD");
@@ -60,7 +61,8 @@ void login(bool isStudent, string &username)
                         if (username != "")
                             count++;
 
-                        y_temp = 16;
+                        if (password == "")
+                            y_temp = 16;
                         xp = 68;
                         yp = y_temp;
                         break;
@@ -84,8 +86,6 @@ void login(bool isStudent, string &username)
                     }
                     else if (c == LEFT)
                     {
-                        int len = username.size();
-
                         if (pos_user > 0)
                         {
                             pos_user--;
@@ -134,7 +134,9 @@ void login(bool isStudent, string &username)
                         if (password != "")
                             count++;
 
-                        y_temp = 11;
+                        if (username == "")
+                            y_temp = 11;
+
                         xp = 68;
                         yp = y_temp;
                         break;
@@ -158,8 +160,6 @@ void login(bool isStudent, string &username)
                     }
                     else if (c == LEFT)
                     {
-                        int len = password.size();
-
                         if (pos_pass > 0)
                         {
                             pos_pass--;
@@ -214,6 +214,14 @@ void login(bool isStudent, string &username)
                     {
                         ShowConsoleCursor(true);
                         y_temp = y_old;
+                    }
+                    else if (c == ENTER)
+                    {
+                        opt = 0; bool check = false;
+                        system("cls");
+                        main();
+                        return;
+
                     }
                 }
             }
@@ -238,6 +246,7 @@ void login(bool isStudent, string &username)
     }
     else
     {
+        opt = 1;
         SetScreenBufferSize(1000,1000);
         system("color E0");
 
@@ -254,7 +263,7 @@ void login(bool isStudent, string &username)
         gotoXY(48,7);
         std::cout << "  \\____/  \\_/\\_| |_|_|   \\_|        \\_____/\\___/ \\____/    \\___/\\_| \\_/";
 
-        std::string username = ""; std::string password = ""; int count = 0;
+        username = ""; std::string password = ""; int count = 0;
 
         Create_A_Box_2(68,11,2,30,14,14,0,"USERNAME");
         Create_A_Box_2(68,16,2,30,14,14,0,"PASSWORD");
@@ -282,7 +291,9 @@ void login(bool isStudent, string &username)
                         if (username != "")
                             count++;
 
-                        y_temp = 16;
+                        if (password == "")
+                            y_temp = 16;
+
                         xp = 68;
                         yp = y_temp;
                         break;
@@ -356,7 +367,9 @@ void login(bool isStudent, string &username)
                         if (password != "")
                             count++;
 
-                        y_temp = 11;
+                        if (username == "")
+                            y_temp = 11;
+                        
                         xp = 68;
                         yp = y_temp;
                         break;
@@ -436,6 +449,13 @@ void login(bool isStudent, string &username)
                     {
                         ShowConsoleCursor(true);
                         y_temp = y_old;
+                    }
+                    else if (c == ENTER)
+                    {
+                        opt = 0; bool check = false;
+                        system("cls");
+                        main();
+                        return;
                     }
                 }
             }
@@ -464,7 +484,7 @@ void login(bool isStudent, string &username)
     system("cls");
     Create_A_Box_1(64,20,2,38,14,14,4,"     Incorrect login information!");
     ShowConsoleCursor(false);
-	login(isStudent, username);
+	login(isStudent, username, opt);
 }
 
 void logout() 
