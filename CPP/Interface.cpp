@@ -210,14 +210,18 @@ void Main_Staff_Screen(string &username, Year* &year_head)
 int Staff_Interface(string &username, Year* &year_head){
     Create_A_Box_1(67,10,2,40,14,14,0,"            VIEW PROFILE");
     Create_A_Box_1(67,12,2,40,14,14,0,"            ADD NEW SCHOOL YEAR");
+    gotoXY(67,12); std::cout << (char)(195);
+    gotoXY(107,12); std::cout << (char)(180);
     Create_A_Box_1(67,14,2,40,14,14,0,"            ACCESS SCHOOL YEAR");
+    gotoXY(67,14); std::cout << (char)(195);
+    gotoXY(107,14); std::cout << (char)(180);
     Create_A_Box_1(67,16,2,40,14,14,0,"            CHANGE PASSWORD");
     gotoXY(67,16); std::cout << (char)(195);
-    gotoXY(97,16); std::cout << (char)(180);
+    gotoXY(107,16); std::cout << (char)(180);
 
     Create_A_Box_1(67,18,2,40,14,14,0,"            LOG OUT PROGRAM");
     gotoXY(67,18); std::cout << (char)(195);
-    gotoXY(97,18); std::cout << (char)(180);
+    gotoXY(107,18); std::cout << (char)(180);
     ShowConsoleCursor(false);
     int x_temp = 67, y_temp = 10;
     bool flag = true;

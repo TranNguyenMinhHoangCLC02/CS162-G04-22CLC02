@@ -21,6 +21,7 @@ bool checkExistingSemester (Semester* &semester_head, string input);
 void addNewSemester (string username, Year* &year_head);
 
 //Class functions
+int CLASS_Interface(string &username, Year* &year_head, Class *class_head);
 void viewClass_Screen(string username, Year* &year_head);
 Class* getClassListFromFile(Year *&year_head, string filename);
 void addNewClass (Year* &year_head, string username);
