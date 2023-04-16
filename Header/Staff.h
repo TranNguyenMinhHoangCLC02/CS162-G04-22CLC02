@@ -39,6 +39,7 @@ void viewSemester_Screen(string username, Year* year_head);
 void viewCoursesInSemester(Student* student, Semester* semester);
 
 //Course functions
+int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 Course* getCourseListFromFile(Year* year_head, Semester* &semester_head);
 void accessCourse(string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 void viewCourse_Screen(string username, Year* year_head, Semester* semester_head);
