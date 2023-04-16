@@ -32,41 +32,190 @@ void login(bool isStudent, string &username)
         gotoXY(43,7);
         std::cout << "  \\____/  \\_/  \\___/|___/ \\____/\\_| \\_/ \\_/      \\_____/\\___/ \\____/    \\___/\\_| \\_/";
 
-        std::string username; std::string password; int count = 0;
+        std::string username = ""; std::string password = ""; int count = 0;
 
         Create_A_Box_2(68,11,2,30,14,14,0,"USERNAME");
         Create_A_Box_2(68,16,2,30,14,14,0,"PASSWORD");
+
+        Create_A_Box_1(40,20,2,20,14,14,0,"    RETURN BACK");
         ShowConsoleCursor(false);
 
-        int x_temp = 68; int y_temp = 11;
+        int x_temp = 68; int y_temp = 11; int y_old; int xp = x_temp; int yp = y_temp; int pos_user = 0; int pos_pass = 0;
         while (count < 2)
         {
             system("color E0");
 
             if (y_temp == 11)
             {
-                gotoXY(x_temp + 2, y_temp + 1);
+                gotoXY(xp + 2, yp + 1);
                 ShowConsoleCursor(true);
-                cin.ignore();
-                cin >> username;
 
-                if (username != "")
-                    count++;
+                char c;
+                while (true)
+                {
+                    c = _getch();
 
-                y_temp = 16;
-                continue;
+                    if (c == ENTER)
+                    {
+                        if (username != "")
+                            count++;
+
+                        y_temp = 16;
+                        xp = 68;
+                        yp = y_temp;
+                        break;
+                    }
+                    else if (c == DOWN)
+                    {
+                        ShowConsoleCursor(false);
+                        y_old = y_temp;
+                        y_temp = 20;
+                        xp = x_temp + username.size();
+                        yp = y_old;
+                        break;
+                    }
+                    else if (c == BACKSPACE)
+                    {
+                        if (username != "" && pos_user > 0)
+                        {
+                            std::cout << "\b \b";
+                            username.pop_back();
+                        }
+                    }
+                    else if (c == LEFT)
+                    {
+                        int len = username.size();
+
+                        if (pos_user > 0)
+                        {
+                            pos_user--;
+                            gotoXY(x_temp + pos_user + 2, y_temp + 1);
+                        }
+
+                        continue;
+                    }
+                    else if (c == RIGHT)
+                    {
+                        int len = username.size();
+
+                        if (pos_user < len)
+                        {
+                            pos_user++;
+                            gotoXY(x_temp + pos_user + 2, y_temp + 1);
+                        }
+
+                        continue;
+                    }
+                    else
+                    {
+                        int len = username.size();
+
+                        if (c >= 32 && c <= 126 && len < 26)
+                        {
+                            pos_user++;
+                            username += c;
+                            std::cout << c;
+                        }
+                    }
+                }
+            }
+            else if (y_temp == 16)
+            {
+                gotoXY(xp + 2, yp + 1);
+                ShowConsoleCursor(true);
+
+                char c;
+                while (true)
+                {
+                    c = _getch();
+
+                    if (c == ENTER)
+                    {
+                        if (password != "")
+                            count++;
+
+                        y_temp = 11;
+                        xp = 68;
+                        yp = y_temp;
+                        break;
+                    }
+                    else if (c == DOWN)
+                    {
+                        ShowConsoleCursor(false);
+                        y_old = y_temp;
+                        y_temp = 20;
+                        xp = x_temp + password.size();
+                        yp = y_old;
+                        break;
+                    }
+                    else if (c == BACKSPACE)
+                    {
+                        if (password != "" && pos_pass > 0)
+                        {
+                            std::cout << "\b \b";
+                            password.pop_back();
+                        }
+                    }
+                    else if (c == LEFT)
+                    {
+                        int len = password.size();
+
+                        if (pos_pass > 0)
+                        {
+                            pos_pass--;
+                            gotoXY(x_temp + pos_pass + 2, y_temp + 1);
+                        }
+
+                        continue;
+                    }
+                    else if (c == RIGHT)
+                    {
+                        int len = password.size();
+
+                        if (pos_pass < len)
+                        {
+                            pos_pass++;
+                            gotoXY(x_temp + pos_pass + 2, y_temp + 1);
+                        }
+
+                        continue;
+                    }
+                    else
+                    {
+                        int len = password.size();
+
+                        if (c >= 32 && c <= 126 && len < 26)
+                        {
+                            pos_pass++;
+                            password += c;
+                            std::cout << c;
+                        }
+                    }
+                }
             }
             else
             {
-                gotoXY(x_temp + 2, y_temp + 1);
-                ShowConsoleCursor(true);
-                cin >> password;
+                SetColor1(15,0);
+                for (int i = 41; i <= 59; ++i)
+                {
+                    gotoXY(i, y_temp + 1);
+                    std::cout << " ";
+                }
 
-                if (password != "")
-                    count++;
+                gotoXY(41, y_temp + 1);
+                std::cout << "    RETURN BACK";
+                ShowConsoleCursor(false);
 
-                y_temp = 11;
-                continue;
+                if (_kbhit())
+                {
+                    char c = _getch();
+
+                    if (c == UP)
+                    {
+                        ShowConsoleCursor(true);
+                        y_temp = y_old;
+                    }
+                }
             }
         }
 
@@ -105,40 +254,190 @@ void login(bool isStudent, string &username)
         gotoXY(48,7);
         std::cout << "  \\____/  \\_/\\_| |_|_|   \\_|        \\_____/\\___/ \\____/    \\___/\\_| \\_/";
 
-        std::string username; std::string password; int count = 0;
+        std::string username = ""; std::string password = ""; int count = 0;
 
         Create_A_Box_2(68,11,2,30,14,14,0,"USERNAME");
         Create_A_Box_2(68,16,2,30,14,14,0,"PASSWORD");
+
+        Create_A_Box_1(40,20,2,20,14,14,0,"    RETURN BACK");
         ShowConsoleCursor(false);
 
-        int x_temp = 68; int y_temp = 11;
+        int x_temp = 68; int y_temp = 11; int y_old; int xp = x_temp; int yp = y_temp; int pos_user = 0; int pos_pass = 0;
         while (count < 2)
         {
             system("color E0");
 
             if (y_temp == 11)
             {
-                gotoXY(x_temp + 2, y_temp + 1);
+                gotoXY(xp + 2, yp + 1);
                 ShowConsoleCursor(true);
-                cin >> username;
 
-                if (username != "")
-                    count++;
+                char c;
+                while (true)
+                {
+                    c = _getch();
 
-                y_temp = 16;
-                continue;
+                    if (c == ENTER)
+                    {
+                        if (username != "")
+                            count++;
+
+                        y_temp = 16;
+                        xp = 68;
+                        yp = y_temp;
+                        break;
+                    }
+                    else if (c == DOWN)
+                    {
+                        ShowConsoleCursor(false);
+                        y_old = y_temp;
+                        y_temp = 20;
+                        xp = x_temp + username.size();
+                        yp = y_old;
+                        break;
+                    }
+                    else if (c == BACKSPACE)
+                    {
+                        if (username != "" && pos_user > 0)
+                        {
+                            std::cout << "\b \b";
+                            username.pop_back();
+                        }
+                    }
+                    else if (c == LEFT)
+                    {
+                        int len = username.size();
+
+                        if (pos_user > 0)
+                        {
+                            pos_user--;
+                            gotoXY(x_temp + pos_user + 2, y_temp + 1);
+                        }
+
+                        continue;
+                    }
+                    else if (c == RIGHT)
+                    {
+                        int len = username.size();
+
+                        if (pos_user < len)
+                        {
+                            pos_user++;
+                            gotoXY(x_temp + pos_user + 2, y_temp + 1);
+                        }
+
+                        continue;
+                    }
+                    else
+                    {
+                        int len = username.size();
+
+                        if (c >= 32 && c <= 126 && len < 26)
+                        {
+                            pos_user++;
+                            username += c;
+                            std::cout << c;
+                        }
+                    }
+                }
+            }
+            else if (y_temp == 16)
+            {
+                gotoXY(xp + 2, yp + 1);
+                ShowConsoleCursor(true);
+
+                char c;
+                while (true)
+                {
+                    c = _getch();
+
+                    if (c == ENTER)
+                    {
+                        if (password != "")
+                            count++;
+
+                        y_temp = 11;
+                        xp = 68;
+                        yp = y_temp;
+                        break;
+                    }
+                    else if (c == DOWN)
+                    {
+                        ShowConsoleCursor(false);
+                        y_old = y_temp;
+                        y_temp = 20;
+                        xp = x_temp + password.size();
+                        yp = y_old;
+                        break;
+                    }
+                    else if (c == BACKSPACE)
+                    {
+                        if (password != "" && pos_pass > 0)
+                        {
+                            std::cout << "\b \b";
+                            password.pop_back();
+                        }
+                    }
+                    else if (c == LEFT)
+                    {
+                        int len = password.size();
+
+                        if (pos_pass > 0)
+                        {
+                            pos_pass--;
+                            gotoXY(x_temp + pos_pass + 2, y_temp + 1);
+                        }
+
+                        continue;
+                    }
+                    else if (c == RIGHT)
+                    {
+                        int len = password.size();
+
+                        if (pos_pass < len)
+                        {
+                            pos_pass++;
+                            gotoXY(x_temp + pos_pass + 2, y_temp + 1);
+                        }
+
+                        continue;
+                    }
+                    else
+                    {
+                        int len = password.size();
+
+                        if (c >= 32 && c <= 126 && len < 26)
+                        {
+                            pos_pass++;
+                            password += c;
+                            std::cout << c;
+                        }
+                    }
+                }
             }
             else
             {
-                gotoXY(x_temp + 2, y_temp + 1);
-                ShowConsoleCursor(true);
-                cin >> password;
+                SetColor1(15,0);
+                for (int i = 41; i <= 59; ++i)
+                {
+                    gotoXY(i, y_temp + 1);
+                    std::cout << " ";
+                }
 
-                if (password != "")
-                    count++;
+                gotoXY(41, y_temp + 1);
+                std::cout << "    RETURN BACK";
+                ShowConsoleCursor(false);
 
-                y_temp = 11;
-                continue;
+                if (_kbhit())
+                {
+                    char c = _getch();
+
+                    if (c == UP)
+                    {
+                        ShowConsoleCursor(true);
+                        y_temp = y_old;
+                    }
+                }
             }
         }
 
