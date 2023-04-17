@@ -4,6 +4,8 @@
 
 int firstScreen(bool &check)
 {
+    //PlaySound(TEXT("../Sound/First_Screen.wav"), NULL, SND_FILENAME);
+
     SetScreenBufferSize(1000,1000);
     system("color E0");
     check = true;
@@ -84,7 +86,7 @@ int firstScreen(bool &check)
         }
         else
         {
-            if (_kbhit())
+            if (_kbhit())//keyboardhit
             {
                 char c = _getch();
 

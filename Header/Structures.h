@@ -10,6 +10,7 @@
 #include <Windows.h>
 #include <conio.h>
 #include <vector>
+#include <mmsystem.h>
 using namespace std;
 
 struct Scoreboard;

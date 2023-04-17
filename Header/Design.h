@@ -9,6 +9,7 @@
 #define LEFT 75
 #define RIGHT 77
 #define BACKSPACE 8
+#define ESC 27
 
 void SetWindowSize(SHORT width, SHORT height);
 void SetScreenBufferSize(SHORT width, SHORT height);

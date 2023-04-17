@@ -65,6 +65,7 @@ void SetColor1(int backgound_color, int text_color)
     SetConsoleTextAttribute(hStdout, color_code);
 }
 
+//SetColor1(14,0)
 //Set color (Function 2)
 void SetColor2(WORD color)
 {
@@ -135,6 +136,7 @@ void Create_A_Box_1 (int x_coord, int y_coord, int height, int width, int highli
     gotoXY(x_coord + width, y_coord + height); std::cout << (char)(217); //Bottom right
     gotoXY(x_coord, y_coord + height); std::cout << (char)(192); //Bottom left
 }
+//Create a box with given content
 
 void Create_A_Box_2 (int x_coord, int y_coord, int height, int width, int highlight_color_1, int highlight_color_2, int text_color, std::string keyword)
 {
@@ -179,8 +181,10 @@ void Create_A_Box_2 (int x_coord, int y_coord, int height, int width, int highli
     gotoXY(x_coord + 2, y_coord - 1);
     std::cout << keyword;
 }
+//Create a box with the content was above
 
 void Create_A_Box_3 (int x_coord, int y_coord, int height, int width)
+//Create an empty box
 {
     //Create two horizontal lines
     for (int i = x_coord; i <= x_coord + width; ++i)
@@ -254,6 +258,7 @@ void Create_A_Box_4 (int x_coord, int y_coord, int height, int width, int highli
     gotoXY(x_coord + 2, y_coord - 1);
     std::cout << keyword;
 }
+//Create a box with above content and the given content 
 
 //Hide/Unhide cursor
 void ShowConsoleCursor(bool visible)
