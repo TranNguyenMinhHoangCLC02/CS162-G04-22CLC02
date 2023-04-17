@@ -4,7 +4,11 @@
 
 int firstScreen(bool &check)
 {
-    SetScreenBufferSize(1000,1000);
+    HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+    COORD size = {1366, 768};
+    SMALL_RECT rect = {0, 0, static_cast<SHORT>(size.X - 1), static_cast<SHORT>(size.Y - 1)};
+    SetConsoleScreenBufferSize(console, size);
+    SetConsoleWindowInfo(console, TRUE, &rect);
     system("color E0");
     check = true;
 
