@@ -24,53 +24,87 @@ bool isStudentInCourse(Course* course, Student* student)
     return false;
 }
 
-Student* createStudent() 
+// Student* createStudent() 
+// {
+//     string student_ID, student_socialID, student_first, student_lastname, class_name;
+//     bool gender;
+//     Date DOB;
+
+//     cout << "Enter student ID: ";
+//     cin >> student_ID;
+
+//     cout << "Enter student social ID: ";
+//     cin >> student_socialID;
+
+//     cout << "Enter student first name: ";
+//     cin >> student_first;
+
+//     cout << "Enter student last name: ";
+//     cin >> student_lastname;
+
+//     cout << "Enter student class name: ";
+//     cin >> class_name;
+
+//     cout << "Enter student gender (0 for Male, 1 for Female): ";
+//     cin >> gender;
+
+//     cout << "Enter student date of birth (DD MM YYYY): ";
+//     cin >> DOB.day >> DOB.month >> DOB.year;
+
+//     // create a new student object
+//     Student* student = new Student;
+//     student->student_ID = student_ID;
+//     student->student_socialID = student_socialID;
+//     student->student_fisrtname = student_first;
+//     student->student_lastname = student_lastname;
+//     student->gender = gender;
+//     student->DOB = DOB;
+//     student->student_class.class_name = class_name;
+//     student->student_next = NULL;
+
+//     // return the pointer to the new student object
+//     return student;
+// }
+
+Student* findStudentInClass(Class* class_head, string studentID) 
 {
-    string student_ID, student_socialID, student_first, student_lastname, class_name;
-    bool gender;
-    Date DOB;
-
-    cout << "Enter student ID: ";
-    cin >> student_ID;
-
-    cout << "Enter student social ID: ";
-    cin >> student_socialID;
-
-    cout << "Enter student first name: ";
-    cin >> student_first;
-
-    cout << "Enter student last name: ";
-    cin >> student_lastname;
-
-    cout << "Enter student class name: ";
-    cin >> class_name;
-
-    cout << "Enter student gender (0 for Male, 1 for Female): ";
-    cin >> gender;
-
-    cout << "Enter student date of birth (DD MM YYYY): ";
-    cin >> DOB.day >> DOB.month >> DOB.year;
-
-    // create a new student object
-    Student* student = new Student;
-    student->student_ID = student_ID;
-    student->student_socialID = student_socialID;
-    student->student_fisrtname = student_first;
-    student->student_lastname = student_lastname;
-    student->gender = gender;
-    student->DOB = DOB;
-    student->student_class.class_name = class_name;
-    student->student_next = NULL;
-
-    // return the pointer to the new student object
-    return student;
+    while (class_head != nullptr) 
+    {
+        Student* student_head = class_head->student_head;
+        while (student_head != nullptr) 
+        {
+            if (student_head->student_ID == studentID)
+                return student_head;
+            student_head = student_head->student_next;
+        }
+        
+        class_head = class_head->next_class;
+    }
+    return nullptr;
 }
+
+void addCourseToStudent(Student* &student, Course* course) 
+{
+    if (student->course_head == nullptr) 
+        student->course_head = course;
+    else 
+    {
+        Course* current_course = student->course_head;
+        while (current_course->course_next != nullptr) 
+            current_course = current_course->course_next;
+        current_course->course_next = course;
+    }
+}
+
 
 void addStudentToCourse(string username, Course* &course, Year* &year_head, Semester* semester_head) 
 {
     ofstream ofs;
 
-    Student* student = createStudent();
+    string studentID;
+    cout << "Input ID of student that you want to add: ";
+    cin >> studentID;
+    Student* student = findStudentInClass(year_head->class_head , studentID);
 
     // Check if the Course has reached maxNumStudents or not
     if (numOfStudent(course) == course->maxNumStudents)
@@ -89,8 +123,8 @@ void addStudentToCourse(string username, Course* &course, Year* &year_head, Seme
         }
 
         // Add the course to the student's list of courses
-        student->course_head = course;
-
+        addCourseToStudent(student, course);
+        
         // Add the student to the course's list of students
         if (course->student_head == NULL)
             course->student_head = student;
@@ -102,6 +136,7 @@ void addStudentToCourse(string username, Course* &course, Year* &year_head, Seme
             current->student_next = student;
         }
     }
+    
 
     // Add student infomation to file
     string file_name = course->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + ".csv";
