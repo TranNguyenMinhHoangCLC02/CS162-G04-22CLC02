@@ -50,7 +50,7 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head);
 void viewStudentInCourse(string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 int numOfStudent(Course* course);
 bool isStudentInCourse(Course* course, Student* student);
-Student* createStudent();
+Student* findStudentInClass(Class* class_head, string studentID);
 void addStudentToCourse(string username, Course* &course, Year* &year_head, Semester* semester_head);
 void printCourseInfo(Course* course);
 
