@@ -51,7 +51,7 @@ void viewStudentInCourse(string username, Year* &year_head, Semester* &semester_
 int numOfStudent(Course* course);
 bool isStudentInCourse(Course* course, Student* student);
 Student* createStudent();
-void addStudentToCourse(Course* &course);
+void addStudentToCourse(string username, Course* &course, Year* &year_head, Semester* semester_head) 
 void printCourseInfo(Course* course);
 
 //Helper functions for course

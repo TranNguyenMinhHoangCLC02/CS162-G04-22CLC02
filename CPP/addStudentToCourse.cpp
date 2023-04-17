@@ -66,8 +66,10 @@ Student* createStudent()
     return student;
 }
 
-void addStudentToCourse(Course* &course) 
+void addStudentToCourse(string username, Course* &course, Year* &year_head, Semester* semester_head) 
 {
+    ofstream ofs;
+
     Student* student = createStudent();
 
     // Check if the Course has reached maxNumStudents or not
@@ -101,16 +103,36 @@ void addStudentToCourse(Course* &course)
         }
     }
 
+    // Add student infomation to file
+    string file_name = course->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + ".csv";
+    file_name = "../Txt_Csv/" + file_name;
+    ofs.open(file_name);
+    if (!ofs.is_open())
+    {
+        cerr << "Error: Unable to open file for writing\n";
+        return;
+    }
+
+    ofs << student->student_ID << "," << student->student_socialID << ",";
+    ofs << student->student_fisrtname << "," << student->student_lastname << ",";
+    ofs << student->gender << "," << student->student_class.class_name << ",";
+    ofs << student->DOB.day << "/" << student->DOB.month << "/" << student->DOB.year << "\n";
+
     cout << "Student added successfully.";
+
     int option;
     cout << "Do you want to add another student? (1 for Yes, 0 for No): ";
     cin >> option;
     while (option != 0 && option != 1){
         cout << "Invalid input. Please enter again: ";
         cin >> option;
+        cin.ignore();
     }
     if (option == 1)
-        addStudentToCourse(course);
+    {
+        system ("cls");
+        addStudentToCourse(username, course, year_head, semester_head);
+    }   
     else
         return;
 
