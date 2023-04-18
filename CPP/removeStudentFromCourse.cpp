@@ -51,17 +51,104 @@ Student* findStudentByID(string studentID, Student* head)
     return nullptr; 
 }
 
-
-void removeStudentFromCourse(Course* &course) 
+void deleteStudent(Student *&student_head, string studentID)
 {
+    // Find the student with the given studentID
+    Student *current = student_head;
+    Student *previous = nullptr;
+    while (current != nullptr && current->student_ID != studentID) {
+        previous = current;
+        current = current->student_next;
+    }
+
+    // If the student is found, delete it
+    if (current != nullptr) {
+        // If the student is the first in the list
+        if (previous == nullptr) 
+            student_head = current->student_next;
+        else
+            previous->student_next = current->student_next;
+        delete current;
+    }
+}
+
+Student* getListStuFromFile(string filename)
+{
+    ifstream ifs;
+    ifs.open(filename);
+    if (!ifs.is_open())
+    {
+        cerr << "Error: Unable to open file for reading\n";
+        return nullptr;
+    }
+    Student* student_head = nullptr;
+    // string dummy;
+    // getline(ifs, dummy);
+    string first_name, last_name, student_class, student_ID, social_ID, DOB, gender;
+    while (!ifs.eof())
+    {
+        if (ifs.eof())
+            break;
+        
+        Student* new_student = new Student;
+        getline(ifs, student_ID, ',');
+        new_student->student_ID = student_ID;
+        getline(ifs, social_ID, ',');
+        new_student->student_socialID = social_ID;
+        getline(ifs, first_name, ',');
+        new_student->student_fisrtname = first_name;
+        getline(ifs, last_name, ',');
+        new_student->student_lastname = last_name;
+        getline(ifs, gender, ',');
+        new_student->gender=stoi(gender);
+        getline(ifs, student_class, ',');
+        new_student->student_class.class_name = student_class;
+        getline(ifs, DOB, '\n');
+        getDate(new_student, DOB);
+        new_student->course_head = nullptr;
+        new_student->student_next = nullptr;
+
+        addTail(student_head, new_student);
+    }
+
+    ifs.close();
+    return student_head;
+}
+
+void removeStudent(string filename, string studentID) 
+{
+    ifstream fin(filename); // Open the file for reading
+    ofstream fout("temp.txt"); // Open a temporary file for writing
+
+
+    Student* tmp = getListStuFromFile(filename);
+    deleteStudent(tmp, studentID);
+    
+    while (tmp != nullptr) {
+        fout << tmp->student_ID << "," << tmp->student_socialID << ","
+             << tmp->student_fisrtname << "," << tmp->student_lastname << ","
+             << tmp->gender << "," << tmp->student_class.class_name << "," << printDate(tmp->DOB) << "\n";
+        tmp = tmp->student_next;
+    }
+    
+    fin.close(); // Close the input file
+    fout.close(); // Close the temporary file
+    
+    remove(filename.c_str()); // Delete the original file
+    rename("temp.txt", filename.c_str()); // Rename the temporary file to the original filename
+}
+
+void removeStudentFromCourse(string username, Course* &course, Year* &year_head, Semester* semester_head) 
+{
+    ofstream ofs;
     // Print list of student in the Course
     printStudentList(course->student_head);
 
-    string StudentID;
+    string studentID;
     cout<< "Input StudentID that will remove: ";
-    cin>> StudentID;
+    cin>> studentID;
     // Find the Student using the StudentID entered from the keyboard
-    Student* student = findStudentByID(StudentID, course->student_head);
+    Student* student = findStudentInClass(year_head->class_head , studentID);
 
     if (student == nullptr) 
     {
@@ -105,6 +192,15 @@ void removeStudentFromCourse(Course* &course)
         currentStudent = currentStudent->student_next;
     }
     cout << "Student " << student->student_ID << " is not enrolled in course " << course->course_name << endl;
+
+    // remove student from file
+    string file_name = course->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + ".csv";
+    file_name = "../Txt_Csv/" + file_name;
+    removeStudent(file_name, studentID);
+    ofs.open(file_name);
+    if (!ofs.is_open())
+    {
+        cerr << "Error: Unable to open file for writing\n";
+        return;
+    }
 }
-
-
