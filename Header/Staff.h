@@ -45,7 +45,12 @@ void viewCourse_Screen(string username, Year* year_head, Semester* semester_head
 void updateInformationOfCourse (string username, Year* year_head, Semester* semester_head, Course* accessed_course);
 void viewUpdateCourseInformation (string username, Year* year_head, Semester* semester_head);
 void deleteCourse(Course *&course_head, Course* course);
-void removeStudentFromCourse(Course* &course, Student* &student);
+void printStudentList(Student* student_head);
+Student* findStudentByID(string studentID, Student* head);
+void deleteStudent(Student *&student_head, string studentID);
+Student* getListStuFromFile(string filename);
+void removeStudent(string filename, string studentID);
+void removeStudentFromCourse(string username, Course* &course, Year* &year_head, Semester* semester_head) ;
 void addNewCourse (string username, Year* year_head, Semester* semester_head);
 void viewStudentInCourse(string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 int numOfStudent(Course* course);

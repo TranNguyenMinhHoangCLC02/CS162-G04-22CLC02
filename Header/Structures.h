@@ -113,6 +113,7 @@ void deallocateYears(Year *&year_head);
 //Helper function
 void addTail(Student* &student_head, Student* tmp);
 void getDate(Student* &tmp , string date_string);
+string printDate(Date a);
 
 //Main function
 int main();
