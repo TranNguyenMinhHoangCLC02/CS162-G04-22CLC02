@@ -1,4 +1,5 @@
 #include "../Header/Staff.h"
+#include "../Header/Design.h"
 
 /*
 School Year Creation Function: This function allows academic staff members to create 
@@ -64,42 +65,168 @@ bool checkExistingYear (Year* &year_head, string year_name) //Check violation th
 
 void addNewSchoolYear (Year* &year_head)
 {
+    SetScreenBufferSize(1000,1000);
+    system("color E0");
+
+    gotoXY(40,2);
+    std::cout << "    ___ ____________   _____ _____ _   _ _____ _____ _      __   _______ ___ ______";
+    gotoXY(40,3);
+    std::cout << "   / _ \\|  _  \\  _  \\ /  ___/  __ \\ | | |  _  |  _  | |     \\ \\ / /  ___/ _ \\| ___ \\";
+    gotoXY(40,4);
+    std::cout << "  / /_\\ \\ | | | | | | \\ `--.| /  \\/ |_| | | | | | | | |      \\ V /| |__/ /_\\ \\ |_/ /";
+    gotoXY(40,5);
+    std::cout << "  |  _  | | | | | | |  `--. \\ |   |  _  | | | | | | | |       \\ / |  __|  _  |    /";
+    gotoXY(40,6);
+    std::cout << "  | | | | |/ /| |/ /  /\\__/ / \\__/\\ | | \\ \\_/ | \\_/ / |____   | | | |__| | | | |\\ \\";
+    gotoXY(40,7);
+    std::cout << "  \\_| |_/___/ |___/   \\____/ \\____|_| |_/\\___/ \\___/\\_____/   \\_/ \\____|_| |_|_| \\_|";
+
+    Create_A_Box_2(70,15,2,30,14,14,0,"NEW SCHOOL YEAR");
+    Create_A_Box_1(55,20,2,20,14,14,0,"    RETURN BACK");
+
+    Create_A_Box_3(17,25,6,134);
+
+    gotoXY(19,26);
+    std::cout << "1. Please follow the syntax startyear-endyear, the end year will after the start year exactly 1 year, for instance: 2019-2020";
+    gotoXY(19,28);
+    std::cout << "2. Don't input an available school year!";
+    gotoXY(19,30);
+    std::cout << "3. Your input will be false if it includes another letter that is not number and a hyphen between 2 years";
+    ShowConsoleCursor(false);
+
     ofstream ofs;
 
     //Create new node for linked list year_head
     Year* new_year = new Year;
+    int count = 0; new_year->year_name = "";
 
-    cout << "Principles when inputing a new school year\n";
-    cout << "1. Your typed school year must be follows the syntax startyear-endyear, and the end year will after the start year exactly 1 year, for instance: 2019-2020\n";
-    cout << "2. Don't input an available school year!\n";
-    cout << "3. Your input will be false if it includes another letter that is not number and a hyphen between 2 years\n";
-    cout << "4. You can input 0 whenever you want to return back\n\n";
+    int x_temp = 70; int y_temp = 15; int y_old; int xp = x_temp; int yp = y_temp; int pos = 0;
+    while (count < 1)
+    {
+        system("color E0");
 
-    cin.ignore();
-    cout << "Please type the school year you want to add (Ensure that your syntax follows our given principles: ";
-    getline(cin, new_year->year_name);
+        if (y_temp == 15)
+        {
+            gotoXY(xp + 2, yp + 1);
+            ShowConsoleCursor(true);
 
-    if (new_year->year_name == "0")
-        return;
+            char c;
+            while (true)
+            {
+                c = _getch();
 
-    //If user's input is wrong, input again
+                if (c == ENTER)
+                {
+                    if (new_year->year_name != "")
+                        count++;
+
+                    xp = 70;
+                    yp = y_temp;
+                    break;
+                }
+                else if (c == DOWN)
+                {
+                    PlaySound(TEXT("Box.wav"), NULL, SND_FILENAME | SND_ASYNC);
+                    ShowConsoleCursor(false);
+                    y_old = y_temp;
+                    y_temp = 20;
+                    xp = x_temp + new_year->year_name.size();
+                    yp = y_old;
+                    break;
+                }
+                else if (c == BACKSPACE)
+                {
+                    if (new_year->year_name != "" && pos > 0)
+                    {
+                        std::cout << "\b \b";
+                        new_year->year_name.pop_back();
+                    }
+                }
+                else if (c == LEFT)
+                {
+                    if (pos > 0)
+                    {
+                        pos--;
+                        gotoXY(x_temp + pos + 2, y_temp + 1);
+                    }
+
+                    continue;
+                }
+                else if (c == RIGHT)
+                {
+                    int len = new_year->year_name.size();
+
+                    if (pos < len)
+                    {
+                        pos++;
+                        gotoXY(x_temp + pos + 2, y_temp + 1);
+                    }
+
+                    continue;
+                }
+                else
+                {
+                    int len = new_year->year_name.size();
+
+                    if (c == 45 || (c >= '0' && c <= '9') && len < 26)
+                    {
+                        pos++;
+                        new_year->year_name += c;
+                        std::cout << c;
+                    }
+                }
+            }
+        }
+        else
+        {
+            SetColor1(15,0);
+            for (int i = 56; i <= 74; ++i)
+            {
+                gotoXY(i, y_temp + 1);
+                std::cout << " ";
+            }
+
+            gotoXY(56, y_temp + 1);
+            std::cout << "    RETURN BACK";
+            ShowConsoleCursor(false);
+
+            if (_kbhit())
+            {
+                char c = _getch();
+
+                if (c == UP)
+                {
+                    PlaySound(TEXT("Box.wav"), NULL, SND_FILENAME | SND_ASYNC);
+                    ShowConsoleCursor(true);
+                    y_temp = y_old;
+                }
+               else if (c == ENTER)
+                   return;
+            }
+        }
+    }
+
     while (!checkSyntaxOfSchoolYear(new_year->year_name) || !checkExistingYear(year_head, new_year->year_name))
     {
         if (!checkSyntaxOfSchoolYear(new_year->year_name))
         {
-            cout << "Your input was wrong in its syntax, please input again: ";
-            getline(cin, new_year->year_name);
+            system("cls");
 
-            if (new_year->year_name == "0")
-                return;
+            deallocateYears(year_head);
+            year_head = getYearListFromFile();
+            PlaySound(TEXT("AddSchoolYear1.wav"), NULL, SND_FILENAME | SND_ASYNC);
+            addNewSchoolYear(year_head);
+            return;
         }
         else
         {
-            cout << "Your inputed school year was existed, please input another school year: ";
-            getline(cin, new_year->year_name);
+            system("cls");
 
-            if (new_year->year_name == "0")
-                return;
+            deallocateYears(year_head);
+            year_head = getYearListFromFile();
+            PlaySound(TEXT("AddSchoolYear2.wav"), NULL, SND_FILENAME | SND_ASYNC);
+            addNewSchoolYear(year_head);
+            return;
         }
     }
 
@@ -138,9 +265,6 @@ void addNewSchoolYear (Year* &year_head)
 
     ofs.close();
 
-    //Announce for user
-    cout << "You created a new school year successfully!\n\n";
-
     //Create file including semesters of created year
     string name_file = new_year->year_name + "_semester.txt";
     name_file = "../Txt_Csv/" + name_file;
@@ -152,14 +276,7 @@ void addNewSchoolYear (Year* &year_head)
     }
     ofs.close();
 
-    //Require user input 0 for returning back
-    string option;
-    cout << "Please type the number 0 for returning back: ";
-    getline(cin, option);
-
-    while (option != "0")
-    {
-        cout << "The number is different from 0, please input again: ";
-        getline(cin, option);
-    }
+    //Announce for user
+    cout << "You created a new school year successfully!\n\n";
+    return;
 }
