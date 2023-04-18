@@ -52,12 +52,8 @@ void viewStudentInClass(string username, Year* &year_head, Class *class_head)
                 char c = _getch();
                 system("color E0");
                 SetColor1(15,0);
-                for (int i = 67 + 1; i <= 67 + 29; ++i)
-                {
-                    gotoXY(i, 15 + numStudents + 1);
-                    std::cout << " ";
-                }
-                std::cout << "RETURN BACK";
+                gotoXY(68,15 + numStudents + 1); 
+                std::cout << "          RETURN BACK";
                 if (c == 13)
                 {
                     system("cls");
