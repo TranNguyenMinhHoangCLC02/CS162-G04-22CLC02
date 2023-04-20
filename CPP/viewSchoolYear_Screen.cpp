@@ -214,7 +214,6 @@ void viewSchoolYear_Screen(string username, Year* year_head)
     
                     if (c == UP)
                     {
-                        PlaySound(TEXT("Box.wav"), NULL, SND_FILENAME | SND_ASYNC);
                         if (y_temp == 11)
                             y_temp = 11 + 4*numYears;
                         else
@@ -222,7 +221,6 @@ void viewSchoolYear_Screen(string username, Year* year_head)
                     }
                     else if (c == DOWN)
                     {
-                        PlaySound(TEXT("Box.wav"), NULL, SND_FILENAME | SND_ASYNC);
                         if (y_temp == 11 + 4*numYears)
                             y_temp = 11;
                         else

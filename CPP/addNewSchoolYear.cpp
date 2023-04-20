@@ -126,7 +126,6 @@ void addNewSchoolYear (Year* &year_head)
                 }
                 else if (c == DOWN)
                 {
-                    PlaySound(TEXT("Box.wav"), NULL, SND_FILENAME | SND_ASYNC);
                     ShowConsoleCursor(false);
                     y_old = y_temp;
                     y_temp = 20;
@@ -196,7 +195,6 @@ void addNewSchoolYear (Year* &year_head)
 
                 if (c == UP)
                 {
-                    PlaySound(TEXT("Box.wav"), NULL, SND_FILENAME | SND_ASYNC);
                     ShowConsoleCursor(true);
                     y_temp = y_old;
                 }
@@ -214,7 +212,6 @@ void addNewSchoolYear (Year* &year_head)
 
             deallocateYears(year_head);
             year_head = getYearListFromFile();
-            PlaySound(TEXT("AddSchoolYear1.wav"), NULL, SND_FILENAME | SND_ASYNC);
             addNewSchoolYear(year_head);
             return;
         }
@@ -224,7 +221,6 @@ void addNewSchoolYear (Year* &year_head)
 
             deallocateYears(year_head);
             year_head = getYearListFromFile();
-            PlaySound(TEXT("AddSchoolYear2.wav"), NULL, SND_FILENAME | SND_ASYNC);
             addNewSchoolYear(year_head);
             return;
         }

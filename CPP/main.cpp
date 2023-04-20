@@ -8,7 +8,10 @@ int main()
     int option = firstScreen(check);
 
     if (check == false) //Out the program
+    {
+        PlaySound(NULL, NULL, 0);
         return 0;
+    }
 
     Myinterface(option, year_head); //Continue with 1 of 2 rest options
 

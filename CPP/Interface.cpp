@@ -7,8 +7,7 @@ int firstScreen(bool &check)
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     COORD size = {1366, 768};
     SMALL_RECT rect = {0, 0, static_cast<SHORT>(size.X - 1), static_cast<SHORT>(size.Y - 1)};
-    PlaySound(TEXT("First_Screen.wav"), NULL, SND_FILENAME | SND_ASYNC);
-
+    PlaySound(TEXT("BackGroundMusic.wav"), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC | SND_NOSTOP);
     SetConsoleScreenBufferSize(console, size);
     SetConsoleWindowInfo(console, TRUE, &rect);
     
@@ -140,7 +139,6 @@ int firstScreen(bool &check)
 
                 if (c == UP)
                 {
-                    PlaySound(TEXT("Box.wav"), NULL, SND_FILENAME | SND_ASYNC);
                     if (y_temp == 10)
                         y_temp = 14;
                     else
@@ -148,7 +146,6 @@ int firstScreen(bool &check)
                 }
                 else if (c == DOWN)
                 {
-                    PlaySound(TEXT("Box.wav"), NULL, SND_FILENAME | SND_ASYNC);
                     if (y_temp == 14)
                         y_temp = 10;
                     else
@@ -156,8 +153,6 @@ int firstScreen(bool &check)
                 }
                 else if (c == ENTER)
                 {
-                    PlaySound(NULL, NULL, 0);
-
                     ShowConsoleCursor(true);
                     if (y_temp == 14)
                         check = false;
@@ -367,7 +362,6 @@ void Main_Staff_Screen(string &username, Year* &year_head)
 
                 if (c == UP)
                 {
-                    PlaySound(TEXT("Box.wav"), NULL, SND_FILENAME | SND_ASYNC);
                     if (y_temp == 10)
                         y_temp = 18;
                     else
@@ -375,7 +369,6 @@ void Main_Staff_Screen(string &username, Year* &year_head)
                 }
                 else if (c == DOWN)
                 {
-                    PlaySound(TEXT("Box.wav"), NULL, SND_FILENAME | SND_ASYNC);
                     if (y_temp == 18)
                         y_temp = 10;
                     else
