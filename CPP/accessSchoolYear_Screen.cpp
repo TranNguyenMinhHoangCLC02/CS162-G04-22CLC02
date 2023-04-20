@@ -1,97 +1,62 @@
 #include "../Header/Staff.h"
-#include "../Header/Student.h"
 #include "../Header/Design.h"
-
-// void accessSchoolYear(string username, Year* &year_head)
-// {
-//     system("cls");
-//     cout << "\n";
-//     cout << "------------"<< year_head->year_name <<"--------------\n";
-//     cout << "0." << setw(2) << right << "Return back\n";
-//     cout << "1." << setw(2) << right << "Add a semester\n";
-//     cout << "2." << setw(2) << right << "Access a semester\n";
-//     cout << "3." << setw(2) << right << "Add a class\n";
-//     cout << "4." << setw(2) << right << "Access a class\n";
-
-//     int option;
-//     do
-//     {
-//         cout << "Input option: ";
-//         cin >> option;
-//     } while (option < 0 || option > 4);
-
-//     if (option == 0)
-//     {
-//         system("cls");
-//         viewSchoolYear_Screen(username, getYearListFromFile());
-//         return;
-//     }
-
-//     if (option == 1)
-//     {
-//         system("cls");
-//         year_head->semester_head = getSemesterListFromFile(year_head);
-//         addNewSemester(username, year_head);
-//         deallocateSemesters(year_head->semester_head);
-//         return;
-//     }
-
-//     if (option == 2)
-//     {
-//         system("cls");
-//         year_head->semester_head = getSemesterListFromFile(year_head);
-//         viewSemester_Screen(username, year_head);
-//         deallocateSemesters(year_head->semester_head);
-//         return;
-//     }
-
-//     if (option == 3)
-//     {
-//         system("cls");
-//         string filename;
-//         filename = "class.txt"; 
-//         filename = "../Txt_Csv/" + filename;      
-//         year_head->class_head = getClassListFromFile(year_head, filename);
-//         addNewClass(year_head, username);
-//         deallocateClasses(year_head->class_head);
-//         return;
-//     }
-    
-//     system("cls");
-//     viewClass_Screen(username, year_head);
-// }
 
 void accessSchoolYear(string username, Year* &year_head)
 {
-    system("cls");
     SetScreenBufferSize(1000,1000);
-    SetColor1(14,0);
-    gotoXY(45,1); std::cout <<"   _____  _____  _   _  _____  _____  _      __   __ _____  ___  ______"; 
-    gotoXY(45,2); std::cout <<"  /  ___|/  __ \\| | | ||  _  ||  _  || |     \\ \\ / /|  ___|/ _ \\ | ___ \\";
-    gotoXY(45,3); std::cout <<"  \\ `--. | /  \\/| |_| || | | || | | || |      \\ V / | |__ / /_\\ \\| |_/ /";
-    gotoXY(45,4); std::cout <<"   `--. \\| |    |  _  || | | || | | || |       \\ /  |  __||  _  ||    /"; 
-    gotoXY(45,5); std::cout <<"  /\\__/ /| \\__/\\| | | |\\ \\_/ /\\ \\_/ /| |____   | |  | |___| | | || |\\ \\"; 
-    gotoXY(45,6); std::cout <<"  \\____/  \\____/\\_| |_/ \\___/  \\___/ \\_____/   \\_/  \\____/\\_| |_/\\_| \\_|";
-    gotoXY(66, 8); std::cout << "------------" << year_head->year_name << "--------------\n";
-    Create_A_Box_1(67,10,2,30,14,14,0,"          RETURN BACK");
-    Create_A_Box_1(67,12,2,30,14,14,0,"        ADD A SEMESTER");
-    gotoXY(67,12); std::cout << (char)(195);
-    gotoXY(97,12); std::cout << (char)(180);
+    system("color E0");
 
-    Create_A_Box_1(67,14,2,30,14,14,0,"      ACCESS A SEMESTER");
-    gotoXY(67,14); std::cout << (char)(195);
-    gotoXY(97,14); std::cout << (char)(180);
+    gotoXY(13,2);
+    std::cout << "   _____ ________  ________ _____ _____ ___________";
+    gotoXY(13,3);
+    std::cout << "  /  ___|  ___|  \\/  |  ___/  ___|_   _|  ___| ___ \\";
+    gotoXY(13,4);
+    std::cout << "  \\ `--.| |__ | .  . | |__ \\ `--.  | | | |__ | |_/ /";
+    gotoXY(13,5);
+    std::cout << "   `--. \\  __|| |\\/| |  __| `--. \\ | | |  __||    /";
+    gotoXY(13,6);
+    std::cout << "  /\\__/ / |___| |  | | |___/\\__/ / | | | |___| |\\ \\";
+    gotoXY(13,7);
+    std::cout << "  \\____/\\____/\\_|  |_|____/\\____/  \\_/ \\____/\\_| \\_|";
 
-    Create_A_Box_1(67,16,2,30,14,14,0,"         ADD A CLASS");
-    gotoXY(67,16); std::cout << (char)(195);
-    gotoXY(97,16); std::cout << (char)(180);
+    gotoXY(111,2);
+    std::cout << "   _____ _      ___  _____ _____";
+    gotoXY(111,3);
+    std::cout << "  /  __ \\ |    / _ \\/  ___/  ___|";
+    gotoXY(111,4);
+    std::cout << "  | /  \\/ |   / /_\\ \\ `--.\\ `--.";
+    gotoXY(111,5);
+    std::cout << "  | |   | |   |  _  |`--. \\`--. \\";
+    gotoXY(111,6);
+    std::cout << "  | \\__/\\ |___| | | /\\__/ /\\__/ /";
+    gotoXY(111,7);
+    std::cout << "   \\____|_____|_| |_|____/\\____/";
 
-    Create_A_Box_1(67,18,2,30,14,14,0,"        ACCESS A CLASS");
-    gotoXY(67,18); std::cout << (char)(195);
-    gotoXY(97,18); std::cout << (char)(180);
+    for (int i = 1; i <= 40; ++i)
+    {
+        gotoXY(84,i);
+        std::cout << (char)(179);
+    }
+
+    Create_A_Box_1(24,10,2,30,14,14,0,"         ADD SEMESTER");
+    Create_A_Box_1(24,12,2,30,14,14,0,"       ACCESS SEMESTER");
+    gotoXY(24,12); std::cout << (char)(195);
+    gotoXY(54,12); std::cout << (char)(180);
+    Create_A_Box_1(24,14,2,30,14,14,0,"         RETURN BACK");
+    gotoXY(24,14); std::cout << (char)(195);
+    gotoXY(54,14); std::cout << (char)(180);
+
+    Create_A_Box_1(114,10,2,30,14,14,0,"          ADD CLASS");
+    Create_A_Box_1(114,12,2,30,14,14,0,"        ACCESS CLASS");
+    gotoXY(114,12); std::cout << (char)(195);
+    gotoXY(144,12); std::cout << (char)(180);
+    Create_A_Box_1(114,14,2,30,14,14,0,"         RETURN BACK");
+    gotoXY(114,14); std::cout << (char)(195);
+    gotoXY(144,14); std::cout << (char)(180);
+
     ShowConsoleCursor(false);
 
-    int x_temp = 67; int y_temp = 10;
+    int x_temp = 24; int y_temp = 10;
     bool flag = true;
     while (true)
     {
@@ -99,61 +64,66 @@ void accessSchoolYear(string username, Year* &year_head)
         {
             if (y_temp == 10)
             {
-                system("color E0");
-                SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                if (x_temp == 24)
                 {
-                    gotoXY(i, y_temp + 1);
-                    std::cout << " ";
-                }
+                    system("color E0");
+                    SetColor1(15,0);
+                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
 
-                gotoXY(x_temp + 1, y_temp + 1);
-                std::cout << "          RETURN BACK";
-                ShowConsoleCursor(false);
+                    gotoXY(x_temp + 1, y_temp + 1);
+                    std::cout << "         ADD SEMESTER";
+                    ShowConsoleCursor(false);
+                }
+                else
+                {
+                    system("color E0");
+                    SetColor1(15,0);
+                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
+
+                    gotoXY(x_temp + 1, y_temp + 1);
+                    std::cout << "          ADD CLASS";
+                    ShowConsoleCursor(false);
+                }
             }
             else if (y_temp == 12)
             {
-                system("color E0");
-                SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                if (x_temp == 24)
                 {
-                    gotoXY(i, y_temp + 1);
-                    std::cout << " ";
-                }
+                    system("color E0");
+                    SetColor1(15,0);
+                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
 
-                gotoXY(x_temp + 1, y_temp + 1);
-                std::cout << "        ADD A SEMESTER";
-                ShowConsoleCursor(false);
-            }
-            else if (y_temp == 14)
-            {
-                system("color E0");
-                SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    gotoXY(x_temp + 1, y_temp + 1);
+                    std::cout << "       ACCESS SEMESTER";
+                    ShowConsoleCursor(false);
+                }
+                else
                 {
-                    gotoXY(i, y_temp + 1);
-                    std::cout << " ";
+                    system("color E0");
+                    SetColor1(15,0);
+                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
+
+                    gotoXY(x_temp + 1, y_temp + 1);
+                    std::cout << "        ACCESS CLASS";
+                    ShowConsoleCursor(false);
                 }
-
-                gotoXY(x_temp + 1, y_temp + 1);
-                std::cout << "      ACCESS A SEMESTER";
-                ShowConsoleCursor(false);
             }
-            else if (y_temp == 16)
-            {
-                system("color E0");
-                SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
-                {
-                    gotoXY(i, y_temp + 1);
-                    std::cout << " ";
-                }
-
-                gotoXY(x_temp + 1, y_temp + 1);
-                std::cout << "         ADD A CLASS";
-                ShowConsoleCursor(false);
-            }
-
             else
             {
                 system("color E0");
@@ -165,7 +135,7 @@ void accessSchoolYear(string username, Year* &year_head)
                 }
 
                 gotoXY(x_temp + 1, y_temp + 1);
-                std::cout << "        ACCESS A CLASS";
+                std::cout << "         RETURN BACK";
                 ShowConsoleCursor(false);
             }
 
@@ -173,66 +143,76 @@ void accessSchoolYear(string username, Year* &year_head)
         }
         else
         {
-            if (_kbhit())
+            if (_kbhit())//keyboardhit
             {
                 char c = _getch();
+                flag = true;
 
-                system("color E0");
                 if (y_temp == 10)
                 {
-                    SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    if (x_temp == 24)
                     {
-                        gotoXY(i, y_temp + 1);
-                        std::cout << " ";
-                    }
+                        system("color E0");
+                        SetColor1(14,0);
+                        for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                        {
+                            gotoXY(i, y_temp + 1);
+                            std::cout << " ";
+                        }
 
-                    gotoXY(x_temp + 1, y_temp + 1);
-                    std::cout << "          RETURN BACK";
-                    ShowConsoleCursor(false);
+                        gotoXY(x_temp + 1, y_temp + 1);
+                        std::cout << "         ADD SEMESTER";
+                        ShowConsoleCursor(false);
+                    }
+                    else
+                    {
+                        system("color E0");
+                        SetColor1(14,0);
+                        for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                        {
+                            gotoXY(i, y_temp + 1);
+                            std::cout << " ";
+                        }
+
+                        gotoXY(x_temp + 1, y_temp + 1);
+                        std::cout << "          ADD CLASS";
+                        ShowConsoleCursor(false);
+                    }
                 }
                 else if (y_temp == 12)
                 {
-                    SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    if (x_temp == 24)
                     {
-                        gotoXY(i, y_temp + 1);
-                        std::cout << " ";
-                    }
+                        system("color E0");
+                        SetColor1(14,0);
+                        for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                        {
+                            gotoXY(i, y_temp + 1);
+                            std::cout << " ";
+                        }
 
-                    gotoXY(x_temp + 1, y_temp + 1);
-                    std::cout << "        ADD A SEMESTER";
-                    ShowConsoleCursor(false);
-                }
-                else if (y_temp == 14)
-                {
-                    SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                        gotoXY(x_temp + 1, y_temp + 1);
+                        std::cout << "       ACCESS SEMESTER";
+                        ShowConsoleCursor(false);
+                    }
+                    else
                     {
-                        gotoXY(i, y_temp + 1);
-                        std::cout << " ";
+                        system("color E0");
+                        SetColor1(14,0);
+                        for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                        {
+                            gotoXY(i, y_temp + 1);
+                            std::cout << " ";
+                        }
+
+                        gotoXY(x_temp + 1, y_temp + 1);
+                        std::cout << "        ACCESS CLASS";
+                        ShowConsoleCursor(false);
                     }
-
-                    gotoXY(x_temp + 1, y_temp + 1);
-                    std::cout <<"      ACCESS A SEMESTER";
-                    ShowConsoleCursor(false);
                 }
-                else if (y_temp == 16)
-                {
-                    SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
-                    {
-                        gotoXY(i, y_temp + 1);
-                        std::cout << " ";
-                    }
-
-                    gotoXY(x_temp + 1, y_temp + 1);
-                    std::cout << "         ADD A CLASS";
-                    ShowConsoleCursor(false);
-                }
-
                 else
                 {
+                    system("color E0");
                     SetColor1(14,0);
                     for (int i = x_temp + 1; i <= x_temp + 29; ++i)
                     {
@@ -241,30 +221,37 @@ void accessSchoolYear(string username, Year* &year_head)
                     }
 
                     gotoXY(x_temp + 1, y_temp + 1);
-                    std::cout << "        ACCESS A CLASS";
+                    std::cout << "         RETURN BACK";
                     ShowConsoleCursor(false);
                 }
-
-                flag = true;
 
                 if (c == UP)
                 {
                     if (y_temp == 10)
-                        y_temp = 18;
+                        y_temp = 14;
                     else
                         y_temp -= 2;
                 }
                 else if (c == DOWN)
                 {
-                    if (y_temp == 18)
+                    if (y_temp == 14)
                         y_temp = 10;
                     else
                         y_temp += 2;
                 }
-                else if (c == ENTER)
+                else if (c == LEFT)
                 {
-                    ShowConsoleCursor(true);
-                    if (y_temp == 10)
+                    if (x_temp == 114)
+                        x_temp = 24;
+                }
+                else if (c == RIGHT)
+                {
+                    if (x_temp == 24)
+                        x_temp = 114;
+                }
+               else if (c == ENTER)
+               {
+                    if (y_temp == 14)
                     {
                         system("cls");
                         viewSchoolYear_Screen(username, getYearListFromFile());
@@ -272,42 +259,43 @@ void accessSchoolYear(string username, Year* &year_head)
                     }
                     else if (y_temp == 12)
                     {
-                        system("cls");
-                        year_head->semester_head = getSemesterListFromFile(year_head);
-                        addNewSemester(username, year_head);
-                        deallocateSemesters(year_head->semester_head);
-                        return;
-                    }
-                    else if (y_temp == 14)
-                    {
-                        system("cls");
-                        year_head = getYearListFromFile();
-                        addNewSchoolYear(year_head);
-                        deallocateYears(year_head);
-                        system("cls");
-                        Main_Staff_Screen(username, year_head);
-                        return;
-                    }
-                    else if (y_temp == 16)
-                    {
-                        system("cls");
-                        string filename;
-                        filename = "class.txt"; 
-                        filename = "../Txt_Csv/" + filename;      
-                        year_head->class_head = getClassListFromFile(year_head, filename);
-                        addNewClass(year_head, username);
-                        deallocateClasses(year_head->class_head);
-                        return;
+                        if (x_temp == 24)
+                        {
+                            system("cls");
+                            year_head->semester_head = getSemesterListFromFile(year_head);
+                            viewSemester_Screen(username, year_head);
+                            deallocateSemesters(year_head->semester_head);
+                            return;
+                        }
+                        else
+                        {
+                            system("cls");
+                            viewClass_Screen(username, year_head);
+                            return;
+                        }
                     }
                     else
                     {
-                        system("cls");
-                        viewClass_Screen(username, year_head);
-                        return;
+                        if (x_temp == 24)
+                        {
+                            system("cls");
+                            year_head->semester_head = getSemesterListFromFile(year_head);
+                            addNewSemester(username, year_head);
+                            deallocateSemesters(year_head->semester_head);
+                            return;
+                        }
+                        else
+                        {
+                            system("cls");
+                            string filename = "class.txt";
+                            filename = "../Txt_Csv/" + filename;      
+                            year_head->class_head = getClassListFromFile(year_head, filename);
+                            addNewClass(year_head, username);
+                            deallocateClasses(year_head->class_head);
+                            return;
+                        }
                     }
-
-                    break;
-                }
+               }
             }
         }
     }

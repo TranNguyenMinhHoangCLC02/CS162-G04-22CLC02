@@ -15,9 +15,10 @@ void accessSchoolYear(string username, Year* &year_head);
 
 //Semester functions
 Semester* getSemesterListFromFile(Year* &year_head);
-bool checkInvalidSemester (string input);
-bool checkExistingSemester (Semester* &semester_head, string input);
+bool checkExistingSemester (Semester* &semester_head, int semester_ord);
 void addNewSemester (string username, Year* &year_head);
+bool checkInvalidDayOfDate (int year, int month, int day);
+bool checkStartDateAndEndDate (int startyear, int startmonth, int startday, int endyear, int endmonth, int endday);
 
 //Class functions
 int CLASS_Interface(string &username, Year* &year_head, Class *class_head);

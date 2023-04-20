@@ -1,20 +1,8 @@
 #include "../Header/Staff.h"
+#include "../Header/Design.h"
 
-bool checkInvalidSemester (string input)
-{
-    if (input != "0" && input != "1" && input != "2" && input != "3")
-        return false;
-
-    return true;
-}
-
-bool checkExistingSemester (Semester* &semester_head, string input)
-{
-    if (input[0] == '0')
-        return true;
-    
-    int semester_ord = (int)input[0] - 48;
-    
+bool checkExistingSemester (Semester* &semester_head, int semester_ord)
+{   
     if (!semester_head)
         return true;
     
@@ -31,47 +19,7 @@ bool checkExistingSemester (Semester* &semester_head, string input)
     return true;
 }
 
-//Check if the input data had any characters or special letters
-bool checkYearOfDate (string StartDate_Year_Input)
-{
-    int len = StartDate_Year_Input.size();
-
-    for (int i = 0; i < len; ++i)
-    {
-        if (StartDate_Year_Input[i] < '0' || StartDate_Year_Input[i] > '9')
-            return false;
-    } 
-
-    return true; 
-}
-
-bool checkMonthOfDate (string StartDate_Month_Input)
-{
-    int len = StartDate_Month_Input.size();
-
-    for (int i = 0; i < len; ++i)
-    {
-        if (StartDate_Month_Input[i] < '0' || StartDate_Month_Input[i] > '9')
-            return false;
-    } 
-
-    return true;
-}
-
-bool checkDayOfDate (string StartDate_Day_Input)
-{
-    int len = StartDate_Day_Input.size();
-
-    for (int i = 0; i < len; ++i)
-    {
-        if (StartDate_Day_Input[i] < '0' || StartDate_Day_Input[i] > '9')
-            return false;
-    } 
-
-    return true;
-}
-
-bool checkInvalidDayOfDate (int year, int month, string StartDate_Day_Input)
+bool checkInvalidDayOfDate (int year, int month, int day)
 {
     if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0))
     {
@@ -79,62 +27,62 @@ bool checkInvalidDayOfDate (int year, int month, string StartDate_Day_Input)
         {
             case 1:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 31)
+                if (day <= 0 || day > 31)
                     return false;
             }
             case 2:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 29)
+                if (day <= 0 || day > 29)
                     return false;
             }
             case 3:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 31)
+                if (day <= 0 || day > 31)
                     return false;
             }
             case 4:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 30)
+                if (day <= 0 || day > 30)
                     return false;
             }
             case 5:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 31)
+                if (day <= 0 || day > 31)
                     return false;
             }
             case 6:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 30)
+                if (day <= 0 || day > 30)
                     return false;
             }
             case 7:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 31)
+                if (day <= 0 || day > 31)
                     return false;
             }
             case 8:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 31)
+                if (day <= 0 || day > 31)
                     return false;
             }
             case 9:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 30)
+                if (day <= 0 || day > 30)
                     return false;
             }
             case 10:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 31)
+                if (day <= 0 || day > 31)
                     return false;
             }
             case 11:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 30)
+                if (day <= 0 || day > 30)
                     return false;
             }
             case 12:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 31)
+                if (day <= 0 || day > 31)
                     return false;
             }
         }
@@ -145,62 +93,62 @@ bool checkInvalidDayOfDate (int year, int month, string StartDate_Day_Input)
         {
             case 1:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 31)
+                if (day <= 0 || day > 31)
                     return false;
             }
             case 2:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 28)
+                if (day <= 0 || day > 28)
                     return false;
             }
             case 3:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 31)
+                if (day <= 0 || day > 31)
                     return false;
             }
             case 4:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 30)
+                if (day <= 0 || day > 30)
                     return false;
             }
             case 5:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 31)
+                if (day <= 0 || day > 31)
                     return false;
             }
             case 6:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 30)
+                if (day <= 0 || day > 30)
                     return false;
             }
             case 7:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 31)
+                if (day <= 0 || day > 31)
                     return false;
             }
             case 8:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 31)
+                if (day <= 0 || day > 31)
                     return false;
             }
             case 9:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 30)
+                if (day <= 0 || day > 30)
                     return false;
             }
             case 10:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 31)
+                if (day <= 0 || day > 31)
                     return false;
             }
             case 11:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 30)
+                if (day <= 0 || day > 30)
                     return false;
             }
             case 12:
             {
-                if (stoi(StartDate_Day_Input) <= 0 || stoi(StartDate_Day_Input) > 31)
+                if (day <= 0 || day > 31)
                     return false;
             }
         }
@@ -231,544 +179,1672 @@ bool checkStartDateAndEndDate (int startyear, int startmonth, int startday, int 
 
 void addNewSemester (string username, Year* &year_head) //Now, year_head is the school year you are accessing
 {
-    ofstream ofs;
+    // ofstream ofs;
 
-    //Create new node for linked list semester_head
-    cout << "Principles when inputing a new semester\n";
-    cout << "1. You must input a number from 1 to 3 because there are at most 3 semesters in a school year\n";
-    cout << "2. Don't input an available semester in your chosen school year!\n";
-    cout << "3. You can input 0 if you want to return back\n\n";
+    // //Create new node for linked list semester_head
+    // cout << "Principles when inputing a new semester\n";
+    // cout << "1. You must input a number from 1 to 3 because there are at most 3 semesters in a school year\n";
+    // cout << "2. Don't input an available semester in your chosen school year!\n";
+    // cout << "3. You can input 0 if you want to return back\n\n";
 
-    string input;
-    cin.ignore();
-    cout << "Please type the semester you want to add (Ensure that your input follows our given principles: ";
-    getline(cin, input);
+    // string input;
+    // cin.ignore();
+    // cout << "Please type the semester you want to add (Ensure that your input follows our given principles: ";
+    // getline(cin, input);
 
-    //If user's input is wrong, input again
-    while (!checkInvalidSemester(input) || !checkExistingSemester(year_head->semester_head, input))
-    {
-        if (!checkInvalidSemester(input))
-        {
-            cout << "Your input must include a number from 0 to 3, please input again: ";
-            getline(cin, input);
-        }
-        else
-        {
-            cout << "Your inputed semester was existed in your chosen school year, please input another semester: ";
-            getline(cin, input);
-        }
-    }
+    // //If user's input is wrong, input again
+    // while (!checkInvalidSemester(input) || !checkExistingSemester(year_head->semester_head, input))
+    // {
+    //     if (!checkInvalidSemester(input))
+    //     {
+    //         cout << "Your input must include a number from 0 to 3, please input again: ";
+    //         getline(cin, input);
+    //     }
+    //     else
+    //     {
+    //         cout << "Your inputed semester was existed in your chosen school year, please input another semester: ";
+    //         getline(cin, input);
+    //     }
+    // }
 
-    if (input == "0")
-    {
-        system ("cls");
-        accessSchoolYear(username, year_head);
-        return;
-    }
-    else
-    {
-        //Start Date
-        cout << "\n";
-        cout << "Start date of your inputted semester\n";
+    // if (input == "0")
+    // {
+    //     system ("cls");
+    //     accessSchoolYear(username, year_head);
+    //     return;
+    // }
+    // else
+    // {
+    //     //Start Date
+    //     cout << "\n";
+    //     cout << "Start date of your inputted semester\n";
 
-        string StartDate_year_input;
-        cout << "Year: ";
-        getline(cin, StartDate_year_input);
+    //     string StartDate_year_input;
+    //     cout << "Year: ";
+    //     getline(cin, StartDate_year_input);
 
-        while (!checkYearOfDate(StartDate_year_input))
-        {
-            cout << "Your input year included at least 1 letter which is different from numbers, please input again: \n";
-            cout << "Year: ";
-            getline(cin, StartDate_year_input);
-        }
+    //     while (!checkYearOfDate(StartDate_year_input))
+    //     {
+    //         cout << "Your input year included at least 1 letter which is different from numbers, please input again: \n";
+    //         cout << "Year: ";
+    //         getline(cin, StartDate_year_input);
+    //     }
 
-        if (StartDate_year_input == "0")
-        {
-            system ("cls");
-            accessSchoolYear(username, year_head);
-            return;
-        }
+    //     if (StartDate_year_input == "0")
+    //     {
+    //         system ("cls");
+    //         accessSchoolYear(username, year_head);
+    //         return;
+    //     }
         
-        string StartDate_month_input;
-        cout << "Month: ";
-        getline(cin, StartDate_month_input);
+    //     string StartDate_month_input;
+    //     cout << "Month: ";
+    //     getline(cin, StartDate_month_input);
 
-        if (StartDate_month_input == "0")
-        {
-            system ("cls");
-            accessSchoolYear(username, year_head);
-            return;
-        }
+    //     if (StartDate_month_input == "0")
+    //     {
+    //         system ("cls");
+    //         accessSchoolYear(username, year_head);
+    //         return;
+    //     }
 
-        while (!checkMonthOfDate(StartDate_month_input) || stoi(StartDate_month_input) < 1 || stoi(StartDate_month_input) > 12)
-        {
-            if (!checkMonthOfDate(StartDate_month_input))
-            {
-                cout << "Your input month included at least 1 letter which is different from numbers, please input again: \n";
-                cout << "Month: ";
-                getline(cin, StartDate_month_input);
+    //     while (!checkMonthOfDate(StartDate_month_input) || stoi(StartDate_month_input) < 1 || stoi(StartDate_month_input) > 12)
+    //     {
+    //         if (!checkMonthOfDate(StartDate_month_input))
+    //         {
+    //             cout << "Your input month included at least 1 letter which is different from numbers, please input again: \n";
+    //             cout << "Month: ";
+    //             getline(cin, StartDate_month_input);
                 
-                if (StartDate_month_input == "0")
-                {
-                    system ("cls");
-                    accessSchoolYear(username, year_head);
-                    return;
-                }
-            }
-            else
-            {
-                cout << "The value of month must be in range of 1 to 12, please input again: \n";
-                cout << "Month: ";
-                getline(cin, StartDate_month_input);
+    //             if (StartDate_month_input == "0")
+    //             {
+    //                 system ("cls");
+    //                 accessSchoolYear(username, year_head);
+    //                 return;
+    //             }
+    //         }
+    //         else
+    //         {
+    //             cout << "The value of month must be in range of 1 to 12, please input again: \n";
+    //             cout << "Month: ";
+    //             getline(cin, StartDate_month_input);
 
-                if (StartDate_month_input == "0")
-                {
-                    system ("cls");
-                    accessSchoolYear(username, year_head);
-                    return;
-                }
-            }
-        }
+    //             if (StartDate_month_input == "0")
+    //             {
+    //                 system ("cls");
+    //                 accessSchoolYear(username, year_head);
+    //                 return;
+    //             }
+    //         }
+    //     }
 
-        string StartDate_day_input;
-        cout << "Day: ";
-        getline(cin, StartDate_day_input);
+    //     string StartDate_day_input;
+    //     cout << "Day: ";
+    //     getline(cin, StartDate_day_input);
 
-        if (StartDate_day_input == "0")
-        {
-            system ("cls");
-            accessSchoolYear(username, year_head);
-            return;
-        }  
+    //     if (StartDate_day_input == "0")
+    //     {
+    //         system ("cls");
+    //         accessSchoolYear(username, year_head);
+    //         return;
+    //     }  
 
-        while (!checkDayOfDate(StartDate_day_input) || !checkInvalidDayOfDate(stoi(StartDate_year_input), stoi(StartDate_month_input), StartDate_day_input))
-        {
-            if (!checkDayOfDate(StartDate_day_input))
-            {
-                cout << "Your input day included at least 1 letter which is different from numbers, please input again: \n";
-                cout << "Day: ";
-                getline(cin, StartDate_day_input);
+    //     while (!checkDayOfDate(StartDate_day_input) || !checkInvalidDayOfDate(stoi(StartDate_year_input), stoi(StartDate_month_input), StartDate_day_input))
+    //     {
+    //         if (!checkDayOfDate(StartDate_day_input))
+    //         {
+    //             cout << "Your input day included at least 1 letter which is different from numbers, please input again: \n";
+    //             cout << "Day: ";
+    //             getline(cin, StartDate_day_input);
 
-                if (StartDate_day_input == "0")
-                {
-                    system ("cls");
-                    accessSchoolYear(username, year_head);
-                    return;
-                }
-            }
-            else
-            {
-                cout << "Your inputed month does not include this day, please input again: \n";
-                cout << "Day: ";
-                getline(cin, StartDate_day_input);
+    //             if (StartDate_day_input == "0")
+    //             {
+    //                 system ("cls");
+    //                 accessSchoolYear(username, year_head);
+    //                 return;
+    //             }
+    //         }
+    //         else
+    //         {
+    //             cout << "Your inputed month does not include this day, please input again: \n";
+    //             cout << "Day: ";
+    //             getline(cin, StartDate_day_input);
 
-                if (StartDate_day_input == "0")
-                {
-                    system ("cls");
-                    accessSchoolYear(username, year_head);
-                    return;
-                }
-            }
-        }
+    //             if (StartDate_day_input == "0")
+    //             {
+    //                 system ("cls");
+    //                 accessSchoolYear(username, year_head);
+    //                 return;
+    //             }
+    //         }
+    //     }
 
-        //End Date
-        cout << "\n";
-        cout << "End date of your inputted semester\n";
+    //     //End Date
+    //     cout << "\n";
+    //     cout << "End date of your inputted semester\n";
 
-        string EndDate_year_input;
-        cout << "Year: ";
-        getline(cin, EndDate_year_input);
+    //     string EndDate_year_input;
+    //     cout << "Year: ";
+    //     getline(cin, EndDate_year_input);
 
-        while (!checkYearOfDate(EndDate_year_input))
-        {
-            cout << "Your input year included at least 1 letter which is different from numbers, please input again: \n";
-            cout << "Year: ";
-            getline(cin, EndDate_year_input);
-        }
+    //     while (!checkYearOfDate(EndDate_year_input))
+    //     {
+    //         cout << "Your input year included at least 1 letter which is different from numbers, please input again: \n";
+    //         cout << "Year: ";
+    //         getline(cin, EndDate_year_input);
+    //     }
 
-        if (EndDate_year_input == "0")
-        {
-            system ("cls");
-            accessSchoolYear(username, year_head);
-            return;
-        }
+    //     if (EndDate_year_input == "0")
+    //     {
+    //         system ("cls");
+    //         accessSchoolYear(username, year_head);
+    //         return;
+    //     }
         
-        string EndDate_month_input;
-        cout << "Month: ";
-        getline(cin, EndDate_month_input);
+    //     string EndDate_month_input;
+    //     cout << "Month: ";
+    //     getline(cin, EndDate_month_input);
 
-        if (EndDate_month_input == "0")
-        {
-            system ("cls");
-            accessSchoolYear(username, year_head);
-            return;
-        }
+    //     if (EndDate_month_input == "0")
+    //     {
+    //         system ("cls");
+    //         accessSchoolYear(username, year_head);
+    //         return;
+    //     }
 
-        while (!checkMonthOfDate(EndDate_month_input) || stoi(EndDate_month_input) < 1 || stoi(EndDate_month_input) > 12)
-        {
-            if (!checkMonthOfDate(EndDate_month_input))
-            {
-                cout << "Your input month included at least 1 letter which is different from numbers, please input again: \n";
-                cout << "Month: ";
-                getline(cin, EndDate_month_input);
+    //     while (!checkMonthOfDate(EndDate_month_input) || stoi(EndDate_month_input) < 1 || stoi(EndDate_month_input) > 12)
+    //     {
+    //         if (!checkMonthOfDate(EndDate_month_input))
+    //         {
+    //             cout << "Your input month included at least 1 letter which is different from numbers, please input again: \n";
+    //             cout << "Month: ";
+    //             getline(cin, EndDate_month_input);
 
-                if (EndDate_month_input == "0")
-                {
-                    system ("cls");
-                    accessSchoolYear(username, year_head);
-                    return;
-                }
-            }
-            else
-            {
-                cout << "The value of month must be in range of 1 to 12, please input again: \n";
-                cout << "Month: ";
-                getline(cin, EndDate_month_input);
+    //             if (EndDate_month_input == "0")
+    //             {
+    //                 system ("cls");
+    //                 accessSchoolYear(username, year_head);
+    //                 return;
+    //             }
+    //         }
+    //         else
+    //         {
+    //             cout << "The value of month must be in range of 1 to 12, please input again: \n";
+    //             cout << "Month: ";
+    //             getline(cin, EndDate_month_input);
 
-                if (EndDate_month_input == "0")
-                {
-                    system ("cls");
-                    accessSchoolYear(username, year_head);
-                    return;
-                }
-            }
-        }
+    //             if (EndDate_month_input == "0")
+    //             {
+    //                 system ("cls");
+    //                 accessSchoolYear(username, year_head);
+    //                 return;
+    //             }
+    //         }
+    //     }
 
-        string EndDate_day_input;
-        cout << "Day: ";
-        getline(cin, EndDate_day_input);
+    //     string EndDate_day_input;
+    //     cout << "Day: ";
+    //     getline(cin, EndDate_day_input);
 
-        if (EndDate_day_input == "0")
-        {
-            system ("cls");
-            accessSchoolYear(username, year_head);
-            return;
-        }  
+    //     if (EndDate_day_input == "0")
+    //     {
+    //         system ("cls");
+    //         accessSchoolYear(username, year_head);
+    //         return;
+    //     }  
 
-        while (!checkDayOfDate(EndDate_day_input) || !checkInvalidDayOfDate(stoi(EndDate_year_input), stoi(EndDate_month_input), EndDate_day_input))
-        {
-            if (!checkDayOfDate(EndDate_day_input))
-            {
-                cout << "Your input day included at least 1 letter which is different from numbers, please input again: \n";
-                cout << "Day: ";
-                getline(cin, EndDate_day_input);
+    //     while (!checkDayOfDate(EndDate_day_input) || !checkInvalidDayOfDate(stoi(EndDate_year_input), stoi(EndDate_month_input), EndDate_day_input))
+    //     {
+    //         if (!checkDayOfDate(EndDate_day_input))
+    //         {
+    //             cout << "Your input day included at least 1 letter which is different from numbers, please input again: \n";
+    //             cout << "Day: ";
+    //             getline(cin, EndDate_day_input);
 
-                if (EndDate_day_input == "0")
-                {
-                    system ("cls");
-                    accessSchoolYear(username, year_head);
-                    return;
-                } 
-            }
-            else
-            {
-                cout << "Your inputed month does not include this day, please input again: \n";
-                cout << "Day: ";
-                getline(cin, EndDate_day_input);
+    //             if (EndDate_day_input == "0")
+    //             {
+    //                 system ("cls");
+    //                 accessSchoolYear(username, year_head);
+    //                 return;
+    //             } 
+    //         }
+    //         else
+    //         {
+    //             cout << "Your inputed month does not include this day, please input again: \n";
+    //             cout << "Day: ";
+    //             getline(cin, EndDate_day_input);
 
-                if (EndDate_day_input == "0")
-                {
-                    system ("cls");
-                    accessSchoolYear(username, year_head);
-                    return;
-                } 
-            }
-        }
+    //             if (EndDate_day_input == "0")
+    //             {
+    //                 system ("cls");
+    //                 accessSchoolYear(username, year_head);
+    //                 return;
+    //             } 
+    //         }
+    //     }
 
-        while (!checkStartDateAndEndDate(stoi(StartDate_year_input), stoi(StartDate_month_input), stoi(StartDate_day_input), stoi(EndDate_year_input), stoi(EndDate_month_input), stoi(EndDate_day_input)))
-        {
-            cout << "\n";
-            cout << "End Date must be after Start Date, please input again!\n\n";
+    //     while (!checkStartDateAndEndDate(stoi(StartDate_year_input), stoi(StartDate_month_input), stoi(StartDate_day_input), stoi(EndDate_year_input), stoi(EndDate_month_input), stoi(EndDate_day_input)))
+    //     {
+    //         cout << "\n";
+    //         cout << "End Date must be after Start Date, please input again!\n\n";
 
-            //Start Date
-            cout << "\n";
-            cout << "Start date of your inputted semester\n";
+    //         //Start Date
+    //         cout << "\n";
+    //         cout << "Start date of your inputted semester\n";
 
-            cout << "Year: ";
-            getline(cin, StartDate_year_input);
+    //         cout << "Year: ";
+    //         getline(cin, StartDate_year_input);
 
-            while (!checkYearOfDate(StartDate_year_input))
-            {
-                cout << "Your input year included at least 1 letter which is different from numbers, please input again: \n";
-                cout << "Year: ";
-                getline(cin, StartDate_year_input);
-            }
+    //         while (!checkYearOfDate(StartDate_year_input))
+    //         {
+    //             cout << "Your input year included at least 1 letter which is different from numbers, please input again: \n";
+    //             cout << "Year: ";
+    //             getline(cin, StartDate_year_input);
+    //         }
 
-            if (StartDate_year_input == "0")
-            {
-                system ("cls");
-                accessSchoolYear(username, year_head);
-                return;
-            }
+    //         if (StartDate_year_input == "0")
+    //         {
+    //             system ("cls");
+    //             accessSchoolYear(username, year_head);
+    //             return;
+    //         }
             
-            cout << "Month: ";
-            getline(cin, StartDate_month_input);
+    //         cout << "Month: ";
+    //         getline(cin, StartDate_month_input);
 
-            if (StartDate_month_input == "0")
-            {
-                system ("cls");
-                accessSchoolYear(username, year_head);
-                return;
-            }
+    //         if (StartDate_month_input == "0")
+    //         {
+    //             system ("cls");
+    //             accessSchoolYear(username, year_head);
+    //             return;
+    //         }
 
-            while (!checkMonthOfDate(StartDate_month_input) || stoi(StartDate_month_input) < 1 || stoi(StartDate_month_input) > 12)
-            {
-                if (!checkMonthOfDate(StartDate_month_input))
-                {
-                    cout << "Your input month included at least 1 letter which is different from numbers, please input again: \n";
-                    cout << "Month: ";
-                    getline(cin, StartDate_month_input);
+    //         while (!checkMonthOfDate(StartDate_month_input) || stoi(StartDate_month_input) < 1 || stoi(StartDate_month_input) > 12)
+    //         {
+    //             if (!checkMonthOfDate(StartDate_month_input))
+    //             {
+    //                 cout << "Your input month included at least 1 letter which is different from numbers, please input again: \n";
+    //                 cout << "Month: ";
+    //                 getline(cin, StartDate_month_input);
                     
-                    if (StartDate_month_input == "0")
-                    {
-                        system ("cls");
-                        accessSchoolYear(username, year_head);
-                        return;
-                    }
-                }
-                else
-                {
-                    cout << "The value of month must be in range of 1 to 12, please input again: \n";
-                    cout << "Month: ";
-                    getline(cin, StartDate_month_input);
+    //                 if (StartDate_month_input == "0")
+    //                 {
+    //                     system ("cls");
+    //                     accessSchoolYear(username, year_head);
+    //                     return;
+    //                 }
+    //             }
+    //             else
+    //             {
+    //                 cout << "The value of month must be in range of 1 to 12, please input again: \n";
+    //                 cout << "Month: ";
+    //                 getline(cin, StartDate_month_input);
 
-                    if (StartDate_month_input == "0")
-                    {
-                        system ("cls");
-                        accessSchoolYear(username, year_head);
-                        return;
-                    }
-                }
-            }
+    //                 if (StartDate_month_input == "0")
+    //                 {
+    //                     system ("cls");
+    //                     accessSchoolYear(username, year_head);
+    //                     return;
+    //                 }
+    //             }
+    //         }
 
-            cout << "Day: ";
-            getline(cin, StartDate_day_input);
+    //         cout << "Day: ";
+    //         getline(cin, StartDate_day_input);
 
-            if (StartDate_day_input == "0")
-            {
-                system ("cls");
-                accessSchoolYear(username, year_head);
-                return;
-            }  
+    //         if (StartDate_day_input == "0")
+    //         {
+    //             system ("cls");
+    //             accessSchoolYear(username, year_head);
+    //             return;
+    //         }  
 
-            while (!checkDayOfDate(StartDate_day_input) || !checkInvalidDayOfDate(stoi(StartDate_year_input), stoi(StartDate_month_input), StartDate_day_input))
-            {
-                if (!checkDayOfDate(StartDate_day_input))
-                {
-                    cout << "Your input day included at least 1 letter which is different from numbers, please input again: \n";
-                    cout << "Day: ";
-                    getline(cin, StartDate_day_input);
+    //         while (!checkDayOfDate(StartDate_day_input) || !checkInvalidDayOfDate(stoi(StartDate_year_input), stoi(StartDate_month_input), StartDate_day_input))
+    //         {
+    //             if (!checkDayOfDate(StartDate_day_input))
+    //             {
+    //                 cout << "Your input day included at least 1 letter which is different from numbers, please input again: \n";
+    //                 cout << "Day: ";
+    //                 getline(cin, StartDate_day_input);
 
-                    if (StartDate_day_input == "0")
-                    {
-                        system ("cls");
-                        accessSchoolYear(username, year_head);
-                        return;
-                    }
-                }
-                else
-                {
-                    cout << "Your inputed month does not include this day, please input again: \n";
-                    cout << "Day: ";
-                    getline(cin, StartDate_day_input);
+    //                 if (StartDate_day_input == "0")
+    //                 {
+    //                     system ("cls");
+    //                     accessSchoolYear(username, year_head);
+    //                     return;
+    //                 }
+    //             }
+    //             else
+    //             {
+    //                 cout << "Your inputed month does not include this day, please input again: \n";
+    //                 cout << "Day: ";
+    //                 getline(cin, StartDate_day_input);
 
-                    if (StartDate_day_input == "0")
-                    {
-                        system ("cls");
-                        accessSchoolYear(username, year_head);
-                        return;
-                    }
-                }
-            }
+    //                 if (StartDate_day_input == "0")
+    //                 {
+    //                     system ("cls");
+    //                     accessSchoolYear(username, year_head);
+    //                     return;
+    //                 }
+    //             }
+    //         }
 
-            //End Date
-            cout << "\n";
-            cout << "End date of your inputted semester\n";
+    //         //End Date
+    //         cout << "\n";
+    //         cout << "End date of your inputted semester\n";
 
-            cout << "Year: ";
-            getline(cin, EndDate_year_input);
+    //         cout << "Year: ";
+    //         getline(cin, EndDate_year_input);
 
-            while (!checkYearOfDate(EndDate_year_input))
-            {
-                cout << "Your input year included at least 1 letter which is different from numbers, please input again: \n";
-                cout << "Year: ";
-                getline(cin, EndDate_year_input);
-            }
+    //         while (!checkYearOfDate(EndDate_year_input))
+    //         {
+    //             cout << "Your input year included at least 1 letter which is different from numbers, please input again: \n";
+    //             cout << "Year: ";
+    //             getline(cin, EndDate_year_input);
+    //         }
 
-            if (EndDate_year_input == "0")
-            {
-                system ("cls");
-                accessSchoolYear(username, year_head);
-                return;
-            }
+    //         if (EndDate_year_input == "0")
+    //         {
+    //             system ("cls");
+    //             accessSchoolYear(username, year_head);
+    //             return;
+    //         }
             
-            cout << "Month: ";
-            getline(cin, EndDate_month_input);
+    //         cout << "Month: ";
+    //         getline(cin, EndDate_month_input);
 
-            if (EndDate_month_input == "0")
-            {
-                system ("cls");
-                accessSchoolYear(username, year_head);
-                return;
-            }
+    //         if (EndDate_month_input == "0")
+    //         {
+    //             system ("cls");
+    //             accessSchoolYear(username, year_head);
+    //             return;
+    //         }
 
-            while (!checkMonthOfDate(EndDate_month_input) || stoi(EndDate_month_input) < 1 || stoi(EndDate_month_input) > 12)
+    //         while (!checkMonthOfDate(EndDate_month_input) || stoi(EndDate_month_input) < 1 || stoi(EndDate_month_input) > 12)
+    //         {
+    //             if (!checkMonthOfDate(EndDate_month_input))
+    //             {
+    //                 cout << "Your input month included at least 1 letter which is different from numbers, please input again: \n";
+    //                 cout << "Month: ";
+    //                 getline(cin, EndDate_month_input);
+
+    //                 if (EndDate_month_input == "0")
+    //                 {
+    //                     system ("cls");
+    //                     accessSchoolYear(username, year_head);
+    //                     return;
+    //                 }
+    //             }
+    //             else
+    //             {
+    //                 cout << "The value of month must be in range of 1 to 12, please input again: \n";
+    //                 cout << "Month: ";
+    //                 getline(cin, EndDate_month_input);
+
+    //                 if (EndDate_month_input == "0")
+    //                 {
+    //                     system ("cls");
+    //                     accessSchoolYear(username, year_head);
+    //                     return;
+    //                 }
+    //             }
+    //         }
+
+    //         cout << "Day: ";
+    //         getline(cin, EndDate_day_input);
+
+    //         if (EndDate_day_input == "0")
+    //         {
+    //             system ("cls");
+    //             accessSchoolYear(username, year_head);
+    //             return;
+    //         }  
+
+    //         while (!checkDayOfDate(EndDate_day_input) || !checkInvalidDayOfDate(stoi(EndDate_year_input), stoi(EndDate_month_input), EndDate_day_input))
+    //         {
+    //             if (!checkDayOfDate(EndDate_day_input))
+    //             {
+    //                 cout << "Your input day included at least 1 letter which is different from numbers, please input again: \n";
+    //                 cout << "Day: ";
+    //                 getline(cin, EndDate_day_input);
+
+    //                 if (EndDate_day_input == "0")
+    //                 {
+    //                     system ("cls");
+    //                     accessSchoolYear(username, year_head);
+    //                     return;
+    //                 } 
+    //             }
+    //             else
+    //             {
+    //                 cout << "Your inputed month does not include this day, please input again: \n";
+    //                 cout << "Day: ";
+    //                 getline(cin, EndDate_day_input);
+
+    //                 if (EndDate_day_input == "0")
+    //                 {
+    //                     system ("cls");
+    //                     accessSchoolYear(username, year_head);
+    //                     return;
+    //                 } 
+    //             }
+    //         }
+    //     }
+
+    //     //Create new semester
+    //     Semester* new_semester = new Semester;
+    //     new_semester->Semester_Ord = stoi(input);
+
+    //     new_semester->start_date.day = stoi(StartDate_day_input);
+    //     new_semester->start_date.month = stoi(StartDate_month_input);
+    //     new_semester->start_date.year = stoi(StartDate_year_input);
+
+    //     new_semester->end_date.day = stoi(EndDate_day_input);
+    //     new_semester->end_date.month = stoi(EndDate_month_input);
+    //     new_semester->end_date.year = stoi(EndDate_year_input);
+
+
+    //     new_semester->course_head = nullptr;
+    //     new_semester->semester_next = nullptr;
+
+    //     //Add new semester at the end of semester list of corresponding year
+    //     if (!year_head->semester_head)
+    //         year_head->semester_head = new_semester;
+    //     else
+    //     {
+    //         Semester* temp_semester = year_head->semester_head;
+
+    //         while (temp_semester->semester_next)
+    //             temp_semester = temp_semester->semester_next;
+
+    //         temp_semester->semester_next = new_semester;
+    //     }
+    // }
+
+    // //Print semester list after changed out file txt corresponding with the semester
+    // string file_name = year_head->year_name + "_semester.txt";
+    // file_name = "../Txt_Csv/" + file_name;
+    // ofs.open(file_name);
+    // if (!ofs.is_open())
+    // {
+    //     cerr << "Error: Unable to open file for writing\n";
+    //     return;
+    // }
+
+    // Semester* temp_semester = year_head->semester_head;
+    // while (temp_semester->semester_next)
+    // {
+    //     ofs << temp_semester->Semester_Ord << "," << setw(2) << setfill('0') << temp_semester->start_date.day
+    //         << "/" << setw(2) << setfill('0') << temp_semester->start_date.month << "/" << setw(4) << setfill('0') 
+    //         << temp_semester->start_date.year << "," << setw(2) << setfill('0') << temp_semester->end_date.day
+    //         << "/" << setw(2) << setfill('0') << temp_semester->end_date.month << "/" << setw(4) << setfill('0') << temp_semester->end_date.year << "\n";
+
+    //     temp_semester = temp_semester->semester_next;
+    // }
+    // ofs << temp_semester->Semester_Ord << "," << setw(2) << setfill('0') << temp_semester->start_date.day
+    //     << "/" << setw(2) << setfill('0') << temp_semester->start_date.month << "/" << setw(4) << setfill('0') 
+    //     << temp_semester->start_date.year << "," << setw(2) << setfill('0') << temp_semester->end_date.day
+    //     << "/" << setw(2) << setfill('0') << temp_semester->end_date.month << "/" << setw(4) << setfill('0') << temp_semester->end_date.year;
+    // ofs.close();
+
+    // //Announce for user
+    // cout << "You created a new semester successfully!\n\n";
+
+    // //Create file including courses of created semester
+    // Semester* temp_semester1 = year_head->semester_head;
+
+    // while (temp_semester1->semester_next)
+    //     temp_semester1 = temp_semester1->semester_next;
+
+    // string name_file = year_head->year_name + "_semester" + (char)(temp_semester1->Semester_Ord + 48) + "_course.csv";
+    // name_file = "../Txt_Csv/" + name_file;
+    // ofs.open(name_file);
+    // if (!ofs.is_open())
+    // {
+    //     cerr << "Error: Unable to open file for writing\n";
+    //     return;
+    // }
+    // ofs.close();
+
+    // //Require user input 0 for returning back
+    // string option;
+    // cout << "Please type the number 0 for returning back: ";
+    // getline(cin, option);
+
+    // while (option != "0")
+    // {
+    //     cout << "The number is different from 0, please input again: ";
+    //     getline(cin, option);
+    // }
+
+    // system("cls");
+    // accessSchoolYear(username, year_head);
+
+    SetScreenBufferSize(1000,1000);
+    system("color E0");
+
+    gotoXY(48,2);
+    std::cout << "    ___ ____________   _____ ________  ________ _____ _____ ___________";
+    gotoXY(48,3);
+    std::cout << "   / _ \\|  _  \\  _  \\ /  ___|  ___|  \\/  |  ___/  ___|_   _|  ___| ___ \\";
+    gotoXY(48,4);
+    std::cout << "  / /_\\ \\ | | | | | | \\ `--.| |__ | .  . | |__ \\ `--.  | | | |__ | |_/ /";
+    gotoXY(48,5);
+    std::cout << "  |  _  | | | | | | |  `--. \\  __|| |\\/| |  __| `--. \\ | | |  __||    /";
+    gotoXY(48,6);
+    std::cout << "  | | | | |/ /| |/ /  /\\__/ / |___| |  | | |___/\\__/ / | | | |___| |\\ \\";
+    gotoXY(48,7);
+    std::cout << "  \\_| |_/___/ |___/   \\____/\\____/\\_|  |_|____/\\____/  \\_/ \\____/\\_| \\_|";
+
+    Create_A_Box_4(40,11,2,20,14,14,0,"SEMESTER","Select option");
+    gotoXY(58,12); std::cout << (char)(31);
+    Create_A_Box_2(74,11,2,20,14,14,0,"START DATE");
+    Create_A_Box_2(108,11,2,20,14,14,0,"END DATE");
+
+    Create_A_Box_1(9,11,2,20,14,14,0,"    RETURN BACK");
+    Create_A_Box_3(33,33,4,100);
+
+    gotoXY(35,34);
+    std::cout << "1. You must input a number from 1 to 3 because there are at most 3 semesters in a school year";
+    gotoXY(35,36);
+    std::cout << "2. Don't input an available semester in your chosen school year!";
+
+    int x_temp = 40; int y_temp = 11; int semester_ord = 0; int countinfo = 0;
+    std::string startday = ""; std::string startmonth; std::string startyear = "";
+    std::string endday = ""; std::string endmonth; std::string endyear = "";
+
+    bool flag = true;
+    while (countinfo < 4)
+    {
+        if (countinfo == 3)
+        {
+            gotoXY(79,12);
+            std::cout << std::setw(2) << std::setfill('0') << std::stoi(startday) << "/" << std::setw(2) << std::setfill('0') << std::stoi(startmonth) << "/" << std::stoi(startyear);
+
+            gotoXY(50,12);
+            std::cout << semester_ord;
+
+            gotoXY(113,12);
+            std::cout << std::setw(2) << std::setfill('0') << std::stoi(endday) << "/" << std::setw(2) << std::setfill('0') << std::stoi(endmonth) << "/" << std::stoi(endyear);
+
+            gotoXY(73,15);
+            std::cout << "Confirm your information?";
+            Create_A_Box_1(79,16,2,10,14,14,0,"   YES");
+            Create_A_Box_1(79,20,2,10,14,14,0,"   NO");
+
+            int x_cur = 79; int y_cur = 16;
+            bool tempflag = true;
+            while (true)
             {
-                if (!checkMonthOfDate(EndDate_month_input))
+                if (tempflag == true)
                 {
-                    cout << "Your input month included at least 1 letter which is different from numbers, please input again: \n";
-                    cout << "Month: ";
-                    getline(cin, EndDate_month_input);
-
-                    if (EndDate_month_input == "0")
+                    if (y_cur == 16)
                     {
-                        system ("cls");
-                        accessSchoolYear(username, year_head);
-                        return;
+                        system("color E0");
+                        SetColor1(15,0);
+                        for (int i = x_cur + 1; i <= x_cur + 9; ++i)
+                        {
+                            gotoXY(i, y_cur + 1);
+                            std::cout << " ";
+                        }
+
+                        gotoXY(x_cur + 1, y_cur + 1);
+                        std::cout << "   YES";
+                        ShowConsoleCursor(false);
                     }
+                    else
+                    {
+                        system("color E0");
+                        SetColor1(15,0);
+                        for (int i = x_cur + 1; i <= x_cur + 9; ++i)
+                        {
+                            gotoXY(i, y_cur + 1);
+                            std::cout << " ";
+                        }
+
+                        gotoXY(x_cur + 1, y_cur + 1);
+                        std::cout << "   NO";
+                        ShowConsoleCursor(false);
+                    }
+
+                    tempflag = false;
                 }
                 else
                 {
-                    cout << "The value of month must be in range of 1 to 12, please input again: \n";
-                    cout << "Month: ";
-                    getline(cin, EndDate_month_input);
-
-                    if (EndDate_month_input == "0")
+                    if (_kbhit())//keyboardhit
                     {
-                        system ("cls");
-                        accessSchoolYear(username, year_head);
-                        return;
+                        char c = _getch();
+
+                        system("color E0");
+                        if (y_cur == 16)
+                        {
+                            system("color E0");
+                            SetColor1(14,0);
+                            for (int i = x_cur + 1; i <= x_cur + 9; ++i)
+                            {
+                                gotoXY(i, y_cur + 1);
+                                std::cout << " ";
+                            }
+
+                            gotoXY(x_cur + 1, y_cur + 1);
+                            std::cout << "   YES";
+                            ShowConsoleCursor(false);
+                        }
+                        else
+                        {
+                            system("color E0");
+                            SetColor1(14,0);
+                            for (int i = x_cur + 1; i <= x_cur + 9; ++i)
+                            {
+                                gotoXY(i, y_cur + 1);
+                                std::cout << " ";
+                            }
+
+                            gotoXY(x_cur + 1, y_cur + 1);
+                            std::cout << "   NO";
+                            ShowConsoleCursor(false);
+                        }
+
+                        tempflag = true;
+
+                        if (c == UP)
+                        {
+                            if (y_cur == 16)
+                                y_cur = 20;
+                            else
+                                y_cur -= 4;
+                        }
+                        else if (c == DOWN)
+                        {
+                            if (y_cur == 20)
+                                y_cur = 16;
+                            else
+                                y_cur += 4;
+                        }
+                        else if (c == ENTER)
+                        {
+                            if (y_cur == 20)
+                            {
+                                countinfo = 0;
+                                startday = ""; startmonth; startyear = "";
+                                endday = ""; endmonth; endyear = "";
+                                semester_ord = 0;
+
+                                SetColor1(14,0);
+                                for (int i = 75; i <= 93; ++i)
+                                {
+                                    gotoXY(i, 12);
+                                    std::cout << " ";
+                                }
+                                for (int i = 41; i <= 59; ++i)
+                                {
+                                    gotoXY(i, 12);
+                                    std::cout << " ";
+                                }
+                                for (int i = 109; i <= 127; ++i)
+                                {
+                                    gotoXY(i, 12);
+                                    std::cout << " ";
+                                }
+
+                                for (int i = 70; i <= 100; ++i)
+                                {
+                                    for (int j = 15; j <= 22; ++j)
+                                    {
+                                        gotoXY(i,j);
+                                        std::cout << " ";
+                                    }
+                                }
+
+                                gotoXY(41,12);
+                                std::cout << "Select option";
+                                gotoXY(58,12);
+                                std::cout << (char)(31);
+
+                                break;
+                            }
+                            else
+                            {
+                                if (!checkExistingSemester(year_head->semester_head, semester_ord))
+                                {
+                                    system("cls");
+
+                                    Create_A_Box_1(65,27,2,40,14,14,0,"");
+                                    gotoXY(67,28);
+                                    std::cout << "  Your inputed semester was existed!";
+                                    ShowConsoleCursor(false);
+
+                                    addNewSemester(username, year_head);
+                                    return;
+                                }
+                                else if (std::stoi(startmonth) <= 0 || std::stoi(startmonth) > 12 || !checkInvalidDayOfDate(std::stoi(startyear), std::stoi(startmonth),std::stoi(startday))
+                                        || std::stoi(endmonth) <= 0 || std::stoi(endmonth) > 12 || !checkInvalidDayOfDate(std::stoi(endyear), std::stoi(endmonth),std::stoi(endday)))
+                                {
+                                    system("cls");
+
+                                    Create_A_Box_1(55,27,2,60,14,14,0,"");
+                                    gotoXY(57,28);
+                                    std::cout << "   Your inputed start date or end date is not existed";
+                                    ShowConsoleCursor(false);
+                                    
+                                    addNewSemester(username, year_head);
+                                    return;
+                                }
+
+                                //Create new semester
+                                Semester* new_semester = new Semester;
+                                new_semester->Semester_Ord = semester_ord;
+
+                                new_semester->start_date.day = stoi(startday);
+                                new_semester->start_date.month = stoi(startmonth);
+                                new_semester->start_date.year = stoi(startyear);
+
+                                new_semester->end_date.day = stoi(endday);
+                                new_semester->end_date.month = stoi(endmonth);
+                                new_semester->end_date.year = stoi(endyear);
+
+
+                                new_semester->course_head = nullptr;
+                                new_semester->semester_next = nullptr;
+
+                                //Add new semester at the end of semester list of corresponding year
+                                if (!year_head->semester_head)
+                                    year_head->semester_head = new_semester;
+                                else
+                                {
+                                    Semester* temp_semester = year_head->semester_head;
+
+                                    while (temp_semester->semester_next)
+                                        temp_semester = temp_semester->semester_next;
+
+                                    temp_semester->semester_next = new_semester;
+                                }
+
+                                std::ofstream ofs;    
+                                //Print semester list after changed out file txt corresponding with the semester
+                                string file_name = year_head->year_name + "_semester.txt";
+                                file_name = "../Txt_Csv/" + file_name;
+                                ofs.open(file_name);
+                                if (!ofs.is_open())
+                                {
+                                    cerr << "Error: Unable to open file for writing\n";
+                                    return;
+                                }
+
+                                Semester* temp_semester = year_head->semester_head;
+                                while (temp_semester->semester_next)
+                                {
+                                    ofs << temp_semester->Semester_Ord << "," << setw(2) << setfill('0') << temp_semester->start_date.day
+                                        << "/" << setw(2) << setfill('0') << temp_semester->start_date.month << "/" << setw(4) << setfill('0') 
+                                        << temp_semester->start_date.year << "," << setw(2) << setfill('0') << temp_semester->end_date.day
+                                        << "/" << setw(2) << setfill('0') << temp_semester->end_date.month << "/" << setw(4) << setfill('0') << temp_semester->end_date.year << "\n";
+
+                                    temp_semester = temp_semester->semester_next;
+                                }
+                                ofs << temp_semester->Semester_Ord << "," << setw(2) << setfill('0') << temp_semester->start_date.day
+                                    << "/" << setw(2) << setfill('0') << temp_semester->start_date.month << "/" << setw(4) << setfill('0') 
+                                    << temp_semester->start_date.year << "," << setw(2) << setfill('0') << temp_semester->end_date.day
+                                    << "/" << setw(2) << setfill('0') << temp_semester->end_date.month << "/" << setw(4) << setfill('0') << temp_semester->end_date.year;
+                                ofs.close();
+
+                                //Announce for user
+                                cout << "You created a new semester successfully!\n\n";
+
+                                //Create file including courses of created semester
+                                Semester* temp_semester1 = year_head->semester_head;
+
+                                while (temp_semester1->semester_next)
+                                    temp_semester1 = temp_semester1->semester_next;
+
+                                string name_file = year_head->year_name + "_semester" + (char)(temp_semester1->Semester_Ord + 48) + "_course.csv";
+                                name_file = "../Txt_Csv/" + name_file;
+                                ofs.open(name_file);
+                                if (!ofs.is_open())
+                                {
+                                    cerr << "Error: Unable to open file for writing\n";
+                                    return;
+                                }
+                                ofs.close();
+
+                                system ("cls");
+                                accessSchoolYear(username, year_head);
+                                return;
+                            }
+                        }
                     }
                 }
             }
 
-            cout << "Day: ";
-            getline(cin, EndDate_day_input);
-
-            if (EndDate_day_input == "0")
-            {
-                system ("cls");
-                accessSchoolYear(username, year_head);
-                return;
-            }  
-
-            while (!checkDayOfDate(EndDate_day_input) || !checkInvalidDayOfDate(stoi(EndDate_year_input), stoi(EndDate_month_input), EndDate_day_input))
-            {
-                if (!checkDayOfDate(EndDate_day_input))
-                {
-                    cout << "Your input day included at least 1 letter which is different from numbers, please input again: \n";
-                    cout << "Day: ";
-                    getline(cin, EndDate_day_input);
-
-                    if (EndDate_day_input == "0")
-                    {
-                        system ("cls");
-                        accessSchoolYear(username, year_head);
-                        return;
-                    } 
-                }
-                else
-                {
-                    cout << "Your inputed month does not include this day, please input again: \n";
-                    cout << "Day: ";
-                    getline(cin, EndDate_day_input);
-
-                    if (EndDate_day_input == "0")
-                    {
-                        system ("cls");
-                        accessSchoolYear(username, year_head);
-                        return;
-                    } 
-                }
-            }
+            ShowConsoleCursor(false);
         }
 
-        //Create new semester
-        Semester* new_semester = new Semester;
-        new_semester->Semester_Ord = stoi(input);
+        if (flag == true)
+        {
+            if (x_temp == 9)
+            {
+                system("color E0");
+                SetColor1(15,0);
+                for (int i = x_temp + 1; i <= x_temp + 19; ++i)
+                {
+                    gotoXY(i, y_temp + 1);
+                    std::cout << " ";
+                }
 
-        new_semester->start_date.day = stoi(StartDate_day_input);
-        new_semester->start_date.month = stoi(StartDate_month_input);
-        new_semester->start_date.year = stoi(StartDate_year_input);
+                gotoXY(x_temp + 1, y_temp + 1);
+                std::cout << "    RETURN BACK";
+                ShowConsoleCursor(false);
+            }
+            else if (x_temp == 40)
+            {
+                system("color E0");
+                SetColor1(15,0);
+                for (int i = x_temp + 1; i <= x_temp + 19; ++i)
+                {
+                    gotoXY(i, y_temp + 1);
+                    std::cout << " ";
+                }
 
-        new_semester->end_date.day = stoi(EndDate_day_input);
-        new_semester->end_date.month = stoi(EndDate_month_input);
-        new_semester->end_date.year = stoi(EndDate_year_input);
+                if (semester_ord == 0)
+                {
+                    gotoXY(x_temp + 1, y_temp + 1);
+                    std::cout << "Select option";
+                    gotoXY(58,12); std::cout << (char)(31);
+                }
+                else
+                {
+                    gotoXY(50,12);
+                    std::cout << semester_ord;
+                }
+                ShowConsoleCursor(false);
+            }
+            else if (x_temp == 74)
+            {
+                system("color E0");
+                SetColor1(15,0);
+                for (int i = x_temp + 1; i <= x_temp + 19; ++i)
+                {
+                    gotoXY(i, y_temp + 1);
+                    std::cout << " ";
+                }
 
+                if (startday != "")
+                {
+                    gotoXY(79,12);
+                    std::cout << std::setw(2) << std::setfill('0') << std::stoi(startday) << "/" << std::setw(2) << std::setfill('0') << std::stoi(startmonth) << "/" << std::stoi(startyear);
+                }
 
-        new_semester->course_head = nullptr;
-        new_semester->semester_next = nullptr;
+                ShowConsoleCursor(false);
+            }
+            else
+            {
+                system("color E0");
+                SetColor1(15,0);
+                for (int i = x_temp + 1; i <= x_temp + 19; ++i)
+                {
+                    gotoXY(i, y_temp + 1);
+                    std::cout << " ";
+                }
 
-        //Add new semester at the end of semester list of corresponding year
-        if (!year_head->semester_head)
-            year_head->semester_head = new_semester;
+                if (endday != "")
+                {
+                    gotoXY(113,12);
+                    std::cout << std::setw(2) << std::setfill('0') << std::stoi(endday) << "/" << std::setw(2) << std::setfill('0') << std::stoi(endmonth) << "/" << std::stoi(endyear);
+                }
+
+                ShowConsoleCursor(false);
+            }
+
+            flag = false;
+        }
         else
         {
-            Semester* temp_semester = year_head->semester_head;
+            if (_kbhit())//keyboardhit
+            {
+                char c = _getch();
 
-            while (temp_semester->semester_next)
-                temp_semester = temp_semester->semester_next;
+                system("color E0");
+                if (x_temp == 9)
+                {
+                    system("color E0");
+                    SetColor1(14,0);
+                    for (int i = x_temp + 1; i <= x_temp + 19; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
 
-            temp_semester->semester_next = new_semester;
+                    gotoXY(x_temp + 1, y_temp + 1);
+                    std::cout << "    RETURN BACK";
+                    ShowConsoleCursor(false);
+                }
+                else if (x_temp == 40)
+                {
+                    system("color E0");
+                    SetColor1(14,0);
+                    for (int i = x_temp + 1; i <= x_temp + 19; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
+
+                    if (semester_ord == 0)
+                    {
+                        gotoXY(x_temp + 1, y_temp + 1);
+                        std::cout << "Select option";
+                        gotoXY(58,12); std::cout << (char)(31);
+                    }
+                    else
+                    {
+                        gotoXY(50,12);
+                        std::cout << semester_ord;
+                    }
+                    ShowConsoleCursor(false);
+                }
+                else if (x_temp == 74)
+                {
+                    system("color E0");
+                    SetColor1(14,0);
+                    for (int i = x_temp + 1; i <= x_temp + 19; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
+
+                    if (startday != "")
+                    {
+                        gotoXY(79,12);
+                        std::cout << std::setw(2) << std::setfill('0') << std::stoi(startday) << "/" << std::setw(2) << std::setfill('0') << std::stoi(startmonth) << "/" << std::stoi(startyear);
+                    }
+
+                    ShowConsoleCursor(false);
+                }
+                else
+                {
+                    system("color E0");
+                    SetColor1(14,0);
+                    for (int i = x_temp + 1; i <= x_temp + 19; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
+
+                    if (endday != "")
+                    {
+                        gotoXY(113,12);
+                        std::cout << std::setw(2) << std::setfill('0') << std::stoi(endday) << "/" << std::setw(2) << std::setfill('0') << std::stoi(endmonth) << "/" << std::stoi(endyear);
+                    }
+
+                    ShowConsoleCursor(false);
+                }
+
+                flag = true;
+
+                if (c == LEFT)
+                {
+                    if (x_temp == 9)
+                        x_temp = 108;
+                    else if (x_temp == 40)
+                        x_temp = 9;
+                    else
+                        x_temp -= 34;
+                }
+                else if (c == RIGHT)
+                {
+                    if (x_temp == 108)
+                        x_temp = 9;
+                    else if (x_temp == 9)
+                        x_temp = 40;
+                    else
+                        x_temp += 34;
+                }
+                else if (c == ENTER)
+                {
+                    if (x_temp == 9)
+                    {
+                        system ("cls");
+                        accessSchoolYear(username, year_head);
+                        return;
+                    }
+                    else if (x_temp == 40)
+                    {
+                        if (semester_ord != 0)
+                            countinfo--;
+
+                        Create_A_Box_1(45,15,2,10,14,14,0,"    1");
+                        Create_A_Box_1(45,19,2,10,14,14,0,"    2");
+                        Create_A_Box_1(45,23,2,10,14,14,0,"    3");
+
+                        system("color E0");
+                        SetColor1(15,0);
+                        for (int i = 46; i <= 54; ++i)
+                        {
+                            gotoXY(i, 16);
+                            std::cout << " ";
+                        }
+                        ShowConsoleCursor(false);
+
+                        int x_cur = 45; int y_cur = 15;
+                        bool flag = true;
+                        while (true)
+                        {
+                            if (flag == true)
+                            {
+                                if (y_cur == 15)
+                                {
+                                    system("color E0");
+                                    SetColor1(15,0);
+                                    for (int i = x_cur + 1; i <= x_cur + 9; ++i)
+                                    {
+                                        gotoXY(i, y_cur + 1);
+                                        std::cout << " ";
+                                    }
+
+                                    gotoXY(x_cur + 1, y_cur + 1);
+                                    std::cout << "    1";
+                                    ShowConsoleCursor(false);
+                                }
+                                else if (y_cur == 19)
+                                {
+                                    system("color E0");
+                                    SetColor1(15,0);
+                                    for (int i = x_cur + 1; i <= x_cur + 9; ++i)
+                                    {
+                                        gotoXY(i, y_cur + 1);
+                                        std::cout << " ";
+                                    }
+
+                                    gotoXY(x_cur + 1, y_cur + 1);
+                                    std::cout << "    2";
+                                    ShowConsoleCursor(false);
+                                }
+                                else
+                                {
+                                    system("color E0");
+                                    SetColor1(15,0);
+                                    for (int i = x_cur + 1; i <= x_cur + 9; ++i)
+                                    {
+                                        gotoXY(i, y_cur + 1);
+                                        std::cout << " ";
+                                    }
+
+                                    gotoXY(x_cur + 1, y_cur + 1);
+                                    std::cout << "    3";
+                                    ShowConsoleCursor(false);
+                                }
+
+                                flag = false;
+                            }
+                            else
+                            {
+                                if (_kbhit())//keyboardhit
+                                {
+                                    char c = _getch();
+
+                                    system("color E0");
+                                    if (y_cur == 15)
+                                    {
+                                        system("color E0");
+                                        SetColor1(14,0);
+                                        for (int i = x_cur + 1; i <= x_cur + 9; ++i)
+                                        {
+                                            gotoXY(i, y_cur + 1);
+                                            std::cout << " ";
+                                        }
+
+                                        gotoXY(x_cur + 1, y_cur + 1);
+                                        std::cout << "    1";
+                                        ShowConsoleCursor(false);
+                                    }
+                                    else if (y_cur == 19)
+                                    {
+                                        system("color E0");
+                                        SetColor1(14,0);
+                                        for (int i = x_cur + 1; i <= x_cur + 9; ++i)
+                                        {
+                                            gotoXY(i, y_cur + 1);
+                                            std::cout << " ";
+                                        }
+
+                                        gotoXY(x_cur + 1, y_cur + 1);
+                                        std::cout << "    2";
+                                        ShowConsoleCursor(false);
+                                    }
+                                    else
+                                    {
+                                        system("color E0");
+                                        SetColor1(14,0);
+                                        for (int i = x_cur + 1; i <= x_cur + 9; ++i)
+                                        {
+                                            gotoXY(i, y_cur + 1);
+                                            std::cout << " ";
+                                        }
+
+                                        gotoXY(x_cur + 1, y_cur + 1);
+                                        std::cout << "    3";
+                                        ShowConsoleCursor(false);
+                                    }
+
+                                    flag = true;
+
+                                    if (c == UP)
+                                    {
+                                        if (y_cur == 15)
+                                            y_cur = 23;
+                                        else
+                                            y_cur -= 4;
+                                    }
+                                    else if (c == DOWN)
+                                    {
+                                        if (y_cur == 23)
+                                            y_cur = 15;
+                                        else
+                                            y_cur += 4;
+                                    }
+                                    else if (c == ENTER)
+                                    {
+                                        system("color E0");
+                                        SetColor1(14,0);
+                                        for (int i = 45; i <= 55; ++i)
+                                        {
+                                            for (int j = 15; j <= 25; ++j)
+                                            {
+                                                gotoXY(i,j);
+                                                std::cout << " ";
+                                            }
+                                        }
+
+                                        SetColor1(15,0);
+                                        for (int i = 41; i <= 59; ++i)
+                                        {
+                                            gotoXY(i,12);
+                                            std::cout << " ";
+                                        }
+
+                                        gotoXY(50,12);
+                                        std::cout << (y_cur - 15)/4 + 1;
+                                        semester_ord = (y_cur - 15)/4 + 1;
+
+                                        ShowConsoleCursor(false);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+
+                        if (semester_ord != 0)
+                            countinfo++;
+                    }
+                    else if (x_temp == 74)
+                    {
+                        if (startday != "")
+                            countinfo--;
+
+                        Create_A_Box_2(78,15,2,12,14,14,0,"DAY");
+                        Create_A_Box_2(78,19,2,12,14,14,0,"MONTH");
+                        Create_A_Box_2(78,23,2,12,14,14,0,"YEAR");
+
+                        std::string day = ""; std::string month = ""; std::string year = ""; int count = 0;
+
+                        int x_cur = 78; int y_cur = 15; int y_old; int xp = x_cur; int yp = y_cur; int pos_day = 0; int pos_month = 0; int pos_year = 0;
+                        while (count < 3)
+                        {
+                            system("color E0");
+
+                            if (y_cur == 15)
+                            {
+                                gotoXY(xp + 5, yp + 1);
+                                ShowConsoleCursor(true);
+
+                                char c;
+                                while (true)
+                                {
+                                    c = _getch();
+
+                                    if (c == ENTER)
+                                    {
+                                        if (day != "")
+                                            count++;
+
+                                        if (month == "")
+                                            y_cur = 19;
+                                        else if (year == "")
+                                            y_cur = 23;
+
+                                        xp = 78;
+                                        yp = y_cur;
+                                        break;
+                                    }
+                                    else if (c == BACKSPACE)
+                                    {
+                                        if (day != "" && pos_day > 0)
+                                        {
+                                            std::cout << "\b \b";
+                                            day.pop_back();
+                                        }
+                                    }
+                                    else if (c == LEFT)
+                                    {
+                                        if (pos_day > 0)
+                                        {
+                                            pos_day--;
+                                            gotoXY(x_cur + pos_day + 2, y_cur + 1);
+                                        }
+
+                                        continue;
+                                    }
+                                    else if (c == RIGHT)
+                                    {
+                                        int len = day.size();
+
+                                        if (pos_day < len)
+                                        {
+                                            pos_day++;
+                                            gotoXY(x_cur + pos_day + 2, y_cur + 1);
+                                        }
+
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        int len = day.size();
+
+                                        if (c >= 48 && c <= 57 && len < 2)
+                                        {
+                                            pos_day++;
+                                            day += c;
+                                            std::cout << c;
+                                        }
+                                    }
+                                }
+                            }
+                            else if (y_cur == 19)
+                            {
+                                gotoXY(xp + 5, yp + 1);
+                                ShowConsoleCursor(true);
+
+                                char c;
+                                while (true)
+                                {
+                                    c = _getch();
+
+                                    if (c == ENTER)
+                                    {
+                                        if (month != "")
+                                            count++;
+
+                                        if (day == "")
+                                            y_cur = 15;
+                                        else if (year == "")
+                                            y_cur = 23;
+
+                                        xp = 78;
+                                        yp = y_cur;
+                                        break;
+                                    }
+                                    else if (c == BACKSPACE)
+                                    {
+                                        if (month != "" && pos_month > 0)
+                                        {
+                                            std::cout << "\b \b";
+                                            month.pop_back();
+                                        }
+                                    }
+                                    else if (c == LEFT)
+                                    {
+                                        if (pos_month > 0)
+                                        {
+                                            pos_month--;
+                                            gotoXY(x_cur + pos_month + 2, y_cur + 1);
+                                        }
+
+                                        continue;
+                                    }
+                                    else if (c == RIGHT)
+                                    {
+                                        int len = month.size();
+
+                                        if (pos_month < len)
+                                        {
+                                            pos_month++;
+                                            gotoXY(x_cur + pos_month + 2, y_cur + 1);
+                                        }
+
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        int len = month.size();
+
+                                        if (c >= 48 && c <= 57 && len < 2)
+                                        {
+                                            pos_month++;
+                                            month += c;
+                                            std::cout << c;
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                gotoXY(xp + 4, yp + 1);
+                                ShowConsoleCursor(true);
+
+                                char c;
+                                while (true)
+                                {
+                                    c = _getch();
+
+                                    if (c == ENTER)
+                                    {
+                                        if (year != "")
+                                            count++;
+
+                                        if (day == "")
+                                            y_cur = 15;
+                                        else if (month == "")
+                                            y_cur = 19;
+
+                                        xp = 78;
+                                        yp = y_cur;
+                                        break;
+                                    }
+                                    else if (c == BACKSPACE)
+                                    {
+                                        if (year != "" && pos_year > 0)
+                                        {
+                                            std::cout << "\b \b";
+                                            year.pop_back();
+                                        }
+                                    }
+                                    else if (c == LEFT)
+                                    {
+                                        if (pos_year > 0)
+                                        {
+                                            pos_year--;
+                                            gotoXY(x_cur + pos_year + 2, y_cur + 1);
+                                        }
+
+                                        continue;
+                                    }
+                                    else if (c == RIGHT)
+                                    {
+                                        int len = year.size();
+
+                                        if (pos_year < len)
+                                        {
+                                            pos_year++;
+                                            gotoXY(x_cur + pos_year + 2, y_cur + 1);
+                                        }
+
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        int len = year.size();
+
+                                        if (c >= 48 && c <= 57 && len < 4)
+                                        {
+                                            pos_year++;
+                                            year += c;
+                                            std::cout << c;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        startday = day; startmonth = month; startyear = year;
+                        for (int i = 78; i <= 90; ++i)
+                        {
+                            for (int j = 14; j <= 25; ++j)
+                            {
+                                gotoXY(i,j);
+                                std::cout << " ";
+                            }
+                        }
+
+                        if (startday != "")
+                            countinfo++;
+
+                        ShowConsoleCursor(false);
+                    }
+                    else
+                    {
+                        if (endday != "")
+                            countinfo--;
+
+                        Create_A_Box_2(112,15,2,12,14,14,0,"DAY");
+                        Create_A_Box_2(112,19,2,12,14,14,0,"MONTH");
+                        Create_A_Box_2(112,23,2,12,14,14,0,"YEAR");
+
+                        std::string day = ""; std::string month = ""; std::string year = ""; int count = 0;
+
+                        int x_cur = 112; int y_cur = 15; int y_old; int xp = x_cur; int yp = y_cur; int pos_day = 0; int pos_month = 0; int pos_year = 0;
+                        while (count < 3)
+                        {
+                            system("color E0");
+
+                            if (y_cur == 15)
+                            {
+                                gotoXY(xp + 5, yp + 1);
+                                ShowConsoleCursor(true);
+
+                                char c;
+                                while (true)
+                                {
+                                    c = _getch();
+
+                                    if (c == ENTER)
+                                    {
+                                        if (day != "")
+                                            count++;
+
+                                        if (month == "")
+                                            y_cur = 19;
+                                        else if (year == "")
+                                            y_cur = 23;
+
+                                        xp = 112;
+                                        yp = y_cur;
+                                        break;
+                                    }
+                                    else if (c == BACKSPACE)
+                                    {
+                                        if (day != "" && pos_day > 0)
+                                        {
+                                            std::cout << "\b \b";
+                                            day.pop_back();
+                                        }
+                                    }
+                                    else if (c == LEFT)
+                                    {
+                                        if (pos_day > 0)
+                                        {
+                                            pos_day--;
+                                            gotoXY(x_cur + pos_day + 2, y_cur + 1);
+                                        }
+
+                                        continue;
+                                    }
+                                    else if (c == RIGHT)
+                                    {
+                                        int len = day.size();
+
+                                        if (pos_day < len)
+                                        {
+                                            pos_day++;
+                                            gotoXY(x_cur + pos_day + 2, y_cur + 1);
+                                        }
+
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        int len = day.size();
+
+                                        if (c >= 48 && c <= 57 && len < 2)
+                                        {
+                                            pos_day++;
+                                            day += c;
+                                            std::cout << c;
+                                        }
+                                    }
+                                }
+                            }
+                            else if (y_cur == 19)
+                            {
+                                gotoXY(xp + 5, yp + 1);
+                                ShowConsoleCursor(true);
+
+                                char c;
+                                while (true)
+                                {
+                                    c = _getch();
+
+                                    if (c == ENTER)
+                                    {
+                                        if (month != "")
+                                            count++;
+
+                                        if (day == "")
+                                            y_cur = 15;
+                                        else if (year == "")
+                                            y_cur = 23;
+
+                                        xp = 112;
+                                        yp = y_cur;
+                                        break;
+                                    }
+                                    else if (c == BACKSPACE)
+                                    {
+                                        if (month != "" && pos_month > 0)
+                                        {
+                                            std::cout << "\b \b";
+                                            month.pop_back();
+                                        }
+                                    }
+                                    else if (c == LEFT)
+                                    {
+                                        if (pos_month > 0)
+                                        {
+                                            pos_month--;
+                                            gotoXY(x_cur + pos_month + 2, y_cur + 1);
+                                        }
+
+                                        continue;
+                                    }
+                                    else if (c == RIGHT)
+                                    {
+                                        int len = month.size();
+
+                                        if (pos_month < len)
+                                        {
+                                            pos_month++;
+                                            gotoXY(x_cur + pos_month + 2, y_cur + 1);
+                                        }
+
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        int len = month.size();
+
+                                        if (c >= 48 && c <= 57 && len < 2)
+                                        {
+                                            pos_month++;
+                                            month += c;
+                                            std::cout << c;
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                gotoXY(xp + 4, yp + 1);
+                                ShowConsoleCursor(true);
+
+                                char c;
+                                while (true)
+                                {
+                                    c = _getch();
+
+                                    if (c == ENTER)
+                                    {
+                                        if (year != "")
+                                            count++;
+
+                                        if (day == "")
+                                            y_cur = 15;
+                                        else if (month == "")
+                                            y_cur = 19;
+
+                                        xp = 112;
+                                        yp = y_cur;
+                                        break;
+                                    }
+                                    else if (c == BACKSPACE)
+                                    {
+                                        if (year != "" && pos_year > 0)
+                                        {
+                                            std::cout << "\b \b";
+                                            year.pop_back();
+                                        }
+                                    }
+                                    else if (c == LEFT)
+                                    {
+                                        if (pos_year > 0)
+                                        {
+                                            pos_year--;
+                                            gotoXY(x_cur + pos_year + 2, y_cur + 1);
+                                        }
+
+                                        continue;
+                                    }
+                                    else if (c == RIGHT)
+                                    {
+                                        int len = year.size();
+
+                                        if (pos_year < len)
+                                        {
+                                            pos_year++;
+                                            gotoXY(x_cur + pos_year + 2, y_cur + 1);
+                                        }
+
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        int len = year.size();
+
+                                        if (c >= 48 && c <= 57 && len < 4)
+                                        {
+                                            pos_year++;
+                                            year += c;
+                                            std::cout << c;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        endday = day; endmonth = month; endyear = year;
+                        for (int i = 112; i <= 124; ++i)
+                        {
+                            for (int j = 14; j <= 25; ++j)
+                            {
+                                gotoXY(i,j);
+                                std::cout << " ";
+                            }
+                        }
+
+                        if (endday != "")
+                            countinfo++;
+
+                        ShowConsoleCursor(false);
+                    }
+                }
+            }
         }
     }
-
-    //Print semester list after changed out file txt corresponding with the semester
-    string file_name = year_head->year_name + "_semester.txt";
-    file_name = "../Txt_Csv/" + file_name;
-    ofs.open(file_name);
-    if (!ofs.is_open())
-    {
-        cerr << "Error: Unable to open file for writing\n";
-        return;
-    }
-
-    Semester* temp_semester = year_head->semester_head;
-    while (temp_semester->semester_next)
-    {
-        ofs << temp_semester->Semester_Ord << "," << setw(2) << setfill('0') << temp_semester->start_date.day
-            << "/" << setw(2) << setfill('0') << temp_semester->start_date.month << "/" << setw(4) << setfill('0') 
-            << temp_semester->start_date.year << "," << setw(2) << setfill('0') << temp_semester->end_date.day
-            << "/" << setw(2) << setfill('0') << temp_semester->end_date.month << "/" << setw(4) << setfill('0') << temp_semester->end_date.year << "\n";
-
-        temp_semester = temp_semester->semester_next;
-    }
-    ofs << temp_semester->Semester_Ord << "," << setw(2) << setfill('0') << temp_semester->start_date.day
-        << "/" << setw(2) << setfill('0') << temp_semester->start_date.month << "/" << setw(4) << setfill('0') 
-        << temp_semester->start_date.year << "," << setw(2) << setfill('0') << temp_semester->end_date.day
-        << "/" << setw(2) << setfill('0') << temp_semester->end_date.month << "/" << setw(4) << setfill('0') << temp_semester->end_date.year;
-    ofs.close();
-
-    //Announce for user
-    cout << "You created a new semester successfully!\n\n";
-
-    //Create file including courses of created semester
-    Semester* temp_semester1 = year_head->semester_head;
-
-    while (temp_semester1->semester_next)
-        temp_semester1 = temp_semester1->semester_next;
-
-    string name_file = year_head->year_name + "_semester" + (char)(temp_semester1->Semester_Ord + 48) + "_course.csv";
-    name_file = "../Txt_Csv/" + name_file;
-    ofs.open(name_file);
-    if (!ofs.is_open())
-    {
-        cerr << "Error: Unable to open file for writing\n";
-        return;
-    }
-    ofs.close();
-
-    //Require user input 0 for returning back
-    string option;
-    cout << "Please type the number 0 for returning back: ";
-    getline(cin, option);
-
-    while (option != "0")
-    {
-        cout << "The number is different from 0, please input again: ";
-        getline(cin, option);
-    }
-
-    system("cls");
-    accessSchoolYear(username, year_head);
+    ShowConsoleCursor(false);
 }

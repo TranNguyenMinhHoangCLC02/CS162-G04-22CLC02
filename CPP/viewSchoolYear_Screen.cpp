@@ -242,6 +242,7 @@ void viewSchoolYear_Screen(string username, Year* year_head)
                                 temp = temp->year_next;
                             }
 
+                            system("cls");
                             accessSchoolYear(username, temp);
                             return;
                         }

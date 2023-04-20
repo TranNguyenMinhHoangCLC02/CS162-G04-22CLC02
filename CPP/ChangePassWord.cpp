@@ -954,7 +954,7 @@ void changePass(string username, bool isStudent, int& opt)
                     }
                     else if (newpass == "")
                     {
-                        xp = 68 + oldpass.size();
+                        xp = 68 + newpass.size();
                         y_temp = 16;
                     }
                     yp = y_temp;

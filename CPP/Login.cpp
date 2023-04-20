@@ -482,7 +482,7 @@ void login(bool isStudent, string &username, bool &opt)
 
     // If the login is unsuccessful, display an error message and request the user to login again
     system("cls");
-    Create_A_Box_1(64,20,2,38,14,14,4,"     Incorrect login information!");
+    PlaySound(TEXT("Alert.wav"), NULL, SND_FILENAME | SND_ASYNC);
     ShowConsoleCursor(false);
 	login(isStudent, username, opt);
 }
