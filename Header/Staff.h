@@ -86,5 +86,7 @@ void viewScoreBoard_Course(string filename, string username, Year* &year_head, S
 void updateStudentsScore(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 void viewScoreBoard_Class(string username, Year *&year_head, Class *class_head);
 void update_scoreBoard(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
+string format_float(float value);
+void printStudentInfo(int counter, string student_id, string fullname, float midterm, float final1, float other, float total);
 
 #endif
