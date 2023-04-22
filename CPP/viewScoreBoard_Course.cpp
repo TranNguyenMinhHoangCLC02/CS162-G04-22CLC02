@@ -11,6 +11,7 @@ string format_float(float value)
 
 void printStudentInfo(int y, int counter, string student_id, string fullname, float midterm, float final1, float other, float total)
 {
+    system("pause");
     gotoXY(1, y + 10);
     Create_A_Box_1(1, y + 10, 2, 5, 14 , 14, 0, to_string(counter+1));
     gotoXY(1, y + 10); cout << (char)218;
@@ -32,11 +33,13 @@ void printStudentInfo(int y, int counter, string student_id, string fullname, fl
     Create_A_Box_1(109, y + 10, 2, 9, 14, 14, 0, format_float(total));
     gotoXY(109, y + 10); cout << (char)194;
     gotoXY(109, y + 12); cout << (char)193;
+    system("pause");
     return;
 }
 
 void viewScoreBoard_Course(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head)
 {
+    system("pause");
     system("cls");
     SetColor1(14, 0);
     gotoXY(24, 1); cout <<"   _____  _____  _____ ______  _____ ______  _____   ___  ______ ______";
@@ -45,6 +48,7 @@ void viewScoreBoard_Course(string filename, string username, Year* &year_head, S
     gotoXY(24, 4); cout <<"   `--. \\| |    | | | ||    / |  __| | ___ \\| | | ||  _  ||    / | | | |";
     gotoXY(24, 5); cout <<"  /\\__/ /| \\__/\\\\ \\_/ /| |\\ \\ | |___ | |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
     gotoXY(24, 6); cout <<"  \\____/  \\____/ \\___/ \\_| \\_|\\____/ \\____/  \\___/ \\_| |_/\\_| \\_||___/";
+    system("pause");
     gotoXY(24, 7); cout << "------------"<< course_head->course_name << "_" << year_head->year_name <<"--------------\n";
     Create_A_Box_1(1, 8, 2, 5, 14 , 14, 0, " No");
     gotoXY(1, 8); cout << (char)218;
@@ -66,13 +70,39 @@ void viewScoreBoard_Course(string filename, string username, Year* &year_head, S
     Create_A_Box_1(109, 8, 2, 9, 14, 14, 0, "  Total ");
     gotoXY(109, 8); cout << (char)194;
     gotoXY(109, 10); cout << (char)193;
+    system("pause");
     ifstream ifs;   
     ifs.open(filename);
     if (!ifs.is_open())
     {
-        cerr << "Error: Unable to open file for reading\n";
-        return ;
+        gotoXY(1, 11);
+        Create_A_Box_1(1, 11+10, 2, 14, 14, 14, 0, " RETURN BACK");
+        SetColor1(15,0);
+        for (int i = 1 + 1; i <= 14; ++i)
+        {
+            gotoXY(i, 11 + 11);
+            std::cout << " ";
+        }
+        gotoXY(1 + 1, 11 + 11);
+        std::cout << " RETURN BACK";
+        ShowConsoleCursor(false);
+        while (true)
+        {
+            if (_kbhit())
+            {
+                char c = _getch();
+                if (c == ENTER)
+                {
+                    break;
+                }
+            }
+        }
+        system("E0");
+        system("cls");
+        accessCourse(username, year_head, semester_head, course_head);
+        return;
     }
+    system("pause");
     string dummy;
     getline(ifs, dummy);
     int counter = 0;
