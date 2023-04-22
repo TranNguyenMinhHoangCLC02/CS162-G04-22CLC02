@@ -1,6 +1,6 @@
 #include "../Header/Staff.h"
 #include "../Header/Student.h"
-
+#include "../Header/Design.h"
 void addNewStudent(string username, Year* &year_head, Class* cur)
 {
     string filename = cur->class_name + "-" + year_head->year_name + ".txt";
@@ -25,20 +25,23 @@ void addNewStudent(string username, Year* &year_head, Class* cur)
         }
         temp = temp->student_next;
     }
-
-    string option;
-    cout << "Please type the number 0 for returning back: ";
-    cin >> option;
-    cin.ignore();
-    while (option != "0") 
+    ofs.close();
+    Create_A_Box_1(67,15 ,2,30,14,14,0,"          RETURN BACK");
+    while (true)
     {
-        cout << "The number is different from 0, please input again: ";
-        cin >> option;
-        cin.ignore();
-    }
-    if (option == "0") 
-    {
-        system ("cls");
-        accessClass(username, year_head, cur);
+        if (_kbhit())
+            {
+                char c = _getch();
+                system("color E0");
+                SetColor1(15,0);
+                gotoXY(68,15); 
+                std::cout << "          RETURN BACK";
+                if (c == 13)
+                {
+                    system("cls");
+                    accessClass(username, year_head, cur);
+                    return;
+                }
+            }
     }
 }
