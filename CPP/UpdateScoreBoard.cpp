@@ -1,28 +1,35 @@
 #include "../Header/Staff.h"
 #include "../Header/Student.h"
+#include "../Header/Design.h"
 
 void updateStudentsScore(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head)
 {
     system("cls");
-    cout << "------------"<< course_head->course_name <<"--------------\n";
+    gotoXY(24, 1); cout <<"    _    _ _____  _____       _______ ______    _____  _____ ____  _____  ______ ____   ____          _____  _____  ";
+    gotoXY(24, 2); cout <<"   | |  | |  __ \\|  __ \\   /\\|__   __|  ____|  / ____|/ ____/ __ \\|  __ \\|  ____|  _ \\ / __ \\   /\\   |  __ \\|  __ \\ ";
+    gotoXY(24, 3); cout <<"   | |  | | |__) | |  | | /  \\  | |  | |__    | (___ | |   | |  | | |__) | |__  | |_) | |  | | /  \\  | |__) | |  | |";
+    gotoXY(24, 4); cout <<"   | |  | |  ___/| |  | |/ /\\ \\ | |  |  __|    \\___ \\| |   | |  | |  _  /|  __| |  _ <| |  | |/ /\\ \\ |  _  /| |  | |";
+    gotoXY(24, 5); cout <<"   | |__| | |    | |__| / ____ \\| |  | |____   ____) | |___| |__| | | \\ \\| |____| |_) | |__| / ____ \\| | \\ \\| |__| |";
+    gotoXY(24, 6); cout <<"    \\____/|_|    |_____/_/    \\_\\_|  |______| |_____/ \\_____\\____/|_|  \\_\\______|____/ \\____/_/    \\_\\_|  \\_\\_____/ ";
+    gotoXY(30, 9); cout << "------------------------------"<< course_head->course_name <<"--------------------------\n";
     int option = 0;
     do
     {
         string id;
-        cout << "Input student ID: ";
+        gotoXY(30, 11); cout << "INPUT STUDENT ID: ";
         getline(cin, id);
         ifstream ifs;
         ifs.open(filename);
         if (!ifs.is_open())
         {
-            cerr << "Error: Unable to open file for reading\n";
+            cerr << "ERROR: UNABLE TO OPEN FILE FOR READING\n";
             return;
         }
         ofstream ofs;
         ofs.open("../Txt_Csv/temp.csv");
-        if (!ofs)
+        if (!ofs.is_open())
         {
-            cerr << "Error: Unable to open file for writing\n";
+            cerr << "ERROR: UNABLE TO OPEN FILE FOR WRITING\n";
             return;
         }
         int counter = 1;
