@@ -5,7 +5,7 @@ Year *year_head = nullptr;
 int main()
 {
     bool check;
-    PlaySoundA("BackgroundMusic.wav", NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
+    PlaySoundA("BackgroundMusic.wav", NULL, SND_FILENAME | SND_ASYNC | SND_LOOP | SND_NOSTOP);
     int option = firstScreen(check);
     if (check == false) //Out the program
     {
