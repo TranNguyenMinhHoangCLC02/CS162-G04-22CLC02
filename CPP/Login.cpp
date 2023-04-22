@@ -482,7 +482,6 @@ void login(bool isStudent, string &username, bool &opt)
 
     // If the login is unsuccessful, display an error message and request the user to login again
     system("cls");
-    PlaySound(TEXT("Alert.wav"), NULL, SND_FILENAME | SND_ASYNC);
     ShowConsoleCursor(false);
 	login(isStudent, username, opt);
 }
