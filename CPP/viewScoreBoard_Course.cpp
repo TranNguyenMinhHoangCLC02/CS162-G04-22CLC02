@@ -9,11 +9,8 @@ string format_float(float value)
     return ss.str();
 }
 
-void printStudentInfo(int counter, string student_id, string fullname, float midterm, float final1, float other, float total)
+void printStudentInfo(int y, int counter, string student_id, string fullname, float midterm, float final1, float other, float total)
 {
-    int y=1;
-    if (counter!=0)
-        y=4;
     gotoXY(1, y + 10);
     Create_A_Box_1(1, y + 10, 2, 5, 14 , 14, 0, to_string(counter+1));
     gotoXY(1, y + 10); cout << (char)218;
@@ -35,6 +32,7 @@ void printStudentInfo(int counter, string student_id, string fullname, float mid
     Create_A_Box_1(109, y + 10, 2, 9, 14, 14, 0, format_float(total));
     gotoXY(109, y + 10); cout << (char)194;
     gotoXY(109, y + 12); cout << (char)193;
+    return;
 }
 
 void viewScoreBoard_Course(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head)
@@ -81,6 +79,7 @@ void viewScoreBoard_Course(string filename, string username, Year* &year_head, S
     string student_id, fullname;
     float total, final1, midterm, other;
     string temp;
+    int y=1;
     while (!ifs.eof())
     {
         getline(ifs, student_id, ',');
@@ -93,18 +92,34 @@ void viewScoreBoard_Course(string filename, string username, Year* &year_head, S
         other = stof(temp);
         getline(ifs, temp, '\n');
         total = stof(temp);
-        printStudentInfo(counter, student_id, fullname, midterm, final1, other, total);
+        printStudentInfo(y ,counter, student_id, fullname, midterm, final1, other, total);
         counter++;
+        y=y+3;
     }
-    cout << "0. Return back" << "\nYour input is: ";
-    int opt = 1;
-    cin >> opt;
-
-    while (opt != 0)
+    ifs.close();
+    Create_A_Box_1(1, y+10, 2, 14, 14, 14, 0, " RETURN BACK");
+    SetColor1(15,0);
+    for (int i = 1 + 1; i <= 14; ++i)
     {
-        cout << "Please input again: ";
-        cin >> opt;
+        gotoXY(i, y + 11);
+        std::cout << " ";
     }
+    gotoXY(1 + 1, y + 11);
+    std::cout << " RETURN BACK";
+    ShowConsoleCursor(false);
+    while (true)
+    {
+        if (_kbhit())
+        {
+            char c = _getch();
+            if (c == ENTER)
+            {
+                break;
+            }
+        }
+    }
+    system("E0");
     system("cls");
     accessCourse(username, year_head, semester_head, course_head);
+    return;
 }
