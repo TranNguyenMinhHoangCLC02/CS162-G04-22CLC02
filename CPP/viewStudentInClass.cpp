@@ -48,18 +48,18 @@ void viewStudentInClass(string username, Year* &year_head, Class *class_head)
     while (true)
     {
         if (_kbhit())
+        {
+            char c = _getch();
+            system("color E0");
+            SetColor1(15,0);
+            gotoXY(68,15 + numStudents + 1); 
+            std::cout << "          RETURN BACK";
+            if (c == 13)
             {
-                char c = _getch();
-                system("color E0");
-                SetColor1(15,0);
-                gotoXY(68,15 + numStudents + 1); 
-                std::cout << "          RETURN BACK";
-                if (c == 13)
-                {
-                    system("cls");
-                    accessClass(username, year_head, class_head);
-                    return;
-                }
+                system("cls");
+                accessClass(username, year_head, class_head);
+                return;
             }
+        }
     }
 }

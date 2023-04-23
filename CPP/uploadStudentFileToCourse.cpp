@@ -1,20 +1,130 @@
 #include "../Header/Staff.h"
-
+#include "../Header/Design.h"
 void uploadStudentFileToCourse (string username, Year* year_head, Semester* semester_head, Course* course_head)
 {
-    cout << "(You can input 0 for returning back)" << "\n\n";
+    gotoXY(67,2); std::cout << "    _    _ _____  _      ____          _____    ______ _____ _      ______ ";
+    gotoXY(67,3); std::cout << "   | |  | |  __ \\| |    / __ \\   /\\   |  __ \\  |  ____|_   _| |    |  ____|";
+    gotoXY(67,4); std::cout << "   | |  | | |__) | |   | |  | | /  \\  | |  | | | |__    | | | |    | |__   ";
+    gotoXY(67,5); std::cout << "   | |  | |  ___/| |   | |  | |/ /\\ \\ | |  | | |  __|   | | | |    |  __|  ";
+    gotoXY(67,6); std::cout << "   | |__| | |    | |___| |__| / ____ \\| |__| | | |     _| |_| |____| |____ ";
+    gotoXY(67,7); std::cout << "    \\____/|_|    |______\\____/_/    \\_\\_____/  |_|    |_____|______|______|";
 
     string file_name;
     cin.ignore();
-    cout << "Name of file for uploading: ";
-    getline(cin, file_name);
+    Create_A_Box_2(70,10,2,60,14,14,0,"ENTER FILE NAME:  ");
+    Create_A_Box_1(40,20,2,20,14,14,0,"    RETURN BACK");
+    ShowConsoleCursor(false);
 
-    if (file_name == "0")
+    int x_temp = 70; int y_temp = 10; int y_old; int xp = x_temp; int yp = y_temp; int pos_user = 0; int pos_pass = 0;
+    int count = 0;
+    while (count < 1)
     {
-        system("cls");
-        accessCourse(username, year_head, semester_head, course_head);
-        return;
+        system("color E0");
+
+        if (y_temp == 10)
+        {
+            gotoXY(xp + 2, yp + 1);
+            ShowConsoleCursor(true);
+
+            char c;
+            while (true)
+            {
+                c = _getch();
+
+                if (c == ENTER)
+                {
+                    if (file_name != "")
+                        count++;
+                    xp = 68;
+                    yp = y_temp;
+                    break;
+                }
+                else if (c == DOWN)
+                {
+                    ShowConsoleCursor(false);
+                    y_old = y_temp;
+                    y_temp = 20;
+                    xp = x_temp + file_name.size();
+                    yp = y_old;
+                    break;
+                }
+                else if (c == BACKSPACE)
+                {
+                    if (file_name != "" && pos_user > 0)
+                    {
+                        std::cout << "\b \b";
+                        file_name.pop_back();
+                    }
+                }
+                else if (c == LEFT)
+                {
+                    int len = file_name.size();
+
+                    if (pos_user > 0)
+                    {
+                        pos_user--;
+                        gotoXY(x_temp + pos_user + 2, y_temp + 1);
+                    }
+
+                    continue;
+                }
+                else if (c == RIGHT)
+                {
+                    int len = file_name.size();
+
+                    if (pos_user < len)
+                    {
+                        pos_user++;
+                        gotoXY(x_temp + pos_user + 2, y_temp + 1);
+                    }
+
+                    continue;
+                }
+                else
+                {
+                    int len = file_name.size();
+
+                    if (c >= 32 && c <= 126 && len < 26)
+                    {
+                        pos_user++;
+                        file_name += c;
+                        std::cout << c;
+                    }
+                }
+            }
+        }
+        else
+        {
+            SetColor1(15,0);
+            for (int i = 41; i <= 59; ++i)
+            {
+                gotoXY(i, y_temp + 1);
+                std::cout << " ";
+            }
+
+            gotoXY(41, y_temp + 1);
+            std::cout << "    RETURN BACK";
+
+
+            if (_kbhit())
+            {
+                char c = _getch();
+
+                if (c == UP)
+                {
+                    ShowConsoleCursor(true);
+                    y_temp = y_old;
+                }
+                else if (c == ENTER)
+                {
+                    system("cls");
+                    accessCourse(file_name, year_head, semester_head, course_head);
+                    return;
+                }
+            }
+        }
     }
+
 
     ifstream ifs;
 
@@ -24,7 +134,7 @@ void uploadStudentFileToCourse (string username, Year* year_head, Semester* seme
     while (!ifs.is_open())
     {
         system("cls");
-        cerr << "Error: Unable to open file for reading. Try to input again!\n\n";
+        gotoXY(67, 0); cerr << "ERROR: UNABLE TO OPEN FILE FOR READING\n\n";
 
         uploadStudentFileToCourse(username, year_head, semester_head, course_head);
         return;
@@ -117,8 +227,7 @@ void uploadStudentFileToCourse (string username, Year* year_head, Semester* seme
         if (!temp_year)
         {
             system("cls");
-            cout << "Your input file includes a student which does not exist, please check again (you can input 0 for returning back)";
-
+            gotoXY(67, 0); cout << "YOUR INPUT FILE INCLUDES A STUDENT WHICH DOES NOT EXIST, PLEASE CHECK AGAIN\n";
             uploadStudentFileToCourse(username, year_head, semester_head, course_head);
             return;
         }
@@ -134,15 +243,23 @@ void uploadStudentFileToCourse (string username, Year* year_head, Semester* seme
     rename(newfilename, newname);
 
     //Require user input 0 for returning back
-    string option;
-    cout << "\n" << "You uploaded successfully, please input 0 for returning back: ";
-    getline(cin, option);
-
-    while (option != "0")
+    gotoXY(67,15); cout << "YOU UPLOADED STUDENT LIST SUCCESSFULLY";
+    bool flag = true;
+    while (true)
     {
-        cout << "The number is different from 0, please input again: ";
-        getline(cin, option);
+        if (_kbhit())
+        {
+            char c = _getch();
+            system("color E0");
+            SetColor1(15,0);
+            gotoXY(41,20 + 1); 
+            std::cout << "    RETURN BACK";
+            if (c == 13)
+            {
+                system("cls");
+                updateACourse(username, year_head, semester_head, course_head);
+                return;
+            }
+        }
     }
-
-    updateACourse(username, year_head, semester_head, course_head);
 }
