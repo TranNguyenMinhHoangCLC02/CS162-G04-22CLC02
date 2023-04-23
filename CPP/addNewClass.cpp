@@ -16,64 +16,118 @@ void addNewClass (Year* &year_head, string username)
     bool valid_class_name = false;
     int counter=0;
     Create_A_Box_2(1, 3, 2, 30, 14, 14, 0, "INPUT NEW CLASS");
+    Create_A_Box_1(1, 14, 2, 14, 14, 14, 0, " RETURN BACK");
+    ShowConsoleCursor(false);
+    int x_temp = 1; int y_temp = 3; int y_old; int xp = x_temp; int yp = y_temp; int pos_class = 0; int opt;
     while (valid_class_name != true) 
     {
         // cout << "Input class: ";
         // getline(cin, new_class->class_name);
         gotoXY(1 + 2, 3 + 1);
         ShowConsoleCursor(true);
-        char c;
-        int x_temp=1;
-        int y_temp=3;
-        int pos_classname = 0;
-        while (true)
+        int x_temp = 1; int y_temp = 3; int y_old; int xp = x_temp; int yp = y_temp; int pos_class = 0; int opt;
+        while (counter < 1)
         {
-            c = _getch();
+            system("color E0");
 
-            if (c == ENTER)
+            if (y_temp == 3)
             {
-                if (new_class->class_name != "")
-                    break;
-            }
-            else if (c == BACKSPACE)
-            {
-                if (new_class->class_name != "" && pos_classname > 0)
+                gotoXY(xp + 2, yp + 1);
+                ShowConsoleCursor(true);
+
+                char c;
+                while (true)
                 {
-                    std::cout << "\b \b";
-                    new_class->class_name.pop_back();
-                }
-            }
-            else if (c == LEFT)
-            {
-                if (pos_classname > 0)
-                {
-                    pos_classname--;
-                    gotoXY(x_temp + pos_classname + 2, y_temp + 1);
-                }
+                    c = _getch();
 
-                continue;
-            }
-            else if (c == RIGHT)
-            {
-                int len = new_class->class_name.size();
+                    if (c == ENTER)
+                    {
+                        if (new_class->class_name != "")
+                            counter++;
+                        xp = 1;
+                        yp = y_temp;
+                        break;
+                    }
+                    else if (c == DOWN)
+                    {
+                        ShowConsoleCursor(false);
+                        y_old = y_temp;
+                        y_temp = 14;
+                        xp = x_temp + new_class->class_name.size();
+                        yp = y_old;
+                        break;
+                    }
+                    else if (c == BACKSPACE)
+                    {
+                        if (new_class->class_name != "" && pos_class > 0)
+                        {
+                            std::cout << "\b \b";
+                            new_class->class_name.pop_back();
+                        }
+                    }
+                    else if (c == LEFT)
+                    {
+                        int len = new_class->class_name.size();
 
-                if (pos_classname < len)
-                {
-                    pos_classname++;
-                    gotoXY(x_temp + pos_classname + 2, y_temp + 1);
+                        if (pos_class > 0)
+                        {
+                            pos_class--;
+                            gotoXY(x_temp + pos_class + 2, y_temp + 1);
+                        }
+
+                        continue;
+                    }
+                    else if (c == RIGHT)
+                    {
+                        int len = new_class->class_name.size();
+
+                        if (pos_class < len)
+                        {
+                            pos_class++;
+                            gotoXY(x_temp + pos_class + 2, y_temp + 1);
+                        }
+
+                        continue;
+                    }
+                    else
+                    {
+                        int len = new_class->class_name.size();
+
+                        if (c >= 32 && c <= 126 && len < 26)
+                        {
+                            pos_class++;
+                            new_class->class_name += c;
+                            std::cout << c;
+                        }
+                    }
                 }
-
-                continue;
             }
             else
             {
-                int len = new_class->class_name.size();
-
-                if (c >= 32 && c <= 126 && len < 26)
+                SetColor1(15,0);
+                for (int i = 1 + 1; i <= 14; ++i)
                 {
-                    pos_classname++;
-                    new_class->class_name += c;
-                    std::cout << c;
+                    gotoXY(i, 15);
+                    std::cout << " ";
+                }
+                gotoXY(1 + 1, 15);
+                std::cout << " RETURN BACK";
+                ShowConsoleCursor(false);
+                if (_kbhit())
+                {
+                    char c = _getch();
+
+                    if (c == UP)
+                    {
+                        ShowConsoleCursor(true);
+                        y_temp = y_old;
+                    }
+                    else if (c == ENTER)
+                    {
+                        opt = 0; bool check = false;
+                        accessSchoolYear(username, year_head);
+                        return;
+                    }
                 }
             }
         }
@@ -169,7 +223,6 @@ void addNewClass (Year* &year_head, string username)
     //     system ("cls");
     //     accessSchoolYear(username, year_head);
     // }
-    Create_A_Box_1(1, 14, 2, 14, 14, 14, 0, " RETURN BACK");
         SetColor1(15,0);
         for (int i = 1 + 1; i <= 14; ++i)
         {
