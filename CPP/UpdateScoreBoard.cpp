@@ -16,8 +16,6 @@ void updateStudentsScore(string filename, string username, Year* &year_head, Sem
     do
     {
         string id;
-        gotoXY(30, 11); cout << "INPUT STUDENT ID: ";
-        getline(cin, id);
         ifstream ifs;
         ifs.open(filename);
         if (!ifs.is_open())
@@ -32,6 +30,8 @@ void updateStudentsScore(string filename, string username, Year* &year_head, Sem
             cerr << "ERROR: UNABLE TO OPEN FILE FOR WRITING\n";
             return;
         }
+        gotoXY(30, 12); cout << "INPUT STUDENT ID: ";
+        getline(cin, id);
         int counter = 1;
         string student_id, fullname;
         float total, final1, midterm, other;
@@ -57,20 +57,20 @@ void updateStudentsScore(string filename, string username, Year* &year_head, Sem
             
             if (id == student_id)
             {
-                cout << setw(3) << right << "No." << counter << " ";
-                cout << setw(10) << left << student_id << " ";
-                cout << setw(25) << left << fullname << " ";
-                cout << setw(5) << right << fixed << setprecision(1) << midterm << " ";
-                cout << setw(5) << right << fixed << setprecision(1) << final1 << " ";
-                cout << setw(5) << right << fixed << setprecision(1) << other << " ";
-                cout << setw(5) << right << fixed << setprecision(1) << total << endl;
+                gotoXY(30, 14); cout << setw(3) << right << "NO." << counter << " ";
+                gotoXY(30, 15); cout << setw(10) << left << student_id << " ";
+                gotoXY(30, 16); cout << setw(25) << left << fullname << " ";
+                gotoXY(30, 17); cout << setw(5) << right << fixed << setprecision(1) << midterm << " ";
+                gotoXY(30, 18); cout << setw(5) << right << fixed << setprecision(1) << final1 << " ";
+                gotoXY(30, 19); cout << setw(5) << right << fixed << setprecision(1) << other << " ";
+                gotoXY(30, 20); cout << setw(5) << right << fixed << setprecision(1) << total << endl;
                 ofs << student_id << "," << fullname << ",";
-                cout << "Enter new scores for the student:" << "\n";
-                cout << "Midterm: ";
+                gotoXY(30, 21); cout << "ENTER NEW SCORE FOR STUDeNT: " << "\n";
+                gotoXY(30, 22); cout << "MIDTERM: ";
                 cin >> midterm;
-                cout << "Final: ";
+                gotoXY(30, 23); cout << "FINAL: ";
                 cin >> final1;
-                cout << "Other: ";
+                gotoXY(30, 24); cout << "OTHER: ";
                 cin >> other;
                 total = (midterm + final1 + other)/3.0;
                 ofs << fixed << setprecision(1) << midterm << ","
@@ -98,17 +98,129 @@ void updateStudentsScore(string filename, string username, Year* &year_head, Sem
         remove(newfilename);
         rename("../Txt_Csv/temp.csv", newfilename);
         cout << "Update Successful!\n";
-        cout << "0. Return back\n";
-        cout << "1. Continue updating\n";
-        cout << "Please input your option: ";
-        cin >> option;
-        while (option != 0 && option != 1)
-        {
-            cout << "Please input again: ";
-            cin >> option;
-        }
+        option = choose_option(filename, username, year_head, semester_head, course_head);
         
     } while (option == 1);
     system("cls");
     accessCourse(username, year_head, semester_head, course_head);
+}
+
+int choose_option(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head){
+    int a = 18;
+    Create_A_Box_1(33,8 + a,2,50,14,14,0,"            UPDATE SUCCESSFUL!");
+    Create_A_Box_1(33,10 + a,2,50,14,14,0,"            CONTINUE UPDATING SCOREBOARD");
+    Create_A_Box_1(33,12 + a,2,50,14,14,0,"            RETURN BACK");
+    gotoXY(33,15); std::cout << (char)(195);
+    gotoXY(122,15); std::cout << (char)(180);
+
+    ShowConsoleCursor(false);
+    int x_temp = 33, y_temp = 28;
+    bool flag = true;
+    while (true)
+    {
+        if (flag == true)
+        {
+            if (y_temp == 28)
+            {
+                system("color E0");
+                SetColor1(15,0);
+                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                {
+                    gotoXY(i, y_temp + 1);
+                    std::cout << " ";
+                }
+
+                gotoXY(x_temp + 1, y_temp + 1);
+                std::cout << "            CONTINUE UPDATING SCOREBOARD";
+                ShowConsoleCursor(false);
+            }
+            else if (y_temp == 30)
+            {
+                system("color E0");
+                SetColor1(15,0);
+                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                {
+                    gotoXY(i, y_temp + 1);
+                    std::cout << " ";
+                }
+
+                gotoXY(x_temp + 1, y_temp + 1);
+                std::cout << "            RETURN BACK";
+                ShowConsoleCursor(false);
+            }
+            flag = false;
+        }
+        else
+        {
+            if (_kbhit())
+            {
+                char c = _getch();
+
+                system("color E0");
+                if (y_temp == 28)
+                {
+                    SetColor1(14,0);
+                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
+
+                    gotoXY(x_temp + 1, y_temp + 1);
+                    std::cout << "            CONTINUE UPDATING SCOREBOARD";
+                    ShowConsoleCursor(false);
+                }
+                else if (y_temp == 30)
+                {
+                    SetColor1(14,0);
+                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
+
+                    gotoXY(x_temp + 1, y_temp + 1);
+                    std::cout << "            RETURN BACK";
+                    ShowConsoleCursor(false);
+                }
+                flag = true;
+
+                if (c == 33)
+                {
+                    if (y_temp == 28)
+                    {
+                        y_temp = 30;
+                    }
+                    else
+                    {
+                        y_temp -= 2;
+                    }
+                }
+                else if (c == 80)
+                {
+                    if (y_temp == 30)
+                    {
+                        y_temp = 28;
+                    }
+                    else
+                    {
+                        y_temp += 2;
+                    }
+                }
+                else if (c == 13)
+                {
+                    if (y_temp == 28)
+                    {
+                        system("cls");
+                        return 0;
+                    }
+                    else if (y_temp == 30)
+                    {
+                        system("cls");
+                        return 1;
+                    }
+                }
+            }
+        }
+    }
 }

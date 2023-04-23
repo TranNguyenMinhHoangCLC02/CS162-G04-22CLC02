@@ -315,7 +315,9 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
     else if(option == 2)
     {
         system ("cls");
+        course_head->student_head = getStudentCourseFromFile(username, year_head, semester_head, course_head);
         viewStudentInCourse(username, year_head, semester_head, course_head);
+        deallocateStudents(course_head->student_head);
         return;
     }
     else if (option == 3)
