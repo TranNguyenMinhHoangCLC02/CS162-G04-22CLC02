@@ -156,7 +156,7 @@ void viewScoreBoard_Class(string username, Year *&year_head, Class *class_head)
     gotoXY(24, 4); cout <<"   `--. \\| |    | | | ||    / |  __| | ___ \\| | | ||  _  ||    / | | | |";
     gotoXY(24, 5); cout <<"  /\\__/ /| \\__/\\\\ \\_/ /| |\\ \\ | |___ | |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
     gotoXY(24, 6); cout <<"  \\____/  \\____/ \\___/ \\_| \\_|\\____/ \\____/  \\___/ \\_| |_/\\_| \\_||___/";
-    gotoXY(24, 7); cout << "------------"<< class_head->class_name << "_" << year_head->year_name <<"--------------\n";
+    gotoXY(40, 7); cout << "------------"<< class_head->class_name << "_" << year_head->year_name <<"--------------\n";
     string filename;
     // int semester;
     // cout << "Choose a semester (1->3): ";
@@ -214,6 +214,8 @@ void viewScoreBoard_Class(string username, Year *&year_head, Class *class_head)
     }
     ifs.close();
     Course *check = class_course;
+    int y=8;
+    int y_coord=1;
     while (check != nullptr)
     {
         string filename1;
@@ -221,8 +223,9 @@ void viewScoreBoard_Class(string username, Year *&year_head, Class *class_head)
         filename1 = "../Txt_Csv/" + filename1;
         ifstream ifs;
         ifs.open(filename1);
-        cout << "------------"<< check->course_name <<"--------------\n";
-        int counter = 1;
+        Create_A_Box_1(1, y, 2, check->course_name.size()+1, 14, 14, 0, check->course_name);
+        // cout << "------------"<< check->course_name <<"--------------\n";
+        int counter = 0;
         string student_id, fullname;
         float total, final1, midterm, other;
         string dummy;
@@ -240,27 +243,45 @@ void viewScoreBoard_Class(string username, Year *&year_head, Class *class_head)
             other = stof(temp);
             getline(ifs, temp, '\n');
             total = stof(temp);
-            cout << setw(3) << right << "No." << counter << " ";
-            cout << setw(10) << left << student_id << " ";
-            cout << setw(25) << left << fullname << " ";
-            cout << setw(5) << right << fixed << setprecision(1) << midterm << " ";
-            cout << setw(5) << right << fixed << setprecision(1) << final1 << " ";
-            cout << setw(5) << right << fixed << setprecision(1) << other << " ";
-            cout << setw(5) << right << fixed << setprecision(1) << total << endl;
+            printStudentInfo(y_coord ,counter, student_id, fullname, midterm, final1, other, total);
             counter++;
+            y_coord=y_coord+3;
         }
-        cout << "\n";
+        y=y_coord + 13;
+        y_coord = y_coord + 6;
+        // cout << "\n";
         ifs.close();
         check = check->course_next;
     }
-    cout << "0. Return back" << "\nYour input is: ";
-    int opt = 1;
-    cin >> opt;
+    // cout << "0. Return back" << "\nYour input is: ";
+    // int opt = 1;
+    // cin >> opt;
 
-    while (opt != 0)
+    // while (opt != 0)
+    // {
+    //     cout << "Please input again: ";
+    //     cin >> opt;
+    // }
+    Create_A_Box_1(1, y, 2, 14, 14, 14, 0, " RETURN BACK");
+    SetColor1(15,0);
+    for (int i = 1 + 1; i <= 14; ++i)
     {
-        cout << "Please input again: ";
-        cin >> opt;
+        gotoXY(i, y + 1);
+        std::cout << " ";
+    }
+    gotoXY(1 + 1, y + 1);
+    std::cout << " RETURN BACK";
+    ShowConsoleCursor(false);
+    while (true)
+    {
+        if (_kbhit())
+        {
+            char c = _getch();
+            if (c == ENTER)
+            {
+                break;
+            }
+        }
     }
     system("cls");
     deallocateCourses(class_course);
