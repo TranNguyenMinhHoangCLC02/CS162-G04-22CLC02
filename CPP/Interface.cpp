@@ -5,7 +5,7 @@
 int firstScreen(bool &check)
 {
     SetScreenBufferSize(1000,1000);
-    //PlaySound(TEXT("../Sound/First_Screen.wav"), NULL, SND_FILENAME);
+    PlaySound(TEXT("BackgroundMusic.wav"), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC | SND_NOSTOP);
     system("color E0");
     check = true;
 
@@ -148,7 +148,6 @@ int firstScreen(bool &check)
                 }
                 else if (c == ENTER)
                 {
-                    ShowConsoleCursor(true);
                     if (y_temp == 14)
                         check = false;
                     else if (y_temp == 12)
@@ -371,7 +370,6 @@ void Main_Staff_Screen(string &username, Year* &year_head)
                 }
                 else if (c == ENTER)
                 {
-                    ShowConsoleCursor(true);
                     if (y_temp == 10)
                     {
                         system("cls");

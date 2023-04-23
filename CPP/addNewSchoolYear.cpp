@@ -84,13 +84,13 @@ void addNewSchoolYear (Year* &year_head)
     Create_A_Box_2(70,15,2,30,14,14,0,"NEW SCHOOL YEAR");
     Create_A_Box_1(55,20,2,20,14,14,0,"    RETURN BACK");
 
-    Create_A_Box_3(17,25,6,134);
+    Create_A_Box_3(17,32,6,134);
 
-    gotoXY(19,26);
+    gotoXY(19,33);
     std::cout << "1. Please follow the syntax startyear-endyear, the end year will after the start year exactly 1 year, for instance: 2019-2020";
-    gotoXY(19,28);
+    gotoXY(19,35);
     std::cout << "2. Don't input an available school year!";
-    gotoXY(19,30);
+    gotoXY(19,37);
     std::cout << "3. Your input will be false if it includes another letter that is not number and a hyphen between 2 years";
     ShowConsoleCursor(false);
 
@@ -210,6 +210,9 @@ void addNewSchoolYear (Year* &year_head)
         {
             system("cls");
 
+            Create_A_Box_1(65,24,2,40,14,14,0,"       Please follow our syntax");
+
+
             deallocateYears(year_head);
             year_head = getYearListFromFile();
             addNewSchoolYear(year_head);
@@ -218,6 +221,8 @@ void addNewSchoolYear (Year* &year_head)
         else
         {
             system("cls");
+
+            Create_A_Box_1(65,24,2,40,14,14,0,"       The school year is existed");
 
             deallocateYears(year_head);
             year_head = getYearListFromFile();
@@ -273,6 +278,15 @@ void addNewSchoolYear (Year* &year_head)
     ofs.close();
 
     //Announce for user
-    cout << "You created a new school year successfully!\n\n";
+    Create_A_Box_1(70,28,2,30,14,14,0,"  Created successfully ");
+
+    for (int i = 0; i < 3; ++i)
+    {
+        gotoXY(94 + i,29);
+        ShowConsoleCursor(false);
+        std::cout << "." << flush;
+        Sleep(500);
+    }
+
     return;
 }

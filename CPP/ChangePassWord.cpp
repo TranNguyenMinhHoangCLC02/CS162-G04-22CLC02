@@ -1459,5 +1459,13 @@ void changePass(string username, bool isStudent, int& opt)
         remove("../Txt_Csv/acc_staff.csv");
         rename("../Txt_Csv/temp.csv", "../Txt_Csv/acc_staff.csv");
     }
-    cout << "Change successful!\n";
+
+    Create_A_Box_1(68,26,2,30,14,14,0,"   Change successfully ");
+    for (int i = 0; i < 3; ++i)
+    {
+        gotoXY(92 + i,27);
+        ShowConsoleCursor(false);
+        std::cout << "." << flush;
+        Sleep(500);
+    }
 }

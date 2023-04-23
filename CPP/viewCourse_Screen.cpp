@@ -124,7 +124,7 @@ void viewCourse_Screen(string username, Year* year_head, Semester* semester_head
         int curpage = 1;
         while (curpage <= pages)
         {
-            for (int i = 108; i <= 170; ++i)
+            for (int i = 108; i <= 160; ++i)
             {
                 for (int j = 11; j <= 33; ++j)
                 {
