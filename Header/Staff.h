@@ -67,12 +67,9 @@ void addStudentToCourse(string username, Course* &course, Year* &year_head, Seme
 void printCourseInfo(Course* course);
 
 //Helper functions for course
-bool checkCourseID (string Course_ID);
+string NormalizeCourseID (string Course_ID);
 string Normalization (string input);
-bool checkClassName (string Class_Name);
-bool checkTeacherName (string Teacher_Name);
-void showDayOptions();
-void showSessionOptions();
+string NormalizeClassName (string Class_Name);
 
 //Update course functions
 void updateACourse (string username, Year* year_head, Semester* semester_head, Course* course_head);
@@ -96,5 +93,5 @@ string format_float(float value);
 void printStudentInfo(int y, int counter, string student_id, string fullname, float midterm, float final1, float other, float total);
 int getSemesterNum();
 int choose_option(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
-
+int choose_interface(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 #endif

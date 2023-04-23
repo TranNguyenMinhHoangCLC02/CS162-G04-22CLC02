@@ -13,6 +13,7 @@ bool isLoggedIn() {
 
 void login(bool isStudent, string &username, bool &opt) 
 {
+    ShowConsoleCursor(true);
     // Check whether the login information is correct by comparing it with the acc_student.csv file or acc_staf.csv
     if (isStudent)
     {   
@@ -239,6 +240,16 @@ void login(bool isStudent, string &username, bool &opt)
                     ofstream file("../Txt_Csv/isLoggedIn.txt");
                     file << "1";
                     file.close();
+
+                    Create_A_Box_1(68,24,2,30,14,14,0,"   Log in successfully ");
+                    for (int i = 0; i < 3; ++i)
+                    {
+                        gotoXY(92 + i,25);
+                        ShowConsoleCursor(false);
+                        std::cout << "." << flush;
+                        Sleep(500);
+                    }
+
                     return;
                 }
             }
@@ -474,6 +485,16 @@ void login(bool isStudent, string &username, bool &opt)
                     ofstream file("../Txt_Csv/isLoggedIn.txt");
                     file << "1";
                     file.close();
+
+                    Create_A_Box_1(68,24,2,30,14,14,0,"   Log in successfully ");
+                    for (int i = 0; i < 3; ++i)
+                    {
+                        gotoXY(92 + i,25);
+                        ShowConsoleCursor(false);
+                        std::cout << "." << flush;
+                        Sleep(500);
+                    }
+
                     return;
                 }
             }
@@ -482,7 +503,7 @@ void login(bool isStudent, string &username, bool &opt)
 
     // If the login is unsuccessful, display an error message and request the user to login again
     system("cls");
-    PlaySound(TEXT("Alert.wav"), NULL, SND_FILENAME | SND_ASYNC);
+    Create_A_Box_1(64,20,2,38,14,14,4,"     Incorrect login information!");
     ShowConsoleCursor(false);
 	login(isStudent, username, opt);
 }
