@@ -411,7 +411,7 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
         char char_semester = static_cast<char>(semester_head->Semester_Ord + 48);
         string filename = Class_name + "_" + "Semester" + char_semester + "_" + year_head->year_name + "_courses.csv";
         filename = "../Txt_Csv/" + filename;
-        ofstream ofs(filename, ios::app);
+        ofstream ofs(filename);
         if (!ofs.is_open())
         {
             cerr << "Error: Unable to open file " << filename << " for writing\n";
