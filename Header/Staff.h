@@ -96,5 +96,5 @@ string format_float(float value);
 void printStudentInfo(int y, int counter, string student_id, string fullname, float midterm, float final1, float other, float total);
 int getSemesterNum();
 int choose_option(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
-
+int choose_interface(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 #endif
