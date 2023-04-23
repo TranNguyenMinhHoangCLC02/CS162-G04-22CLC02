@@ -1,4 +1,5 @@
 #include "../Header/Staff.h"
+#include "../Header/Design.h"
 
 void addTailCourse(Course* &course_head, Course* tmp)
 {
@@ -51,7 +52,8 @@ Course* getCourseFromFile(string filename)
     ifs.open(filename);
     if (!ifs.is_open())
     {
-        cerr << "Error: Unable to open file for reading\n";
+        // cerr << "Error: Unable to open file for reading\n";
+        Create_A_Box_1(1, 1, 2, 41, 14, 14, 0, "Error: Unable to open file for reading");
         return nullptr;
     }
 
@@ -114,23 +116,267 @@ void deleteCoursefromFile(string filename, string courseid, string nameclass)
 void deleteCourse(string username, Semester *semester_head, Year* year_head) 
 {
     int option;
-    cout<< "Are you sure you want to delete? (1 for Yes, 0 for No)";
-    cin>> option;
-    while (option != 0 && option != 1){
-            cout << "Invalid input. Please enter again: ";
-            cin >> option;
-        }        
+    // cout<< "Are you sure you want to delete?";
+    Create_A_Box_1(1, 1, 2, 34, 14, 14, 0, "ARE YOU SURE YOU WANT TO DELETE?");
+    // cin>> option;
+    // while (option != 0 && option != 1){
+    //         cout << "Invalid input. Please enter again: ";
+    //         cin >> option;
+    //     }        
+    // if (option == 0)
+    //     return;
+    Create_A_Box_1(1, 4, 2, 4, 14, 14, 0, "YES");
+    Create_A_Box_1(1, 8, 2, 3, 14, 14, 0, "NO");
+    int option;
+    int x_temp = 1; int y_temp = 4;
+    bool flag=true;
+    while (true)
+    {
+        if (flag == true)
+        {
+            if (y_temp == 4)
+            {
+                system("color E0");
+                SetColor1(15,0);
+                for (int i = x_temp + 1; i <= x_temp + 4; ++i)
+                {
+                    gotoXY(i, y_temp + 1);
+                    cout << " ";
+                }
+
+                gotoXY(x_temp + 1, y_temp + 1);
+                std::cout << "YES";
+                ShowConsoleCursor(false);
+            }
+            else if (y_temp == 8)
+            {
+                system("color E0");
+                SetColor1(15,0);
+                for (int i = x_temp + 1; i <= x_temp + 4; ++i)
+                {
+                    gotoXY(i, y_temp + 1);
+                    cout << " ";
+                }
+
+                gotoXY(x_temp + 1, y_temp + 1);
+                cout << " NO";
+                ShowConsoleCursor(false);
+            }
+        }
+        if (_kbhit())
+        {
+            char c=_getch();
+            system("color E0");
+            if (y_temp == 4)
+            {
+                system("color E0");
+                SetColor1(14,0);
+                for (int i = x_temp + 1; i <= x_temp + 4; ++i)
+                {
+                    gotoXY(i, y_temp + 1);
+                    cout << " ";
+                }
+
+                gotoXY(x_temp + 1, y_temp + 1);
+                std::cout << "YES";
+                ShowConsoleCursor(false);
+            }
+            else if (y_temp == 8)
+            {
+                system("color E0");
+                SetColor1(14,0);
+                for (int i = x_temp + 1; i <= x_temp + 4; ++i)
+                {
+                    gotoXY(i, y_temp + 1);
+                    cout << " ";
+                }
+
+                gotoXY(x_temp + 1, y_temp + 1);
+                cout << " NO";
+                ShowConsoleCursor(false);
+            }
+            flag=true;
+            if (c == UP)
+            {
+                if (y_temp == 4)
+                    y_temp = 8;
+                else
+                    y_temp -= 4;
+            }
+            else if (c == DOWN)
+            {
+                if (y_temp == 8)
+                    y_temp == 4;
+                else
+                    y_temp += 4;
+            }
+            else if (c == ENTER)
+            {
+                ShowConsoleCursor(true);
+                if (y_temp == 4)
+                    option = 1;
+                else if (y_temp == 8)
+                    option = 0;
+                break;
+            }
+        }
+    }
     if (option == 0)
-        return;
+    {
 
+    }
+    system("cls");
+    system("color E0");
     // Delete Course in Semester
-    string courseid, nameclass;
-    cout<< "Input CourseID of Course that will remove:";
-    cin >> courseid;
-    cout << "Input Nameclass of Course that will remove:";
-    cin >> nameclass;
+    // string courseid, nameclass;
+    // cout<< "Input CourseID of Course that will remove:";
+    // cin >> courseid;
+    // cout << "Input Nameclass of Course that will remove:";
+    // cin >> nameclass;
+    int counter=0;
+    Create_A_Box_2(1,2,2,50,14,14,0,"Input CourseID of Course that will be removed");
+    Create_A_Box_2(1,6,2,50,14,14,0,"Input Nameclass of Course that will be removed");
+    ShowConsoleCursor(false);
+    string courseid="";
+    string classname="";
+    int opt;
+    int x_temp = 1; int y_temp = 2; int y_old; int xp = x_temp; int yp = y_temp; int pos_id = 0; int pos_class = 0;
+    while (counter < 2)
+    {
+        system("color E0");
 
-    Course* course = findCoursebyID(semester_head->course_head,courseid, nameclass);
+        if (y_temp == 2)
+        {
+            gotoXY(xp + 2, yp + 1);
+            ShowConsoleCursor(true);
+
+            char c;
+            while (true)
+            {
+                c = _getch();
+
+                if (c == ENTER)
+                {
+                    if (courseid != "")
+                        counter++;
+
+                    if (classname == "")
+                        y_temp = 6;
+                    xp = 1;
+                    yp = y_temp;
+                    break;
+                }
+                else if (c == BACKSPACE)
+                {
+                    if (courseid != "" && pos_id > 0)
+                    {
+                        std::cout << "\b \b";
+                        courseid.pop_back();
+                    }
+                }
+                else if (c == LEFT)
+                {
+                    if (pos_id > 0)
+                    {
+                        pos_id--;
+                        gotoXY(x_temp + pos_id + 2, y_temp + 1);
+                    }
+
+                    continue;
+                }
+                else if (c == RIGHT)
+                {
+                    int len = courseid.size();
+
+                    if (pos_id < len)
+                    {
+                        pos_id++;
+                        gotoXY(x_temp + pos_id + 2, y_temp + 1);
+                    }
+
+                    continue;
+                }
+                else
+                {
+                    int len = courseid.size();
+
+                    if (c >= 32 && c <= 126 && len < 26)
+                    {
+                        pos_id++;
+                        courseid += c;
+                        std::cout << c;
+                    }
+                }
+            }
+        }
+        else if (y_temp == 6)
+        {
+            gotoXY(xp + 2, yp + 1);
+            ShowConsoleCursor(true);
+
+            char c;
+            while (true)
+            {
+                c = _getch();
+
+                if (c == ENTER)
+                {
+                    if (classname != "")
+                        counter++;
+
+                    if (courseid == "")
+                        y_temp = 2;
+
+                    xp = 1;
+                    yp = y_temp;
+                    break;
+                }
+                else if (c == BACKSPACE)
+                {
+                    if (classname != "" && pos_class > 0)
+                    {
+                        std::cout << "\b \b";
+                        classname.pop_back();
+                    }
+                }
+                else if (c == LEFT)
+                {
+                    if (pos_class > 0)
+                    {
+                        pos_class--;
+                        gotoXY(x_temp + pos_class + 2, y_temp + 1);
+                    }
+
+                    continue;
+                }
+                else if (c == RIGHT)
+                {
+                    int len = classname.size();
+
+                    if (pos_class < len)
+                    {
+                        pos_class++;
+                        gotoXY(x_temp + pos_class + 2, y_temp + 1);
+                    }
+
+                    continue;
+                }
+                else
+                {
+                    int len = classname.size();
+
+                    if (c >= 32 && c <= 126 && len < 26)
+                    {
+                        pos_class++;
+                        classname += c;
+                        std::cout << c;
+                    }
+                }
+            }
+        }
+    }
+
+    Course* course = findCoursebyID(semester_head->course_head,courseid, classname);
     Course *cur = semester_head->course_head;
     Course *pre = nullptr;
     while (cur != course)
@@ -192,7 +438,7 @@ void deleteCourse(string username, Semester *semester_head, Year* year_head)
     //Open file
     string file_name = year_head->year_name + "_semester" + (char)(semester_head->Semester_Ord + 48) + "_course.csv";
     file_name = "../Txt_Csv/" + file_name;
-    deleteCoursefromFile(file_name, courseid, nameclass);
+    deleteCoursefromFile(file_name, courseid, classname);
 
     string file_name2 = course->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + ".csv";
     file_name2 = "../Txt_Csv/" + file_name;
