@@ -13,7 +13,7 @@ void viewStudentInCourse(string username, Year* &year_head, Semester* &semester_
     gotoXY(67,6); std::cout << "   | |___| |__| | |__| | | \\ \\ ____) | |____  | |__| | |____   | |/ ____ \\ _| |_| |____ ";
     gotoXY(67,7); std::cout << "    \\_____\\____/ \\____/|_|  \\_\\_____/|______| |_____/|______|  |_/_/    \\_\\_____|______|";
     gotoXY(67,8); std::cout << " ";
-    gotoXY(67,9); std::cout << "--------------------------------" << course_head->class_name << "-----------------------------";
+    gotoXY(67,9); std::cout << "--------------------------------" << course_head->course_name << "--" << course_head->class_name << "-----------------------------";
     //Show list of students the staff has added before
     int numStudents = 0;
     if (course_head->student_head == nullptr) //Data is empty
