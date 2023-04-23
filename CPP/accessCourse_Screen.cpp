@@ -315,7 +315,9 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
     else if(option == 2)
     {
         system ("cls");
+        course_head->student_head = getStudentCourseFromFile(username, year_head, semester_head, course_head);
         viewStudentInCourse(username, year_head, semester_head, course_head);
+        deallocateStudents(course_head->student_head);
         return;
     }
     else if (option == 3)
@@ -343,7 +345,7 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
         system("cls");
         string filename;
         char ch_semester = static_cast<char>(semester_head->Semester_Ord + 48);
-        filename = course_head->course_name + "_" + "Semester" + ch_semester + "_" + year_head->year_name + + "_Scoreboard.csv";
+        filename = course_head->course_name + "_" + "Semester" + ch_semester + "_" + year_head->year_name + "_Scoreboard.csv";
         filename = "../Txt_Csv/" + filename;
         export_scoreboard(filename, username, year_head, semester_head, course_head);
         return;

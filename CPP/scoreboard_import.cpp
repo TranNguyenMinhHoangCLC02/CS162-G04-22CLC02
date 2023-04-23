@@ -40,7 +40,6 @@ void export_scoreboard(string filename, string username, Year* &year_head, Semes
     }
     cout << "The name of this file will be CourseName_SemesterOrd_Year(eg: KY THUAT LAP TRINH_Semester2_2019-2020)\n";
     //Create a CSV file
-    filename = "../Txt_Csv/" + filename + "_Scoreboard.csv";
     ofstream ofs (filename);
     ofs << "StudentID,Fullname,Midterm Mark,Final Mark,Other Mark,Total Mark" << "\n";
 
