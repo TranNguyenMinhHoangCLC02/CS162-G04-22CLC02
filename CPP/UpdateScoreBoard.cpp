@@ -185,7 +185,7 @@ int choose_option(string filename, string username, Year* &year_head, Semester* 
                 }
                 flag = true;
 
-                if (c == 33)
+                if (c == UP)
                 {
                     if (y_temp == 28)
                     {

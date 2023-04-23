@@ -10,7 +10,7 @@ void uploadStudentFileToCourse (string username, Year* year_head, Semester* seme
     gotoXY(67,7); std::cout << "    \\____/|_|    |______\\____/_/    \\_\\_____/  |_|    |_____|______|______|";
 
     string file_name;
-    cin.ignore();
+
     Create_A_Box_2(70,10,2,60,14,14,0,"ENTER FILE NAME:  ");
     Create_A_Box_1(40,20,2,20,14,14,0,"    RETURN BACK");
     ShowConsoleCursor(false);

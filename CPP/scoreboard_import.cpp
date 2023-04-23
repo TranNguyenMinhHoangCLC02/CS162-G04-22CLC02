@@ -1,44 +1,179 @@
 #include "../Header/Staff.h"
 #include "../Header/Student.h"
+#include "../Header/Design.h"
 
 void export_scoreboard(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head)
 {    
-    system("cls");
-    cout << "------------"<< course_head->course_name << "_" << "Semester" << semester_head->Semester_Ord << "_" << year_head->year_name  <<"--------------\n";
+    gotoXY(67, 1); cout <<"   _____  _____  _____ ______  _____ ______  _____   ___  ______ ______";
+    gotoXY(67, 2); cout <<"  /  ___|/  __ \\|  _  || ___ \\|  ___|| ___ \\|  _  | / _ \\ | ___ \\|  _  \\";
+    gotoXY(67, 3); cout <<"  \\ `--. | /  \\/| | | || |_/ /| |__  | |_/ /| | | |/ /_\\ \\| |_/ /| | | |";
+    gotoXY(67, 4); cout <<"   `--. \\| |    | | | ||    / |  __| | ___ \\| | | ||  _  ||    / | | | |";
+    gotoXY(67, 5); cout <<"  /\\__/ /| \\__/\\\\ \\_/ /| |\\ \\ | |___ | |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
+    gotoXY(67, 6); cout <<"  \\____/  \\____/ \\___/ \\_| \\_|\\____/ \\____/  \\___/ \\_| |_/\\_| \\_||___/";
+    gotoXY(67, 8); cout << "------------"<< course_head->course_ID << "_" << "Semester" << semester_head->Semester_Ord << "_" << year_head->year_name  <<"--------------\n";
     //Check if any students existed
+    course_head->student_head = getStudentCourseFromFile(username, year_head, semester_head, course_head);
     if(!course_head->student_head)
     {
-        cout << "There is no student in this course. Please input 0 to return back.\n Your option:";
-        int opt = 1;
-        cin >> opt;
-
-        while (opt != 0)
+        gotoXY(67, 10); cout << "THERE IS NO STUDENT IN THIS COURSE.";
+        Create_A_Box_1(50, 15, 2, 14, 14, 14, 0, " RETURN BACK");
+        SetColor1(15,0);
+        for (int i = 51; i <= 63; ++i)
         {
-            cout << "Please input again: ";
-            cin >> opt;
+            gotoXY(i, 16);
+            std::cout << " ";
+        }
+        gotoXY(51, 16);
+        std::cout << " RETURN BACK";
+        ShowConsoleCursor(false);
+        while (true)
+        {
+            if (_kbhit())
+            {
+                char c = _getch();
+                if (c == ENTER)
+                {
+                    break;
+                }
+            }
         }
         //Return to the access course screen
         accessCourse(username, year_head, semester_head, course_head);
         return;
     }
     //Ask the staff if they want to continue
-    cout << "If the file has been created before, the file will be rewrite.\n";
-    cout << "Do you want to continue?\n";
-    cout << "0. " << setw(2) << right << "Return back\n";
-    cout << "1. " << setw(2) << right << "Continue\n";
+    gotoXY(67, 10); cout << "IF THE FILE HAS BEEN CREATED BEFORE. YOU WILL REWRITE THE FILE\n";
+    gotoXY(67, 11); cout << "DO YOU WANT TO CONTINUE\n";
+    Create_A_Box_1(50, 15, 2, 14, 14, 14, 0, " CONTINUE");
+    gotoXY(50,17); std::cout << (char)(195);
+    gotoXY(50+14,17); std::cout << (char)(180);
+    Create_A_Box_1(50, 17, 2, 14, 14, 14, 0, " RETURN BACK");
     int choice = 2;
-    cin >> choice;
-    while(choice != 0 && choice != 1)
+    int x_temp = 50, y_temp = 15;
+    bool flag = true;
+    while (true)
     {
-        cout << "Please input again: ";
-        cin >> choice;
+        if (flag == true)
+        {
+            if (y_temp == 15)
+            {
+                system("color E0");
+                SetColor1(15,0);
+                for (int i = x_temp + 1; i <= x_temp + 12; ++i)
+                {
+                    gotoXY(i, y_temp + 1);
+                    std::cout << " ";
+                }
+
+                gotoXY(x_temp + 1, y_temp + 1);
+                std::cout << " CONTINUE";
+                ShowConsoleCursor(false);
+            }
+            else if (y_temp == 17)
+            {
+                system("color E0");
+                SetColor1(15,0);
+                for (int i = x_temp + 1; i <= x_temp + 12; ++i)
+                {
+                    gotoXY(i, y_temp + 1);
+                    std::cout << " ";
+                }
+
+                gotoXY(x_temp + 1, y_temp + 1);
+                std::cout << " RETURN BACK";
+                ShowConsoleCursor(false);
+            }
+            flag = false;
+        }
+        else
+        {
+            if (_kbhit())
+            {
+                char c = _getch();
+
+                system("color E0");
+                if (y_temp == 15)
+                {
+                    SetColor1(14,0);
+                    for (int i = x_temp + 1; i <= x_temp + 12; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
+
+                    gotoXY(x_temp + 1, y_temp + 1);
+                    std::cout << " CONTINUE";
+                    ShowConsoleCursor(false);
+                }
+                else if (y_temp == 17)
+                {
+                    SetColor1(14,0);
+                    for (int i = x_temp + 1; i <= x_temp + 12; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
+
+                    gotoXY(x_temp + 1, y_temp + 1);
+                    std::cout << " RETURN BACK";
+                    ShowConsoleCursor(false);
+                }
+                flag = true;
+
+                if (c == UP)
+                {
+                    if (y_temp == 15)
+                    {
+                        y_temp = 17;
+                    }
+                    else
+                    {
+                        y_temp -= 2;
+                    }
+                }
+                else if (c == 80)
+                {
+                    if (y_temp == 17)
+                    {
+                        y_temp = 15;
+                    }
+                    else
+                    {
+                        y_temp += 2;
+                    }
+                }
+                else if (c == 13)
+                {
+                    if (y_temp == 15)
+                    {
+                        choice = 1;
+                        break;
+                        
+                    }
+                    else if (y_temp == 17)
+                    {
+                        choice = 0;
+                        break;
+                    }
+                }
+            }
+        }
     }
+    
     if(choice == 0)
     {
         accessCourse(username, year_head, semester_head, course_head);
         return;
     }
-    cout << "The name of this file will be CourseName_SemesterOrd_Year(eg: KY THUAT LAP TRINH_Semester2_2019-2020)\n";
+    system("cls");
+    gotoXY(67, 1); cout <<"   _____  _____  _____ ______  _____ ______  _____   ___  ______ ______";
+    gotoXY(67, 2); cout <<"  /  ___|/  __ \\|  _  || ___ \\|  ___|| ___ \\|  _  | / _ \\ | ___ \\|  _  \\";
+    gotoXY(67, 3); cout <<"  \\ `--. | /  \\/| | | || |_/ /| |__  | |_/ /| | | |/ /_\\ \\| |_/ /| | | |";
+    gotoXY(67, 4); cout <<"   `--. \\| |    | | | ||    / |  __| | ___ \\| | | ||  _  ||    / | | | |";
+    gotoXY(67, 5); cout <<"  /\\__/ /| \\__/\\\\ \\_/ /| |\\ \\ | |___ | |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
+    gotoXY(67, 6); cout <<"  \\____/  \\____/ \\___/ \\_| \\_|\\____/ \\____/  \\___/ \\_| |_/\\_| \\_||___/";
+    gotoXY(67, 8); cout << "------------"<< course_head->course_ID << "_" << "Semester" << semester_head->Semester_Ord << "_" << year_head->year_name  <<"--------------\n";
+    gotoXY(67, 10); cout << "The name of this file will be CourseID_SemesterOrd_Year_Scoreboard.csv(eg: CSC10002_Semester2_2019-2020_Scoreboard.csv)\n";
     //Create a CSV file
     ofstream ofs (filename);
     ofs << "StudentID,Fullname,Midterm Mark,Final Mark,Other Mark,Total Mark" << "\n";
@@ -52,15 +187,26 @@ void export_scoreboard(string filename, string username, Year* &year_head, Semes
         cur = cur->student_next;
     }
     cout << endl;
-    cout << "The file " << filename << " has been created successfully.\n";
-    cout << "Please input 0 to return back.\n\nYour option: " << "\n";
-    int opt = 1;
-    cin >> opt;
-
-    while (opt != 0)
+    gotoXY(67, 12); cout << "The file " << filename << " has been created successfully.\n";
+    system("color E0");
+    SetColor1(15,0);
+    Create_A_Box_1(67,15,2,30,14,14,0,"          RETURN BACK");
+    while (true)
     {
-        cout << "Please input again: ";
-        cin >> opt;
+        if (_kbhit())
+            {
+                char c = _getch();
+                system("color E0");
+                SetColor1(15,0);
+                gotoXY(68,15 + 1); 
+                std::cout << "          RETURN BACK";
+                if (c == 13)
+                {
+                    system("cls");
+                    accessCourse(username, year_head, semester_head, course_head);
+                    return;
+                }
+            }
     }
     accessCourse(username, year_head, semester_head, course_head);
     ofs.close();
@@ -68,44 +214,262 @@ void export_scoreboard(string filename, string username, Year* &year_head, Semes
 
 void update_scoreBoard(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head){
     system("cls");
-    cout << "------------"<< course_head->course_name << "_" << "Semester" << semester_head->Semester_Ord << "_" << year_head->year_name  <<"--------------\n";
+    gotoXY(67, 1); cout <<"   _____  _____  _____ ______  _____ ______  _____   ___  ______ ______";
+    gotoXY(67, 2); cout <<"  /  ___|/  __ \\|  _  || ___ \\|  ___|| ___ \\|  _  | / _ \\ | ___ \\|  _  \\";
+    gotoXY(67, 3); cout <<"  \\ `--. | /  \\/| | | || |_/ /| |__  | |_/ /| | | |/ /_\\ \\| |_/ /| | | |";
+    gotoXY(67, 4); cout <<"   `--. \\| |    | | | ||    / |  __| | ___ \\| | | ||  _  ||    / | | | |";
+    gotoXY(67, 5); cout <<"  /\\__/ /| \\__/\\\\ \\_/ /| |\\ \\ | |___ | |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
+    gotoXY(67, 6); cout <<"  \\____/  \\____/ \\___/ \\_| \\_|\\____/ \\____/  \\___/ \\_| |_/\\_| \\_||___/";
+    gotoXY(67, 8); cout << "------------"<< course_head->course_name << "_" << "Semester" << semester_head->Semester_Ord << "_" << year_head->year_name  <<"--------------\n";
 
-    cout << "\nPlease input the name of the file you want to update.\nThe name of the file should be CourseName_SemesterOrd_Year(KY THUAT LAP TRINH_Semester2_2019-2020)\nYour input is: ";
-    cin >> filename;
-    filename = "../Txt_Csv/" + filename + "_Scoreboard.csv";
+    gotoXY(67, 10); cout << "PLEASE INPUT THE NAME OF THE FILE YOU WANT TO UPDATE.";
+    gotoXY(67, 11); cout << "THE NAME OF THE FILE SHOULD BE CourseID_SemesterOrd_Year(CSC10002_Semester2_2019-2020_Scoreboard.csv)"; 
+    Create_A_Box_2(70,15,2,60,14,14,0,"ENTER FILE NAME:  ");
+    Create_A_Box_1(40,20,2,20,14,14,0,"    RETURN BACK");
+    ShowConsoleCursor(false);
+    string file_name;
+    int x_temp = 70; int y_temp = 15; int y_old; int xp = x_temp; int yp = y_temp; int pos_user = 0; int pos_pass = 0;
+    int count = 0;
+    while (count < 1)
+    {
+        system("color E0");
+
+        if (y_temp == 15)
+        {
+            gotoXY(xp + 2, yp + 1);
+            ShowConsoleCursor(true);
+
+            char c;
+            while (true)
+            {
+                c = _getch();
+
+                if (c == ENTER)
+                {
+                    if (file_name != "")
+                        count++;
+                    xp = 70;
+                    yp = y_temp;
+                    break;
+                }
+                else if (c == DOWN)
+                {
+                    ShowConsoleCursor(false);
+                    y_old = y_temp;
+                    y_temp = 20;
+                    xp = x_temp + file_name.size();
+                    yp = y_old;
+                    break;
+                }
+                else if (c == BACKSPACE)
+                {
+                    if (file_name != "" && pos_user > 0)
+                    {
+                        std::cout << "\b \b";
+                        file_name.pop_back();
+                    }
+                }
+                else if (c == LEFT)
+                {
+                    int len = file_name.size();
+
+                    if (pos_user > 0)
+                    {
+                        pos_user--;
+                        gotoXY(x_temp + pos_user + 2, y_temp + 1);
+                    }
+
+                    continue;
+                }
+                else if (c == RIGHT)
+                {
+                    int len = file_name.size();
+
+                    if (pos_user < len)
+                    {
+                        pos_user++;
+                        gotoXY(x_temp + pos_user + 2, y_temp + 1);
+                    }
+
+                    continue;
+                }
+                else
+                {
+                    int len = file_name.size();
+
+                    if (c >= 32 && c <= 126 && len < 50)
+                    {
+                        pos_user++;
+                        file_name += c;
+                        std::cout << c;
+                    }
+                }
+            }
+        }
+        else
+        {
+            SetColor1(15,0);
+            for (int i = 41; i <= 59; ++i)
+            {
+                gotoXY(i, y_temp + 1);
+                std::cout << " ";
+            }
+
+            gotoXY(41, y_temp + 1);
+            std::cout << "    RETURN BACK";
+
+
+            if (_kbhit())
+            {
+                char c = _getch();
+
+                if (c == UP)
+                {
+                    ShowConsoleCursor(true);
+                    y_temp = y_old;
+                }
+                else if (c == ENTER)
+                {
+                    system("cls");
+                    accessCourse(file_name, year_head, semester_head, course_head);
+                    return;
+                }
+            }
+        }
+    }
+    filename = "../Txt_Csv/" + filename;
     ifstream ifs (filename);
     if(!ifs.is_open())
     {
-        cout << "The file " << filename << " does not exist. Please input 0 to return back.\n Your option:";
-        int opt = 1;
-        cin >> opt;
-
-        while (opt != 0)
-        {
-            cout << "Please input again: ";
-            cin >> opt;
-        }
-        //Return to the access course screen
-        accessCourse(username, year_head, semester_head, course_head);
+        gotoXY(67, 12); cout << "ERROR: UNABLE TO OPEN FILE FOR READING";
+        update_scoreBoard(filename, username, year_head, semester_head, course_head);
         return;
     }
     else{
-        cout << "The file " << filename << " has been updated successfully.\n";
-        cout << "0. " << setw(2) << right << "Return back\n";
-        cout << "1. " << setw(2) << right << "View all student scoreboard\n";
-        int opt = 2;
-        cin >> opt;
-
-        while (opt != 0 && opt != 1)
-        {
-            cout << "Please input again: ";
-            cin >> opt;
-        }
+        int opt = choose_interface(filename, username, year_head, semester_head, course_head);
         if(opt == 0){
             accessCourse(username, year_head, semester_head, course_head);
         }
         else{
             viewScoreBoard_Course(filename, username, year_head, semester_head, course_head);
+        }
+    }
+}
+
+int choose_interface(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head){
+    Create_A_Box_1(33,16,2,50,14,14,0,"            VIEW SCOREBOARD");
+    Create_A_Box_1(33,18,2,50,14,14,0,"            RETURN BACK");
+    gotoXY(33,15); std::cout << (char)(195);
+    gotoXY(122,15); std::cout << (char)(180);
+
+    ShowConsoleCursor(false);
+    int x_temp = 33, y_temp = 10;
+    bool flag = true;
+    while (true)
+    {
+        if (flag == true)
+        {
+            if (y_temp == 16)
+            {
+                system("color E0");
+                SetColor1(15,0);
+                for (int i = x_temp + 1; i <= x_temp + 13; ++i)
+                {
+                    gotoXY(i, y_temp + 1);
+                    std::cout << " ";
+                }
+
+                gotoXY(x_temp + 1, y_temp + 1);
+                std::cout << "            VIEW SCOREBOARD";
+                ShowConsoleCursor(false);
+            }
+            else if (y_temp == 18)
+            {
+                system("color E0");
+                SetColor1(15,0);
+                for (int i = x_temp + 1; i <= x_temp + 13; ++i)
+                {
+                    gotoXY(i, y_temp + 1);
+                    std::cout << " ";
+                }
+
+                gotoXY(x_temp + 1, y_temp + 1);
+                std::cout << "            RETURN BACK";
+                ShowConsoleCursor(false);
+            }
+            flag = false;
+        }
+        else
+        {
+            if (_kbhit())
+            {
+                char c = _getch();
+
+                system("color E0");
+                if (y_temp == 16)
+                {
+                    SetColor1(14,0);
+                    for (int i = x_temp + 1; i <= x_temp + 13; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
+
+                    gotoXY(x_temp + 1, y_temp + 1);
+                    std::cout << "            VIEW SCOREBOARD";
+                    ShowConsoleCursor(false);
+                }
+                else if (y_temp == 18)
+                {
+                    SetColor1(14,0);
+                    for (int i = x_temp + 1; i <= x_temp + 13; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
+
+                    gotoXY(x_temp + 1, y_temp + 1);
+                    std::cout << "            RETURN BACK";
+                    ShowConsoleCursor(false);
+                }
+                flag = true;
+
+                if (c == UP)
+                {
+                    if (y_temp == 16)
+                    {
+                        y_temp = 12;
+                    }
+                    else
+                    {
+                        y_temp -= 2;
+                    }
+                }
+                else if (c == 80)
+                {
+                    if (y_temp == 18)
+                    {
+                        y_temp = 10;
+                    }
+                    else
+                    {
+                        y_temp += 2;
+                    }
+                }
+                else if (c == 13)
+                {
+                    if (y_temp == 10)
+                    {
+                        system("cls");
+                        return 1;
+                    }
+                    else if (y_temp == 12)
+                    {
+                        system("cls");
+                        return 0;
+                    }
+                }
+            }
         }
     }
 }
