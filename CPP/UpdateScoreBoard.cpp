@@ -5,13 +5,13 @@
 void updateStudentsScore(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head)
 {
     system("cls");
-    gotoXY(24, 1); cout <<"    _    _ _____  _____       _______ ______    _____  _____ ____  _____  ______ ____   ____          _____  _____  ";
-    gotoXY(24, 2); cout <<"   | |  | |  __ \\|  __ \\   /\\|__   __|  ____|  / ____|/ ____/ __ \\|  __ \\|  ____|  _ \\ / __ \\   /\\   |  __ \\|  __ \\ ";
-    gotoXY(24, 3); cout <<"   | |  | | |__) | |  | | /  \\  | |  | |__    | (___ | |   | |  | | |__) | |__  | |_) | |  | | /  \\  | |__) | |  | |";
-    gotoXY(24, 4); cout <<"   | |  | |  ___/| |  | |/ /\\ \\ | |  |  __|    \\___ \\| |   | |  | |  _  /|  __| |  _ <| |  | |/ /\\ \\ |  _  /| |  | |";
-    gotoXY(24, 5); cout <<"   | |__| | |    | |__| / ____ \\| |  | |____   ____) | |___| |__| | | \\ \\| |____| |_) | |__| / ____ \\| | \\ \\| |__| |";
-    gotoXY(24, 6); cout <<"    \\____/|_|    |_____/_/    \\_\\_|  |______| |_____/ \\_____\\____/|_|  \\_\\______|____/ \\____/_/    \\_\\_|  \\_\\_____/ ";
-    gotoXY(30, 9); cout << "------------------------------"<< course_head->course_name <<"--------------------------\n";
+    gotoXY(67, 1); cout <<"    _    _ _____  _____       _______ ______    _____  _____ ____  _____  ______ ____   ____          _____  _____  ";
+    gotoXY(67, 2); cout <<"   | |  | |  __ \\|  __ \\   /\\|__   __|  ____|  / ____|/ ____/ __ \\|  __ \\|  ____|  _ \\ / __ \\   /\\   |  __ \\|  __ \\ ";
+    gotoXY(67, 3); cout <<"   | |  | | |__) | |  | | /  \\  | |  | |__    | (___ | |   | |  | | |__) | |__  | |_) | |  | | /  \\  | |__) | |  | |";
+    gotoXY(67, 4); cout <<"   | |  | |  ___/| |  | |/ /\\ \\ | |  |  __|    \\___ \\| |   | |  | |  _  /|  __| |  _ <| |  | |/ /\\ \\ |  _  /| |  | |";
+    gotoXY(67, 5); cout <<"   | |__| | |    | |__| / ____ \\| |  | |____   ____) | |___| |__| | | \\ \\| |____| |_) | |__| / ____ \\| | \\ \\| |__| |";
+    gotoXY(67, 6); cout <<"    \\____/|_|    |_____/_/    \\_\\_|  |______| |_____/ \\_____\\____/|_|  \\_\\______|____/ \\____/_/    \\_\\_|  \\_\\_____/ ";
+    gotoXY(71, 9); cout << "------------------------------"<< course_head->course_name <<"--------------------------\n";
     int option = 0;
     do
     {
@@ -30,7 +30,7 @@ void updateStudentsScore(string filename, string username, Year* &year_head, Sem
             cerr << "ERROR: UNABLE TO OPEN FILE FOR WRITING\n";
             return;
         }
-        gotoXY(30, 12); cout << "INPUT STUDENT ID: ";
+        gotoXY(71, 12); cout << "INPUT STUDENT ID: ";
         getline(cin, id);
         int counter = 1;
         string student_id, fullname;
@@ -57,21 +57,21 @@ void updateStudentsScore(string filename, string username, Year* &year_head, Sem
             
             if (id == student_id)
             {
-                gotoXY(30, 14); cout << setw(3) << right << "NO." << counter << " ";
-                gotoXY(30, 15); cout << setw(10) << left << student_id << " ";
-                gotoXY(30, 16); cout << setw(25) << left << fullname << " ";
-                gotoXY(30, 17); cout << setw(5) << right << fixed << setprecision(1) << midterm << " ";
-                gotoXY(30, 18); cout << setw(5) << right << fixed << setprecision(1) << final1 << " ";
-                gotoXY(30, 19); cout << setw(5) << right << fixed << setprecision(1) << other << " ";
-                gotoXY(30, 20); cout << setw(5) << right << fixed << setprecision(1) << total << endl;
+                gotoXY(71, 14); cout << setw(3) << right << "NO." << counter << " ";
+                gotoXY(71, 15); cout << setw(10) << left << student_id << " ";
+                gotoXY(71, 16); cout << setw(25) << left << fullname << " ";
+                gotoXY(71, 17); cout << setw(5) << right << fixed << setprecision(1) << midterm << " ";
+                gotoXY(71, 18); cout << setw(5) << right << fixed << setprecision(1) << final1 << " ";
+                gotoXY(71, 19); cout << setw(5) << right << fixed << setprecision(1) << other << " ";
+                gotoXY(71, 20); cout << setw(5) << right << fixed << setprecision(1) << total << endl;
                 ofs << student_id << "," << fullname << ",";
-                gotoXY(30, 21); cout << "ENTER NEW SCORE FOR STUDeNT: " << "\n";
-                gotoXY(30, 22); cout << "MIDTERM: ";
-                cin >> midterm;
-                gotoXY(30, 23); cout << "FINAL: ";
-                cin >> final1;
-                gotoXY(30, 24); cout << "OTHER: ";
-                cin >> other;
+                gotoXY(71, 21); cout << "ENTER NEW SCORE FOR STUDENT: " << "\n";
+                gotoXY(71, 22); cout << "MIDTERM: ";
+                gotoXY(71 + 10, 22); cin >> midterm;
+                gotoXY(71, 23); cout << "FINAL: ";
+                gotoXY(71 + 8, 22); cin >> final1;
+                gotoXY(71, 24); cout << "OTHER: ";
+                gotoXY(71 + 8, 22); cin >> other;
                 total = (midterm + final1 + other)/3.0;
                 ofs << fixed << setprecision(1) << midterm << ","
                     << fixed << setprecision(1) << final1 << ","

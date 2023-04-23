@@ -10,7 +10,7 @@ Student *getStudentCourseFromFile(string username, Year* &year_head, Semester* &
     if (!ifs.is_open())
     {
         cerr << "ERROR: UNABLE TO OPEN FILE FOR READING\n";
-        return;
+        return nullptr;
     }
     course_head->student_head = nullptr;
     Student* temp = nullptr;
