@@ -13,6 +13,7 @@
 
 void SetWindowSize(SHORT width, SHORT height);
 void SetScreenBufferSize(SHORT width, SHORT height);
+void resizeConsole(int width, int height);
 void gotoXY (int x, int y);
 int whereX();
 int whereY();

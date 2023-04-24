@@ -89,7 +89,7 @@ string NormalizeClassName (string Class_Name)
 
 void addNewCourse (string username, Year* year_head, Semester* semester_head)
 {
-    SetScreenBufferSize(1000,1000);
+    resizeConsole(1920,920);
     system("color E0");
 
     gotoXY(55,2);

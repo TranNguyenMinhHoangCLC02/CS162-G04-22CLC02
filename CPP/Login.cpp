@@ -18,7 +18,7 @@ void login(bool isStudent, string &username, bool &opt)
     if (isStudent)
     {   
         opt = 1;
-        SetScreenBufferSize(1000,1000);
+        resizeConsole(1920,920);
         system("color E0");
 
         gotoXY(43,2);
@@ -258,7 +258,7 @@ void login(bool isStudent, string &username, bool &opt)
     else
     {
         opt = 1;
-        SetScreenBufferSize(1000,1000);
+        resizeConsole(1920,920);
         system("color E0");
 
         gotoXY(48,2);

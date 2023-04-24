@@ -179,7 +179,7 @@ bool checkStartDateAndEndDate (int startyear, int startmonth, int startday, int 
 
 void addNewSemester (string username, Year* &year_head) //Now, year_head is the school year you are accessing
 {
-    SetScreenBufferSize(1000,1000);
+    resizeConsole(1920,920);
     system("color E0");
 
     gotoXY(48,2);

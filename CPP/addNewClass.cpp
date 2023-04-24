@@ -6,7 +6,7 @@
 void addNewClass (Year* &year_head, string username)
 {
     system("cls");
-    SetScreenBufferSize(10000,10000);
+    resizeConsole(1920,920);
     system("color E0");
     SetColor1(14, 0);
     ofstream ofs;

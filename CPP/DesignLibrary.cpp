@@ -24,6 +24,14 @@ void SetScreenBufferSize(SHORT width, SHORT height)
     SetConsoleScreenBufferSize(hStdout, NewSize);
 }
 
+void resizeConsole(int width, int height)
+{
+    HWND console = GetConsoleWindow();
+    RECT r;
+    GetWindowRect(console, &r);
+    MoveWindow(console, r.left, r.top, width, height, TRUE);
+}
+
 void gotoXY (int x, int y)//Move Mouse Pointer to (x;y) coordinator
 {
     COORD coordinator;

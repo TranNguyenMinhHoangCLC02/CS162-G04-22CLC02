@@ -65,7 +65,7 @@ bool checkExistingYear (Year* &year_head, string year_name) //Check violation th
 
 void addNewSchoolYear (Year* &year_head)
 {
-    SetScreenBufferSize(1000,1000);
+    resizeConsole(1920,920);
     system("color E0");
 
     gotoXY(40,2);

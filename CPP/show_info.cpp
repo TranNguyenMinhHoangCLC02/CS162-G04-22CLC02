@@ -59,7 +59,7 @@ void staff_info(string username, Year* &year_head)
     }
     ifs.close();
 
-    SetScreenBufferSize(1000,1000);
+    resizeConsole(1920,920);
     system("color E0");
 
     Create_A_Box_3(1,1,40,83);
@@ -275,7 +275,7 @@ void student_info(string username)
         }
     }
     ifs.close();
-    SetScreenBufferSize(1000,1000);
+    resizeConsole(1920,920);
     system("color E0");
 
     Create_A_Box_3(1,1,40,83);

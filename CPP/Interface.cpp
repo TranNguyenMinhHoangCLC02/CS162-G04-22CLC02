@@ -4,8 +4,7 @@
 
 int firstScreen(bool &check)
 {
-    SetScreenBufferSize(1000,1000);
-    PlaySound(TEXT("BackgroundMusic.wav"), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC | SND_NOSTOP);
+    resizeConsole(1920,920);
     system("color E0");
     check = true;
 
@@ -164,7 +163,7 @@ int firstScreen(bool &check)
 
 void Main_Staff_Screen(string &username, Year* &year_head)
 {
-    SetScreenBufferSize(1000,1000);
+    resizeConsole(1920,920);
     system("color E0");
 
     gotoXY(66,2);
@@ -427,59 +426,7 @@ void Main_Staff_Screen(string &username, Year* &year_head)
 
 void Main_Student_Screen(string username)
 {
-    // cout << "------------------STUDENT---------------\n";
-    // int option; bool check;
-    // cout << "0." << setw(2) << right << "Log out\n";
-    // cout << "1." << setw(2) << right << "View profile\n";
-    // cout << "2." << setw(2) << right << "View courses\n";
-    // cout << "3." << setw(2) << right << "Change password\n";
-    // cout << "4." << setw(2) << right << "View Scoreboard\n";
-    // do
-    // {
-    //     cout << "Input option: ";
-    //     cin >> option;
-    // } while (option != 0 && option != 1 && option != 2 && option != 3 && option != 4);
-
-    // if (option == 0){
-    //     system("cls");
-    //     main();
-    //     return;
-    // }
-    // else if(option == 1)
-    // {
-    //     system("cls");
-    //     student_info(username);
-    //     system("cls");
-    //     Main_Student_Screen(username);
-    //     return;
-    // }
-    // else if (option == 2)
-    // {
-        
-    // }
-    // else if (option == 3)
-    // {
-    //     Year* year_head = nullptr;
-
-    //     system("cls");
-    //     int opt = 1;
-    //     changePass(username, true, opt);
-
-    //     if (opt)
-    //         Myinterface(0, year_head);
-    //     else
-    //     {
-    //         system("cls");
-    //         Main_Student_Screen(username);
-    //     }
-
-    //     return;
-    // }
-    // else if (option == 4)
-    // {
-    //     viewScoreBoard_Student(username);
-    // }
-    SetScreenBufferSize(1000,1000);
+    resizeConsole(1920,920);
     system("color E0");
 
     gotoXY(62,2);

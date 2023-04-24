@@ -4,8 +4,7 @@
 void viewCourse_Screen(string username, Year* year_head, Semester* semester_head)
 {
     system("cls");
-
-    SetScreenBufferSize(1000,1000);
+    resizeConsole(1920,920);
     system("color E0");
 
     Create_A_Box_3(1,5,30,90);

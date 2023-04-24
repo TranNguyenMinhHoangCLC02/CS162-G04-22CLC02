@@ -52,7 +52,7 @@ void changePass(string username, bool isStudent, int& opt)
         return;
     }
 
-    SetScreenBufferSize(1000,1000);
+    resizeConsole(1920,920);
     system("color E0");
 
     gotoXY(40,2);

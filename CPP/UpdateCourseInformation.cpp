@@ -3,7 +3,7 @@
 
 void updateInformationOfCourse (string username, Year* year_head, Semester* semester_head, Course* accessed_course)
 {
-    SetScreenBufferSize(1000,1000);
+    resizeConsole(1920,920);
     system("color E0");
 
     gotoXY(49,2);
