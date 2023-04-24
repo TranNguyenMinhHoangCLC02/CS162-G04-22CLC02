@@ -66,7 +66,6 @@ void viewScoreBoard_Course(string filename, string username, Year* &year_head, S
     Create_A_Box_1(109, 8, 2, 9, 14, 14, 0, "  Total ");
     gotoXY(109, 8); cout << (char)194;
     gotoXY(109, 10); cout << (char)193;
-    system("pause");
     ifstream ifs;   
     ifs.open(filename);
     if (!ifs.is_open())
