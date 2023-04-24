@@ -427,57 +427,308 @@ void Main_Staff_Screen(string &username, Year* &year_head)
 
 void Main_Student_Screen(string username)
 {
-    cout << "------------------STUDENT---------------\n";
-    int option; bool check;
-    cout << "0." << setw(2) << right << "Log out\n";
-    cout << "1." << setw(2) << right << "View profile\n";
-    cout << "2." << setw(2) << right << "View courses\n";
-    cout << "3." << setw(2) << right << "Change password\n";
-    cout << "4." << setw(2) << right << "View Scoreboard\n";
-    do
-    {
-        cout << "Input option: ";
-        cin >> option;
-    } while (option != 0 && option != 1 && option != 2 && option != 3 && option!=4);
+    // cout << "------------------STUDENT---------------\n";
+    // int option; bool check;
+    // cout << "0." << setw(2) << right << "Log out\n";
+    // cout << "1." << setw(2) << right << "View profile\n";
+    // cout << "2." << setw(2) << right << "View courses\n";
+    // cout << "3." << setw(2) << right << "Change password\n";
+    // cout << "4." << setw(2) << right << "View Scoreboard\n";
+    // do
+    // {
+    //     cout << "Input option: ";
+    //     cin >> option;
+    // } while (option != 0 && option != 1 && option != 2 && option != 3 && option != 4);
 
-    if (option == 0){
-        system("cls");
-        main();
-        return;
-    }
-    else if(option == 1)
-    {
-        system("cls");
-        student_info(username);
-        system("cls");
-        Main_Student_Screen(username);
-        return;
-    }
-    else if (option == 2)
-    {
+    // if (option == 0){
+    //     system("cls");
+    //     main();
+    //     return;
+    // }
+    // else if(option == 1)
+    // {
+    //     system("cls");
+    //     student_info(username);
+    //     system("cls");
+    //     Main_Student_Screen(username);
+    //     return;
+    // }
+    // else if (option == 2)
+    // {
         
-    }
-    else if (option == 3)
+    // }
+    // else if (option == 3)
+    // {
+    //     Year* year_head = nullptr;
+
+    //     system("cls");
+    //     int opt = 1;
+    //     changePass(username, true, opt);
+
+    //     if (opt)
+    //         Myinterface(0, year_head);
+    //     else
+    //     {
+    //         system("cls");
+    //         Main_Student_Screen(username);
+    //     }
+
+    //     return;
+    // }
+    // else if (option == 4)
+    // {
+    //     viewScoreBoard_Student(username);
+    // }
+    SetScreenBufferSize(1000,1000);
+    system("color E0");
+
+    gotoXY(62,2);
+    std::cout << " _____ _____ _   _______ _____ _   _ _____";
+    gotoXY(62,3);
+    std::cout << "/  ___|_   _| | | |  _  \\  ___| \\ | |_   _|";
+    gotoXY(62,4);
+    std::cout << "\\ `--.  | | | | | | | | | |__ |  \\| | | |";
+    gotoXY(62,5);
+    std::cout << " `--. \\ | | | | | | | | |  __|| . ` | | |";
+    gotoXY(62,6);
+    std::cout << "/\\__/ / | | | |_| | |/ /| |___| |\\  | | |";
+    gotoXY(62,7);
+    std::cout << "\\____/  \\_/  \\___/|___/ \\____/\\_| \\_/ \\_/";
+
+    Create_A_Box_1(67,10,2,30,14,14,0,"           LOG OUT");
+    Create_A_Box_1(67,12,2,30,14,14,0,"         VIEW PROFILE");
+    gotoXY(67,12); std::cout << (char)(195);
+    gotoXY(97,12); std::cout << (char)(180);
+
+    Create_A_Box_1(67,14,2,30,14,14,0,"         VIEW COURSES");
+    gotoXY(67,14); std::cout << (char)(195);
+    gotoXY(97,14); std::cout << (char)(180);
+
+    Create_A_Box_1(67,16,2,30,14,14,0,"       VIEW SCOREBOARD");
+    gotoXY(67,16); std::cout << (char)(195);
+    gotoXY(97,16); std::cout << (char)(180);
+
+    Create_A_Box_1(67,18,2,30,14,14,0,"       CHANGE PASSWORD");
+    gotoXY(67,18); std::cout << (char)(195);
+    gotoXY(97,18); std::cout << (char)(180);
+    ShowConsoleCursor(false);
+
+    int x_temp = 67; int y_temp = 10;
+    bool flag = true;
+    while (true)
     {
-        Year* year_head = nullptr;
+        if (flag == true)
+        {
+            if (y_temp == 10)
+            {
+                system("color E0");
+                SetColor1(15,0);
+                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                {
+                    gotoXY(i, y_temp + 1);
+                    std::cout << " ";
+                }
 
-        system("cls");
-        int opt = 1;
-        changePass(username, true, opt);
+                gotoXY(x_temp + 1, y_temp + 1);
+                std::cout << "           LOG OUT";
+                ShowConsoleCursor(false);
+            }
+            else if (y_temp == 12)
+            {
+                system("color E0");
+                SetColor1(15,0);
+                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                {
+                    gotoXY(i, y_temp + 1);
+                    std::cout << " ";
+                }
 
-        if (opt)
-            Myinterface(0, year_head);
+                gotoXY(x_temp + 1, y_temp + 1);
+                std::cout << "         VIEW PROFILE";
+                ShowConsoleCursor(false);
+            }
+            else if (y_temp == 14)
+            {
+                system("color E0");
+                SetColor1(15,0);
+                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                {
+                    gotoXY(i, y_temp + 1);
+                    std::cout << " ";
+                }
+
+                gotoXY(x_temp + 1, y_temp + 1);
+                std::cout << "         VIEW COURSES";
+                ShowConsoleCursor(false);
+            }
+            else if (y_temp == 16)
+            {
+                system("color E0");
+                SetColor1(15,0);
+                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                {
+                    gotoXY(i, y_temp + 1);
+                    std::cout << " ";
+                }
+
+                gotoXY(x_temp + 1, y_temp + 1);
+                std::cout << "       VIEW SCOREBOARD";
+                ShowConsoleCursor(false);
+            }
+
+            else
+            {
+                system("color E0");
+                SetColor1(15,0);
+                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                {
+                    gotoXY(i, y_temp + 1);
+                    std::cout << " ";
+                }
+
+                gotoXY(x_temp + 1, y_temp + 1);
+                std::cout << "       CHANGE PASSWORD";
+                ShowConsoleCursor(false);
+            }
+
+            flag = false;
+        }
         else
         {
-            system("cls");
-            Main_Student_Screen(username);
-        }
+            if (_kbhit())
+            {
+                char c = _getch();
 
-        return;
-    }
-    else if (option == 4)
-    {
-        viewScoreBoard_Student(username);
+                system("color E0");
+                if (y_temp == 10)
+                {
+                    SetColor1(14,0);
+                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
+
+                    gotoXY(x_temp + 1, y_temp + 1);
+                    std::cout << "           LOG OUT";
+                    ShowConsoleCursor(false);
+                }
+                else if (y_temp == 12)
+                {
+                    SetColor1(14,0);
+                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
+
+                    gotoXY(x_temp + 1, y_temp + 1);
+                    std::cout << "         VIEW PROFILE";
+                    ShowConsoleCursor(false);
+                }
+                else if (y_temp == 14)
+                {
+                    SetColor1(14,0);
+                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
+
+                    gotoXY(x_temp + 1, y_temp + 1);
+                    std::cout << "         VIEW COURSES";
+                    ShowConsoleCursor(false);
+                }
+                else if (y_temp == 16)
+                {
+                    SetColor1(14,0);
+                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
+
+                    gotoXY(x_temp + 1, y_temp + 1);
+                    std::cout << "       VIEW SCOREBOARD";
+                    ShowConsoleCursor(false);
+                }
+
+                else
+                {
+                    SetColor1(14,0);
+                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
+
+                    gotoXY(x_temp + 1, y_temp + 1);
+                    std::cout << "       CHANGE PASSWORD";
+                    ShowConsoleCursor(false);
+                }
+
+                flag = true;
+
+                if (c == UP)
+                {
+                    if (y_temp == 10)
+                        y_temp = 18;
+                    else
+                        y_temp -= 2;
+                }
+                else if (c == DOWN)
+                {
+                    if (y_temp == 18)
+                        y_temp = 10;
+                    else
+                        y_temp += 2;
+                }
+                else if (c == ENTER)
+                {
+                    if (y_temp == 10)
+                    {
+                        system("cls");
+                        main();
+                        return;
+                    }
+                    else if (y_temp == 12)
+                    {
+                        system("cls");
+                        student_info(username);
+                        return;
+                    }
+                    else if (y_temp == 14)
+                    {
+                        
+                    }
+                    else if (y_temp == 16)
+                    {
+                        viewScoreBoard_Student(username);
+                        return;
+                    }
+                    else
+                    {
+                        Year* year_head = nullptr;
+
+                        system("cls");
+                        int opt = 1;
+                        changePass(username, true, opt);
+
+                        if (opt)
+                            Myinterface(0, year_head);
+                        else
+                        {
+                            system("cls");
+                            Main_Student_Screen(username);
+                        }
+
+                        return;
+                    }
+
+                    break;
+                }
+            }
+        }
     }
 }
 
