@@ -9,7 +9,8 @@ void addNewStudent(string username, Year* &year_head, Class* cur)
     ofstream ofs;
     ofs.open(filename, ios::app);
     if (!ofs.is_open()) {
-        cerr << "Error: Unable to open file for writing\n";
+        // cerr << "Error: Unable to open file for writing\n";
+        Create_A_Box_1(1, 1, 2, 40, 14, 14, 0, "Error: Unable to open file for writing");
         return;
     }
     Student* temp = year_head->class_head->student_head;
@@ -26,22 +27,28 @@ void addNewStudent(string username, Year* &year_head, Class* cur)
         temp = temp->student_next;
     }
     ofs.close();
-    Create_A_Box_1(67,15 ,2,30,14,14,0,"          RETURN BACK");
+    Create_A_Box_1(1, 2, 2, 50, 14, 14, 0, "YOU HAVE SUCCESSFULLY IMPORTED STUDENTS TO FILE!");
+    Create_A_Box_1(1, 8, 2, 12, 14, 14, 0,"RETURN BACK");
+    SetColor1(15,0);
+    for (int i = 1 + 1; i <= 13; ++i)
+    {
+        gotoXY(i, 8+1);
+        std::cout << " ";
+    }
+    gotoXY(1 + 1, 8+1);
+    std::cout << "RETURN BACK";
+    ShowConsoleCursor(false);
     while (true)
     {
         if (_kbhit())
+        {
+            char c = _getch();
+            if (c == ENTER)
             {
-                char c = _getch();
-                system("color E0");
-                SetColor1(15,0);
-                gotoXY(68,15); 
-                std::cout << "          RETURN BACK";
-                if (c == 13)
-                {
-                    system("cls");
-                    accessClass(username, year_head, cur);
-                    return;
-                }
+                break;
             }
+        }
     }
+    accessClass(username, year_head, cur);
+    return;
 }
