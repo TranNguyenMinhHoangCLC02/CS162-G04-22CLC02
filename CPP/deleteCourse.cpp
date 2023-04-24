@@ -127,7 +127,6 @@ void deleteCourse(string username, Semester *semester_head, Year* year_head)
     //     return;
     Create_A_Box_1(1, 4, 2, 4, 14, 14, 0, "YES");
     Create_A_Box_1(1, 8, 2, 3, 14, 14, 0, "NO");
-    int option;
     int x_temp = 1; int y_temp = 4;
     bool flag=true;
     while (true)
@@ -240,7 +239,7 @@ void deleteCourse(string username, Semester *semester_head, Year* year_head)
     string courseid="";
     string classname="";
     int opt;
-    int x_temp = 1; int y_temp = 2; int y_old; int xp = x_temp; int yp = y_temp; int pos_id = 0; int pos_class = 0;
+    x_temp = 1; y_temp = 2; int y_old; int xp = x_temp; int yp = y_temp; int pos_id = 0; int pos_class = 0;
     while (counter < 2)
     {
         system("color E0");
