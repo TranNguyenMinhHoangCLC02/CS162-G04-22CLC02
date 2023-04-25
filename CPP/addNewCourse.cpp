@@ -1637,6 +1637,17 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
                             ofs << "ID,FullName,Midterm,Final,Other,Total";
                             ofs.close();
 
+                            name_file = temp_course1->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_student.csv";
+                            name_file = "../Txt_Csv/" + name_file;
+                            ofs.open(name_file);
+                            if (!ofs.is_open())
+                            {
+                                cerr << "Error: Unable to open file for writing\n";
+                                return;
+                            }
+                            ofs << "student ID,student_socialID,student_fisrtname,student_lastname,gender,class_name,DOB";
+                            ofs.close();
+
                             gotoXY(122,22);
                             std::cout << "Created successfully";
 

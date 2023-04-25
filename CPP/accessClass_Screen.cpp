@@ -218,17 +218,13 @@ void accessClass(string username, Year* &year_head, Class *class_head)
     else if (option == 1)
     {
         system("cls");
-        class_head->student_head = getStudentListFromFile(year_head, class_head);
         addNewStudent(username, year_head, class_head);
-        deallocateStudents(class_head->student_head);
         return;
     }
     else if(option == 2)
     {
         system("cls");
-        class_head->student_head = getStudentListFromFile(year_head, class_head);
         viewStudentInClass(username, year_head, class_head);
-        deallocateStudents(class_head->student_head);
         return;
     }
     else if (option == 3)
@@ -237,4 +233,7 @@ void accessClass(string username, Year* &year_head, Class *class_head)
         viewScoreBoard_Class(username, year_head, class_head);
         return;
     }
+    system("cls");
+    accessSchoolYear(username, year_head);
+    return;
 }

@@ -209,23 +209,14 @@ void addNewSchoolYear (Year* &year_head)
         if (!checkSyntaxOfSchoolYear(new_year->year_name))
         {
             system("cls");
-
             Create_A_Box_1(65,24,2,40,14,14,0,"       Please follow our syntax");
-
-
-            deallocateYears(year_head);
-            year_head = getYearListFromFile();
             addNewSchoolYear(year_head);
             return;
         }
         else
         {
             system("cls");
-
             Create_A_Box_1(65,24,2,40,14,14,0,"       The school year is existed");
-
-            deallocateYears(year_head);
-            year_head = getYearListFromFile();
             addNewSchoolYear(year_head);
             return;
         }

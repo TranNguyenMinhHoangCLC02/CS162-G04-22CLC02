@@ -10,7 +10,7 @@ Course* getCourseListFromFile(Year* year_head, Semester* &semester_head)
     ifs.open(file_name);
     if (!ifs.is_open())
     {
-        cerr << "Error: Unable to open file for reading\n";
+        //cerr << "Error: Unable to open file for reading\n";
         return nullptr;
     }
 

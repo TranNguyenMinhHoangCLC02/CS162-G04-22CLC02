@@ -99,6 +99,40 @@ void viewScoreBoard_Course(string filename, string username, Year* &year_head, S
     }
     string dummy;
     getline(ifs, dummy);
+    string check2ndLine;
+    getline(ifs, check2ndLine);
+    if (check2ndLine == "")
+    {
+        Create_A_Box_1(1, 11, 2, 30, 14, 14, 0, "THERE IS NO AVAILABLE VALUE!");
+        Create_A_Box_1(1, 11+10, 2, 14, 14, 14, 0, " RETURN BACK");
+        SetColor1(15,0);
+        for (int i = 1 + 1; i <= 14; ++i)
+        {
+            gotoXY(i, 11 + 11);
+            std::cout << " ";
+        }
+        gotoXY(1 + 1, 11 + 11);
+        std::cout << " RETURN BACK";
+        ShowConsoleCursor(false);
+        while (true)
+        {
+            if (_kbhit())
+            {
+                char c = _getch();
+                if (c == ENTER)
+                {
+                    break;
+                }
+            }
+        }
+        system("E0");
+        system("cls");
+        accessCourse(username, year_head, semester_head, course_head);
+        return;
+    }
+    ifs.close();
+    ifs.open(filename);
+    getline(ifs, dummy);
     int counter = 0;
     string student_id, fullname;
     float total, final1, midterm, other;

@@ -254,7 +254,7 @@ void accessSchoolYear(string username, Year* &year_head)
                     if (y_temp == 14)
                     {
                         system("cls");
-                        viewSchoolYear_Screen(username, getYearListFromFile());
+                        viewSchoolYear_Screen(username, year_head);
                         return;
                     }
                     else if (y_temp == 12)
@@ -262,20 +262,13 @@ void accessSchoolYear(string username, Year* &year_head)
                         if (x_temp == 24)
                         {
                             system("cls");
-                            year_head->semester_head = getSemesterListFromFile(year_head);
                             viewSemester_Screen(username, year_head);
-                            deallocateSemesters(year_head->semester_head);
                             return;
                         }
                         else
                         {
                             system("cls");
-                            string filename;
-                            filename = "class_" + year_head->year_name + ".txt";
-                            filename = "../Txt_Csv/" + filename;
-                            year_head->class_head = getClassListFromFile(year_head, filename);
                             viewClass_Screen(username, year_head);
-                            deallocateClasses(year_head->class_head);
                             return;
                         }
                     }
@@ -284,19 +277,13 @@ void accessSchoolYear(string username, Year* &year_head)
                         if (x_temp == 24)
                         {
                             system("cls");
-                            year_head->semester_head = getSemesterListFromFile(year_head);
                             addNewSemester(username, year_head);
-                            deallocateSemesters(year_head->semester_head);
                             return;
                         }
                         else
                         {
                             system("cls");
-                            string filename = "class.txt";
-                            filename = "../Txt_Csv/" + filename;      
-                            year_head->class_head = getClassListFromFile(year_head, filename);
                             addNewClass(year_head, username);
-                            deallocateClasses(year_head->class_head);
                             return;
                         }
                     }

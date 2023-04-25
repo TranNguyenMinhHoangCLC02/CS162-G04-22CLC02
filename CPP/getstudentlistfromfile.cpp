@@ -6,7 +6,7 @@ Student* getStudentListFromFile(Year *year_head, Class* class_head)
     ifs.open("../Txt_Csv/student_info.csv");
     if (!ifs.is_open())
     {
-        cerr << "Error: Unable to open file for reading\n";
+        //cerr << "Error: Unable to open file for reading\n";
         return nullptr;
     }
     class_head->student_head = nullptr;

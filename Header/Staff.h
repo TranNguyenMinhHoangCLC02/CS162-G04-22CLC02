@@ -30,7 +30,7 @@ void viewStudentInClass(string username, Year* &year_head, Class *class_head);
 Class* upload_info_class(ifstream &file);
 
 //Student functions
-Student *getStudentCourseFromFile(string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
+Student *getStudentCourseFromFile(Year* &year_head, Semester* &semester_head, Course* &course_head);
 Student* getStudentListFromFile(Year *year_head, Class* class_head);
 void addNewStudent(string username, Year *&year_head, Class *cur);
 
@@ -94,4 +94,5 @@ void printStudentInfo(int y, int counter, string student_id, string fullname, fl
 int getSemesterNum();
 int choose_option(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 int choose_interface(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
+bool check_is_it(string filename, string student_id);
 #endif

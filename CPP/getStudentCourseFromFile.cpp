@@ -1,7 +1,7 @@
 #include "../Header/Staff.h"
 #include "../Header/Design.h"
 
-Student *getStudentCourseFromFile(string username, Year* &year_head, Semester* &semester_head, Course* &course_head){
+Student *getStudentCourseFromFile(Year* &year_head, Semester* &semester_head, Course* &course_head){
     ifstream ifs;
     //convert semester_head->Semester_Ord to string
     char ch_semester = static_cast<char>(semester_head->Semester_Ord + 48);
@@ -9,7 +9,7 @@ Student *getStudentCourseFromFile(string username, Year* &year_head, Semester* &
     ifs.open(filename);
     if (!ifs.is_open())
     {
-        cerr << "ERROR: UNABLE TO OPEN FILE FOR READING\n";
+        //cerr << "ERROR: UNABLE TO OPEN FILE FOR READING\n";
         return nullptr;
     }
     course_head->student_head = nullptr;

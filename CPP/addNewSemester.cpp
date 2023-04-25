@@ -446,9 +446,6 @@ void addNewSemester (string username, Year* &year_head) //Now, year_head is the 
                                     << "/" << setw(2) << setfill('0') << temp_semester->end_date.month << "/" << setw(4) << setfill('0') << temp_semester->end_date.year;
                                 ofs.close();
 
-                                //Announce for user
-                                cout << "You created a new semester successfully!\n\n";
-
                                 //Create file including courses of created semester
                                 Semester* temp_semester1 = year_head->semester_head;
 
@@ -464,6 +461,15 @@ void addNewSemester (string username, Year* &year_head) //Now, year_head is the 
                                     return;
                                 }
                                 ofs.close();
+
+                                Create_A_Box_1(68,30,2,40,14,14,0,"   Add Semester successfully ");
+                                for (int i = 0; i < 3; ++i)
+                                {
+                                    gotoXY(98 + i,31);
+                                    ShowConsoleCursor(false);
+                                    std::cout << "." << flush;
+                                    Sleep(500);
+                                }
 
                                 system ("cls");
                                 accessSchoolYear(username, year_head);

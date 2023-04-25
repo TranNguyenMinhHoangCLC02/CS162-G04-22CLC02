@@ -155,7 +155,10 @@ void uploadStudentFileToCourse (string username, Year* year_head, Semester* seme
         getline(ss, tmp, ',');
         getline(ss, tmp, ',');
 
-        Year* temp_year = getYearListFromFile();
+        Year* year = nullptr;
+        getdata(year);
+
+        Year* temp_year = year;
         //Don't need to check if temp_year is nullptr because if you want to access course, you must go through year
         while (temp_year)
         {
@@ -226,6 +229,7 @@ void uploadStudentFileToCourse (string username, Year* year_head, Semester* seme
 
         if (!temp_year)
         {
+            deletedata(year);
             system("cls");
             gotoXY(67, 0); cout << "YOUR INPUT FILE INCLUDES A STUDENT WHICH DOES NOT EXIST, PLEASE CHECK AGAIN\n";
             uploadStudentFileToCourse(username, year_head, semester_head, course_head);

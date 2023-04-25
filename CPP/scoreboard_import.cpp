@@ -12,7 +12,7 @@ void export_scoreboard(string filename, string username, Year* &year_head, Semes
     gotoXY(67, 6); cout <<"  \\____/  \\____/ \\___/ \\_| \\_|\\____/ \\____/  \\___/ \\_| |_/\\_| \\_||___/";
     gotoXY(67, 8); cout << "------------"<< course_head->course_ID << "_" << "Semester" << semester_head->Semester_Ord << "_" << year_head->year_name  <<"--------------\n";
     //Check if any students existed
-    course_head->student_head = getStudentCourseFromFile(username, year_head, semester_head, course_head);
+    course_head->student_head = getStudentCourseFromFile(year_head, semester_head, course_head);
     if(!course_head->student_head)
     {
         gotoXY(67, 10); cout << "THERE IS NO STUDENT IN THIS COURSE.";

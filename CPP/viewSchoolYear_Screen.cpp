@@ -1,8 +1,11 @@
 #include "../Header/Staff.h"
 #include "../Header/Design.h"
 
-void viewSchoolYear_Screen(string username, Year* year_head)
+void viewSchoolYear_Screen(string username, Year* &year_head)
 {
+    deletedata(year_head);
+    getdata(year_head);
+
     system("cls");
     resizeConsole(1920,920);
     system("color E0");
@@ -235,14 +238,48 @@ void viewSchoolYear_Screen(string username, Year* year_head)
                         }
                         else
                         {
-                            Year* temp = year_head;
+                            Year* temp_year = year_head;
                             for (int j = 0; j < (y_temp - 11)/4; ++j)
                             {
-                                temp = temp->year_next;
+                                if (temp_year->semester_head)
+                                {
+                                    Semester* temp_semester = temp_year->semester_head;
+                                    while (temp_semester)
+                                    {
+                                        if (temp_semester->course_head)
+                                        {
+                                            Course* temp_course = temp_semester->course_head;
+                                            while (temp_course)
+                                            {
+                                                deallocateStudents(temp_course->student_head);
+                                                temp_course = temp_course->course_next;
+                                            }
+                                            deallocateCourses(temp_semester->course_head);
+                                        }
+
+                                        temp_semester = temp_semester->semester_next;
+                                    }
+                                    deallocateSemesters(temp_year->semester_head);
+                                }
+
+                                if (temp_year->class_head)
+                                {
+                                    Class* temp_class = temp_year->class_head;
+                                    while (temp_class)
+                                    {
+                                        deallocateStudents(temp_class->student_head);
+                                        temp_class = temp_class->next_class;
+                                    }
+                                    deallocateClasses(temp_year->class_head);
+                                }
+
+                                Year* temp = temp_year;
+                                temp_year = temp_year->year_next;
+                                delete temp;
                             }
 
                             system("cls");
-                            accessSchoolYear(username, temp);
+                            accessSchoolYear(username, temp_year);
                             return;
                         }
                     }

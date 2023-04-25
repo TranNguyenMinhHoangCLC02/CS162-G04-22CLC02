@@ -206,25 +206,19 @@ void accessSemester(string username, Year* &year_head, Semester* &semester_head)
                         if (x_temp == 30)
                         {
                             system ("cls");
-                            semester_head->course_head = getCourseListFromFile(year_head, semester_head);
                             addNewCourse(username, year_head, semester_head);
-                            deallocateCourses(semester_head->course_head);
                             return;
                         }
                         else if (x_temp == 70)
                         {
                             system("cls");
-                            semester_head->course_head = getCourseListFromFile(year_head, semester_head);
                             viewCourse_Screen(username, year_head, semester_head);
-                            deallocateCourses(semester_head->course_head);
                             return;
                         }
                         else
                         {
                             system("cls");
-                            semester_head->course_head = getCourseListFromFile(year_head, semester_head);
                             viewUpdateCourseInformation(username, year_head, semester_head);
-                            deallocateCourses(semester_head->course_head);
                             return;
                         }
                     }

@@ -6,7 +6,7 @@ Class* getClassListFromFile(Year *&year_head, string filename)
     ifs.open(filename);
     if (!ifs.is_open())
     {
-        cerr << "Error: Unable to open file for reading\n";
+        //cerr << "Error: Unable to open file for reading\n";
         return nullptr;
     }
     year_head->class_head = nullptr;

@@ -25,48 +25,6 @@ bool isStudentInCourse(Course* course, Student* student)
     return false;
 }
 
-// Student* createStudent() 
-// {
-//     string student_ID, student_socialID, student_first, student_lastname, class_name;
-//     bool gender;
-//     Date DOB;
-
-//     cout << "Enter student ID: ";
-//     cin >> student_ID;
-
-//     cout << "Enter student social ID: ";
-//     cin >> student_socialID;
-
-//     cout << "Enter student first name: ";
-//     cin >> student_first;
-
-//     cout << "Enter student last name: ";
-//     cin >> student_lastname;
-
-//     cout << "Enter student class name: ";
-//     cin >> class_name;
-
-//     cout << "Enter student gender (0 for Male, 1 for Female): ";
-//     cin >> gender;
-
-//     cout << "Enter student date of birth (DD MM YYYY): ";
-//     cin >> DOB.day >> DOB.month >> DOB.year;
-
-//     // create a new student object
-//     Student* student = new Student;
-//     student->student_ID = student_ID;
-//     student->student_socialID = student_socialID;
-//     student->student_fisrtname = student_first;
-//     student->student_lastname = student_lastname;
-//     student->gender = gender;
-//     student->DOB = DOB;
-//     student->student_class.class_name = class_name;
-//     student->student_next = NULL;
-
-//     // return the pointer to the new student object
-//     return student;
-// }
-
 Student* findStudentInClass(Class* class_head, string studentID) 
 {
     while (class_head != nullptr) 
@@ -75,7 +33,21 @@ Student* findStudentInClass(Class* class_head, string studentID)
         while (student_head != nullptr) 
         {
             if (student_head->student_ID == studentID)
-                return student_head;
+            {
+                Student* new_student = new Student;
+
+                new_student->student_ID = student_head->student_ID;
+                new_student->student_socialID = student_head->student_socialID;
+                new_student->student_fisrtname = student_head->student_fisrtname;
+                new_student->student_lastname = student_head->student_lastname;
+                new_student->gender = student_head->gender;
+                new_student->DOB = student_head->DOB;
+                new_student->student_class.class_name = student_head->student_class.class_name;
+                new_student->course_head = student_head->course_head;
+                new_student->student_next = nullptr;
+
+                return new_student;
+            }
             student_head = student_head->student_next;
         }
         
@@ -105,27 +77,15 @@ void addStudentToCourse(string username, Course* &course, Year* &year_head, Seme
     string studentID;
     cout << "Input ID of student that you want to add: ";
     cin >> studentID; 
-
-    string filename;
-    filename = "class_" + year_head->year_name + ".txt";
-    filename = "../Txt_Csv/" + filename;
-    year_head->class_head = getClassListFromFile(year_head, filename);
     
-
     Student* student = findStudentInClass(year_head->class_head , studentID);
-
-    if (!student)
-    {
-        std::cout << "Student is not existed";
-
-        _getch();
-        return;
-    }
 
     // Check if the Course has reached maxNumStudents or not
     if (numOfStudent(course) == course->maxNumStudents)
     {
+        system ("cls");
         cout << "This course has reached its maximum limit of students.";
+        addStudentToCourse(username, course, year_head, semester_head);
         return;
     }
 
@@ -134,7 +94,9 @@ void addStudentToCourse(string username, Course* &course, Year* &year_head, Seme
         // Check if the student is already in the course
         if (isStudentInCourse(course, student))
         {
+            system ("cls");
             cout << "This student is already in the course.";
+            addStudentToCourse(username, course, year_head, semester_head);
             return;
         }
 
@@ -152,24 +114,24 @@ void addStudentToCourse(string username, Course* &course, Year* &year_head, Seme
             current->student_next = student;
         }
     }
-    
 
     // Add student infomation to file
-    string file_name = course->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + ".csv";
+    string file_name = course->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_student.csv";
     file_name = "../Txt_Csv/" + file_name;
-    ofs.open(file_name);
+    ofs.open(file_name, ios::app);
     if (!ofs.is_open())
     {
         cerr << "Error: Unable to open file for writing\n";
         return;
     }
-
+    
+    ofs << "\n";
     ofs << student->student_ID << "," << student->student_socialID << ",";
     ofs << student->student_fisrtname << "," << student->student_lastname << ",";
     ofs << student->gender << "," << student->student_class.class_name << ",";
-    ofs << student->DOB.day << "/" << student->DOB.month << "/" << student->DOB.year << "\n";
+    ofs << student->DOB.day << "/" << student->DOB.month << "/" << student->DOB.year;
 
-    cout << "Student added successfully.";
+    cout << "Student added successfully.\n\n";
 
     int option;
     cout << "Do you want to add another student? (1 for Yes, 0 for No): ";
@@ -186,7 +148,9 @@ void addStudentToCourse(string username, Course* &course, Year* &year_head, Seme
         return;
     }   
     else
+    {
+        accessCourse(username, year_head, semester_head, course);
         return;
+    }
 
 }
-

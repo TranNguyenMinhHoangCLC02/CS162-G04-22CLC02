@@ -88,6 +88,10 @@ struct Scoreboard
     Student *student_head;
 };
 
+//Implementation with user's input
+void getdata(Year* &year_head);
+void deletedata(Year* &year_head);
+
 //Authentication functions
 bool isLoggedIn();
 void login(bool isStudent, string &username, bool &opt);
@@ -98,7 +102,7 @@ void changePass(string username, bool isStudent, int& opt);
 
 //Screen functions
 int firstScreen(bool &check);
-void viewSchoolYear_Screen(string username, Year* year_head);
+void viewSchoolYear_Screen(string username, Year* &year_head);
 void Main_Staff_Screen(string &username, Year* &year_head);
 void Main_Student_Screen(string username);
 void Myinterface(int option, Year* &year_head);
