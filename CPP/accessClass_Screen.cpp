@@ -232,4 +232,7 @@ void accessClass(string username, Year* &year_head, Class *class_head)
         system("cls");
         viewScoreBoard_Class(username, year_head, class_head);
     }
+    system("cls");
+    accessSchoolYear(username, year_head);
+    return;
 }

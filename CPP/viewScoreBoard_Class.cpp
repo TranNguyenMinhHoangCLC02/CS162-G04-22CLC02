@@ -230,6 +230,17 @@ void viewScoreBoard_Class(string username, Year *&year_head, Class *class_head)
         float total, final1, midterm, other;
         string dummy;
         getline(ifs,dummy);
+        string check2ndLine;
+        getline(ifs, check2ndLine);
+        if (check2ndLine == "")
+        {
+            
+            Create_A_Box_1(1, y_coord+10, 2, 30, 14, 14, 0, "THERE IS NO AVAILABLE VALUE!");
+            y_coord=y_coord+3;
+        }
+        ifs.close();
+        ifs.open(filename1);
+        getline(ifs, dummy);
         string temp;
         while (!ifs.eof())
         {
