@@ -5,7 +5,7 @@ Student *getStudentCourseFromFile(string username, Year* &year_head, Semester* &
     ifstream ifs;
     //convert semester_head->Semester_Ord to string
     char ch_semester = static_cast<char>(semester_head->Semester_Ord + 48);
-    string filename = "../Txt_Csv/" + course_head->course_ID + "_Semester" + ch_semester + "_" + year_head->year_name  + ".csv";
+    string filename = "../Txt_Csv/" + course_head->course_ID + "_Semester" + ch_semester + "_" + year_head->year_name  + "_student.csv";
     ifs.open(filename);
     if (!ifs.is_open())
     {
