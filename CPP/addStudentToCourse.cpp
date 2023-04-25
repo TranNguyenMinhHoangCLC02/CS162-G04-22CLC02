@@ -1,4 +1,5 @@
 #include "../Header/Student.h"
+#include "../Header/Staff.h"
 
 int numOfStudent(Course* course)
 {
@@ -103,7 +104,13 @@ void addStudentToCourse(string username, Course* &course, Year* &year_head, Seme
 
     string studentID;
     cout << "Input ID of student that you want to add: ";
-    cin >> studentID; //22127280
+    cin >> studentID; 
+
+    string filename;
+    filename = "class_" + year_head->year_name + ".txt";
+    filename = "../Txt_Csv/" + filename;
+    year_head->class_head = getClassListFromFile(year_head, filename);
+    
 
     Student* student = findStudentInClass(year_head->class_head , studentID);
 
@@ -176,6 +183,7 @@ void addStudentToCourse(string username, Course* &course, Year* &year_head, Seme
     {
         system ("cls");
         addStudentToCourse(username, course, year_head, semester_head);
+        return;
     }   
     else
         return;

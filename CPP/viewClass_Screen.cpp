@@ -1,13 +1,11 @@
 #include "../Header/Staff.h"
 #include "../Header/Design.h"
 void viewClass_Screen(string username, Year* &year_head)
-{
+{                                                      
     system("cls");
-    string filename;
-    filename = "class_" + year_head->year_name + ".txt";
-    filename = "../Txt_Csv/" + filename;
-    year_head->class_head = getClassListFromFile(year_head, filename);                                                       
-    
+    resizeConsole(1920,920);
+    system("color E0");
+
     int y = 5;
     gotoXY(100, y + 5);
     std::cout << "                                                                                                    ";
@@ -318,6 +316,5 @@ void viewClass_Screen(string username, Year* &year_head)
         }
     }
     system("cls");
-    deallocateClasses(year_head->class_head);
     accessSchoolYear(username, year_head);
 }

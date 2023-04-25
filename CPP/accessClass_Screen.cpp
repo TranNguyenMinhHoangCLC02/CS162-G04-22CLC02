@@ -220,16 +220,21 @@ void accessClass(string username, Year* &year_head, Class *class_head)
         system("cls");
         class_head->student_head = getStudentListFromFile(year_head, class_head);
         addNewStudent(username, year_head, class_head);
-        // deallocateStudents(class_head->student_head);
+        deallocateStudents(class_head->student_head);
         return;
     }
     else if(option == 2)
     {
+        system("cls");
+        class_head->student_head = getStudentListFromFile(year_head, class_head);
         viewStudentInClass(username, year_head, class_head);
+        deallocateStudents(class_head->student_head);
+        return;
     }
     else if (option == 3)
     {
         system("cls");
         viewScoreBoard_Class(username, year_head, class_head);
+        return;
     }
 }

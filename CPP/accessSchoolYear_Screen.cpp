@@ -270,7 +270,12 @@ void accessSchoolYear(string username, Year* &year_head)
                         else
                         {
                             system("cls");
+                            string filename;
+                            filename = "class_" + year_head->year_name + ".txt";
+                            filename = "../Txt_Csv/" + filename;
+                            year_head->class_head = getClassListFromFile(year_head, filename);
                             viewClass_Screen(username, year_head);
+                            deallocateClasses(year_head->class_head);
                             return;
                         }
                     }
