@@ -99,7 +99,6 @@ void TextColor(int T_Color)
 	SetConsoleTextAttribute(text_color, T_Color);
 }
 
-//Create a box in console
 void Create_A_Box_1 (int x_coord, int y_coord, int height, int width, int highlight_color_1, int highlight_color_2, int text_color, std::string content)
 {
     SetColor1(highlight_color_1,text_color);
@@ -218,6 +217,7 @@ void Create_A_Box_3 (int x_coord, int y_coord, int height, int width)
     gotoXY(x_coord + width, y_coord + height); std::cout << (char)(217); //Bottom right
     gotoXY(x_coord, y_coord + height); std::cout << (char)(192); //Bottom left
 }
+//Create a box in console
 
 void Create_A_Box_4 (int x_coord, int y_coord, int height, int width, int highlight_color_1, int highlight_color_2, int text_color, std::string keyword, std::string content)
 {
