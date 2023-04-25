@@ -125,6 +125,7 @@ void addNewClass (Year* &year_head, string username)
                     else if (c == ENTER)
                     {
                         opt = 0; bool check = false;
+                        system("cls");
                         accessSchoolYear(username, year_head);
                         return;
                     }
@@ -153,6 +154,7 @@ void addNewClass (Year* &year_head, string username)
         {
             Create_A_Box_2(1, 3, 2, 30, 14, 14, 0, "CLASS ALREADY EXISTS! PLEASE INPUT AGAIN");
             new_class->class_name="";
+            counter--;
         }
     }
     // Class name input is valid
@@ -197,7 +199,14 @@ void addNewClass (Year* &year_head, string username)
     ofs.close();
     checkEmpty.close();
     // cout << "You created a new class successfully!\n\n";
-    Create_A_Box_1(1, 8, 2, 41, 14, 14, 0, "You created a new class successfully!");
+    Create_A_Box_1(1, 8, 2, 42, 14, 14, 0, "You created a new class successfully!");
+    for (int i = 0; i < 3; ++i)
+    {
+        gotoXY(39 + i,9);
+        ShowConsoleCursor(false);
+        std::cout << "." << flush;
+        Sleep(500);
+    }
     string name_file = new_class->class_name + "-" + year_head->year_name + ".txt";
     name_file = "../Txt_Csv/" + name_file;
     ofs.open(name_file);
@@ -223,26 +232,26 @@ void addNewClass (Year* &year_head, string username)
     //     system ("cls");
     //     accessSchoolYear(username, year_head);
     // }
-        SetColor1(15,0);
-        for (int i = 1 + 1; i <= 14; ++i)
-        {
-            gotoXY(i, 15);
-            std::cout << " ";
-        }
-        gotoXY(1 + 1, 15);
-        std::cout << " RETURN BACK";
-        ShowConsoleCursor(false);
-        while (true)
-        {
-            if (_kbhit())
-            {
-                char c = _getch();
-                if (c == ENTER)
-                {
-                    break;
-                }
-            }
-        }
+        // SetColor1(15,0);
+        // for (int i = 1 + 1; i <= 14; ++i)
+        // {
+        //     gotoXY(i, 15);
+        //     std::cout << " ";
+        // }
+        // gotoXY(1 + 1, 15);
+        // std::cout << " RETURN BACK";
+        // ShowConsoleCursor(false);
+        // while (true)
+        // {
+        //     if (_kbhit())
+        //     {
+        //         char c = _getch();
+        //         if (c == ENTER)
+        //         {
+        //             break;
+        //         }
+        //     }
+        // }
         system("color E0");
         system("cls");
         accessSchoolYear(username, year_head);
