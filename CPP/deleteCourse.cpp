@@ -222,7 +222,9 @@ void deleteCourse(string username, Semester *semester_head, Year* year_head)
     }
     if (option == 0)
     {
-
+        system("cls");
+        viewUpdateCourseInformation (username, year_head, semester_head);
+        return;
     }
     system("cls");
     system("color E0");
@@ -442,4 +444,7 @@ void deleteCourse(string username, Semester *semester_head, Year* year_head)
     string file_name2 = course->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + ".csv";
     file_name2 = "../Txt_Csv/" + file_name;
     remove(file_name2.c_str());
+    system("cls");
+    viewUpdateCourseInformation (username, year_head, semester_head);
+    return;
 }
