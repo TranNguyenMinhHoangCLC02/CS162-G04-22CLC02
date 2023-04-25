@@ -13,32 +13,143 @@ void updateStudentsScore(string filename, string username, Year* &year_head, Sem
     gotoXY(67, 6); cout <<"    \\____/|_|    |_____/_/    \\_\\_|  |______| |_____/ \\_____\\____/|_|  \\_\\______|____/ \\____/_/    \\_\\_|  \\_\\_____/ ";
     gotoXY(71, 9); cout << "------------------------------"<< course_head->course_name <<"--------------------------\n";
     int option = 0;
-    do
+    Create_A_Box_2(70,17,2,20,14,14,0,"ENTER STUDENT'S ID:");
+    Create_A_Box_1(40,24,2,20,14,14,0,"    RETURN BACK");
+    ShowConsoleCursor(false);
+    string id;
+    ifstream ifs;
+    int x_temp = 70; int y_temp = 17; int y_old; int xp = x_temp; int yp = y_temp; int pos_user = 0; int pos_pass = 0;
+    int count = 0;
+    while (count < 1)
     {
-        string id;
-        ifstream ifs;
-        ifs.open(filename);
-        if (!ifs.is_open())
+        system("color E0");
+
+        if (y_temp == 17)
         {
-            cerr << "ERROR: UNABLE TO OPEN FILE FOR READING\n";
-            return;
+            gotoXY(xp + 2, yp + 1);
+            ShowConsoleCursor(true);
+
+            char c;
+            while (true)
+            {
+                c = _getch();
+
+                if (c == ENTER)
+                {
+                    if (id != "")
+                        count++;
+                    xp = 70;
+                    yp = y_temp;
+                    break;
+                }
+                else if (c == DOWN)
+                {
+                    ShowConsoleCursor(false);
+                    y_old = y_temp;
+                    y_temp = 24;
+                    xp = x_temp + id.size();
+                    yp = y_old;
+                    break;
+                }
+                else if (c == BACKSPACE)
+                {
+                    if (id != "" && pos_user > 0)
+                    {
+                        std::cout << "\b \b";
+                        id.pop_back();
+                    }
+                }
+                else if (c == LEFT)
+                {
+                    int len = id.size();
+
+                    if (pos_user > 0)
+                    {
+                        pos_user--;
+                        gotoXY(x_temp + pos_user + 2, y_temp + 1);
+                    }
+
+                    continue;
+                }
+                else if (c == RIGHT)
+                {
+                    int len = id.size();
+
+                    if (pos_user < len)
+                    {
+                        pos_user++;
+                        gotoXY(x_temp + pos_user + 2, y_temp + 1);
+                    }
+
+                    continue;
+                }
+                else
+                {
+                    int len = id.size();
+                    //only number
+                    if (c >= 32 && c <= 126 && len < 9)
+                    {
+                        pos_user++;
+                        id += c;
+                        std::cout << c;
+                    }
+                }
+            }
         }
-        ofstream ofs;
-        ofs.open("../Txt_Csv/temp.csv");
-        if (!ofs.is_open())
+        else
         {
-            cerr << "ERROR: UNABLE TO OPEN FILE FOR WRITING\n";
-            return;
+            SetColor1(15,0);
+            for (int i = 41; i <= 59; ++i)
+            {
+                gotoXY(i, y_temp + 1);
+                std::cout << " ";
+            }
+
+            gotoXY(41, y_temp + 1);
+            std::cout << "    RETURN BACK";
+
+
+            if (_kbhit())
+            {
+                char c = _getch();
+
+                if (c == UP)
+                {
+                    ShowConsoleCursor(true);
+                    y_temp = y_old;
+                }
+                else if (c == ENTER)
+                {
+                    system("cls");
+                    accessCourse(username, year_head, semester_head, course_head);
+                    return;
+                }
+            }
         }
-        gotoXY(71, 12); cout << "INPUT STUDENT ID: ";
-        getline(cin, id);
-        int counter = 1;
-        string student_id, fullname;
-        float total, final1, midterm, other;
-        string temp;
-        string dummy;
-        getline(ifs, dummy);
-        ofs << dummy << "\n";
+    }
+
+    int counter = 1;
+    string student_id, fullname;
+    float total, final1, midterm, other;
+    //Read File
+    ifs.open(filename);
+    if (!ifs.is_open())
+    {
+        gotoXY(71, 11); cout << "ERROR: UNABLE TO OPEN FILE FOR READING\n";
+        return;
+    }
+    ofstream ofs;
+    ofs.open("../Txt_Csv/temp.csv");
+    if (!ofs.is_open())
+    {
+        gotoXY(71, 12); cout << "ERROR: UNABLE TO OPEN FILE FOR WRITING\n";
+        return;
+    }
+    string temp;
+    string dummy;
+    getline(ifs, dummy);
+    ofs << dummy << "\n";
+    if (check_is_it(filename, id)){
         while (!ifs.eof())
         {
             if (ifs.eof())
@@ -57,21 +168,20 @@ void updateStudentsScore(string filename, string username, Year* &year_head, Sem
             
             if (id == student_id)
             {
-                gotoXY(71, 14); cout << setw(3) << right << "NO." << counter << " ";
-                gotoXY(71, 15); cout << setw(10) << left << student_id << " ";
-                gotoXY(71, 16); cout << setw(25) << left << fullname << " ";
-                gotoXY(71, 17); cout << setw(5) << right << fixed << setprecision(1) << midterm << " ";
-                gotoXY(71, 18); cout << setw(5) << right << fixed << setprecision(1) << final1 << " ";
-                gotoXY(71, 19); cout << setw(5) << right << fixed << setprecision(1) << other << " ";
-                gotoXY(71, 20); cout << setw(5) << right << fixed << setprecision(1) << total << endl;
+                // gotoXY(71, 14); cout << setw(3) << right << "NO." << counter << " ";
+                // gotoXY(71, 15); cout << setw(10) << left << student_id << " ";
+                // gotoXY(71, 16); cout << setw(25) << left << fullname << " ";
+                // gotoXY(71, 17); cout << setw(5) << right << fixed << setprecision(1) << midterm << " ";
+                // gotoXY(71, 18); cout << setw(5) << right << fixed << setprecision(1) << final1 << " ";
+                // gotoXY(71, 19); cout << setw(5) << right << fixed << setprecision(1) << other << " ";
+                // gotoXY(71, 20); cout << setw(5) << right << fixed << setprecision(1) << total << endl;
                 ofs << student_id << "," << fullname << ",";
-                gotoXY(71, 21); cout << "ENTER NEW SCORE FOR STUDENT: " << "\n";
-                gotoXY(71, 22); cout << "MIDTERM: ";
-                gotoXY(71 + 10, 22); cin >> midterm;
-                gotoXY(71, 23); cout << "FINAL: ";
-                gotoXY(71 + 8, 22); cin >> final1;
-                gotoXY(71, 24); cout << "OTHER: ";
-                gotoXY(71 + 8, 22); cin >> other;
+                Create_A_Box_2(105,17,2,11,14,14,0,"MIDTERM:");
+                gotoXY(101 + 5,18); cin >> midterm;
+                Create_A_Box_2(120,17,2,11,14,14,0,"FINAL:");
+                gotoXY(111 + 10,18); cin >> final1;
+                Create_A_Box_2(135,17,2,11,14,14,0,"OTHER:");
+                gotoXY(121 + 15,18); cin >> other;
                 total = (midterm + final1 + other)/3.0;
                 ofs << fixed << setprecision(1) << midterm << ","
                     << fixed << setprecision(1) << final1 << ","
@@ -92,60 +202,185 @@ void updateStudentsScore(string filename, string username, Year* &year_head, Sem
             }
             counter++;
         }
+    }
+    else
+    {
         ifs.close();
         ofs.close();
-        const char* newfilename = filename.c_str();
-        remove(newfilename);
-        rename("../Txt_Csv/temp.csv", newfilename);
-        cout << "Update Successful!\n";
-        option = choose_option(filename, username, year_head, semester_head, course_head);
-        
-    } while (option == 1);
+        int a = 14;
+        gotoXY(33 + 8,8 + a + 1); cout << "STUDENT ID NOT FOUND";
+        Create_A_Box_1(33,10 + a,2,35,14,14,0,"   CONTINUE UPDATING SCOREBOARD");
+        Create_A_Box_1(33,12 + a,2,35,14,14,0,"          RETURN BACK");
+        gotoXY(33,12 + a); std::cout << (char)(195);
+        gotoXY(68,12 + a); std::cout << (char)(180);
+
+        ShowConsoleCursor(false);
+        int x_temp = 33, y_temp = 24;
+        bool flag = true;
+        while (true)
+        {
+            if (flag == true)
+            {
+                if (y_temp == 24)
+                {
+                    system("color E0");
+                    SetColor1(15,0);
+                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
+
+                    gotoXY(x_temp + 1, y_temp + 1);
+                    std::cout << "   CONTINUE UPDATING SCOREBOARD";
+                    ShowConsoleCursor(false);
+                }
+                else if (y_temp == 26)
+                {
+                    system("color E0");
+                    SetColor1(15,0);
+                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
+
+                    gotoXY(x_temp + 1, y_temp + 1);
+                    std::cout << "          RETURN BACK";
+                    ShowConsoleCursor(false);
+                }
+                flag = false;
+            }
+            else
+            {
+                if (_kbhit())
+                {
+                    char c = _getch();
+
+                    system("color E0");
+                    if (y_temp == 24)
+                    {
+                        SetColor1(14,0);
+                        for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                        {
+                            gotoXY(i, y_temp + 1);
+                            std::cout << " ";
+                        }
+
+                        gotoXY(x_temp + 1, y_temp + 1);
+                        std::cout << "   CONTINUE UPDATING SCOREBOARD";
+                        ShowConsoleCursor(false);
+                    }
+                    else if (y_temp == 26)
+                    {
+                        SetColor1(14,0);
+                        for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                        {
+                            gotoXY(i, y_temp + 1);
+                            std::cout << " ";
+                        }
+
+                        gotoXY(x_temp + 1, y_temp + 1);
+                        std::cout << "          RETURN BACK";
+                        ShowConsoleCursor(false);
+                    }
+                    flag = true;
+
+                    if (c == UP)
+                    {
+                        if (y_temp == 24)
+                        {
+                            y_temp = 26;
+                        }
+                        else
+                        {
+                            y_temp -= 2;
+                        }
+                    }
+                    else if (c == 80)
+                    {
+                        if (y_temp == 26)
+                        {
+                            y_temp = 24;
+                        }
+                        else
+                        {
+                            y_temp += 2;
+                        }
+                    }
+                    else if (c == 13)
+                    {
+                        if (y_temp == 24)
+                        {
+                            system("cls");
+                            updateStudentsScore(filename, username, year_head, semester_head, course_head);
+                            return;
+                        }
+                        else if (y_temp == 26)
+                        {
+                            system("cls");
+                            accessCourse(username, year_head, semester_head, course_head);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ifs.close();
+    ofs.close();
+    const char* newfilename = filename.c_str();
+    remove(newfilename);
+    rename("../Txt_Csv/temp.csv", newfilename);
+    option = choose_option(filename, username, year_head, semester_head, course_head);
     system("cls");
-    accessCourse(username, year_head, semester_head, course_head);
+    if(option == 1)
+        accessCourse(username, year_head, semester_head, course_head);
+    else if(option == 0)
+        updateStudentsScore(newfilename, username, year_head, semester_head, course_head);
 }
 
 int choose_option(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head){
-    int a = 18;
-    Create_A_Box_1(33,8 + a,2,50,14,14,0,"            UPDATE SUCCESSFUL!");
-    Create_A_Box_1(33,10 + a,2,50,14,14,0,"            CONTINUE UPDATING SCOREBOARD");
-    Create_A_Box_1(33,12 + a,2,50,14,14,0,"            RETURN BACK");
-    gotoXY(33,15); std::cout << (char)(195);
-    gotoXY(122,15); std::cout << (char)(180);
+    int a = 14;
+    gotoXY(33 + 9,8 + a + 1); cout << "UPDATE SUCCESSFUL!";
+    Create_A_Box_1(33,10 + a,2,35,14,14,0,"   CONTINUE UPDATING SCOREBOARD");
+    Create_A_Box_1(33,12 + a,2,35,14,14,0,"          RETURN BACK");
+    gotoXY(33,12 + a); std::cout << (char)(195);
+    gotoXY(68,12 + a); std::cout << (char)(180);
 
     ShowConsoleCursor(false);
-    int x_temp = 33, y_temp = 28;
+    int x_temp = 33, y_temp = 24;
     bool flag = true;
     while (true)
     {
         if (flag == true)
         {
-            if (y_temp == 28)
+            if (y_temp == 24)
             {
                 system("color E0");
                 SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                for (int i = x_temp + 1; i <= x_temp + 34; ++i)
                 {
                     gotoXY(i, y_temp + 1);
                     std::cout << " ";
                 }
 
                 gotoXY(x_temp + 1, y_temp + 1);
-                std::cout << "            CONTINUE UPDATING SCOREBOARD";
+                std::cout << "   CONTINUE UPDATING SCOREBOARD";
                 ShowConsoleCursor(false);
             }
-            else if (y_temp == 30)
+            else if (y_temp == 26)
             {
                 system("color E0");
                 SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                for (int i = x_temp + 1; i <= x_temp + 34; ++i)
                 {
                     gotoXY(i, y_temp + 1);
                     std::cout << " ";
                 }
 
                 gotoXY(x_temp + 1, y_temp + 1);
-                std::cout << "            RETURN BACK";
+                std::cout << "          RETURN BACK";
                 ShowConsoleCursor(false);
             }
             flag = false;
@@ -157,39 +392,39 @@ int choose_option(string filename, string username, Year* &year_head, Semester* 
                 char c = _getch();
 
                 system("color E0");
-                if (y_temp == 28)
+                if (y_temp == 24)
                 {
                     SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    for (int i = x_temp + 1; i <= x_temp + 34; ++i)
                     {
                         gotoXY(i, y_temp + 1);
                         std::cout << " ";
                     }
 
                     gotoXY(x_temp + 1, y_temp + 1);
-                    std::cout << "            CONTINUE UPDATING SCOREBOARD";
+                    std::cout << "   CONTINUE UPDATING SCOREBOARD";
                     ShowConsoleCursor(false);
                 }
-                else if (y_temp == 30)
+                else if (y_temp == 26)
                 {
                     SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    for (int i = x_temp + 1; i <= x_temp + 34; ++i)
                     {
                         gotoXY(i, y_temp + 1);
                         std::cout << " ";
                     }
 
                     gotoXY(x_temp + 1, y_temp + 1);
-                    std::cout << "            RETURN BACK";
+                    std::cout << "          RETURN BACK";
                     ShowConsoleCursor(false);
                 }
                 flag = true;
 
                 if (c == UP)
                 {
-                    if (y_temp == 28)
+                    if (y_temp == 24)
                     {
-                        y_temp = 30;
+                        y_temp = 26;
                     }
                     else
                     {
@@ -198,9 +433,9 @@ int choose_option(string filename, string username, Year* &year_head, Semester* 
                 }
                 else if (c == 80)
                 {
-                    if (y_temp == 30)
+                    if (y_temp == 26)
                     {
-                        y_temp = 28;
+                        y_temp = 24;
                     }
                     else
                     {
@@ -209,12 +444,12 @@ int choose_option(string filename, string username, Year* &year_head, Semester* 
                 }
                 else if (c == 13)
                 {
-                    if (y_temp == 28)
+                    if (y_temp == 24)
                     {
                         system("cls");
                         return 0;
                     }
-                    else if (y_temp == 30)
+                    else if (y_temp == 26)
                     {
                         system("cls");
                         return 1;
@@ -223,4 +458,25 @@ int choose_option(string filename, string username, Year* &year_head, Semester* 
             }
         }
     }
+}
+
+bool check_is_it(string filename, string student_id){
+    ifstream file;
+    file.open(filename);
+    string dummy;
+    getline(file, dummy);
+    string line;
+    while (getline(file, line))
+    {
+        stringstream ss(line);
+        string temp;
+        getline(ss, temp, ',');
+        if (temp == student_id)
+        {
+            file.close();
+            return true;
+        }
+    }
+    file.close();
+    return false;
 }
