@@ -305,14 +305,15 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
         viewCourse_Screen(username, year_head, semester_head);
         return;
     }
-    else if(option == 1){
+    else if (option == 1)
+    {
         system("cls");
-        addStudentToCourse(username,course_head,year_head, semester_head);
+        addStudentToCourse(username, course_head, year_head, semester_head);
         deallocateStudents(course_head->student_head);
         accessCourse(username, year_head, semester_head, course_head);
         return;
     }
-    else if(option == 2)
+    else if (option == 2)
     {
         system ("cls");
         course_head->student_head = getStudentCourseFromFile(username, year_head, semester_head, course_head);

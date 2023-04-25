@@ -13,7 +13,7 @@ void addNewStudent(string username, Year* &year_head, Class* cur)
         Create_A_Box_1(1, 1, 2, 40, 14, 14, 0, "Error: Unable to open file for writing");
         return;
     }
-    Student* temp = year_head->class_head->student_head;
+    Student* temp = cur->student_head;
     while (temp != nullptr)
     {
         if (temp->student_class.class_name == cur->class_name)

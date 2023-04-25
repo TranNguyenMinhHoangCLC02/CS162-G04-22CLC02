@@ -13,13 +13,8 @@ Class* getClassListFromFile(Year *&year_head, string filename)
     Class* temp = nullptr;
     string class_name;
 
-    while (!ifs.eof())
+    while (getline(ifs, class_name, '\n'))
     {
-        getline(ifs, class_name, '\n');
-
-        // if (ifs.eof())
-        //     break;
-
         Class* new_class = new Class;
         new_class->class_name = class_name;
         new_class->student_head = nullptr;

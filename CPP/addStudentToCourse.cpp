@@ -103,8 +103,17 @@ void addStudentToCourse(string username, Course* &course, Year* &year_head, Seme
 
     string studentID;
     cout << "Input ID of student that you want to add: ";
-    cin >> studentID;
+    cin >> studentID; //22127280
+
     Student* student = findStudentInClass(year_head->class_head , studentID);
+
+    if (!student)
+    {
+        std::cout << "Student is not existed";
+
+        _getch();
+        return;
+    }
 
     // Check if the Course has reached maxNumStudents or not
     if (numOfStudent(course) == course->maxNumStudents)
