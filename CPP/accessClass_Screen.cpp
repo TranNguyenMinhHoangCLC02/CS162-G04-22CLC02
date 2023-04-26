@@ -36,7 +36,7 @@ int CLASS_Interface(string &username, Year* &year_head, Class *class_head){
             {
                 system("color E0");
                 SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                 {
                     gotoXY(i, y_temp + 1);
                     std::cout << " ";
@@ -50,7 +50,7 @@ int CLASS_Interface(string &username, Year* &year_head, Class *class_head){
             {
                 system("color E0");
                 SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                 {
                     gotoXY(i, y_temp + 1);
                     std::cout << " ";
@@ -64,7 +64,7 @@ int CLASS_Interface(string &username, Year* &year_head, Class *class_head){
             {
                 system("color E0");
                 SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                 {
                     gotoXY(i, y_temp + 1);
                     std::cout << " ";
@@ -78,7 +78,7 @@ int CLASS_Interface(string &username, Year* &year_head, Class *class_head){
             {
                 system("color E0");
                 SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                 {
                     gotoXY(i, y_temp + 1);
                     std::cout << " ";
@@ -100,7 +100,7 @@ int CLASS_Interface(string &username, Year* &year_head, Class *class_head){
                 if (y_temp == 13)
                 {
                     SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                     {
                         gotoXY(i, y_temp + 1);
                         std::cout << " ";
@@ -113,7 +113,7 @@ int CLASS_Interface(string &username, Year* &year_head, Class *class_head){
                 else if (y_temp == 15)
                 {
                     SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                     {
                         gotoXY(i, y_temp + 1);
                         std::cout << " ";
@@ -126,7 +126,7 @@ int CLASS_Interface(string &username, Year* &year_head, Class *class_head){
                 else if (y_temp == 17)
                 {
                     SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                     {
                         gotoXY(i, y_temp + 1);
                         std::cout << " ";
@@ -139,7 +139,7 @@ int CLASS_Interface(string &username, Year* &year_head, Class *class_head){
                 else if (y_temp == 19)
                 {
                     SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                     {
                         gotoXY(i, y_temp + 1);
                         std::cout << " ";
