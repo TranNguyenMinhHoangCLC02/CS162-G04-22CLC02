@@ -212,7 +212,7 @@ void accessClass(string username, Year* &year_head, Class *class_head)
     if (option == 0)
     {
         system("cls");
-        accessSchoolYear(username, year_head);
+        viewClass_Screen(username, year_head);
         return;
     }
     else if (option == 1)
