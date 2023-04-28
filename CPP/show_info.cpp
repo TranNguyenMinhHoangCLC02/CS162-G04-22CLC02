@@ -392,11 +392,11 @@ void student_info(string username)
             SetColor1(15,0);
             for (int i = 136; i <= 154; ++i)
             {
-                gotoXY(i, 36);
+                gotoXY(i, 41);
                 std::cout << " ";
             }
 
-            gotoXY(136, 36);
+            gotoXY(136, 41);
             std::cout << "    RETURN BACK";
             ShowConsoleCursor(false);
             flag = false;
