@@ -8,6 +8,16 @@ void resizeConsole(int width, int height)//Resize console
     MoveWindow(console, r.left, r.top, width, height, TRUE);
 }
 
+void gotoXY (int x, int y)//Move Mouse Pointer to (x;y) coordinator
+{
+    COORD coordinator;
+
+    coordinator.X = x;
+    coordinator.Y = y;
+
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coordinator);
+}
+
 //Set color (function 1)
 void SetColor1(int backgound_color, int text_color)
 {

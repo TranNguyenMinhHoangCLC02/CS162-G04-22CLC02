@@ -6,47 +6,38 @@ Student* getStudentListFromFile(Year *year_head, Class* class_head)
     ifs.open("../Txt_Csv/student_info.csv");
     if (!ifs.is_open())
     {
-        //cerr << "Error: Unable to open file for reading\n";
+        // cerr << "Error: Unable to open file for reading\n";
         return nullptr;
     }
     class_head->student_head = nullptr;
     Student* temp = nullptr;
     string dummy;
     getline(ifs, dummy);
-    string first_name, last_name, student_class, student_ID, social_ID, DOB, gender;
-    while (!ifs.eof())
+    
+    string line;
+    while (getline(ifs, line))
     {
-        if (ifs.eof())
-            break;
-        
+        string tmp;
+        stringstream ss(line);
+
         Student* new_student = new Student;
-        getline(ifs, student_ID, ',');
-        new_student->student_ID = student_ID;
-        getline(ifs, social_ID, ',');
-        new_student->student_socialID = social_ID;
-        getline(ifs, first_name, ',');
-        new_student->student_fisrtname = first_name;
-        getline(ifs, last_name, ',');
-        new_student->student_lastname = last_name;
-        getline(ifs, gender, ',');
-        new_student->gender=stoi(gender);
-        getline(ifs, student_class, ',');
-        new_student->student_class.class_name = student_class;
-        getline(ifs, DOB, '\n');
-        getDate(new_student, DOB);
+        getline(ss, tmp, ',');
+        new_student->student_ID = tmp;
+        getline(ss, tmp, ',');
+        new_student->student_socialID = tmp;
+        getline(ss, tmp, ',');
+        new_student->student_fisrtname = tmp;
+        getline(ss, tmp, ',');
+        new_student->student_lastname = tmp;
+        getline(ss, tmp, ',');
+        new_student->gender = stoi(tmp);
+        getline(ss, tmp, ',');
+        new_student->student_class.class_name = tmp;
+        getline(ss, tmp, '\n');
+        getDate(new_student, tmp);
         new_student->course_head = nullptr;
         new_student->student_next = nullptr;
 
-        // if (!year_head->class_head->student_head)
-        // {
-        //     year_head->class_head->student_head = new_student;
-        //     temp = year_head->class_head->student_head;
-        // }
-        // else
-        // {
-        //     temp->student_next = new_student;
-        //     temp = temp->student_next;
-        // }
         addTail(class_head->student_head, new_student);
     }
 
