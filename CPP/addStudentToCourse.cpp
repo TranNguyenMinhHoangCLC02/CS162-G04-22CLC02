@@ -1,5 +1,6 @@
-#include "../Header/Student.h"
 #include "../Header/Staff.h"
+#include "../Header/Student.h"
+#include "../Header/Design.h"
 
 int numOfStudent(Course* course)
 {
@@ -72,11 +73,137 @@ void addCourseToStudent(Student* &student, Course* course)
 
 void addStudentToCourse(string username, Course* &course, Year* &year_head, Semester* semester_head) 
 {
-    ofstream ofs;
+    resizeConsole(1920,920);
+    system("color E0");
+    gotoXY(40,2);
+    std::cout << "        ___ ____________   _____ _____ _   _______ _____ _   _ _____   _____ _____   _____ _____ _   _______  _____ _____";
+    gotoXY(40,3);
+    std::cout << "       / _ \\|  _  \\  _  \\ /  ___|_   _| | | |  _  \\  ___| \\ | |_   _| |_   _|  _  | /  __ \\  _  | | | | ___ \\/  ___|  ___|";
+    gotoXY(40,4);
+    std::cout << "      / /_\\ \\ | | | | | | \\ `--.  | | | | | | | | | |__ |  \\| | | |     | | | | | | | /  \\/ | | | | | | |_/ /\\ `--.| |__  ";
+    gotoXY(40,5);
+    std::cout << "      |  _  | | | | | | |  `--. \\ | | | | | | | | |  __|| . ` | | |     | | | | | | | |   | | | | | | |    /  `--. \\  __| ";
+    gotoXY(40,6);
+    std::cout << "      | | | | |/ /| |/ /  /\\__/ / | | | |_| | |/ /| |___| |\\  | | |     | | \\ \\_/ / | \\__/\\ \\_/ / |_| | |\\ \\ /\\__/ / |___ ";
+    gotoXY(40,7);
+    std::cout << "      \\_| |_/___/ |___/   \\____/  \\_/  \\___/|___/ \\____/\\_| \\_/ \\_/     \\_/  \\___/   \\____/\\___/ \\___/\\_| \\_|\\____/\\____/ ";
 
-    string studentID;
-    cout << "Input ID of student that you want to add: ";
-    cin >> studentID; 
+  
+    ofstream ofs;
+    string studentID = "";
+    Create_A_Box_2(70,15,2,30,14,14,0,"INPUT STUDENT_ID");
+    Create_A_Box_1(55,20,2,20,14,14,0,"    RETURN BACK");
+    ShowConsoleCursor(false);
+    int count = 0;
+    int x_temp = 70; int y_temp = 15; int y_old; int xp = x_temp; int yp = y_temp; int pos = 0;
+    while (count < 1)
+    {
+        system("color E0");
+
+        if (y_temp == 15)
+        {
+            gotoXY(xp + 2, yp + 1);
+            ShowConsoleCursor(true);
+
+            char c;
+            while (true)
+            {
+                c = _getch();
+
+                if (c == ENTER)
+                {
+                    if (studentID != "")
+                        count++;
+
+                    xp = 70;
+                    yp = y_temp;
+                    break;
+                }
+                else if (c == DOWN)
+                {
+                    ShowConsoleCursor(false);
+                    y_old = y_temp;
+                    y_temp = 20;
+                    xp = x_temp + studentID.size();
+                    yp = y_old;
+                    break;
+                }
+                else if (c == BACKSPACE)
+                {
+                    if (studentID != "" && pos > 0)
+                    {
+                        std::cout << "\b \b";
+                        studentID.pop_back();
+                    }
+                }
+                else if (c == LEFT)
+                {
+                    if (pos > 0)
+                    {
+                        pos--;
+                        gotoXY(x_temp + pos + 2, y_temp + 1);
+                    }
+
+                    continue;
+                }
+                else if (c == RIGHT)
+                {
+                    int len = studentID.size();
+
+                    if (pos < len)
+                    {
+                        pos++;
+                        gotoXY(x_temp + pos + 2, y_temp + 1);
+                    }
+
+                    continue;
+                }
+                else
+                {
+                    int len = studentID.size();
+
+                    if (c == 45 || (c >= '0' && c <= '9') && len < 26)
+                    {
+                        pos++;
+                        studentID += c;
+                        std::cout << c;
+                    }
+                }
+            }
+        }
+        else
+        {
+            SetColor1(15,0);
+            for (int i = 56; i <= 74; ++i)
+            {
+                gotoXY(i, y_temp + 1);
+                std::cout << " ";
+            }
+
+            gotoXY(56, y_temp + 1);
+            std::cout << "    RETURN BACK";
+            ShowConsoleCursor(false);
+
+            if (_kbhit())
+            {
+                char c = _getch();
+
+                if (c == UP)
+                {
+                    ShowConsoleCursor(true);
+                    y_temp = y_old;
+                }
+                else if (c == ENTER)
+                {
+                    pos = 0; bool check = false;
+                    accessCourse(username, year_head, semester_head, course);
+                    system("cls");
+                    return;
+                }
+            }
+        }
+    }
+
     
     Student* student = findStudentInClass(year_head->class_head , studentID);
 
@@ -125,32 +252,23 @@ void addStudentToCourse(string username, Course* &course, Year* &year_head, Seme
         return;
     }
     
-    ofs << "\n";
-    ofs << student->student_ID << "," << student->student_socialID << ",";
-    ofs << student->student_fisrtname << "," << student->student_lastname << ",";
-    ofs << student->gender << "," << student->student_class.class_name << ",";
-    ofs << student->DOB.day << "/" << student->DOB.month << "/" << student->DOB.year;
+    ofs << student->student_ID << "," << student->student_socialID << ","
+        << student->student_fisrtname << "," << student->student_lastname << ","
+        << student->gender << "," << student->student_class.class_name << ","
+        << student->DOB.day << "/" << student->DOB.month << "/" << student->DOB.year << '\n';
+    ofs.close();
 
-    cout << "Student added successfully.\n\n";
+    Create_A_Box_1(68,29,2,39,14,14,0,"   Add Student successfully ");
+    for (int i = 0; i < 3; ++i)
+    {
+        gotoXY(97 + i,30);
+        ShowConsoleCursor(false);
+        std::cout << "." << flush;
+        Sleep(500);
+    }
 
-    int option;
-    cout << "Do you want to add another student? (1 for Yes, 0 for No): ";
-    cin >> option;
-    while (option != 0 && option != 1){
-        cout << "Invalid input. Please enter again: ";
-        cin >> option;
-        cin.ignore();
-    }
-    if (option == 1)
-    {
-        system ("cls");
-        addStudentToCourse(username, course, year_head, semester_head);
-        return;
-    }   
-    else
-    {
-        accessCourse(username, year_head, semester_head, course);
-        return;
-    }
+    system("cls");
+    accessCourse(username, year_head, semester_head, course);
+    return;
 
 }

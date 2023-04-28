@@ -41,7 +41,7 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
             {
                 system("color E0");
                 SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                 {
                     gotoXY(i, y_temp + 1);
                     std::cout << " ";
@@ -55,7 +55,7 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
             {
                 system("color E0");
                 SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                 {
                     gotoXY(i, y_temp + 1);
                     std::cout << " ";
@@ -69,7 +69,7 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
             {
                 system("color E0");
                 SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                 {
                     gotoXY(i, y_temp + 1);
                     std::cout << " ";
@@ -82,7 +82,7 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
             else if(y_temp == 16){
                 system("color E0");
                 SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                 {
                     gotoXY(i, y_temp + 1);
                     std::cout << " ";
@@ -95,7 +95,7 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
             else if(y_temp == 18){
                 system("color E0");
                 SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                 {
                     gotoXY(i, y_temp + 1);
                     std::cout << " ";
@@ -108,7 +108,7 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
             else if(y_temp == 20){
                 system("color E0");
                 SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                 {
                     gotoXY(i, y_temp + 1);
                     std::cout << " ";
@@ -122,7 +122,7 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
             {
                 system("color E0");
                 SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                 {
                     gotoXY(i, y_temp + 1);
                     std::cout << " ";
@@ -144,7 +144,7 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
                 if (y_temp == 10)
                 {
                     SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                     {
                         gotoXY(i, y_temp + 1);
                         std::cout << " ";
@@ -157,7 +157,7 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
                 else if (y_temp == 12)
                 {
                     SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                     {
                         gotoXY(i, y_temp + 1);
                         std::cout << " ";
@@ -170,7 +170,7 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
                 else if (y_temp == 14)
                 {
                     SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                     {
                         gotoXY(i, y_temp + 1);
                         std::cout << " ";
@@ -183,7 +183,7 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
                 else if (y_temp == 16)
                 {
                     SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                     {
                         gotoXY(i, y_temp + 1);
                         std::cout << " ";
@@ -196,7 +196,7 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
                 else if (y_temp == 18)
                 {
                     SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                     {
                         gotoXY(i, y_temp + 1);
                         std::cout << " ";
@@ -209,7 +209,7 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
                 else if (y_temp == 20)
                 {
                     SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                     {
                         gotoXY(i, y_temp + 1);
                         std::cout << " ";
@@ -222,7 +222,7 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
                 else
                 {
                     SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 29; ++i)
+                    for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                     {
                         gotoXY(i, y_temp + 1);
                         std::cout << " ";

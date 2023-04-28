@@ -1445,8 +1445,12 @@ void updateInformationOfCourse (string username, Year* year_head, Semester* seme
 
                             // Open file for updating information
                             ofstream ofs;
+                            ofstream ofs1;
                             string file_name = year_head->year_name + "_semester" + (char)(semester_head->Semester_Ord + 48) + "_course.csv";
                             file_name = "../Txt_Csv/" + file_name;
+                            // string file_name1 = accessed_course->class_name + "_semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_courses.csv";
+                            // file_name1 = "../Txt_Csv/" + file_name1;
+                            // ofs1.open(file_name1);
                             ofs.open(file_name);
                             if (!ofs.is_open())
                             {
@@ -1455,16 +1459,32 @@ void updateInformationOfCourse (string username, Year* year_head, Semester* seme
                             }
 
                             Course* temp = semester_head->course_head;
+
+                            //Clear all file
+                            while (temp)
+                            {
+                                string file_name1 = temp->class_name + "_semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_courses.csv";
+                                file_name1 = "../Txt_Csv/" + file_name1;
+                                ofs1.open(file_name1);
+                                ofs1.close();
+                                temp = temp->course_next;
+                            }
+                            temp = semester_head->course_head;
                             while (temp)
                             {
                                 ofs << temp->course_ID << "," << temp->course_name << "," << temp->class_name << "," 
                                     << temp->teacher_name << "," << temp->numCredits << "," << temp->maxNumStudents 
                                     << "," << temp->dayInWeek << "," << temp->Session << "\n";
-
+                                string file_name1 = temp->class_name + "_semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_courses.csv";
+                                file_name1 = "../Txt_Csv/" + file_name1;
+                                ofs1.open(file_name1, ios::app);
+                                ofs1 << temp->course_ID << "," << temp->course_name << "," << temp->class_name << "," 
+                                    << temp->teacher_name << "," << temp->numCredits << "," << temp->maxNumStudents 
+                                    << "," << temp->dayInWeek << "," << temp->Session << "\n";
+                                ofs1.close();
                                 temp = temp->course_next;
                             }
                             ofs.close();
-
                             gotoXY(122,22);
                             std::cout << "Updated successfully";
 

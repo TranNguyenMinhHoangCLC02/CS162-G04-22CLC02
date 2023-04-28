@@ -30,7 +30,7 @@ void addNewStudent(string username, Year* &year_head, Class* cur)
     Create_A_Box_1(1, 2, 2, 50, 14, 14, 0, "YOU HAVE SUCCESSFULLY IMPORTED STUDENTS TO FILE!");
     Create_A_Box_1(1, 8, 2, 12, 14, 14, 0,"RETURN BACK");
     SetColor1(15,0);
-    for (int i = 1 + 1; i <= 13; ++i)
+    for (int i = 1 + 1; i <= 11; ++i)
     {
         gotoXY(i, 8+1);
         std::cout << " ";
