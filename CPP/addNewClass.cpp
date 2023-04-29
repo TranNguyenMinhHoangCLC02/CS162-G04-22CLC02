@@ -225,6 +225,8 @@ void addNewClass (Year* &year_head, string username)
     ofs << "student ID,student_socialID,student_fisrtname,student_lastname,gender,class_name,DOB\n";
     ofs.close();
 
+    new_class->student_head = getStudentListFromFile(year_head, new_class);
+
     system("color E0");
     system("cls");
     accessSchoolYear(username, year_head);

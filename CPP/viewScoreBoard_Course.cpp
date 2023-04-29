@@ -45,7 +45,7 @@ void viewScoreBoard_Course(string filename, string username, Year* &year_head, S
     gotoXY(24, 4); cout <<"   `--. \\| |    | | | ||    / |  __| | ___ \\| | | ||  _  ||    / | | | |";
     gotoXY(24, 5); cout <<"  /\\__/ /| \\__/\\\\ \\_/ /| |\\ \\ | |___ | |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
     gotoXY(24, 6); cout <<"  \\____/  \\____/ \\___/ \\_| \\_|\\____/ \\____/  \\___/ \\_| |_/\\_| \\_||___/";
-    gotoXY(24, 7); cout << "------------"<< course_head->course_name << "_" << year_head->year_name <<"--------------\n";
+    gotoXY(32, 7); cout << "------------"<< course_head->course_name << "_" << year_head->year_name <<"--------------\n";
     Create_A_Box_1(1, 8, 2, 5, 14 , 14, 0, " No");
     gotoXY(1, 8); cout << (char)218;
     Create_A_Box_1(6, 8, 2, 14, 14 , 14, 0, " Student ID");
@@ -136,23 +136,31 @@ void viewScoreBoard_Course(string filename, string username, Year* &year_head, S
     int counter = 0;
     string student_id, fullname;
     float total, final1, midterm, other;
-    string temp;
-    int y=1;
-    while (!ifs.eof())
+
+    int y = 1;
+    string line;
+
+    while (getline(ifs,line))
     {
-        getline(ifs, student_id, ',');
-        getline(ifs, fullname, ',');
-        getline(ifs, temp, ',');
+        string temp;
+        stringstream ss(line);
+
+        getline(ss, temp, ',');
+        student_id = temp;
+        getline(ss, temp, ',');
+        fullname = temp;
+        getline(ss, temp, ',');
         midterm = stof(temp);
-        getline(ifs, temp, ',');
+        getline(ss, temp, ',');
         final1 = stof(temp);
-        getline(ifs, temp, ',');
+        getline(ss, temp, ',');
         other = stof(temp);
-        getline(ifs, temp, '\n');
+        getline(ss, temp, '\n');
         total = stof(temp);
         printStudentInfo(y ,counter, student_id, fullname, midterm, final1, other, total);
         counter++;
-        y=y+3;
+        
+        y = y + 3;
     }
     ifs.close();
     Create_A_Box_1(1, y+10, 2, 14, 14, 14, 0, " RETURN BACK");

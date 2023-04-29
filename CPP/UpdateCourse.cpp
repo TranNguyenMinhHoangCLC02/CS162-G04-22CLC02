@@ -556,7 +556,7 @@ void updateACourse (string username, Year* year_head, Semester* semester_head, C
                     else if (y_temp == 18)
                     {
                         system("cls");
-                        //addStudentToCourse(course_head)
+                        addStudentToCourse(username, course_head, year_head, semester_head);
                         return;
                     }
                     else if (y_temp == 22)

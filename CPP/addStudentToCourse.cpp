@@ -88,17 +88,18 @@ void addStudentToCourse(string username, Course* &course, Year* &year_head, Seme
 {
     resizeConsole(1920,920);
     system("color E0");
-    gotoXY(40,2);
+    
+    gotoXY(23,2);
     std::cout << "        ___ ____________   _____ _____ _   _______ _____ _   _ _____   _____ _____   _____ _____ _   _______  _____ _____";
-    gotoXY(40,3);
+    gotoXY(23,3);
     std::cout << "       / _ \\|  _  \\  _  \\ /  ___|_   _| | | |  _  \\  ___| \\ | |_   _| |_   _|  _  | /  __ \\  _  | | | | ___ \\/  ___|  ___|";
-    gotoXY(40,4);
+    gotoXY(23,4);
     std::cout << "      / /_\\ \\ | | | | | | \\ `--.  | | | | | | | | | |__ |  \\| | | |     | | | | | | | /  \\/ | | | | | | |_/ /\\ `--.| |__  ";
-    gotoXY(40,5);
+    gotoXY(23,5);
     std::cout << "      |  _  | | | | | | |  `--. \\ | | | | | | | | |  __|| . ` | | |     | | | | | | | |   | | | | | | |    /  `--. \\  __| ";
-    gotoXY(40,6);
+    gotoXY(23,6);
     std::cout << "      | | | | |/ /| |/ /  /\\__/ / | | | |_| | |/ /| |___| |\\  | | |     | | \\ \\_/ / | \\__/\\ \\_/ / |_| | |\\ \\ /\\__/ / |___ ";
-    gotoXY(40,7);
+    gotoXY(23,7);
     std::cout << "      \\_| |_/___/ |___/   \\____/  \\_/  \\___/|___/ \\____/\\_| \\_/ \\_/     \\_/  \\___/   \\____/\\___/ \\___/\\_| \\_|\\____/\\____/ ";
 
     ofstream ofs;
@@ -174,7 +175,7 @@ void addStudentToCourse(string username, Course* &course, Year* &year_head, Seme
                 {
                     int len = studentID.size();
 
-                    if (c == 45 || (c >= '0' && c <= '9') && len < 26)
+                    if (c >= '0' && c <= '9' && len < 10)
                     {
                         pos++;
                         studentID += c;
@@ -207,9 +208,9 @@ void addStudentToCourse(string username, Course* &course, Year* &year_head, Seme
                 }
                 else if (c == ENTER)
                 {
-                    pos = 0; bool check = false;
-                    accessCourse(username, year_head, semester_head, course);
+                    pos = 0;
                     system("cls");
+                    accessCourse(username, year_head, semester_head, course);
                     return;
                 }
             }
@@ -279,6 +280,6 @@ void addStudentToCourse(string username, Course* &course, Year* &year_head, Seme
     }
 
     system("cls");
-    accessCourse(username, year_head, semester_head, course);
+    updateACourse(username, year_head, semester_head, course);
     return;
 }

@@ -1,1 +1,4 @@
-ID,FullName,Midterm,Final,Other,Total
+StudentID,Fullname,Midterm Mark,Final Mark,Other Mark,Total Mark
+22127026,On Gia Bao,7.0,7.0,7.0,7.0
+22127131,Tran Nguyen Minh Hoang,8.0,8.0,8.0,8.0
+22127280,Doan Dang Phuong Nam,7.0,7.0,7.0,7.0

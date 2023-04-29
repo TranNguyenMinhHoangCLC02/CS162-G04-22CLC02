@@ -4,13 +4,13 @@
 
 void export_scoreboard(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head)
 {    
-    gotoXY(67, 1); cout <<"   _____  _____  _____ ______  _____ ______  _____   ___  ______ ______";
-    gotoXY(67, 2); cout <<"  /  ___|/  __ \\|  _  || ___ \\|  ___|| ___ \\|  _  | / _ \\ | ___ \\|  _  \\";
-    gotoXY(67, 3); cout <<"  \\ `--. | /  \\/| | | || |_/ /| |__  | |_/ /| | | |/ /_\\ \\| |_/ /| | | |";
-    gotoXY(67, 4); cout <<"   `--. \\| |    | | | ||    / |  __| | ___ \\| | | ||  _  ||    / | | | |";
-    gotoXY(67, 5); cout <<"  /\\__/ /| \\__/\\\\ \\_/ /| |\\ \\ | |___ | |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
-    gotoXY(67, 6); cout <<"  \\____/  \\____/ \\___/ \\_| \\_|\\____/ \\____/  \\___/ \\_| |_/\\_| \\_||___/";
-    gotoXY(67, 8); cout << "------------"<< course_head->course_ID << "_" << "Semester" << semester_head->Semester_Ord << "_" << year_head->year_name  <<"--------------\n";
+    gotoXY(48, 1); cout <<"   _____  _____  _____ ______  _____ ______  _____   ___  ______ ______";
+    gotoXY(48, 2); cout <<"  /  ___|/  __ \\|  _  || ___ \\|  ___|| ___ \\|  _  | / _ \\ | ___ \\|  _  \\";
+    gotoXY(48, 3); cout <<"  \\ `--. | /  \\/| | | || |_/ /| |__  | |_/ /| | | |/ /_\\ \\| |_/ /| | | |";
+    gotoXY(48, 4); cout <<"   `--. \\| |    | | | ||    / |  __| | ___ \\| | | ||  _  ||    / | | | |";
+    gotoXY(48, 5); cout <<"  /\\__/ /| \\__/\\\\ \\_/ /| |\\ \\ | |___ | |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
+    gotoXY(48, 6); cout <<"  \\____/  \\____/ \\___/ \\_| \\_|\\____/ \\____/  \\___/ \\_| |_/\\_| \\_||___/";
+    gotoXY(48, 8); cout << "------------"<< course_head->course_ID << "_" << "Semester" << semester_head->Semester_Ord << "_" << year_head->year_name  <<"--------------\n";
     //Check if any students existed
     course_head->student_head = getStudentCourseFromFile(year_head, semester_head, course_head);
     if(!course_head->student_head)
@@ -42,8 +42,8 @@ void export_scoreboard(string filename, string username, Year* &year_head, Semes
         return;
     }
     //Ask the staff if they want to continue
-    gotoXY(67, 10); cout << "IF THE FILE HAS BEEN CREATED BEFORE. YOU WILL REWRITE THE FILE\n";
-    gotoXY(67, 11); cout << "DO YOU WANT TO CONTINUE\n";
+    gotoXY(52, 10); cout << "IF THE FILE HAS BEEN CREATED BEFORE. YOU WILL REWRITE THE FILE\n";
+    gotoXY(52, 11); cout << "DO YOU WANT TO CONTINUE\n";
     Create_A_Box_1(50, 15, 2, 14, 14, 14, 0, " CONTINUE");
     gotoXY(50,17); std::cout << (char)(195);
     gotoXY(50+14,17); std::cout << (char)(180);
@@ -166,31 +166,42 @@ void export_scoreboard(string filename, string username, Year* &year_head, Semes
         return;
     }
     system("cls");
-    gotoXY(67, 1); cout <<"   _____  _____  _____ ______  _____ ______  _____   ___  ______ ______";
-    gotoXY(67, 2); cout <<"  /  ___|/  __ \\|  _  || ___ \\|  ___|| ___ \\|  _  | / _ \\ | ___ \\|  _  \\";
-    gotoXY(67, 3); cout <<"  \\ `--. | /  \\/| | | || |_/ /| |__  | |_/ /| | | |/ /_\\ \\| |_/ /| | | |";
-    gotoXY(67, 4); cout <<"   `--. \\| |    | | | ||    / |  __| | ___ \\| | | ||  _  ||    / | | | |";
-    gotoXY(67, 5); cout <<"  /\\__/ /| \\__/\\\\ \\_/ /| |\\ \\ | |___ | |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
-    gotoXY(67, 6); cout <<"  \\____/  \\____/ \\___/ \\_| \\_|\\____/ \\____/  \\___/ \\_| |_/\\_| \\_||___/";
-    gotoXY(67, 8); cout << "------------"<< course_head->course_ID << "_" << "Semester" << semester_head->Semester_Ord << "_" << year_head->year_name  <<"--------------\n";
-    gotoXY(67, 10); cout << "The name of this file will be CourseID_SemesterOrd_Year_Scoreboard.csv(eg: CSC10002_Semester2_2019-2020_Scoreboard.csv)\n";
+    gotoXY(48, 1); cout <<"   _____  _____  _____ ______  _____ ______  _____   ___  ______ ______";
+    gotoXY(48, 2); cout <<"  /  ___|/  __ \\|  _  || ___ \\|  ___|| ___ \\|  _  | / _ \\ | ___ \\|  _  \\";
+    gotoXY(48, 3); cout <<"  \\ `--. | /  \\/| | | || |_/ /| |__  | |_/ /| | | |/ /_\\ \\| |_/ /| | | |";
+    gotoXY(48, 4); cout <<"   `--. \\| |    | | | ||    / |  __| | ___ \\| | | ||  _  ||    / | | | |";
+    gotoXY(48, 5); cout <<"  /\\__/ /| \\__/\\\\ \\_/ /| |\\ \\ | |___ | |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
+    gotoXY(48, 6); cout <<"  \\____/  \\____/ \\___/ \\_| \\_|\\____/ \\____/  \\___/ \\_| |_/\\_| \\_||___/";
+    gotoXY(48, 8); cout << "------------"<< course_head->course_ID << "_" << "Semester" << semester_head->Semester_Ord << "_" << year_head->year_name  <<"--------------\n";
+    gotoXY(33, 10); cout << "The name of this file will be CourseID_SemesterOrd_Year_Scoreboard.csv (eg: CSC10002_Semester2_2019-2020_Scoreboard.csv)\n";
     //Create a CSV file
     ofstream ofs (filename);
     ofs << "StudentID,Fullname,Midterm Mark,Final Mark,Other Mark,Total Mark" << "\n";
 
     Student *cur = course_head->student_head;
-    while(cur)
+    while (cur)
     {
         ofs << cur->student_ID << ",";
         ofs << cur->student_fisrtname << " " << cur->student_lastname << ",";
-        ofs << ",,,," << endl;
+        ofs << ",,," << endl;
         cur = cur->student_next;
     }
     cout << endl;
-    gotoXY(67, 12); cout << "The file " << filename << " has been created successfully.\n";
+    gotoXY(33, 12); cout << "The file " << filename << " has been created successfully.\n";
+
     system("color E0");
+
     SetColor1(15,0);
-    Create_A_Box_1(67,15,2,30,14,14,0,"          RETURN BACK");
+    Create_A_Box_3(67,15,2,30);
+
+    for (int i = 68; i <= 96; ++i)
+    {
+        gotoXY(i, 16);
+        std::cout << " ";
+    }
+    gotoXY(68,16);
+    std::cout << "          RETURN BACK";
+
     while (true)
     {
         if (_kbhit())
@@ -198,7 +209,14 @@ void export_scoreboard(string filename, string username, Year* &year_head, Semes
                 char c = _getch();
                 system("color E0");
                 SetColor1(15,0);
-                gotoXY(68,15 + 1); 
+
+                for (int i = 68; i <= 96; ++i)
+                {
+                    gotoXY(i, 16);
+                    std::cout << " ";
+                }
+
+                gotoXY(68,16); 
                 std::cout << "          RETURN BACK";
                 if (c == 13)
                 {
@@ -212,23 +230,23 @@ void export_scoreboard(string filename, string username, Year* &year_head, Semes
     ofs.close();
 }
 
-void update_scoreBoard(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head){
-    system("cls");
-    gotoXY(67, 1); cout <<"   _____  _____  _____ ______  _____ ______  _____   ___  ______ ______";
-    gotoXY(67, 2); cout <<"  /  ___|/  __ \\|  _  || ___ \\|  ___|| ___ \\|  _  | / _ \\ | ___ \\|  _  \\";
-    gotoXY(67, 3); cout <<"  \\ `--. | /  \\/| | | || |_/ /| |__  | |_/ /| | | |/ /_\\ \\| |_/ /| | | |";
-    gotoXY(67, 4); cout <<"   `--. \\| |    | | | ||    / |  __| | ___ \\| | | ||  _  ||    / | | | |";
-    gotoXY(67, 5); cout <<"  /\\__/ /| \\__/\\\\ \\_/ /| |\\ \\ | |___ | |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
-    gotoXY(67, 6); cout <<"  \\____/  \\____/ \\___/ \\_| \\_|\\____/ \\____/  \\___/ \\_| |_/\\_| \\_||___/";
-    gotoXY(67, 8); cout << "------------"<< course_head->course_name << "_" << "Semester" << semester_head->Semester_Ord << "_" << year_head->year_name  <<"--------------\n";
+void update_scoreBoard(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head)
+{
+    gotoXY(50, 1); cout <<"   _____  _____  _____ ______  _____ ______  _____   ___  ______ ______";
+    gotoXY(50, 2); cout <<"  /  ___|/  __ \\|  _  || ___ \\|  ___|| ___ \\|  _  | / _ \\ | ___ \\|  _  \\";
+    gotoXY(50, 3); cout <<"  \\ `--. | /  \\/| | | || |_/ /| |__  | |_/ /| | | |/ /_\\ \\| |_/ /| | | |";
+    gotoXY(50, 4); cout <<"   `--. \\| |    | | | ||    / |  __| | ___ \\| | | ||  _  ||    / | | | |";
+    gotoXY(50, 5); cout <<"  /\\__/ /| \\__/\\\\ \\_/ /| |\\ \\ | |___ | |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
+    gotoXY(50, 6); cout <<"  \\____/  \\____/ \\___/ \\_| \\_|\\____/ \\____/  \\___/ \\_| |_/\\_| \\_||___/";
+    gotoXY(50, 8); cout << "------------"<< course_head->course_name << "_" << "Semester" << semester_head->Semester_Ord << "_" << year_head->year_name  <<"--------------\n";
 
-    gotoXY(67, 10); cout << "PLEASE INPUT THE NAME OF THE FILE YOU WANT TO UPDATE.";
-    gotoXY(67, 11); cout << "THE NAME OF THE FILE SHOULD BE CourseID_SemesterOrd_Year(CSC10002_Semester2_2019-2020_Scoreboard.csv)"; 
-    Create_A_Box_2(70,15,2,60,14,14,0,"ENTER FILE NAME:  ");
+    gotoXY(56, 10); cout << "PLEASE INPUT THE NAME OF THE FILE YOU WANT TO UPDATE.";
+    gotoXY(40, 11); cout << "THE NAME OF THE FILE SHOULD BE CourseID_SemesterOrd_Year (CSC10002_Semester2_2019-2020_Scoreboard.csv)"; 
+    Create_A_Box_2(56,15,2,60,14,14,0,"ENTER FILE NAME:  ");
     Create_A_Box_1(40,20,2,20,14,14,0,"    RETURN BACK");
     ShowConsoleCursor(false);
-    string file_name;
-    int x_temp = 70; int y_temp = 15; int y_old; int xp = x_temp; int yp = y_temp; int pos_user = 0; int pos_pass = 0;
+    string file_name = "";
+    int x_temp = 56; int y_temp = 15; int y_old; int xp = x_temp; int yp = y_temp; int pos_user = 0; int pos_pass = 0;
     int count = 0;
     while (count < 1)
     {
@@ -248,7 +266,7 @@ void update_scoreBoard(string filename, string username, Year* &year_head, Semes
                 {
                     if (file_name != "")
                         count++;
-                    xp = 70;
+                    xp = 56;
                     yp = y_temp;
                     break;
                 }
@@ -331,72 +349,90 @@ void update_scoreBoard(string filename, string username, Year* &year_head, Semes
                 else if (c == ENTER)
                 {
                     system("cls");
-                    accessCourse(file_name, year_head, semester_head, course_head);
+                    accessCourse(username, year_head, semester_head, course_head);
                     return;
                 }
             }
         }
     }
-    filename = "../Txt_Csv/" + filename;
-    ifstream ifs (filename);
-    if(!ifs.is_open())
+
+    char ch_semester = static_cast<char>(semester_head->Semester_Ord + 48);
+    string namefile = course_head->course_ID + "_" + "Semester" + ch_semester + "_" + year_head->year_name + + "_Scoreboard.csv";
+    namefile = "../Txt_Csv/" + namefile;
+
+    file_name = "../Txt_Csv/" + file_name;
+    ifstream ifs;
+    ifs.open(file_name);
+    while (!ifs.is_open())
     {
-        gotoXY(67, 12); cout << "ERROR: UNABLE TO OPEN FILE FOR READING";
+        gotoXY(56, 12); cout << "ERROR: UNABLE TO OPEN FILE FOR READING";
         update_scoreBoard(filename, username, year_head, semester_head, course_head);
         return;
     }
-    else{
-        int opt = choose_interface(filename, username, year_head, semester_head, course_head);
-        if(opt == 0){
-            accessCourse(username, year_head, semester_head, course_head);
-        }
-        else{
-            viewScoreBoard_Course(filename, username, year_head, semester_head, course_head);
-        }
+    
+    ifs.close();
+
+    if (namefile != file_name)
+    {
+        
+        const char* newnamefile = namefile.c_str();
+        const char* newfilename = file_name.c_str();
+
+        remove(newnamefile);
+        rename(newfilename, newnamefile);
     }
+
+    int opt = choose_interface(filename, username, year_head, semester_head, course_head);
+
+    if (opt == 0)
+        accessCourse(username, year_head, semester_head, course_head);
+    else
+        viewScoreBoard_Course(filename, username, year_head, semester_head, course_head);
 }
 
-int choose_interface(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head){
-    Create_A_Box_1(33,16,2,50,14,14,0,"            VIEW SCOREBOARD");
-    Create_A_Box_1(33,18,2,50,14,14,0,"            RETURN BACK");
-    gotoXY(33,15); std::cout << (char)(195);
-    gotoXY(122,15); std::cout << (char)(180);
+int choose_interface(string filename, string username, Year* &year_head, Semester* &semester_head, Course* &course_head)
+{
+    Create_A_Box_1(33,19,2,50,14,14,0,"                VIEW SCOREBOARD");
+    Create_A_Box_1(33,21,2,50,14,14,0,"                  RETURN BACK");
+    gotoXY(33,21); std::cout << (char)(195);
+    gotoXY(83,21); std::cout << (char)(180);
 
     ShowConsoleCursor(false);
-    int x_temp = 33, y_temp = 10;
+    int x_temp = 33, y_temp = 19;
     bool flag = true;
     while (true)
     {
         if (flag == true)
         {
-            if (y_temp == 16)
+            if (y_temp == 19)
             {
                 system("color E0");
                 SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 13; ++i)
+                for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                 {
                     gotoXY(i, y_temp + 1);
                     std::cout << " ";
                 }
 
                 gotoXY(x_temp + 1, y_temp + 1);
-                std::cout << "            VIEW SCOREBOARD";
+                std::cout << "                VIEW SCOREBOARD";
                 ShowConsoleCursor(false);
             }
-            else if (y_temp == 18)
+            else if (y_temp == 21)
             {
                 system("color E0");
                 SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 13; ++i)
+                for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                 {
                     gotoXY(i, y_temp + 1);
                     std::cout << " ";
                 }
 
                 gotoXY(x_temp + 1, y_temp + 1);
-                std::cout << "            RETURN BACK";
+                std::cout << "                  RETURN BACK";
                 ShowConsoleCursor(false);
             }
+
             flag = false;
         }
         else
@@ -404,41 +440,43 @@ int choose_interface(string filename, string username, Year* &year_head, Semeste
             if (_kbhit())
             {
                 char c = _getch();
-
                 system("color E0");
-                if (y_temp == 16)
-                {
-                    SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 13; ++i)
-                    {
-                        gotoXY(i, y_temp + 1);
-                        std::cout << " ";
-                    }
-
-                    gotoXY(x_temp + 1, y_temp + 1);
-                    std::cout << "            VIEW SCOREBOARD";
-                    ShowConsoleCursor(false);
-                }
-                else if (y_temp == 18)
-                {
-                    SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 13; ++i)
-                    {
-                        gotoXY(i, y_temp + 1);
-                        std::cout << " ";
-                    }
-
-                    gotoXY(x_temp + 1, y_temp + 1);
-                    std::cout << "            RETURN BACK";
-                    ShowConsoleCursor(false);
-                }
                 flag = true;
+
+                if (y_temp == 19)
+                {
+                    system("color E0");
+                    SetColor1(14,0);
+                    for (int i = x_temp + 1; i <= x_temp + 49; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
+
+                    gotoXY(x_temp + 1, y_temp + 1);
+                    std::cout << "                VIEW SCOREBOARD";
+                    ShowConsoleCursor(false);
+                }
+                else if (y_temp == 21)
+                {
+                    system("color E0");
+                    SetColor1(14,0);
+                    for (int i = x_temp + 1; i <= x_temp + 49; ++i)
+                    {
+                        gotoXY(i, y_temp + 1);
+                        std::cout << " ";
+                    }
+
+                    gotoXY(x_temp + 1, y_temp + 1);
+                    std::cout << "                  RETURN BACK";
+                    ShowConsoleCursor(false);
+                }
 
                 if (c == UP)
                 {
-                    if (y_temp == 16)
+                    if (y_temp == 19)
                     {
-                        y_temp = 12;
+                        y_temp = 21;
                     }
                     else
                     {
@@ -447,9 +485,9 @@ int choose_interface(string filename, string username, Year* &year_head, Semeste
                 }
                 else if (c == 80)
                 {
-                    if (y_temp == 18)
+                    if (y_temp == 21)
                     {
-                        y_temp = 10;
+                        y_temp = 19;
                     }
                     else
                     {
@@ -458,12 +496,12 @@ int choose_interface(string filename, string username, Year* &year_head, Semeste
                 }
                 else if (c == 13)
                 {
-                    if (y_temp == 10)
+                    if (y_temp == 19)
                     {
                         system("cls");
                         return 1;
                     }
-                    else if (y_temp == 12)
+                    else if (y_temp == 21)
                     {
                         system("cls");
                         return 0;

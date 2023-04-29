@@ -28,6 +28,7 @@ void addNewClass (Year* &year_head, string username);
 void accessClass(string username, Year* &year_head, Class *class_head);
 void viewStudentInClass(string username, Year* &year_head, Class *class_head);
 Class* upload_info_class(ifstream &file);
+void addNewStudentToClass(string username, Year* &year_head, Class* cur);
 
 //Student functions
 Student *getStudentCourseFromFile(Year* &year_head, Semester* &semester_head, Course* &course_head);

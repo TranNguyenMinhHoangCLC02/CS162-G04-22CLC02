@@ -253,6 +253,7 @@ void uploadStudentFileToCourse (string username, Year* year_head, Semester* seme
 
                 temp_course->course_next = new_course;
             }
+            break;
         }
 
         if (!temp_year)
@@ -263,6 +264,9 @@ void uploadStudentFileToCourse (string username, Year* year_head, Semester* seme
             uploadStudentFileToCourse(username, year_head, semester_head, course_head);
             return;
         }
+        else
+            deletedata(year);
+
     }
 
     //Close file

@@ -3,35 +3,32 @@
 
 
 int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head, Course* &course_head){
-    gotoXY(67,2); std::cout <<"     _____ ____  _    _ _____   _____ ______ ";
-    gotoXY(67,3); std::cout <<"    / ____/ __ \\| |  | |  __ \\ / ____|  ____|";
-    gotoXY(67,4); std::cout <<"   | |   | |  | | |  | | |__) | (___ | |__   ";
-    gotoXY(67,4); std::cout <<"   | |   | |  | | |  | |  _  / \\___ \\|  __|  ";
-    gotoXY(67,5); std::cout <<"   | |___| |__| | |__| | | \\ \\ ____) | |____ ";
-    gotoXY(67,6); std::cout <<"    \\_____\\____/ \\____/|_|  \\_\\_____/|______|";
-    gotoXY(67,8); std::cout << "---------------------" << course_head->course_ID << "---------------------";
-    Create_A_Box_1(67,10,2,50,14,14,0,"            ADD STUDENT ONE BY ONE");
-    Create_A_Box_1(67,12,2,50,14,14,0,"            VIEW ALL STUDENTS IN THIS COURSE");
-    gotoXY(67,12); std::cout << (char)(195);
-    gotoXY(117,12); std::cout << (char)(180);
-    Create_A_Box_1(67,14,2,50,14,14,0,"            VIEW SCOREBOARD FOR THIS COURSE");
-    gotoXY(67,14); std::cout << (char)(195);
-    gotoXY(117,14); std::cout << (char)(180);
-    Create_A_Box_1(67,16,2,50,14,14,0,"            UPDATE SCOREBOARD FOR THIS COURSE");
-    gotoXY(67,16); std::cout << (char)(195);
-    gotoXY(117,16); std::cout << (char)(180);
-    Create_A_Box_1(67,18,2,50,14,14,0,"            EXPORT SCOREBOARD.CSV FOR TEACHER");
-    gotoXY(67,18); std::cout << (char)(195);
-    gotoXY(117,18); std::cout << (char)(180);
-    Create_A_Box_1(67,20,2,50,14,14,0,"            IMPORT SCOREBOARD.CSV TO THIS SYSTEM");
-    gotoXY(67,20); std::cout << (char)(195);
-    gotoXY(117,20); std::cout << (char)(180);
-    Create_A_Box_1(67,22,2,50,14,14,0,"            RETURN BACK");
-    gotoXY(67,22); std::cout << (char)(195);
-    gotoXY(117,22); std::cout << (char)(180);
+    gotoXY(60,2); std::cout <<"     _____ ____  _    _ _____   _____ ______ ";
+    gotoXY(60,3); std::cout <<"    / ____/ __ \\| |  | |  __ \\ / ____|  ____|";
+    gotoXY(60,4); std::cout <<"   | |   | |  | | |  | | |__) | (___ | |__   ";
+    gotoXY(60,4); std::cout <<"   | |   | |  | | |  | |  _  / \\___ \\|  __|  ";
+    gotoXY(60,5); std::cout <<"   | |___| |__| | |__| | | \\ \\ ____) | |____ ";
+    gotoXY(60,6); std::cout <<"    \\_____\\____/ \\____/|_|  \\_\\_____/|______|";
+    gotoXY(60,8); std::cout << "---------------------" << course_head->course_ID << "---------------------";
+    Create_A_Box_1(60,10,2,50,14,14,0,"          VIEW ALL STUDENTS IN THIS COURSE");
+    Create_A_Box_1(60,12,2,50,14,14,0,"          VIEW SCOREBOARD FOR THIS COURSE");
+    gotoXY(60,12); std::cout << (char)(195);
+    gotoXY(110,12); std::cout << (char)(180);
+    Create_A_Box_1(60,14,2,50,14,14,0,"          UPDATE SCOREBOARD FOR THIS COURSE");
+    gotoXY(60,14); std::cout << (char)(195);
+    gotoXY(110,14); std::cout << (char)(180);
+    Create_A_Box_1(60,16,2,50,14,14,0,"          EXPORT SCOREBOARD.CSV FOR TEACHER");
+    gotoXY(60,16); std::cout << (char)(195);
+    gotoXY(110,16); std::cout << (char)(180);
+    Create_A_Box_1(60,18,2,50,14,14,0,"         IMPORT SCOREBOARD.CSV TO THIS SYSTEM");
+    gotoXY(60,18); std::cout << (char)(195);
+    gotoXY(110,18); std::cout << (char)(180);
+    Create_A_Box_1(60,20,2,50,14,14,0,"                    RETURN BACK");
+    gotoXY(60,20); std::cout << (char)(195);
+    gotoXY(110,20); std::cout << (char)(180);
 
     ShowConsoleCursor(false);
-    int x_temp = 67, y_temp = 10;
+    int x_temp = 60, y_temp = 10;
     bool flag = true;
     while (true)
     {
@@ -48,7 +45,7 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
                 }
 
                 gotoXY(x_temp + 1, y_temp + 1);
-                std::cout << "            ADD STUDENT ONE BY ONE";
+                std::cout << "          VIEW ALL STUDENTS IN THIS COURSE";
                 ShowConsoleCursor(false);
             }
             else if (y_temp == 12)
@@ -62,7 +59,7 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
                 }
 
                 gotoXY(x_temp + 1, y_temp + 1);
-                std::cout << "            VIEW ALL STUDENTS IN THIS COURSE";
+                std::cout << "          VIEW SCOREBOARD FOR THIS COURSE";
                 ShowConsoleCursor(false);
             }
             else if(y_temp == 14)
@@ -76,10 +73,11 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
                 }
 
                 gotoXY(x_temp + 1, y_temp + 1);
-                std::cout << "            VIEW SCOREBOARD FOR THIS COURSE";
+                std::cout << "          UPDATE SCOREBOARD FOR THIS COURSE";
                 ShowConsoleCursor(false);
             }
-            else if(y_temp == 16){
+            else if(y_temp == 16)
+            {
                 system("color E0");
                 SetColor1(15,0);
                 for (int i = x_temp + 1; i <= x_temp + 49; ++i)
@@ -89,10 +87,11 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
                 }
 
                 gotoXY(x_temp + 1, y_temp + 1);
-                std::cout << "            UPDATE SCOREBOARD FOR THIS COURSE";
+                std::cout << "          EXPORT SCOREBOARD.CSV FOR TEACHER";
                 ShowConsoleCursor(false);
             }
-            else if(y_temp == 18){
+            else if(y_temp == 18)
+            {
                 system("color E0");
                 SetColor1(15,0);
                 for (int i = x_temp + 1; i <= x_temp + 49; ++i)
@@ -102,20 +101,7 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
                 }
 
                 gotoXY(x_temp + 1, y_temp + 1);
-                std::cout << "            EXPORT SCOREBOARD.CSV FOR TEACHER";
-                ShowConsoleCursor(false);
-            }
-            else if(y_temp == 20){
-                system("color E0");
-                SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 49; ++i)
-                {
-                    gotoXY(i, y_temp + 1);
-                    std::cout << " ";
-                }
-
-                gotoXY(x_temp + 1, y_temp + 1);
-                std::cout << "            IMPORT SCOREBOARD.CSV TO THIS SYSTEM";
+                std::cout << "         IMPORT SCOREBOARD.CSV TO THIS SYSTEM";
                 ShowConsoleCursor(false);
             }
             else
@@ -129,9 +115,10 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
                 }
 
                 gotoXY(x_temp + 1, y_temp + 1);
-                std::cout << "            RETURN BACK";
+                std::cout << "                    RETURN BACK";
                 ShowConsoleCursor(false);
             }
+
             flag = false;
         }
         else
@@ -139,10 +126,12 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
             if (_kbhit())
             {
                 char c = _getch();
-
                 system("color E0");
-                if (y_temp == 10)
+                flag = true;
+
+                 if (y_temp == 10)
                 {
+                    system("color E0");
                     SetColor1(14,0);
                     for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                     {
@@ -151,11 +140,12 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
                     }
 
                     gotoXY(x_temp + 1, y_temp + 1);
-                    std::cout << "            ADD STUDENT ONE BY ONE";
+                    std::cout << "          VIEW ALL STUDENTS IN THIS COURSE";
                     ShowConsoleCursor(false);
                 }
                 else if (y_temp == 12)
                 {
+                    system("color E0");
                     SetColor1(14,0);
                     for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                     {
@@ -164,11 +154,12 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
                     }
 
                     gotoXY(x_temp + 1, y_temp + 1);
-                    std::cout << "            VIEW ALL STUDENTS IN THIS COURSE";
+                    std::cout << "          VIEW SCOREBOARD FOR THIS COURSE";
                     ShowConsoleCursor(false);
                 }
-                else if (y_temp == 14)
+                else if(y_temp == 14)
                 {
+                    system("color E0");
                     SetColor1(14,0);
                     for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                     {
@@ -177,11 +168,12 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
                     }
 
                     gotoXY(x_temp + 1, y_temp + 1);
-                    std::cout << "            VIEW SCOREBOARD FOR THIS COURSE";
+                    std::cout << "          UPDATE SCOREBOARD FOR THIS COURSE";
                     ShowConsoleCursor(false);
                 }
-                else if (y_temp == 16)
+                else if(y_temp == 16)
                 {
+                    system("color E0");
                     SetColor1(14,0);
                     for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                     {
@@ -190,11 +182,12 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
                     }
 
                     gotoXY(x_temp + 1, y_temp + 1);
-                    std::cout << "            UPDATE SCOREBOARD FOR THIS COURSE";
+                    std::cout << "          EXPORT SCOREBOARD.CSV FOR TEACHER";
                     ShowConsoleCursor(false);
                 }
-                else if (y_temp == 18)
+                else if(y_temp == 18)
                 {
+                    system("color E0");
                     SetColor1(14,0);
                     for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                     {
@@ -203,24 +196,12 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
                     }
 
                     gotoXY(x_temp + 1, y_temp + 1);
-                    std::cout << "            EXPORT SCOREBOARD.CSV FOR TEACHER";
-                    ShowConsoleCursor(false);
-                }
-                else if (y_temp == 20)
-                {
-                    SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 49; ++i)
-                    {
-                        gotoXY(i, y_temp + 1);
-                        std::cout << " ";
-                    }
-
-                    gotoXY(x_temp + 1, y_temp + 1);
-                    std::cout << "            IMPORT SCOREBOARD.CSV TO THIS SYSTEM";
+                    std::cout << "         IMPORT SCOREBOARD.CSV TO THIS SYSTEM";
                     ShowConsoleCursor(false);
                 }
                 else
                 {
+                    system("color E0");
                     SetColor1(14,0);
                     for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                     {
@@ -229,16 +210,15 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
                     }
 
                     gotoXY(x_temp + 1, y_temp + 1);
-                    std::cout << "            RETURN BACK";
+                    std::cout << "                    RETURN BACK";
+                    ShowConsoleCursor(false);
                 }
-
-                flag = true;
 
                 if (c == 72)
                 {
                     if (y_temp == 10)
                     {
-                        y_temp = 22;
+                        y_temp = 20;
                     }
                     else
                     {
@@ -247,7 +227,7 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
                 }
                 else if (c == 80)
                 {
-                    if (y_temp == 22)
+                    if (y_temp == 20)
                     {
                         y_temp = 10;
                     }
@@ -273,14 +253,15 @@ int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head
                         system("cls");
                         return 3;
                     }
-                    else if(y_temp == 16){
+                    else if (y_temp == 16)
+                    {
+                        system("cls");
                         return 4;
                     }
-                    else if(y_temp == 18){
+                    else if (y_temp == 18)
+                    {
+                        system("cls");
                         return 5;
-                    }
-                    else if(y_temp == 20){
-                        return 6;
                     }
                     else
                     {
@@ -307,17 +288,11 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
     }
     else if (option == 1)
     {
-        system("cls");
-        addStudentToCourse(username, course_head, year_head, semester_head);
-        return;
-    }
-    else if (option == 2)
-    {
         system ("cls");
         viewStudentInCourse(username, year_head, semester_head, course_head);
         return;
     }
-    else if (option == 3)
+    else if (option == 2)
     {
         system("cls");
         string filename;
@@ -327,7 +302,7 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
         viewScoreBoard_Course(filename, username, year_head, semester_head, course_head);
         return;
     }
-    else if (option == 4)
+    else if (option == 3)
     {
         system("cls");
         string filename;
@@ -337,7 +312,7 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
         updateStudentsScore(filename, username, year_head, semester_head, course_head);
         return;
     }
-    else if (option == 5)
+    else if (option == 4)
     {
         system("cls");
         string filename;
@@ -347,7 +322,7 @@ void accessCourse(string username, Year* &year_head, Semester* &semester_head, C
         export_scoreboard(filename, username, year_head, semester_head, course_head);
         return;
     }
-    else if (option == 6)
+    else
     {
         system("cls");
         char ch_semester = static_cast<char>(semester_head->Semester_Ord + 48);
