@@ -4,7 +4,7 @@
 
 int getSemesterNum()
 {
-    SetScreenBufferSize(2000, 2000);
+    resizeConsole(1920,920);
     system("color E0");
     SetColor1(14, 0);
     gotoXY(24, 1); cout <<"   _____  _____  _____ ______  _____ ______  _____   ___  ______ ______";

@@ -17,7 +17,7 @@ string NormalizeCourseID (string Course_ID)
     return Course_ID;
 }
 
-//Normalization
+//Normalization With Course Name and Teacher Name
 string Normalization (string input)
 {
     int len = input.size();

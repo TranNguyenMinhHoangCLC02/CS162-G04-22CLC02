@@ -252,10 +252,10 @@ void addStudentToCourse(string username, Course* &course, Year* &year_head, Seme
         return;
     }
     
-    ofs << student->student_ID << "," << student->student_socialID << ","
+    ofs << '\n' << student->student_ID << "," << student->student_socialID << ","
         << student->student_fisrtname << "," << student->student_lastname << ","
         << student->gender << "," << student->student_class.class_name << ","
-        << student->DOB.day << "/" << student->DOB.month << "/" << student->DOB.year << '\n';
+        << student->DOB.day << "/" << student->DOB.month << "/" << student->DOB.year;
     ofs.close();
 
     Create_A_Box_1(68,29,2,39,14,14,0,"   Add Student successfully ");

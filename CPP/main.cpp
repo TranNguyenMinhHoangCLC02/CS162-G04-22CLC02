@@ -96,8 +96,6 @@ void deletedata (Year* &year_head)
 
 int main()
 {
-    Year* year_head = nullptr;
-
     bool check;
     PlaySoundA("BackgroundMusic.wav", NULL, SND_FILENAME | SND_ASYNC | SND_LOOP | SND_NOSTOP);
     int option = firstScreen(check);
@@ -107,7 +105,8 @@ int main()
         return 0;
     }
 
+    Year* year_head = nullptr;
     Myinterface(option, year_head); //Continue with 1 of 2 rest options
-
+    PlaySound(TEXT("BackgroundMusic.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP | SND_NOSTOP);
     return 0;
 }

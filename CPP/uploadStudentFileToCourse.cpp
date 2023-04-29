@@ -118,7 +118,7 @@ void uploadStudentFileToCourse (string username, Year* year_head, Semester* seme
                 else if (c == ENTER)
                 {
                     system("cls");
-                    accessCourse(file_name, year_head, semester_head, course_head);
+                    updateACourse(username, year_head, semester_head, course_head);
                     return;
                 }
             }
