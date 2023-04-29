@@ -38,7 +38,8 @@ Student* getStudentListFromFile(Year *year_head, Class* class_head)
         new_student->course_head = nullptr;
         new_student->student_next = nullptr;
 
-        addTail(class_head->student_head, new_student);
+        if (class_head->class_name == new_student->student_class.class_name)
+            addTail(class_head->student_head, new_student);
     }
 
     ifs.close();

@@ -268,6 +268,16 @@ void addNewSchoolYear (Year* &year_head)
     }
     ofs.close();
 
+    string filename = "class_" + new_year->year_name + ".txt";
+    filename = "../Txt_Csv/" + filename;
+    ofs.open(filename);
+    if (!ofs.is_open())
+    {
+        cerr << "Error: Unable to open file for writing\n";
+        return;
+    }
+    ofs.close();
+
     //Announce for user
     Create_A_Box_1(70,28,2,30,14,14,0,"  Created successfully ");
 

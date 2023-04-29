@@ -84,7 +84,7 @@ void uploadStudentFileToCourse (string username, Year* year_head, Semester* seme
                 {
                     int len = file_name.size();
 
-                    if (c >= 32 && c <= 126 && len < 26)
+                    if (c >= 32 && c <= 126 && len < 58)
                     {
                         pos_user++;
                         file_name += c;
@@ -141,6 +141,7 @@ void uploadStudentFileToCourse (string username, Year* year_head, Semester* seme
     }
 
     Student* temp = nullptr;
+    string ignore_line; getline(ifs,ignore_line);
     string line;
     getline(ifs, line);
 
@@ -152,6 +153,7 @@ void uploadStudentFileToCourse (string username, Year* year_head, Semester* seme
         getline(ss, tmp1, ',');
         getline(ss, tmp, ',');
         getline(ss, tmp, ','); 
+        getline(ss, tmp, ',');
         getline(ss, tmp, ',');
         getline(ss, tmp, ',');
 
@@ -203,19 +205,45 @@ void uploadStudentFileToCourse (string username, Year* year_head, Semester* seme
                 continue;
             }
 
+            Student* new_student = new Student;
+
+            new_student->student_ID = temp_student->student_ID;
+            new_student->student_socialID = temp_student->student_socialID;
+            new_student->student_fisrtname = temp_student->student_fisrtname;
+            new_student->student_lastname = temp_student->student_lastname;
+            new_student->gender = temp_student->gender;
+            new_student->DOB = temp_student->DOB;
+            new_student->student_class.class_name = temp_student->student_class.class_name;
+            new_student->course_head = temp_student->course_head;
+            new_student->student_next = nullptr;
+
             if (!course_head->student_head)
             {
-                course_head->student_head = temp_student;
+                course_head->student_head = new_student;
                 temp = course_head->student_head;
             }
             else
             {
-                temp->student_next = temp_student;
+                temp->student_next = new_student;
                 temp = temp->student_next;
             }
 
+            Course* new_course = new Course;
+    
+            new_course->course_ID = course_head->course_ID;
+            new_course->course_name = course_head->course_name;
+            new_course->class_name = course_head->class_name;
+            new_course->teacher_name = course_head->teacher_name;
+            new_course->numCredits = course_head->numCredits;
+            new_course->maxNumStudents = course_head->maxNumStudents;
+            new_course->dayInWeek = course_head->dayInWeek;
+            new_course->Session = course_head->Session;
+            new_course->scoreboard_head = course_head->scoreboard_head;
+            new_course->student_head = course_head->student_head;
+            new_course->course_next = nullptr;
+
             if (!temp_student->course_head)
-                temp_student->course_head = course_head;
+                temp_student->course_head = new_course;
             else
             {
                 Course* temp_course = temp_student->course_head;
@@ -223,7 +251,7 @@ void uploadStudentFileToCourse (string username, Year* year_head, Semester* seme
                 while (temp_course->course_next)
                     temp_course = temp_course->course_next;
 
-                temp_course->course_next = course_head;
+                temp_course->course_next = new_course;
             }
         }
 
@@ -240,11 +268,15 @@ void uploadStudentFileToCourse (string username, Year* year_head, Semester* seme
     //Close file
     ifs.close();
 
-    string name_file = course_head->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + ".csv";
-    const char* newfilename = file_name.c_str();
-    const char* newname = name_file.c_str();
-    remove(newfilename);
-    rename(newfilename, newname);
+    string name_file = course_head->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_student.csv";
+    name_file = "../Txt_Csv/" + name_file;
+    if (name_file != file_name)
+    {
+        const char* newfilename = file_name.c_str();
+        const char* newname = name_file.c_str();
+        remove(newname);
+        rename(newfilename, newname);
+    }
 
     //Require user input 0 for returning back
     gotoXY(67,15); cout << "YOU UPLOADED STUDENT LIST SUCCESSFULLY";

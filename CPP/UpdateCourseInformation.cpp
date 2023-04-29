@@ -441,7 +441,7 @@ void updateInformationOfCourse (string username, Year* year_head, Semester* seme
                 if (c == ESC)
                 {
                     system("cls");
-                    viewUpdateCourseInformation(username, year_head, semester_head);
+                    updateACourse(username, year_head, semester_head, accessed_course);
                     return;
                 }
                 else if (c == LEFT)

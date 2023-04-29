@@ -59,17 +59,30 @@ Student* findStudentInClass(Class* class_head, string studentID)
 
 void addCourseToStudent(Student* &student, Course* course) 
 {
+    Course* new_course = new Course;
+    
+    new_course->course_ID = course->course_ID;
+    new_course->course_name = course->course_name;
+    new_course->class_name = course->class_name;
+    new_course->teacher_name = course->teacher_name;
+    new_course->numCredits = course->numCredits;
+    new_course->maxNumStudents = course->maxNumStudents;
+    new_course->dayInWeek = course->dayInWeek;
+    new_course->Session = course->Session;
+    new_course->scoreboard_head = course->scoreboard_head;
+    new_course->student_head = course->student_head;
+    new_course->course_next = nullptr;
+
     if (student->course_head == nullptr) 
-        student->course_head = course;
+        student->course_head = new_course;
     else 
     {
         Course* current_course = student->course_head;
         while (current_course->course_next != nullptr) 
             current_course = current_course->course_next;
-        current_course->course_next = course;
+        current_course->course_next = new_course;
     }
 }
-
 
 void addStudentToCourse(string username, Course* &course, Year* &year_head, Semester* semester_head) 
 {
@@ -88,7 +101,6 @@ void addStudentToCourse(string username, Course* &course, Year* &year_head, Seme
     gotoXY(40,7);
     std::cout << "      \\_| |_/___/ |___/   \\____/  \\_/  \\___/|___/ \\____/\\_| \\_/ \\_/     \\_/  \\___/   \\____/\\___/ \\___/\\_| \\_|\\____/\\____/ ";
 
-  
     ofstream ofs;
     string studentID = "";
     Create_A_Box_2(70,15,2,30,14,14,0,"INPUT STUDENT_ID");
@@ -203,7 +215,6 @@ void addStudentToCourse(string username, Course* &course, Year* &year_head, Seme
             }
         }
     }
-
     
     Student* student = findStudentInClass(year_head->class_head , studentID);
 
@@ -270,5 +281,4 @@ void addStudentToCourse(string username, Course* &course, Year* &year_head, Seme
     system("cls");
     accessCourse(username, year_head, semester_head, course);
     return;
-
 }

@@ -5,28 +5,24 @@ int CLASS_Interface(string &username, Year* &year_head, Class *class_head){
 
     system("cls");
     SetColor1(14,0);
-    gotoXY(67,2); std::cout << "     _____ _                _____ _____   _____   ____   ____  __  __ ";
-    gotoXY(67,3); std::cout << "    / ____| |        /\\    / ____/ ____| |  __ \\ / __ \\ / __ \\|  \\/  |";
-    gotoXY(67,4); std::cout << "   | |    | |       /  \\  | (___| (___   | |__) | |  | | |  | | \\  / |";
-    gotoXY(67,5); std::cout << "   | |    | |      / /\\ \\   \\___ \\___ \\  |  _  /| |  | | |  | | |\\/| |";
-    gotoXY(67,6); std::cout << "   | |____| |____ / ____ \\ ____) |___) | | | \\ \\| |__| | |__| | |  | |";
-    gotoXY(67,7); std::cout << "    \\_____|______/_/    \\_\\_____/_____/  |_|  \\_\\\\____/ \\____/|_|  |_|";
-    gotoXY(67,8); std::cout << " ";
-    gotoXY(67,9); std::cout << "----------------------------CLASS-" << class_head->class_name << "-----------------------------";
+    gotoXY(48,2); std::cout << "     _____ _                _____ _____   _____   ____   ____  __  __ ";
+    gotoXY(48,3); std::cout << "    / ____| |        /\\    / ____/ ____| |  __ \\ / __ \\ / __ \\|  \\/  |";
+    gotoXY(48,4); std::cout << "   | |    | |       /  \\  | (___| (___   | |__) | |  | | |  | | \\  / |";
+    gotoXY(48,5); std::cout << "   | |    | |      / /\\ \\   \\___ \\___ \\  |  _  /| |  | | |  | | |\\/| |";
+    gotoXY(48,6); std::cout << "   | |____| |____ / ____ \\ ____) |___) | | | \\ \\| |__| | |__| | |  | |";
+    gotoXY(48,7); std::cout << "    \\_____|______/_/    \\_\\_____/_____/  |_|  \\_\\\\____/ \\____/|_|  |_|";
+    gotoXY(48,9); std::cout << "----------------------------CLASS-" << class_head->class_name << "-----------------------------";
     int a = 3;
-    Create_A_Box_1(72,10 + a,2,50,14,14,0,"            IMPORT NEW STUDENT TO .CSV FILE");
-    Create_A_Box_1(72,12 + a,2,50,14,14,0,"            VIEW ALL STUDENTS IN THIS CLASS");
-    gotoXY(72,15); std::cout << (char)(195);
-    gotoXY(122,15); std::cout << (char)(180);
-    Create_A_Box_1(72,14 + a,2,50,14,14,0,"            VIEW SCOREBOARD FOR THIS CLASS");
-    gotoXY(72,17); std::cout << (char)(195);
-    gotoXY(122,17); std::cout << (char)(180);
-    Create_A_Box_1(72,16 + a,2,50,14,14,0,"            RETURN BACK");
-    gotoXY(72,19); std::cout << (char)(195);
-    gotoXY(122,19); std::cout << (char)(180);
+    Create_A_Box_1(57,10 + a,2,50,14,14,0,"            VIEW ALL STUDENTS IN THIS CLASS");
+    Create_A_Box_1(57,12 + a,2,50,14,14,0,"            VIEW SCOREBOARD FOR THIS CLASS");
+    gotoXY(57,15); std::cout << (char)(195);
+    gotoXY(107,15); std::cout << (char)(180);
+    Create_A_Box_1(57,14 + a,2,50,14,14,0,"            RETURN BACK");
+    gotoXY(57,17); std::cout << (char)(195);
+    gotoXY(107,17); std::cout << (char)(180);
 
     ShowConsoleCursor(false);
-    int x_temp = 72, y_temp = 13;
+    int x_temp = 57, y_temp = 13;
     bool flag = true;
     while (true)
     {
@@ -43,24 +39,10 @@ int CLASS_Interface(string &username, Year* &year_head, Class *class_head){
                 }
 
                 gotoXY(x_temp + 1, y_temp + 1);
-                std::cout << "            IMPORT NEW STUDENT TO .CSV FILE";
-                ShowConsoleCursor(false);
-            }
-            else if (y_temp == 15)
-            {
-                system("color E0");
-                SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 49; ++i)
-                {
-                    gotoXY(i, y_temp + 1);
-                    std::cout << " ";
-                }
-
-                gotoXY(x_temp + 1, y_temp + 1);
                 std::cout << "            VIEW ALL STUDENTS IN THIS CLASS";
                 ShowConsoleCursor(false);
             }
-            else if(y_temp == 17)
+            else if (y_temp == 15)
             {
                 system("color E0");
                 SetColor1(15,0);
@@ -88,6 +70,7 @@ int CLASS_Interface(string &username, Year* &year_head, Class *class_head){
                 std::cout << "            RETURN BACK";
                 ShowConsoleCursor(false);
             }
+
             flag = false;
         }
         else
@@ -95,23 +78,11 @@ int CLASS_Interface(string &username, Year* &year_head, Class *class_head){
             if (_kbhit())
             {
                 char c = _getch();
-
                 system("color E0");
+                
                 if (y_temp == 13)
                 {
-                    SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 49; ++i)
-                    {
-                        gotoXY(i, y_temp + 1);
-                        std::cout << " ";
-                    }
-
-                    gotoXY(x_temp + 1, y_temp + 1);
-                    std::cout << "            IMPORT NEW STUDENT TO .CSV FILE";
-                    ShowConsoleCursor(false);
-                }
-                else if (y_temp == 15)
-                {
+                    system("color E0");
                     SetColor1(14,0);
                     for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                     {
@@ -123,8 +94,9 @@ int CLASS_Interface(string &username, Year* &year_head, Class *class_head){
                     std::cout << "            VIEW ALL STUDENTS IN THIS CLASS";
                     ShowConsoleCursor(false);
                 }
-                else if (y_temp == 17)
+                else if (y_temp == 15)
                 {
+                    system("color E0");
                     SetColor1(14,0);
                     for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                     {
@@ -136,8 +108,9 @@ int CLASS_Interface(string &username, Year* &year_head, Class *class_head){
                     std::cout << "            VIEW SCOREBOARD FOR THIS CLASS";
                     ShowConsoleCursor(false);
                 }
-                else if (y_temp == 19)
+                else
                 {
+                    system("color E0");
                     SetColor1(14,0);
                     for (int i = x_temp + 1; i <= x_temp + 49; ++i)
                     {
@@ -156,7 +129,7 @@ int CLASS_Interface(string &username, Year* &year_head, Class *class_head){
                 {
                     if (y_temp == 13)
                     {
-                        y_temp = 19;
+                        y_temp = 17;
                     }
                     else
                     {
@@ -165,7 +138,7 @@ int CLASS_Interface(string &username, Year* &year_head, Class *class_head){
                 }
                 else if (c == 80)
                 {
-                    if (y_temp == 19)
+                    if (y_temp == 17)
                     {
                         y_temp = 13;
                     }
@@ -185,11 +158,6 @@ int CLASS_Interface(string &username, Year* &year_head, Class *class_head){
                     {
                         system("cls");
                         return 2;
-                    }
-                    else if (y_temp == 17)
-                    {
-                        system("cls");
-                        return 3;
                     }
                     else
                     {
@@ -218,22 +186,13 @@ void accessClass(string username, Year* &year_head, Class *class_head)
     else if (option == 1)
     {
         system("cls");
-        addNewStudent(username, year_head, class_head);
-        return;
-    }
-    else if(option == 2)
-    {
-        system("cls");
         viewStudentInClass(username, year_head, class_head);
         return;
     }
-    else if (option == 3)
+    else
     {
         system("cls");
         viewScoreBoard_Class(username, year_head, class_head);
         return;
     }
-    system("cls");
-    accessSchoolYear(username, year_head);
-    return;
 }

@@ -8,24 +8,24 @@ void addNewClass (Year* &year_head, string username)
     system("cls");
     resizeConsole(1920,920);
     system("color E0");
-    SetColor1(14, 0);
+
     ofstream ofs;
     Class* new_class = new Class();
-    new_class->class_name="";
+    new_class->class_name = "";
+
     // Keep asking for input until a valid class name is provided
     bool valid_class_name = false;
-    int counter=0;
+    int counter = 0;
     Create_A_Box_2(1, 3, 2, 30, 14, 14, 0, "INPUT NEW CLASS");
     Create_A_Box_1(1, 14, 2, 14, 14, 14, 0, " RETURN BACK");
     ShowConsoleCursor(false);
-    int x_temp = 1; int y_temp = 3; int y_old; int xp = x_temp; int yp = y_temp; int pos_class = 0; int opt;
+
     while (valid_class_name != true) 
     {
-        // cout << "Input class: ";
-        // getline(cin, new_class->class_name);
         gotoXY(1 + 2, 3 + 1);
         ShowConsoleCursor(true);
-        int x_temp = 1; int y_temp = 3; int y_old; int xp = x_temp; int yp = y_temp; int pos_class = 0; int opt;
+
+        int x_temp = 1; int y_temp = 3; int y_old; int xp = x_temp; int yp = y_temp; int pos_class = 0;
         while (counter < 1)
         {
             system("color E0");
@@ -124,7 +124,6 @@ void addNewClass (Year* &year_head, string username)
                     }
                     else if (c == ENTER)
                     {
-                        opt = 0; bool check = false;
                         system("cls");
                         accessSchoolYear(username, year_head);
                         return;
@@ -132,9 +131,10 @@ void addNewClass (Year* &year_head, string username)
                 }
             }
         }
+
         // Check if class already exists in class.txt file
         ifstream ifs("../Txt_Csv/class.txt");
-        bool check=true;
+        bool check = true;
         if (ifs.is_open()) 
         {
             string line;
@@ -142,30 +142,36 @@ void addNewClass (Year* &year_head, string username)
             {
                 if (line == new_class->class_name) 
                 {
-                    check=false;
+                    check = false;
                     break; // exit inner loop
                 }
             }
         }
         ifs.close();
-        if (check==true)
+
+        if (check == true)
             valid_class_name = true; // class name is valid, exit outer loop
-        else if (check==false)
+        else if (check == false)
         {
             Create_A_Box_2(1, 3, 2, 30, 14, 14, 0, "CLASS ALREADY EXISTS! PLEASE INPUT AGAIN");
-            new_class->class_name="";
+            new_class->class_name = "";
             counter--;
         }
     }
+
     // Class name input is valid
-    year_head->class_head->student_head = nullptr;
-    year_head->class_head->next_class= nullptr;
-    if (year_head->class_head==nullptr) {
-        year_head->class_head= new_class;
+    new_class->class_name = NormalizeClassName(new_class->class_name);
+    new_class->student_head = nullptr;
+    new_class->next_class = nullptr;
+    if (year_head->class_head == nullptr) 
+    {
+        year_head->class_head = new_class;
     }
-    else {
-        Class *temp= year_head->class_head;
-        while (temp->next_class!=nullptr) {
+    else 
+    {
+        Class *temp = year_head->class_head;
+        while (temp->next_class != nullptr) 
+        {
             temp = temp->next_class;
         }
         temp->next_class = new_class;
@@ -181,6 +187,7 @@ void addNewClass (Year* &year_head, string username)
     ofs << new_class->class_name << "\n";
     // Append new class to a specific class year
     ofs.close();
+
     string filename = "class_" + year_head->year_name + ".txt";
     filename = "../Txt_Csv/" + filename;
     ofs.open(filename, ios::app);
@@ -198,7 +205,7 @@ void addNewClass (Year* &year_head, string username)
         ofs << "\n" << new_class->class_name;
     ofs.close();
     checkEmpty.close();
-    // cout << "You created a new class successfully!\n\n";
+
     Create_A_Box_1(1, 8, 2, 42, 14, 14, 0, "You created a new class successfully!");
     for (int i = 0; i < 3; ++i)
     {
@@ -212,10 +219,10 @@ void addNewClass (Year* &year_head, string username)
     ofs.open(name_file);
     if (!ofs.is_open()) 
     {
-        // cerr << "Error: Unable to open file for writing\n";
         Create_A_Box_1(1, 14, 2, 41, 14, 14, 0, "Error: Unable to open file for writing");
         return;
     }
+    ofs << "student ID,student_socialID,student_fisrtname,student_lastname,gender,class_name,DOB\n";
     ofs.close();
 
     system("color E0");

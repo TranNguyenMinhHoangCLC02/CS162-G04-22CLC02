@@ -32,7 +32,6 @@ Class* upload_info_class(ifstream &file);
 //Student functions
 Student *getStudentCourseFromFile(Year* &year_head, Semester* &semester_head, Course* &course_head);
 Student* getStudentListFromFile(Year *year_head, Class* class_head);
-void addNewStudent(string username, Year *&year_head, Class *cur);
 
 //Semester functions
 void accessSemester(string username, Year* &year_head, Semester* &semester_head);

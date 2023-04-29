@@ -462,10 +462,10 @@ void addNewSemester (string username, Year* &year_head) //Now, year_head is the 
                                 }
                                 ofs.close();
 
-                                Create_A_Box_1(68,30,2,40,14,14,0,"   Add Semester successfully ");
+                                Create_A_Box_1(64,30,2,40,14,14,0,"   Add Semester successfully ");
                                 for (int i = 0; i < 3; ++i)
                                 {
-                                    gotoXY(98 + i,31);
+                                    gotoXY(94 + i,31);
                                     ShowConsoleCursor(false);
                                     std::cout << "." << flush;
                                     Sleep(500);
