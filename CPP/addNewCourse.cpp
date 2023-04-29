@@ -1603,6 +1603,18 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
                                 char char_semester = static_cast<char>(semester_head->Semester_Ord + 48);
                                 string filename = Class_name + "_" + "Semester" + char_semester + "_" + year_head->year_name + "_courses.csv";
                                 filename = "../Txt_Csv/" + filename;
+                                ofstream ofs;
+                                ofs.open(filename);
+                                ofs.close();
+                                current_course = current_course->course_next;
+                            }
+                            current_course = semester_head->course_head;
+                            while (current_course != nullptr)
+                            {
+                                string Class_name = current_course->class_name;
+                                char char_semester = static_cast<char>(semester_head->Semester_Ord + 48);
+                                string filename = Class_name + "_" + "Semester" + char_semester + "_" + year_head->year_name + "_courses.csv";
+                                filename = "../Txt_Csv/" + filename;
                                 ofstream ofs(filename, ios::app);
                                 if (!ofs.is_open())
                                 {
