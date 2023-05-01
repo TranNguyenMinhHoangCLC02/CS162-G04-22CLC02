@@ -210,7 +210,7 @@ void addStudentToCourse(string username, Course* &course, Year* &year_head, Seme
                 {
                     pos = 0;
                     system("cls");
-                    accessCourse(username, year_head, semester_head, course);
+                    updateACourse(username, year_head, semester_head, course);
                     return;
                 }
             }
@@ -222,9 +222,18 @@ void addStudentToCourse(string username, Course* &course, Year* &year_head, Seme
     // Check if the Course has reached maxNumStudents or not
     if (numOfStudent(course) == course->maxNumStudents)
     {
+        Create_A_Box_1(68,29,2,63,14,14,0,"  This course has reached its maximum limit of students!");
+        Sleep(1000);
+        Create_A_Box_1(68,33,2,30,14,14,0,"   Out program ");
+        for (int i = 0; i < 3; ++i)
+        {
+            gotoXY(68 + 16 + i,34);
+            ShowConsoleCursor(false);
+            std::cout << "." << flush;
+            Sleep(500);
+        }
         system ("cls");
-        cout << "This course has reached its maximum limit of students.";
-        addStudentToCourse(username, course, year_head, semester_head);
+        updateACourse(username, year_head, semester_head, course);
         return;
     }
 
@@ -233,9 +242,18 @@ void addStudentToCourse(string username, Course* &course, Year* &year_head, Seme
         // Check if the student is already in the course
         if (isStudentInCourse(course, student))
         {
+            Create_A_Box_1(68,29,2,50,14,14,0,"   This student is already in the course!");
+            Sleep(1000);
+            Create_A_Box_1(68,33,2,30,14,14,0,"   Out program ");
+            for (int i = 0; i < 3; ++i)
+            {
+                gotoXY(68 + 16 + i,34);
+                ShowConsoleCursor(false);
+                std::cout << "." << flush;
+                Sleep(500);
+            }
             system ("cls");
-            cout << "This student is already in the course.";
-            addStudentToCourse(username, course, year_head, semester_head);
+            updateACourse(username, year_head, semester_head, course);
             return;
         }
 
