@@ -51,8 +51,6 @@ void removeCourseFromList(Course* &course_head, Course* tmp);
 Course* getCourseFromFile(string filename);
 void deleteCoursefromFile(string filename, Course* course_head);
 void deleteCourse(string username,Course* course_head , Year* year_head, Semester *semester_head);
-void printStudentList(Student* student_head);
-Student* findStudentByID(string studentID, Student* head);
 void deleteStudent(Student *&student_head, string studentID);
 Student* getListStuFromFile(string filename);
 void removeStudent(string filename, string studentID);

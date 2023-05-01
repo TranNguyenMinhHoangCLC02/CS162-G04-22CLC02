@@ -562,7 +562,7 @@ void updateACourse (string username, Year* year_head, Semester* semester_head, C
                     else if (y_temp == 22)
                     {
                         system("cls");
-                        //removeStudentFromCourse
+                        removeStudentFromCourse(username, course_head, year_head, semester_head);
                         return;
                     }
                     else if (y_temp == 26)
