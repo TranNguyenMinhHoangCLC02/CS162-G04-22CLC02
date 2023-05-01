@@ -194,7 +194,7 @@ void removeStudentFromCourse(string username, Course* &course, Year* &year_head,
     cout << "Student " << student->student_ID << " is not enrolled in course " << course->course_name << endl;
 
     // remove student from file
-    string file_name = course->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + ".csv";
+    string file_name = course->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_student.csv";
     file_name = "../Txt_Csv/" + file_name;
     removeStudent(file_name, studentID);
     ofs.open(file_name);

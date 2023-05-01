@@ -568,8 +568,8 @@ void updateACourse (string username, Year* year_head, Semester* semester_head, C
                     else if (y_temp == 26)
                     {
                         system("cls");
-                        //deleteCourse
-                        return;
+                        deleteCourse(username, course_head ,year_head , semester_head);
+                        return; 
                     }
                     else
                     {

@@ -47,11 +47,10 @@ void viewCourse_Screen(string username, Year* year_head, Semester* semester_head
 void updateInformationOfCourse (string username, Year* year_head, Semester* semester_head, Course* accessed_course);
 void viewUpdateCourseInformation (string username, Year* year_head, Semester* semester_head);
 void addTailCourse(Course* &course_head, Course* tmp);
-Course* findCoursebyID(Course* course_head, string courseid, string nameclass);
-void removeCourseFromList(Course* &course_head, string courseid, string nameclass);
+void removeCourseFromList(Course* &course_head, Course* tmp);
 Course* getCourseFromFile(string filename);
-void deleteCoursefromFile(string filename, string courseid, string nameclass);
-void deleteCourse(string username, Semester *semester_head, Year* year_head);
+void deleteCoursefromFile(string filename, Course* course_head);
+void deleteCourse(string username,Course* course_head , Year* year_head, Semester *semester_head);
 void printStudentList(Student* student_head);
 Student* findStudentByID(string studentID, Student* head);
 void deleteStudent(Student *&student_head, string studentID);
