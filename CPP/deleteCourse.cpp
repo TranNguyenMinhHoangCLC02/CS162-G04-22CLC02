@@ -98,16 +98,19 @@ void deleteCoursefromFile(string filename, Course* course_head)
     
     remove(filename.c_str()); // Delete the original file
     rename("temp.txt", filename.c_str()); // Rename the temporary file to the original filename
+
+    deallocateCourses(tmp);
 }
 
 void deleteCourse(string username,Course* course_head ,Year* year_head, Semester *semester_head) 
 {
     int option;
     Create_A_Box_1(67, 11, 2, 34, 14, 14, 0, "ARE YOU SURE YOU WANT TO DELETE?");
-    Create_A_Box_1(67, 14, 2, 4, 14, 14, 0, "YES");
-    Create_A_Box_1(67, 18, 2, 3, 14, 14, 0, "NO");
-    int x_temp = 67; int y_temp = 14;
-    bool flag=true;
+    Create_A_Box_1(82, 14, 2, 4, 14, 14, 0, "YES");
+    Create_A_Box_1(82, 18, 2, 3, 14, 14, 0, "NO");
+    
+    int x_temp = 82; int y_temp = 14;
+    bool flag = true;
     while (true)
     {
         if (flag == true)
@@ -143,8 +146,10 @@ void deleteCourse(string username,Course* course_head ,Year* year_head, Semester
         }
         if (_kbhit())
         {
-            char c=_getch();
+            char c = _getch();
             system("color E0");
+            flag = true;
+
             if (y_temp == 14)
             {
                 system("color E0");
@@ -173,7 +178,7 @@ void deleteCourse(string username,Course* course_head ,Year* year_head, Semester
                 cout << "NO";
                 ShowConsoleCursor(false);
             }
-            flag=true;
+
             if (c == UP)
             {
                 if (y_temp == 14)
@@ -202,9 +207,11 @@ void deleteCourse(string username,Course* course_head ,Year* year_head, Semester
     if (option == 0)
     {
         system("cls");
-        viewUpdateCourseInformation (username, year_head, semester_head);
+        updateACourse (username, year_head, semester_head, course_head);
         return;
     }
+
+    // Delete Course in Student
 
     // Delete Course in Semester
     Course *cur = semester_head->course_head;
@@ -220,9 +227,9 @@ void deleteCourse(string username,Course* course_head ,Year* year_head, Semester
         pre->course_next = cur->course_next;
 
     // Delete course from file
-    string file_name = year_head->year_name + "_semester" + (char)(semester_head->Semester_Ord + 48) + "_course.csv";
-    file_name = "../Txt_Csv/" + file_name;
-    deleteCoursefromFile(file_name, course_head);
+    string file_name1 = year_head->year_name + "_semester" + (char)(semester_head->Semester_Ord + 48) + "_course.csv";
+    file_name1 = "../Txt_Csv/" + file_name1;
+    deleteCoursefromFile(file_name1, course_head);
 
     // Remove file Student of Course
     string file_name2 = course_head->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_student.csv";
@@ -233,6 +240,11 @@ void deleteCourse(string username,Course* course_head ,Year* year_head, Semester
     string file_name3 = course_head->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_Scoreboard.csv";
     file_name3 = "../Txt_Csv/" + file_name3;
     remove(file_name3.c_str());
+
+    //Delete course from course_head->class_name
+    string file_name4 = course_head->class_name + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "courses.csv";
+    file_name4 = "../Txt_Csv/" + file_name4;
+    deleteCoursefromFile(file_name4, course_head);
     
     //Announce for user
     Create_A_Box_1(70,28,2,30,14,14,0,"   Delete successfully ");

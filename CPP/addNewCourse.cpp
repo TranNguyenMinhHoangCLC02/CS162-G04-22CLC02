@@ -1522,158 +1522,181 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
                             ClassName = NormalizeClassName(ClassName);
                             TeacherName = Normalization(TeacherName);
 
-                            // Create new course
-                            Course* new_course = new Course;
-                            new_course->course_ID = CourseID;
-                            new_course->course_name = CourseName;
-                            new_course->class_name = ClassName;
-                            new_course->teacher_name = TeacherName;
-                            new_course->numCredits = NumCredits;
-                            new_course->maxNumStudents = MaxStudents;
+                            int check = 1; Course* tempcourse = semester_head->course_head;
 
-                            if (DayInWeek == "MONDAY")
-                                new_course->dayInWeek = "Monday";
-                            else if (DayInWeek == "TUESDAY")
-                                new_course->dayInWeek = "Tuesday";
-                            else if (DayInWeek == "WEDNESDAY")
-                                new_course->dayInWeek = "Wednesday";
-                            else if (DayInWeek == "THURSDAY")
-                                new_course->dayInWeek = "Thursday";
-                            else if (DayInWeek == "FRIDAY")
-                                new_course->dayInWeek = "Friday";
-                            else if (DayInWeek == "SATURDAY")
-                                new_course->dayInWeek = "Saturday";
+                            while (tempcourse)
+                            {
+                                if ((tempcourse->course_ID == CourseID && tempcourse->course_name != CourseName) || 
+                                    (tempcourse->course_ID != CourseID && tempcourse->course_name == CourseName) || 
+                                    (tempcourse->course_ID == CourseID && tempcourse->course_name == CourseName && tempcourse->class_name == ClassName))
+                                {
+                                    check = 0;
+                                    break;
+                                }
 
-                            if (Session == "7:30")
-                                new_course->Session = "7:30";
-                            else if (Session == "9:30")
-                                new_course->Session = "9:30";
-                            else if (Session == "13:30")
-                                new_course->Session = "13:30";
-                            else if (Session == "15:30")
-                                new_course->Session = "15:30";
+                                tempcourse = tempcourse->course_next;
+                            }
 
-                            new_course->scoreboard_head = nullptr;
-                            new_course->student_head = nullptr;
-                            new_course->course_next = nullptr;
-
-                            //Add new course at the end of course list of corresponding year
-                            if (!semester_head->course_head)
-                                semester_head->course_head = new_course;
+                            if (!check)
+                            {
+                                gotoXY(116,22);
+                                std::cout << "The course has been created before!";
+                            }
                             else
                             {
-                                Course* temp_course = semester_head->course_head;
+                                // Create new course
+                                Course* new_course = new Course;
+                                new_course->course_ID = CourseID;
+                                new_course->course_name = CourseName;
+                                new_course->class_name = ClassName;
+                                new_course->teacher_name = TeacherName;
+                                new_course->numCredits = NumCredits;
+                                new_course->maxNumStudents = MaxStudents;
 
-                                while (temp_course->course_next)
-                                    temp_course = temp_course->course_next;
+                                if (DayInWeek == "MONDAY")
+                                    new_course->dayInWeek = "Monday";
+                                else if (DayInWeek == "TUESDAY")
+                                    new_course->dayInWeek = "Tuesday";
+                                else if (DayInWeek == "WEDNESDAY")
+                                    new_course->dayInWeek = "Wednesday";
+                                else if (DayInWeek == "THURSDAY")
+                                    new_course->dayInWeek = "Thursday";
+                                else if (DayInWeek == "FRIDAY")
+                                    new_course->dayInWeek = "Friday";
+                                else if (DayInWeek == "SATURDAY")
+                                    new_course->dayInWeek = "Saturday";
 
-                                temp_course->course_next = new_course;
-                            }
+                                if (Session == "7:30")
+                                    new_course->Session = "7:30";
+                                else if (Session == "9:30")
+                                    new_course->Session = "9:30";
+                                else if (Session == "13:30")
+                                    new_course->Session = "13:30";
+                                else if (Session == "15:30")
+                                    new_course->Session = "15:30";
 
-                            std::ofstream ofs;
-                            //Print course list after changed out file txt corresponding with the year and the semester including courses
-                            string file_name = year_head->year_name + "_semester" + (char)(semester_head->Semester_Ord + 48) + "_course.csv";
-                            file_name = "../Txt_Csv/" + file_name;
-                            ofs.open(file_name);
-                            if (!ofs.is_open())
-                            {
-                                cerr << "Error: Unable to open file for writing\n";
-                                return;
-                            }
+                                new_course->scoreboard_head = nullptr;
+                                new_course->student_head = nullptr;
+                                new_course->course_next = nullptr;
 
-                            Course* temp_course = semester_head->course_head;
-                            while (temp_course->course_next)
-                            {
-                                ofs << temp_course->course_ID << "," << temp_course->course_name << "," << temp_course->class_name << "," 
-                                    << temp_course->teacher_name << "," << temp_course->numCredits << "," << temp_course->maxNumStudents 
-                                    << "," << temp_course->dayInWeek << "," << temp_course->Session << "\n";
-                                
-                                temp_course = temp_course->course_next;
-                            }
-                            ofs << temp_course->course_ID << "," << temp_course->course_name << "," << temp_course->class_name << "," 
-                                << temp_course->teacher_name << "," << temp_course->numCredits << "," << temp_course->maxNumStudents 
-                                << "," << temp_course->dayInWeek << "," << temp_course->Session;
-                            ofs.close();
-                            
-                            // Create files for each classes
-                            Course *current_course = semester_head->course_head;
-                            while (current_course != nullptr)
-                            {
-                                string Class_name = current_course->class_name;
-                                char char_semester = static_cast<char>(semester_head->Semester_Ord + 48);
-                                string filename = Class_name + "_" + "Semester" + char_semester + "_" + year_head->year_name + "_courses.csv";
-                                filename = "../Txt_Csv/" + filename;
-                                ofstream ofs;
-                                ofs.open(filename);
-                                ofs.close();
-                                current_course = current_course->course_next;
-                            }
-                            current_course = semester_head->course_head;
-                            while (current_course != nullptr)
-                            {
-                                string Class_name = current_course->class_name;
-                                char char_semester = static_cast<char>(semester_head->Semester_Ord + 48);
-                                string filename = Class_name + "_" + "Semester" + char_semester + "_" + year_head->year_name + "_courses.csv";
-                                filename = "../Txt_Csv/" + filename;
-                                ofstream ofs(filename, ios::app);
+                                //Add new course at the end of course list of corresponding year
+                                if (!semester_head->course_head)
+                                    semester_head->course_head = new_course;
+                                else
+                                {
+                                    Course* temp_course = semester_head->course_head;
+
+                                    while (temp_course->course_next)
+                                        temp_course = temp_course->course_next;
+
+                                    temp_course->course_next = new_course;
+                                }
+
+                                std::ofstream ofs;
+                                //Print course list after changed out file txt corresponding with the year and the semester including courses
+                                string file_name = year_head->year_name + "_semester" + (char)(semester_head->Semester_Ord + 48) + "_course.csv";
+                                file_name = "../Txt_Csv/" + file_name;
+                                ofs.open(file_name);
                                 if (!ofs.is_open())
                                 {
-                                    cerr << "Error: Unable to open file " << filename << " for writing\n";
+                                    cerr << "Error: Unable to open file for writing\n";
                                     return;
                                 }
-                                if (current_course->class_name == Class_name)
+
+                                Course* temp_course = semester_head->course_head;
+                                while (temp_course->course_next)
                                 {
-                                    ofs << current_course->course_ID << "," << current_course->course_name << "," 
-                                    << current_course->class_name << "," << current_course->teacher_name << "," 
-                                    << current_course->numCredits << "," << current_course->maxNumStudents << "," 
-                                    << current_course->dayInWeek << "," << current_course->Session << "\n";
+                                    ofs << temp_course->course_ID << "," << temp_course->course_name << "," << temp_course->class_name << "," 
+                                        << temp_course->teacher_name << "," << temp_course->numCredits << "," << temp_course->maxNumStudents 
+                                        << "," << temp_course->dayInWeek << "," << temp_course->Session << "\n";
+                                    
+                                    temp_course = temp_course->course_next;
                                 }
+                                ofs << temp_course->course_ID << "," << temp_course->course_name << "," << temp_course->class_name << "," 
+                                    << temp_course->teacher_name << "," << temp_course->numCredits << "," << temp_course->maxNumStudents 
+                                    << "," << temp_course->dayInWeek << "," << temp_course->Session;
                                 ofs.close();
-                                current_course = current_course->course_next;
-                            }
+                                
+                                // Create files for each classes
+                                Course *current_course = semester_head->course_head;
+                                while (current_course != nullptr)
+                                {
+                                    string Class_name = current_course->class_name;
+                                    char char_semester = static_cast<char>(semester_head->Semester_Ord + 48);
+                                    string filename = Class_name + "_" + "Semester" + char_semester + "_" + year_head->year_name + "_courses.csv";
+                                    filename = "../Txt_Csv/" + filename;
+                                    ofstream ofs;
+                                    ofs.open(filename);
+                                    ofs.close();
+                                    current_course = current_course->course_next;
+                                }
+                                current_course = semester_head->course_head;
+                                while (current_course != nullptr)
+                                {
+                                    string Class_name = current_course->class_name;
+                                    char char_semester = static_cast<char>(semester_head->Semester_Ord + 48);
+                                    string filename = Class_name + "_" + "Semester" + char_semester + "_" + year_head->year_name + "_courses.csv";
+                                    filename = "../Txt_Csv/" + filename;
+                                    ofstream ofs(filename, ios::app);
+                                    if (!ofs.is_open())
+                                    {
+                                        cerr << "Error: Unable to open file " << filename << " for writing\n";
+                                        return;
+                                    }
+                                    if (current_course->class_name == Class_name)
+                                    {
+                                        ofs << current_course->course_ID << "," << current_course->course_name << "," 
+                                        << current_course->class_name << "," << current_course->teacher_name << "," 
+                                        << current_course->numCredits << "," << current_course->maxNumStudents << "," 
+                                        << current_course->dayInWeek << "," << current_course->Session << "\n";
+                                    }
+                                    ofs.close();
+                                    current_course = current_course->course_next;
+                                }
 
-                            //Create file including students of created course
-                            Course* temp_course1 = semester_head->course_head;
+                                //Create file including students of created course
+                                Course* temp_course1 = semester_head->course_head;
 
-                            while (temp_course1->course_next)
-                                temp_course1 = temp_course1->course_next;
+                                while (temp_course1->course_next)
+                                    temp_course1 = temp_course1->course_next;
 
-                            string name_file = temp_course1->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_Scoreboard.csv";
-                            name_file = "../Txt_Csv/" + name_file;
-                            ofs.open(name_file);
-                            if (!ofs.is_open())
-                            {
-                                cerr << "Error: Unable to open file for writing\n";
+                                string name_file = temp_course1->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_Scoreboard.csv";
+                                name_file = "../Txt_Csv/" + name_file;
+                                ofs.open(name_file);
+                                if (!ofs.is_open())
+                                {
+                                    cerr << "Error: Unable to open file for writing\n";
+                                    return;
+                                }
+                                ofs << "ID,FullName,Midterm,Final,Other,Total";
+                                ofs.close();
+
+                                name_file = temp_course1->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_student.csv";
+                                name_file = "../Txt_Csv/" + name_file;
+                                ofs.open(name_file);
+                                if (!ofs.is_open())
+                                {
+                                    cerr << "Error: Unable to open file for writing\n";
+                                    return;
+                                }
+                                ofs << "student ID,student_socialID,student_fisrtname,student_lastname,gender,class_name,DOB";
+                                ofs.close();
+
+                                gotoXY(122,22);
+                                std::cout << "Created successfully";
+
+                                for (int i = 0; i < 3; ++i)
+                                {
+                                    gotoXY(143 + i,22);
+                                    ShowConsoleCursor(false);
+                                    std::cout << "." << flush;
+                                    Sleep(500);
+                                }
+
+                                system("cls");
+                                accessSemester(username, year_head, semester_head);
                                 return;
                             }
-                            ofs << "ID,FullName,Midterm,Final,Other,Total";
-                            ofs.close();
-
-                            name_file = temp_course1->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_student.csv";
-                            name_file = "../Txt_Csv/" + name_file;
-                            ofs.open(name_file);
-                            if (!ofs.is_open())
-                            {
-                                cerr << "Error: Unable to open file for writing\n";
-                                return;
-                            }
-                            ofs << "student ID,student_socialID,student_fisrtname,student_lastname,gender,class_name,DOB";
-                            ofs.close();
-
-                            gotoXY(122,22);
-                            std::cout << "Created successfully";
-
-                            for (int i = 0; i < 3; ++i)
-                            {
-                                gotoXY(143 + i,22);
-                                ShowConsoleCursor(false);
-                                std::cout << "." << flush;
-                                Sleep(500);
-                            }
-
-                            system("cls");
-                            accessSemester(username, year_head, semester_head);
-                            return;
                         }
                     }
                 }
