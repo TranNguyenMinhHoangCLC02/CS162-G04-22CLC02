@@ -241,18 +241,23 @@ void viewScoreBoard_Class(string username, Year *&year_head, Class *class_head)
         ifs.close();
         ifs.open(filename1);
         getline(ifs, dummy);
-        string temp;
-        while (!ifs.eof())
+        string line;
+        while (getline(ifs, line))
         {
-            getline(ifs, student_id, ',');
-            getline(ifs, fullname, ',');
-            getline(ifs, temp, ',');
+            string temp;
+            stringstream ss(line);
+
+            getline(ss, temp, ',');
+            student_id = temp;
+            getline(ss, temp, ',');
+            fullname = temp;
+            getline(ss, temp, ',');
             midterm = stof(temp);
-            getline(ifs, temp, ',');
+            getline(ss, temp, ',');
             final1 = stof(temp);
-            getline(ifs, temp, ',');
+            getline(ss, temp, ',');
             other = stof(temp);
-            getline(ifs, temp, '\n');
+            getline(ss, temp, '\n');
             total = stof(temp);
             printStudentInfo(y_coord ,counter, student_id, fullname, midterm, final1, other, total);
             counter++;
@@ -264,15 +269,7 @@ void viewScoreBoard_Class(string username, Year *&year_head, Class *class_head)
         ifs.close();
         check = check->course_next;
     }
-    // cout << "0. Return back" << "\nYour input is: ";
-    // int opt = 1;
-    // cin >> opt;
-
-    // while (opt != 0)
-    // {
-    //     cout << "Please input again: ";
-    //     cin >> opt;
-    // }
+    
     Create_A_Box_1(1, y, 2, 14, 14, 14, 0, " RETURN BACK");
     SetColor1(15,0);
     for (int i = 1 + 1; i <= 14; ++i)

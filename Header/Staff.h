@@ -54,7 +54,8 @@ void deleteCourse(string username,Course* course_head , Year* year_head, Semeste
 void deleteStudent(Student *&student_head, string studentID);
 Student* getListStuFromFile(string filename);
 void removeStudent(string filename, string studentID);
-void removeStudentFromCourse(string username, Course* &course, Year* &year_head, Semester* semester_head) ;
+void removeStudentFromCourse(string username, Course* &course, Year* &year_head, Semester* semester_head);
+void removeStudentFromScoreboardfile(string filename, string studentID);
 void addNewCourse (string username, Year* year_head, Semester* semester_head);
 void viewStudentInCourse(string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 int numOfStudent(Course* course);
