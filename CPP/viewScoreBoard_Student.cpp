@@ -164,13 +164,9 @@ void viewScoreBoard_Student(string username)
             getline(ifs, dummy);
     }
     ifs.close();
-    // cout << "Choose a year(0000-0000): ";
-    // getline(cin, year);
-    year=getYearStr(username);
-    // cin.ignore();
-    int semester=getSemesterNum();
-    // cout << "Choose a semester(1->3): ";
-    // cin >> semester;
+
+    year = getYearStr(username);
+    int semester = getSemesterNum();
 
     char ch_semester = static_cast<char>(semester + 48);
     string filename = user->student_class.class_name + "_Semester" + ch_semester + "_" + year +  "_courses.csv";
@@ -180,18 +176,11 @@ void viewScoreBoard_Student(string username)
     ifs.open(filename);
     if (!ifs.is_open())
     {
-        // cout << "Input invalid\n";
-        // cout << "Please input again:\n";
-        // cout << "Choose a year(0000-0000): ";
-        // getline(cin, year);
-        // cin.ignore();
-        // cout << "Choose a semester(1->3): ";
-        // cin >> semester;
         system("cls");
         system("color E0");
         Create_A_Box_1(1, 7, 2, 35, 14, 14, 0, "INPUT INVALID! PLEASE INPUT AGAIN!");
-        year=getYearStr(username);
-        int semester=getSemesterNum();
+        year = getYearStr(username);
+        int semester = getSemesterNum();
         ch_semester = static_cast<char>(semester + 48);
         filename = user->student_class.class_name + "_Semester" + ch_semester + "_" + year +  "_courses.csv";
         filename = "../Txt_Csv/" + filename;
@@ -236,25 +225,22 @@ void viewScoreBoard_Student(string username)
         }
     }
     ifs.close();
-    // cout << setw(12) << left << "Courses" << setw(16) << right << "Midterm Mark" 
-    //     << setw(16) << right << "Final Mark" << setw(16) << right << "Other Mark" 
-    //     << setw(16) << right << "Total Mark" << "\n";
-    gotoXY(24, 1); cout <<"   _____  _____  _____ ______  _____ ______  _____   ___  ______ ______";
-    gotoXY(24, 2); cout <<"  /  ___|/  __ \\|  _  || ___ \\|  ___|| ___ \\|  _  | / _ \\ | ___ \\|  _  \\";
-    gotoXY(24, 3); cout <<"  \\ `--. | /  \\/| | | || |_/ /| |__  | |_/ /| | | |/ /_\\ \\| |_/ /| | | |";
-    gotoXY(24, 4); cout <<"   `--. \\| |    | | | ||    / |  __| | ___ \\| | | ||  _  ||    / | | | |";
-    gotoXY(24, 5); cout <<"  /\\__/ /| \\__/\\\\ \\_/ /| |\\ \\ | |___ | |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
-    gotoXY(24, 6); cout <<"  \\____/  \\____/ \\___/ \\_| \\_|\\____/ \\____/  \\___/ \\_| |_/\\_| \\_||___/";
-    // string student_id, fullname;
-    // float total, final1, midterm, other;
+
+    gotoXY(24, 1); cout << "   _____  _____  _____ ______  _____ ______  _____   ___  ______ ______";
+    gotoXY(24, 2); cout << "  /  ___|/  __ \\|  _  || ___ \\|  ___|| ___ \\|  _  | / _ \\ | ___ \\|  _  \\";
+    gotoXY(24, 3); cout << "  \\ `--. | /  \\/| | | || |_/ /| |__  | |_/ /| | | |/ /_\\ \\| |_/ /| | | |";
+    gotoXY(24, 4); cout << "   `--. \\| |    | | | ||    / |  __| | ___ \\| | | ||  _  ||    / | | | |";
+    gotoXY(24, 5); cout << "  /\\__/ /| \\__/\\\\ \\_/ /| |\\ \\ | |___ | |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
+    gotoXY(24, 6); cout << "  \\____/  \\____/ \\___/ \\_| \\_|\\____/ \\____/  \\___/ \\_| |_/\\_| \\_||___/";
+ 
     Course *check = class_course;
-    int y=8;
-    int y_coord=1;
-    while (check!=nullptr)
+    int y = 8;
+    int y_coord = 1;
+    while (check != nullptr)
     {
         // cout << setw(12) << left << class_course->course_name;
         string filename1;
-        filename1 = check->course_ID + "_Semester" + ch_semester + "_" + year + "_Scoreboard.csv";
+        filename1 = check->course_ID + "_Semester" + ch_semester + "_" + check->class_name + "_" + year + "_Scoreboard.csv";
         filename1 = "../Txt_Csv/" + filename1;
         ifstream ifs;
         ifs.open(filename1);
@@ -311,15 +297,7 @@ void viewScoreBoard_Student(string username)
         ifs.close();
         check = check->course_next;
     }
-    // cout << "0. Return back" << "\nYour input is: ";
-    // int opt = 1;
-    // cin >> opt;
-
-    // while (opt != 0)
-    // {
-    //     cout << "Please input again: ";
-    //     cin >> opt;
-    // }
+    
     Create_A_Box_1(1, y, 2, 14, 14, 14, 0, " RETURN BACK");
     SetColor1(15,0);
     for (int i = 1 + 1; i <= 14; ++i)

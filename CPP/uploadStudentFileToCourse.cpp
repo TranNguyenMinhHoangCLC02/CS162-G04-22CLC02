@@ -272,7 +272,7 @@ void uploadStudentFileToCourse (string username, Year* year_head, Semester* seme
     //Close file
     ifs.close();
 
-    string name_file = course_head->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_student.csv";
+    string name_file = course_head->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + course_head->class_name + "_" + year_head->year_name + "_student.csv";
     name_file = "../Txt_Csv/" + name_file;
     if (name_file != file_name)
     {

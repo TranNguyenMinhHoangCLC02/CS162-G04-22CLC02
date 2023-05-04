@@ -646,6 +646,7 @@ void Main_Student_Screen(string username)
                     }
                     else if (y_temp == 16)
                     {
+                        system("cls");
                         viewScoreBoard_Student(username);
                         return;
                     }

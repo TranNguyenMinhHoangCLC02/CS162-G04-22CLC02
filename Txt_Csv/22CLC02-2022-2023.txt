@@ -47,4 +47,3 @@ student ID,student_socialID,student_fisrtname,student_lastname,gender,class_name
 22127487,15727813751,Pham Trinh Bao,Tin,0,22CLC02,1/9/2004
 22127488,70388020884,Truong Thanh,Toan,0,22CLC02,28/5/2003
 22127489,48377376242,Chu Nguyen Minh,Truong,0,22CLC02,29/6/2004
-19127113,28129192819,Vo Tien,Dung,0,19HTHT,5/5/2004

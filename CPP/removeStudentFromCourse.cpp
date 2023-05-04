@@ -352,12 +352,12 @@ void removeStudentFromCourse(string username, Course* &course, Year* &year_head,
     }
 
     // Remove student infomation from file
-    string file_name1 = course->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_student.csv";
+    string file_name1 = course->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + course->class_name + "_" + year_head->year_name + "_student.csv";
     file_name1 = "../Txt_Csv/" + file_name1;
     removeStudent(file_name1, studentID);
 
     // Remove student information from scoreboard file
-    string file_name2 = course->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_Scoreboard.csv";
+    string file_name2 = course->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + course->class_name + "_" + year_head->year_name + "_Scoreboard.csv";
     file_name2 = "../Txt_Csv/" + file_name2;
     removeStudentFromScoreboardfile(file_name2, studentID);
 

@@ -368,7 +368,7 @@ void update_scoreBoard(string filename, string username, Year* &year_head, Semes
     }
 
     char ch_semester = static_cast<char>(semester_head->Semester_Ord + 48);
-    string namefile = course_head->course_ID + "_" + "Semester" + ch_semester + "_" + year_head->year_name + + "_Scoreboard.csv";
+    string namefile = course_head->course_ID + "_" + "Semester" + ch_semester + "_" + course_head->class_name + "_" + year_head->year_name + + "_Scoreboard.csv";
     namefile = "../Txt_Csv/" + namefile;
 
     file_name = "../Txt_Csv/" + file_name;

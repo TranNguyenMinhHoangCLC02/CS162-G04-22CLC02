@@ -254,12 +254,12 @@ void deleteCourse(string username,Course* course_head ,Year* year_head, Semester
     deleteCoursefromFile(file_name1, course_head);
 
     // Remove file Student of Course
-    string file_name2 = course_head->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_student.csv";
+    string file_name2 = course_head->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + course_head->class_name + "_" + year_head->year_name + "_student.csv";
     file_name2 = "../Txt_Csv/" + file_name2;
     remove(file_name2.c_str());
 
     // Remove file Scoreboard of Course
-    string file_name3 = course_head->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_Scoreboard.csv";
+    string file_name3 = course_head->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + course_head->class_name + "_" + year_head->year_name + "_Scoreboard.csv";
     file_name3 = "../Txt_Csv/" + file_name3;
     remove(file_name3.c_str());
 
