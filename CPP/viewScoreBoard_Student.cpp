@@ -139,29 +139,31 @@ void viewScoreBoard_Student(string username)
     ifs.open("../Txt_Csv/student_info.csv");
     string dummy;
     getline(ifs, dummy);
-    string first_name, last_name, student_class, student_ID, social_ID, DOB, gender;
-    while (!ifs.eof())
+
+    string first_line;
+    while (getline(ifs, first_line))
     {
-        getline(ifs, student_ID, ',');
-        if (student_ID == username)
+        string temp;
+        stringstream ss(first_line);
+
+        getline(ss, temp, ',');
+        if (temp == username)
         {
-            user->student_ID = student_ID;
-            getline(ifs, social_ID, ',');
-            user->student_socialID = social_ID;
-            getline(ifs, first_name, ',');
-            user->student_fisrtname = first_name;
-            getline(ifs, last_name, ',');
-            user->student_lastname = last_name;
-            getline(ifs, gender, ',');
-            user->gender=stoi(gender);
-            getline(ifs, student_class, ',');
-            user->student_class.class_name = student_class;
-            getline(ifs, DOB, '\n');
-            getDate(user, DOB);
+            user->student_ID = temp;
+            getline(ss, temp, ',');
+            user->student_socialID = temp;
+            getline(ss, temp, ',');
+            user->student_fisrtname = temp;
+            getline(ss, temp, ',');
+            user->student_lastname = temp;
+            getline(ss, temp, ',');
+            user->gender = stoi(temp);
+            getline(ss, temp, ',');
+            user->student_class.class_name = temp;
+            getline(ss, temp, '\n');
+            getDate(user, temp);
             break;
         }
-        else
-            getline(ifs, dummy);
     }
     ifs.close();
 
@@ -186,12 +188,12 @@ void viewScoreBoard_Student(string username)
         filename = "../Txt_Csv/" + filename;
         ifs.open(filename);
     }
-    string line;
-    while (getline(ifs, line))
+    string second_line;
+    while (getline(ifs, second_line))
     {
         Course* new_course = new Course;
         string tmp;
-        stringstream ss(line);
+        stringstream ss(second_line);
         getline(ss, tmp, ',');
         new_course->course_ID = tmp;
         getline(ss, tmp, ',');
@@ -255,32 +257,39 @@ void viewScoreBoard_Student(string username)
         if (check2ndLine == "")
         {
             
-            Create_A_Box_1(1, y_coord+10, 2, 30, 14, 14, 0, "THERE IS NO AVAILABLE VALUE!");
-            y_coord=y_coord+3;
+            Create_A_Box_1(1, y_coord + 10, 2, 30, 14, 14, 0, "THERE IS NO AVAILABLE VALUE!");
+            y_coord = y_coord + 3;
         }
         ifs.close();
+
         ifs.open(filename1);
         getline(ifs, dummy);
-        string temp;
+
         bool checkAvailable = false;
-        while (!ifs.eof())
+        string third_line;
+        while (getline(ifs, third_line))
         {
-            getline(ifs, student_id, ',');
+            string temp;
+            stringstream ss(third_line);
+
+            getline(ss, temp, ',');
+            student_id = temp;
             if (student_id == username)
             {
                 checkAvailable = true;
-                getline(ifs, fullname, ',');
-                getline(ifs, temp, ',');
+                getline(ss, temp, ',');
+                fullname = temp;
+                getline(ss, temp, ',');
                 midterm = stof(temp);
-                getline(ifs, temp, ',');
+                getline(ss, temp, ',');
                 final1 = stof(temp);
-                getline(ifs, temp, ',');
+                getline(ss, temp, ',');
                 other = stof(temp);
-                getline(ifs, temp, '\n');
+                getline(ss, temp, '\n');
                 total = stof(temp);
                 printStudentInfo(y_coord ,counter, student_id, fullname, midterm, final1, other, total);
                 counter++;
-                y_coord=y_coord+3;
+                y_coord = y_coord + 3;
                 break;
             }
             else
@@ -289,10 +298,10 @@ void viewScoreBoard_Student(string username)
         if (checkAvailable == false)
         {
             
-            Create_A_Box_1(1, y_coord+10, 2, 30, 14, 14, 0, "THERE IS NO AVAILABLE VALUE!");
-            y_coord=y_coord+3;
+            Create_A_Box_1(1, y_coord + 10, 2, 30, 14, 14, 0, "THERE IS NO AVAILABLE VALUE!");
+            y_coord = y_coord + 3;
         }
-        y=y_coord + 13;
+        y = y_coord + 13;
         y_coord = y_coord + 6;
         ifs.close();
         check = check->course_next;

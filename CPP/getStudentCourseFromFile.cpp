@@ -1,6 +1,8 @@
 #include "../Header/Staff.h"
 #include "../Header/Design.h"
 
+Student* getStudentCourseFromFile(Year* &year_head, Semester* &semester_head, Course* &course_head);
+
 Student* getStudentCourseFromFile(Year* &year_head, Semester* &semester_head, Course* &course_head)
 {
     ifstream ifs;

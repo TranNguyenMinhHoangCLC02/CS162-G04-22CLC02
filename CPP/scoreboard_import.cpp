@@ -326,7 +326,7 @@ void update_scoreBoard(string filename, string username, Year* &year_head, Semes
                 {
                     int len = file_name.size();
 
-                    if (c >= 32 && c <= 126 && len < 50)
+                    if (c >= 32 && c <= 126 && len < 56)
                     {
                         pos_user++;
                         file_name += c;

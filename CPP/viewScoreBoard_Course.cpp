@@ -2,6 +2,9 @@
 #include "../Header/Student.h"
 #include "../Header/Design.h"
 
+string format_float(float value);
+void printStudentInfo(int y, int counter, string student_id, string fullname, float midterm, float final1, float other, float total);
+
 string format_float(float value)
 {
     stringstream ss;
