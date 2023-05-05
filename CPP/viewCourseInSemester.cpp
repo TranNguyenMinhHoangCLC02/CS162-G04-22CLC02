@@ -9,39 +9,40 @@ void viewCoursesInSemester(string username)
     SetColor1(14, 0);
     string year;
     Student *user = new Student();
+    // get Student* from file
     ifstream ifs;
     ifs.open("../Txt_Csv/student_info.csv");
     string dummy;
     getline(ifs, dummy);
-    string first_name, last_name, student_class, student_ID, social_ID, DOB, gender;
-    while (!ifs.eof())
+    string liner;
+    string studentID;
+    while (getline(ifs, liner))
     {
-        getline(ifs, student_ID, ',');
-        if (student_ID == username)
+        stringstream ss(liner);
+        getline(ss, studentID, ',');
+        if (studentID == username)
         {
-            user->student_ID = student_ID;
-            getline(ifs, social_ID, ',');
-            user->student_socialID = social_ID;
-            getline(ifs, first_name, ',');
-            user->student_fisrtname = first_name;
-            getline(ifs, last_name, ',');
-            user->student_lastname = last_name;
-            getline(ifs, gender, ',');
-            user->gender=stoi(gender);
-            getline(ifs, student_class, ',');
-            user->student_class.class_name = student_class;
-            getline(ifs, DOB, '\n');
+            user->student_ID = studentID;
+            getline(ss, user->student_socialID, ',');
+            getline(ss, user->student_fisrtname, ',');
+            getline(ss, user->student_lastname, ',');
+            string gender, DOB;
+            getline(ss, gender, ',');
+            user->gender = stoi(gender);
+            getline(ss, user->student_class.class_name,',');
+            getline(ss, DOB, '\n');
             getDate(user, DOB);
             break;
         }
         else
-            getline(ifs, dummy);
+            getline(ss, dummy);
     }
     ifs.close();
 
     year = getYearStr(username);
     int semester = getSemesterNum();
 
+    // Access file course
     char ch_semester = static_cast<char>(semester + 48);
     string filename = user->student_class.class_name + "_Semester" + ch_semester + "_" + year +  "_courses.csv";
     filename = "../Txt_Csv/" + filename;
@@ -60,6 +61,8 @@ void viewCoursesInSemester(string username)
         filename = "../Txt_Csv/" + filename;
         ifs.open(filename);
     }
+
+    // get List course from file
     string line;
     while (getline(ifs, line))
     {
@@ -114,6 +117,7 @@ void viewCoursesInSemester(string username)
     Course* acceptCourse = nullptr;
     Course* tmp = nullptr;
 
+    // access all file and find student
     while (check != nullptr)
     {
         string filename1;
@@ -163,14 +167,14 @@ void viewCoursesInSemester(string username)
     {
         Create_A_Box_1(55,12,2,30,14,14,0,"    There are no course!");
     }
-    Course *curr = acceptCourse;
     Create_A_Box_1(55, 12, numCourses, 40, 14, 14, 0, "");
-    while(curr)
+    while(acceptCourse != nullptr)
     {
         gotoXY(57, 13 + i);
-        std:: cout<< counter <<". " << check->course_ID<< " - " << check->course_name;
+        std:: cout<< counter <<". " << acceptCourse->course_ID<< " - " << acceptCourse->course_name;
         i += 2;
         counter ++; 
+        acceptCourse = acceptCourse->course_next;
     }
 
     Create_A_Box_1(130, 35, 2, 14, 14, 14, 0, " RETURN BACK");
