@@ -643,7 +643,7 @@ void Main_Student_Screen(string username)
                     else if (y_temp == 14)
                     {
                         system("cls");
-                        
+                        viewCoursesInSemester(username);
                         return;
                     }
                     else if (y_temp == 16)
