@@ -240,66 +240,93 @@ void viewScoreBoard_Student(string username)
     int y_coord = 1;
     while (check != nullptr)
     {
-        // cout << setw(12) << left << class_course->course_name;
         string filename1;
-        filename1 = check->course_ID + "_Semester" + ch_semester + "_" + check->class_name + "_" + year + "_Scoreboard.csv";
+        filename1 = check->course_ID + "_Semester" + ch_semester + "_" + check->class_name + "_" + year + "_student.csv";
         filename1 = "../Txt_Csv/" + filename1;
         ifstream ifs;
-        ifs.open(filename1);
-        Create_A_Box_1(1, y, 2, check->course_name.size() + 1, 14, 14, 0, check->course_name);
-        // ifs.open("../Txt_Csv/" + class_course->course_ID + "_Semester" + ch_semester + "_" + year + "_Scoreboard.csv");
-        int counter = 0;
-        string student_id, fullname;
-        float total, final1, midterm, other;
-        getline(ifs, dummy);
-        string check2ndLine;
-        getline(ifs, check2ndLine);
-        if (check2ndLine == "")
-        {
-            Create_A_Box_1(1, y_coord + 10, 2, 30, 14, 14, 0, "THERE IS NO AVAILABLE VALUE!");
-            y_coord = y_coord + 3;
-        }
-        ifs.close();
-
+        string student_id;
         ifs.open(filename1);
         getline(ifs, dummy);
-
-        bool checkAvailable = false;
-        string third_line;
+        
+        string third_line; int check_close = 0;
         while (getline(ifs, third_line))
         {
-            string temp;
             stringstream ss(third_line);
+            getline(ss, student_id, ',');
 
-            getline(ss, temp, ',');
-            student_id = temp;
             if (student_id == username)
             {
-                checkAvailable = true;
-                getline(ss, temp, ',');
-                fullname = temp;
-                getline(ss, temp, ',');
-                midterm = stof(temp);
-                getline(ss, temp, ',');
-                final1 = stof(temp);
-                getline(ss, temp, ',');
-                other = stof(temp);
-                getline(ss, temp, '\n');
-                total = stof(temp);
-                printStudentInfo(y_coord ,counter, student_id, fullname, midterm, final1, other, total);
-                counter++;
-                y_coord = y_coord + 3;
+                check_close = 1;
+                ifs.close();
+
+                string filename2;
+                filename2 = check->course_ID + "_Semester" + ch_semester + "_" + check->class_name + "_" + year + "_Scoreboard.csv";
+                filename2 = "../Txt_Csv/" + filename2;
+                ifstream ifs;
+                ifs.open(filename2);
+                Create_A_Box_1(1, y, 2, check->course_name.size() + 1, 14, 14, 0, check->course_name);
+
+                int counter = 0; int check_empty = 0;
+                string student_id_scoreboard, fullname;
+                float total, final1, midterm, other;
+                getline(ifs, dummy);
+                string check2ndLine;
+                getline(ifs, check2ndLine);
+                if (check2ndLine == "")
+                {
+                    Create_A_Box_1(1, y_coord + 10, 2, 30, 14, 14, 0, "THERE IS NO AVAILABLE VALUE!");
+                    y_coord = y_coord + 3;
+                    check_empty = 1;
+                }
+                ifs.close();
+
+                ifs.open(filename2);
+                getline(ifs, dummy);
+
+                bool checkAvailable = false;
+                string fourth_line;
+                while (getline(ifs, fourth_line))
+                {
+                    string temp;
+                    stringstream ss1(fourth_line);
+
+                    getline(ss1, temp, ',');
+                    student_id_scoreboard = temp;
+                    if (student_id_scoreboard == username)
+                    {
+                        checkAvailable = true;
+                        getline(ss1, temp, ',');
+                        fullname = temp;
+                        getline(ss1, temp, ',');
+                        midterm = stof(temp);
+                        getline(ss1, temp, ',');
+                        final1 = stof(temp);
+                        getline(ss1, temp, ',');
+                        other = stof(temp);
+                        getline(ss1, temp, '\n');
+                        total = stof(temp);
+                        printStudentInfo(y_coord ,counter, student_id_scoreboard, fullname, midterm, final1, other, total);
+                        counter++;
+                        y_coord = y_coord + 3;
+                        break;
+                    }
+                }
+                if (!check_empty && checkAvailable == false)
+                {
+                    Create_A_Box_1(1, y_coord + 10, 2, 30, 14, 14, 0, "THERE IS NO AVAILABLE VALUE!");
+                    y_coord = y_coord + 3;
+                }
+                y = y_coord + 13;
+                y_coord = y_coord + 6;
+                ifs.close();
+
                 break;
             }
         }
-        if (checkAvailable == false)
-        {
-            Create_A_Box_1(1, y_coord + 10, 2, 30, 14, 14, 0, "THERE IS NO AVAILABLE VALUE!");
-            y_coord = y_coord + 3;
-        }
-        y = y_coord + 13;
-        y_coord = y_coord + 6;
-        ifs.close();
+
+        if (!check_close)
+            ifs.close();
+
         check = check->course_next;
     }
     
