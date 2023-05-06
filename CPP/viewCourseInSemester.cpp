@@ -10,6 +10,8 @@ void viewCoursesInSemester(string username)
 
     string year;
     Student *user = new Student();
+    
+    // get Student* from file
     ifstream ifs;
     ifs.open("../Txt_Csv/student_info.csv");
     string dummy;
@@ -45,6 +47,7 @@ void viewCoursesInSemester(string username)
     year = getYearStr(username);
     int semester = getSemesterNum();
 
+    // Access file course
     char ch_semester = static_cast<char>(semester + 48);
     string filename = user->student_class.class_name + "_Semester" + ch_semester + "_" + year +  "_courses.csv";
     filename = "../Txt_Csv/" + filename;
@@ -107,21 +110,19 @@ void viewCoursesInSemester(string username)
     }
     ifs.close();
 
-    gotoXY(55,2); std::cout <<"     _____ ____  _    _ _____   _____ ______ ";
-    gotoXY(55,3); std::cout <<"    / ____/ __ \\| |  | |  __ \\ / ____|  ____|";
-    gotoXY(55,4); std::cout <<"   | |   | |  | | |  | | |__) | (___ | |__   ";
-    gotoXY(55,4); std::cout <<"   | |   | |  | | |  | |  _  / \\___ \\|  __|  ";
-    gotoXY(55,5); std::cout <<"   | |___| |__| | |__| | | \\ \\ ____) | |____ ";
-    gotoXY(55,6); std::cout <<"    \\_____\\____/ \\____/|_|  \\_\\_____/|______|";
+    gotoXY(60,2); std::cout <<"     _____ ____  _    _ _____   _____ ______ ";
+    gotoXY(60,3); std::cout <<"    / ____/ __ \\| |  | |  __ \\ / ____|  ____|";
+    gotoXY(60,4); std::cout <<"   | |   | |  | | |  | | |__) | (___ | |__   ";
+    gotoXY(60,5); std::cout <<"   | |   | |  | | |  | |  _  / \\___ \\|  __|  ";
+    gotoXY(60,6); std::cout <<"   | |___| |__| | |__| | | \\ \\ ____) | |____ ";
+    gotoXY(60,7); std::cout <<"    \\_____\\____/ \\____/|_|  \\_\\_____/|______|";
     
     Course *check = class_course;
-    //int y = 8;
     int counter = 1;
     int i = 0;
     int numCourses = 0;
-    Course* acceptCourse = nullptr;
-    Course* tmp = nullptr;
 
+    // access all file and find student
     while (check != nullptr)
     {
         string filename1;
@@ -137,58 +138,38 @@ void viewCoursesInSemester(string username)
         {
             stringstream ss(third_line);
             getline(ss, student_id, ',');
+
             if (student_id == username)
             {
-                Course* tmpCourse = new Course;
-                tmpCourse->course_ID = check->course_ID;
-                tmpCourse->course_name = check->course_name;
-                
-                tmpCourse->student_head = nullptr;
-                tmpCourse->scoreboard_head = nullptr;
-                tmpCourse->course_next = nullptr;
+                gotoXY(52,11 + numCourses);
+                std::cout << counter << ". " << check->course_ID << " - " << check->course_name;
+                counter++;
 
-                if (acceptCourse == nullptr)
-                {
-                    acceptCourse = tmpCourse;
-                    tmp = acceptCourse;
-                }
-                else 
-                {
-                    tmp->course_next = tmpCourse;
-                    tmp = tmp->course_next;
-                }
                 numCourses += 2;
                 break;
             }
-            else
-                getline(ss, dummy);
         }
         ifs.close();
         check = check->course_next;
     }
 
-    if (acceptCourse == nullptr)
+    if (numCourses == 0)
     {
-        Create_A_Box_1(55,12,2,30,14,14,0,"    There are no course!");
+        Create_A_Box_1(60,12,2,30,14,14,0,"    There are no course!");
     }
-    Course *curr = acceptCourse;
-    Create_A_Box_1(55, 12, numCourses, 40, 14, 14, 0, "");
-    while(curr)
+    else
     {
-        gotoXY(57, 13 + i);
-        std:: cout<< counter <<". " << check->course_ID<< " - " << check->course_name;
-        i += 2;
-        counter ++; 
+        Create_A_Box_3(50,10, numCourses, 70);
     }
 
-    Create_A_Box_1(130, 35, 2, 14, 14, 14, 0, " RETURN BACK");
+    Create_A_Box_1(50, 12 + numCourses, 2, 14, 14, 14, 0, " RETURN BACK");
     SetColor1(15,0);
-    for (int i = 131; i <= 143; ++i)
+    for (int i = 51; i <= 63; ++i)
     {
-        gotoXY(i, 36);
+        gotoXY(i, 13 + numCourses);
         std::cout << " ";
     }
-    gotoXY(131, 36);
+    gotoXY(51, 13 + numCourses);
     std::cout << " RETURN BACK";
     ShowConsoleCursor(false);
     while (true)
