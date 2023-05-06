@@ -5,37 +5,40 @@
 void viewCoursesInSemester(string username)
 {
     system("cls");
+    resizeConsole(1920,920);
     system("color E0");
-    SetColor1(14, 0);
+
     string year;
     Student *user = new Student();
     ifstream ifs;
     ifs.open("../Txt_Csv/student_info.csv");
     string dummy;
     getline(ifs, dummy);
-    string first_name, last_name, student_class, student_ID, social_ID, DOB, gender;
-    while (!ifs.eof())
+    
+    string first_line;
+    while (getline(ifs, first_line))
     {
-        getline(ifs, student_ID, ',');
-        if (student_ID == username)
+        string temp;
+        stringstream ss(first_line);
+
+        getline(ss, temp, ',');
+        if (temp == username)
         {
-            user->student_ID = student_ID;
-            getline(ifs, social_ID, ',');
-            user->student_socialID = social_ID;
-            getline(ifs, first_name, ',');
-            user->student_fisrtname = first_name;
-            getline(ifs, last_name, ',');
-            user->student_lastname = last_name;
-            getline(ifs, gender, ',');
-            user->gender=stoi(gender);
-            getline(ifs, student_class, ',');
-            user->student_class.class_name = student_class;
-            getline(ifs, DOB, '\n');
-            getDate(user, DOB);
+            user->student_ID = temp;
+            getline(ss, temp, ',');
+            user->student_socialID = temp;
+            getline(ss, temp, ',');
+            user->student_fisrtname = temp;
+            getline(ss, temp, ',');
+            user->student_lastname = temp;
+            getline(ss, temp, ',');
+            user->gender = stoi(temp);
+            getline(ss, temp, ',');
+            user->student_class.class_name = temp;
+            getline(ss, temp, '\n');
+            getDate(user, temp);
             break;
         }
-        else
-            getline(ifs, dummy);
     }
     ifs.close();
 
@@ -45,8 +48,10 @@ void viewCoursesInSemester(string username)
     char ch_semester = static_cast<char>(semester + 48);
     string filename = user->student_class.class_name + "_Semester" + ch_semester + "_" + year +  "_courses.csv";
     filename = "../Txt_Csv/" + filename;
+
     Course *class_course = nullptr;
     Course *temp = nullptr;
+
     ifs.open(filename);
     if (!ifs.is_open())
     {
@@ -60,12 +65,14 @@ void viewCoursesInSemester(string username)
         filename = "../Txt_Csv/" + filename;
         ifs.open(filename);
     }
-    string line;
-    while (getline(ifs, line))
+
+    string second_line;
+    while (getline(ifs, second_line))
     {
         Course* new_course = new Course;
         string tmp;
-        stringstream ss(line);
+        stringstream ss(second_line);
+
         getline(ss, tmp, ',');
         new_course->course_ID = tmp;
         getline(ss, tmp, ',');
@@ -106,6 +113,7 @@ void viewCoursesInSemester(string username)
     gotoXY(55,4); std::cout <<"   | |   | |  | | |  | |  _  / \\___ \\|  __|  ";
     gotoXY(55,5); std::cout <<"   | |___| |__| | |__| | | \\ \\ ____) | |____ ";
     gotoXY(55,6); std::cout <<"    \\_____\\____/ \\____/|_|  \\_\\_____/|______|";
+    
     Course *check = class_course;
     //int y = 8;
     int counter = 1;
@@ -123,11 +131,11 @@ void viewCoursesInSemester(string username)
         string student_id;
         ifs.open(filename1);
         getline(ifs, dummy);
-        string line;
-
-        while (getline(ifs, line))
+        
+        string third_line;
+        while (getline(ifs, third_line))
         {
-            stringstream ss(line);
+            stringstream ss(third_line);
             getline(ss, student_id, ',');
             if (student_id == username)
             {

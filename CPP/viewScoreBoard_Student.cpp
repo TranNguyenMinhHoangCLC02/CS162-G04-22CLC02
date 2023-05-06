@@ -246,7 +246,7 @@ void viewScoreBoard_Student(string username)
         filename1 = "../Txt_Csv/" + filename1;
         ifstream ifs;
         ifs.open(filename1);
-        Create_A_Box_1(1, y, 2, check->course_name.size()+1, 14, 14, 0, check->course_name);
+        Create_A_Box_1(1, y, 2, check->course_name.size() + 1, 14, 14, 0, check->course_name);
         // ifs.open("../Txt_Csv/" + class_course->course_ID + "_Semester" + ch_semester + "_" + year + "_Scoreboard.csv");
         int counter = 0;
         string student_id, fullname;
@@ -256,7 +256,6 @@ void viewScoreBoard_Student(string username)
         getline(ifs, check2ndLine);
         if (check2ndLine == "")
         {
-            
             Create_A_Box_1(1, y_coord + 10, 2, 30, 14, 14, 0, "THERE IS NO AVAILABLE VALUE!");
             y_coord = y_coord + 3;
         }
@@ -292,12 +291,9 @@ void viewScoreBoard_Student(string username)
                 y_coord = y_coord + 3;
                 break;
             }
-            else
-                getline(ifs, dummy);
         }
         if (checkAvailable == false)
         {
-            
             Create_A_Box_1(1, y_coord + 10, 2, 30, 14, 14, 0, "THERE IS NO AVAILABLE VALUE!");
             y_coord = y_coord + 3;
         }
