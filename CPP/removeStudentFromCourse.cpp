@@ -105,6 +105,60 @@ void removeStudent(string filename, string studentID)
     
     remove(filename.c_str()); // Delete the original file
     rename("temp.txt", filename.c_str()); // Rename the temporary file to the original filename
+
+    while (tmp)
+    {
+        Student* temp = tmp;
+        tmp = tmp->student_next;
+        delete temp;
+    }
+}
+
+void removeStudentFromScoreboardfile(string filename, string studentID) 
+{
+    ifstream fin(filename); // Open the file for reading
+    ofstream fout("temp.txt"); // Open a temporary file for writing
+
+    fout << "StudentID,Fullname,Midterm Mark,Final Mark,Other Mark,Total Mark\n";
+
+    if (!fin.is_open())
+    {
+        cerr << "Error! Unable to open file to read";
+        return;
+    }
+
+    string ignore_line; getline(fin, ignore_line);
+    string line;
+
+    while (getline(fin, line))
+    {
+        string tmp;
+        stringstream ss(line);
+
+        getline(ss, tmp, ',');
+        if (tmp == studentID)
+            continue;
+        else
+        {
+            fout << tmp << ",";
+            getline(ss, tmp, ',');
+            fout << tmp << ",";
+            getline(ss, tmp, ',');
+            fout << stof(tmp) << ",";
+            getline(ss, tmp, ',');
+            fout << stof(tmp) << ",";
+            getline(ss, tmp, ',');
+            fout << stof(tmp) << ",";
+            getline(ss, tmp, '\n');
+            fout << stof(tmp) << "\n";
+        }
+    }
+    
+    fin.close(); // Close the input file
+    fout.close(); // Close the temporary file
+    
+    remove(filename.c_str()); // Delete the original file
+    rename("temp.txt", filename.c_str()); // Rename the temporary file to the original filename
 }
 
 void removeCourseToStudent(Student* &student, Course* course)
@@ -119,7 +173,7 @@ void removeCourseToStudent(Student* &student, Course* course)
                 student->course_head = currentCourse->course_next;
             else 
                 previousCourse->course_next = currentCourse->course_next;
-            delete currentCourse;
+            // delete currentCourse;
             return;
         }
         previousCourse = currentCourse;
@@ -131,17 +185,17 @@ void removeStudentFromCourse(string username, Course* &course, Year* &year_head,
 {
     resizeConsole(1920,920);
     system("color E0");
-    gotoXY(23,2); 
+    gotoXY(40,2); 
     std::cout << "      ______ ________  ________  _   _ _____   _____ _____ _   _______ _____ _   _ _____      ";
-    gotoXY(23,3);
+    gotoXY(40,3);
     std::cout << "      | ___ \\  ___|  \\/  |  _  || | | |  ___| /  ___|_   _| | | |  _  \\  ___| \\ | |_   _|";
-    gotoXY(23,4);
+    gotoXY(40,4);
     std::cout << "      | |_/ / |__ | .  . | | | || | | | |__   \\ `--.  | | | | | | | | | |__ |  \\| | | |";
-    gotoXY(23,5);
+    gotoXY(40,5);
     std::cout << "      |    /|  __|| |\\/| | | | || | | |  __|   `--. \\ | | | | | | | | |  __|| . ` | | |";
-    gotoXY(23,6);
+    gotoXY(40,6);
     std::cout << "      | |\\ \\| |___| |  | \\ \\_/ /\\ \\_/ / |___  /\\__/ / | | | |_| | |/ /| |___| |\\  | | |";
-    gotoXY(23,7);
+    gotoXY(40,7);
     std::cout << "      \\_| \\_\\____/\\_|  |_/\\___/  \\___/\\____/  \\____/  \\_/  \\___/|___/ \\____/\\_| \\_/ \\_/";
 
     string studentID = "";
@@ -297,10 +351,15 @@ void removeStudentFromCourse(string username, Course* &course, Year* &year_head,
         currentStudent = currentStudent->student_next;
     }
 
-    // Remove student infomation to file
-    string file_name = course->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_student.csv";
-    file_name = "../Txt_Csv/" + file_name;
-    removeStudent(file_name, studentID);
+    // Remove student infomation from file
+    string file_name1 = course->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + course->class_name + "_" + year_head->year_name + "_student.csv";
+    file_name1 = "../Txt_Csv/" + file_name1;
+    removeStudent(file_name1, studentID);
+
+    // Remove student information from scoreboard file
+    string file_name2 = course->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + course->class_name + "_" + year_head->year_name + "_Scoreboard.csv";
+    file_name2 = "../Txt_Csv/" + file_name2;
+    removeStudentFromScoreboardfile(file_name2, studentID);
 
     Create_A_Box_1(68,29,2,30,14,14,0,"    Remove successfully ");
     for (int i = 0; i < 3; ++i)

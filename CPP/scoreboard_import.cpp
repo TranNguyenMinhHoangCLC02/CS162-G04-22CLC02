@@ -10,7 +10,7 @@ void export_scoreboard(string filename, string username, Year* &year_head, Semes
     gotoXY(48, 4); cout <<"   `--. \\| |    | | | ||    / |  __| | ___ \\| | | ||  _  ||    / | | | |";
     gotoXY(48, 5); cout <<"  /\\__/ /| \\__/\\\\ \\_/ /| |\\ \\ | |___ | |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
     gotoXY(48, 6); cout <<"  \\____/  \\____/ \\___/ \\_| \\_|\\____/ \\____/  \\___/ \\_| |_/\\_| \\_||___/";
-    gotoXY(48, 8); cout << "------------"<< course_head->course_ID << "_" << "Semester" << semester_head->Semester_Ord << "_" << year_head->year_name  <<"--------------\n";
+    gotoXY(48, 8); cout << "        ------------"<< course_head->course_ID << "_" << "Semester" << semester_head->Semester_Ord << "_" << year_head->year_name  <<"--------------\n";
     //Check if any students existed
     course_head->student_head = getStudentCourseFromFile(year_head, semester_head, course_head);
     if(!course_head->student_head)
@@ -45,9 +45,9 @@ void export_scoreboard(string filename, string username, Year* &year_head, Semes
     gotoXY(52, 10); cout << "IF THE FILE HAS BEEN CREATED BEFORE. YOU WILL REWRITE THE FILE\n";
     gotoXY(52, 11); cout << "DO YOU WANT TO CONTINUE\n";
     Create_A_Box_1(50, 15, 2, 14, 14, 14, 0, " CONTINUE");
+    Create_A_Box_1(50, 17, 2, 14, 14, 14, 0, " RETURN BACK");
     gotoXY(50,17); std::cout << (char)(195);
     gotoXY(50+14,17); std::cout << (char)(180);
-    Create_A_Box_1(50, 17, 2, 14, 14, 14, 0, " RETURN BACK");
     int choice = 2;
     int x_temp = 50, y_temp = 15;
     bool flag = true;
@@ -59,7 +59,7 @@ void export_scoreboard(string filename, string username, Year* &year_head, Semes
             {
                 system("color E0");
                 SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 12; ++i)
+                for (int i = x_temp + 1; i <= x_temp + 13; ++i)
                 {
                     gotoXY(i, y_temp + 1);
                     std::cout << " ";
@@ -73,7 +73,7 @@ void export_scoreboard(string filename, string username, Year* &year_head, Semes
             {
                 system("color E0");
                 SetColor1(15,0);
-                for (int i = x_temp + 1; i <= x_temp + 12; ++i)
+                for (int i = x_temp + 1; i <= x_temp + 13; ++i)
                 {
                     gotoXY(i, y_temp + 1);
                     std::cout << " ";
@@ -95,7 +95,7 @@ void export_scoreboard(string filename, string username, Year* &year_head, Semes
                 if (y_temp == 15)
                 {
                     SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 12; ++i)
+                    for (int i = x_temp + 1; i <= x_temp + 13; ++i)
                     {
                         gotoXY(i, y_temp + 1);
                         std::cout << " ";
@@ -108,7 +108,7 @@ void export_scoreboard(string filename, string username, Year* &year_head, Semes
                 else if (y_temp == 17)
                 {
                     SetColor1(14,0);
-                    for (int i = x_temp + 1; i <= x_temp + 12; ++i)
+                    for (int i = x_temp + 1; i <= x_temp + 13; ++i)
                     {
                         gotoXY(i, y_temp + 1);
                         std::cout << " ";
@@ -191,16 +191,27 @@ void export_scoreboard(string filename, string username, Year* &year_head, Semes
 
     system("color E0");
 
-    SetColor1(15,0);
-    Create_A_Box_3(67,15,2,30);
+    // SetColor1(15,0);
+    // Create_A_Box_3(67,15,2,30);
 
+    // for (int i = 68; i <= 96; ++i)
+    // {
+    //     gotoXY(i, 16);
+    //     std::cout << " ";
+    // }
+    // gotoXY(68,16);
+    // std::cout << "          RETURN BACK";
+
+    Create_A_Box_1(67, 15, 2, 30, 14, 14, 0, "          RETURN BACK");
+    SetColor1(15, 0);
     for (int i = 68; i <= 96; ++i)
     {
         gotoXY(i, 16);
         std::cout << " ";
     }
-    gotoXY(68,16);
+    gotoXY(68,16); 
     std::cout << "          RETURN BACK";
+    ShowConsoleCursor(false);
 
     while (true)
     {
@@ -315,7 +326,7 @@ void update_scoreBoard(string filename, string username, Year* &year_head, Semes
                 {
                     int len = file_name.size();
 
-                    if (c >= 32 && c <= 126 && len < 50)
+                    if (c >= 32 && c <= 126 && len < 56)
                     {
                         pos_user++;
                         file_name += c;
@@ -357,7 +368,7 @@ void update_scoreBoard(string filename, string username, Year* &year_head, Semes
     }
 
     char ch_semester = static_cast<char>(semester_head->Semester_Ord + 48);
-    string namefile = course_head->course_ID + "_" + "Semester" + ch_semester + "_" + year_head->year_name + + "_Scoreboard.csv";
+    string namefile = course_head->course_ID + "_" + "Semester" + ch_semester + "_" + course_head->class_name + "_" + year_head->year_name + + "_Scoreboard.csv";
     namefile = "../Txt_Csv/" + namefile;
 
     file_name = "../Txt_Csv/" + file_name;

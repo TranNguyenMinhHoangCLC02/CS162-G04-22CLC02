@@ -37,9 +37,10 @@ Student* getStudentListFromFile(Year *year_head, Class* class_head);
 //Semester functions
 void accessSemester(string username, Year* &year_head, Semester* &semester_head);
 void viewSemester_Screen(string username, Year* year_head);
-void viewCoursesInSemester(Student* student, Semester* semester);
+void viewCoursesInSemester(string username);
 
 //Course functions
+string getYearStr(string username);
 int COURSE_Interface(string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 Course* getCourseListFromFile(Year* year_head, Semester* &semester_head);
 void accessCourse(string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
@@ -54,14 +55,14 @@ void deleteCourse(string username,Course* course_head , Year* year_head, Semeste
 void deleteStudent(Student *&student_head, string studentID);
 Student* getListStuFromFile(string filename);
 void removeStudent(string filename, string studentID);
-void removeStudentFromCourse(string username, Course* &course, Year* &year_head, Semester* semester_head) ;
+void removeStudentFromCourse(string username, Course* &course, Year* &year_head, Semester* semester_head);
+void removeStudentFromScoreboardfile(string filename, string studentID);
 void addNewCourse (string username, Year* year_head, Semester* semester_head);
 void viewStudentInCourse(string username, Year* &year_head, Semester* &semester_head, Course* &course_head);
 int numOfStudent(Course* course);
 bool isStudentInCourse(Course* course, Student* student);
 Student* findStudentInClass(Class* class_head, string studentID);
 void addStudentToCourse(string username, Course* &course, Year* &year_head, Semester* semester_head);
-void printCourseInfo(Course* course);
 
 //Helper functions for course
 string NormalizeCourseID (string Course_ID);

@@ -1660,9 +1660,9 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
                                 while (temp_course1->course_next)
                                     temp_course1 = temp_course1->course_next;
 
-                                string name_file = temp_course1->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_Scoreboard.csv";
+                                string name_file = temp_course1->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + ClassName + "_" + year_head->year_name + "_Scoreboard.csv";
                                 name_file = "../Txt_Csv/" + name_file;
-                                ofs.open(name_file);
+                                ofs.open(name_file, ios::app);
                                 if (!ofs.is_open())
                                 {
                                     cerr << "Error: Unable to open file for writing\n";
@@ -1671,7 +1671,7 @@ void addNewCourse (string username, Year* year_head, Semester* semester_head)
                                 ofs << "ID,FullName,Midterm,Final,Other,Total";
                                 ofs.close();
 
-                                name_file = temp_course1->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_student.csv";
+                                name_file = temp_course1->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + ClassName + "_" + year_head->year_name + "_student.csv";
                                 name_file = "../Txt_Csv/" + name_file;
                                 ofs.open(name_file);
                                 if (!ofs.is_open())

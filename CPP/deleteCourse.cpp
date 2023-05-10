@@ -212,6 +212,28 @@ void deleteCourse(string username,Course* course_head ,Year* year_head, Semester
     }
 
     // Delete Course in Student
+    Student* tempStudent = course_head->student_head;
+    while (tempStudent)
+    {
+        Course* currentCourse = tempStudent->course_head;
+        Course* previousCourse = nullptr;
+        while (currentCourse != nullptr) 
+        {
+            if (currentCourse->course_ID == course_head->course_ID) 
+            {
+                if (previousCourse == nullptr) 
+                    tempStudent->course_head = currentCourse->course_next;
+                else 
+                    previousCourse->course_next = currentCourse->course_next;
+                // delete currentCourse;
+                return;
+            }
+            previousCourse = currentCourse;
+            currentCourse = currentCourse->course_next;
+        }
+
+        tempStudent = tempStudent->student_next;
+    }
 
     // Delete Course in Semester
     Course *cur = semester_head->course_head;
@@ -232,17 +254,17 @@ void deleteCourse(string username,Course* course_head ,Year* year_head, Semester
     deleteCoursefromFile(file_name1, course_head);
 
     // Remove file Student of Course
-    string file_name2 = course_head->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_student.csv";
+    string file_name2 = course_head->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + course_head->class_name + "_" + year_head->year_name + "_student.csv";
     file_name2 = "../Txt_Csv/" + file_name2;
     remove(file_name2.c_str());
 
     // Remove file Scoreboard of Course
-    string file_name3 = course_head->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_Scoreboard.csv";
+    string file_name3 = course_head->course_ID + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + course_head->class_name + "_" + year_head->year_name + "_Scoreboard.csv";
     file_name3 = "../Txt_Csv/" + file_name3;
     remove(file_name3.c_str());
 
     //Delete course from course_head->class_name
-    string file_name4 = course_head->class_name + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "courses.csv";
+    string file_name4 = course_head->class_name + "_Semester" + (char)(semester_head->Semester_Ord + 48) + "_" + year_head->year_name + "_courses.csv";
     file_name4 = "../Txt_Csv/" + file_name4;
     deleteCoursefromFile(file_name4, course_head);
     
@@ -258,6 +280,6 @@ void deleteCourse(string username,Course* course_head ,Year* year_head, Semester
     }
     system("cls");
     viewUpdateCourseInformation (username, year_head, semester_head);
-
+    delete course_head;
     return;
 }

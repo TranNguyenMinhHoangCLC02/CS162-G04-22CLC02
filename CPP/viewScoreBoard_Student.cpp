@@ -6,13 +6,13 @@ string getYearStr(string username)
 {
     resizeConsole(1920,920);
     system("color E0");
-    SetColor1(14, 0);
-    gotoXY(24, 1); cout <<"   _____  _____  _____ ______  _____ ______  _____   ___  ______ ______";
-    gotoXY(24, 2); cout <<"  /  ___|/  __ \\|  _  || ___ \\|  ___|| ___ \\|  _  | / _ \\ | ___ \\|  _  \\";
-    gotoXY(24, 3); cout <<"  \\ `--. | /  \\/| | | || |_/ /| |__  | |_/ /| | | |/ /_\\ \\| |_/ /| | | |";
-    gotoXY(24, 4); cout <<"   `--. \\| |    | | | ||    / |  __| | ___ \\| | | ||  _  ||    / | | | |";
-    gotoXY(24, 5); cout <<"  /\\__/ /| \\__/\\\\ \\_/ /| |\\ \\ | |___ | |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
-    gotoXY(24, 6); cout <<"  \\____/  \\____/ \\___/ \\_| \\_|\\____/ \\____/  \\___/ \\_| |_/\\_| \\_||___/";
+    // SetColor1(14, 0);
+    // gotoXY(24, 1); cout <<"   _____  _____  _____ ______  _____ ______  _____   ___  ______ ______";
+    // gotoXY(24, 2); cout <<"  /  ___|/  __ \\|  _  || ___ \\|  ___|| ___ \\|  _  | / _ \\ | ___ \\|  _  \\";
+    // gotoXY(24, 3); cout <<"  \\ `--. | /  \\/| | | || |_/ /| |__  | |_/ /| | | |/ /_\\ \\| |_/ /| | | |";
+    // gotoXY(24, 4); cout <<"   `--. \\| |    | | | ||    / |  __| | ___ \\| | | ||  _  ||    / | | | |";
+    // gotoXY(24, 5); cout <<"  /\\__/ /| \\__/\\\\ \\_/ /| |\\ \\ | |___ | |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
+    // gotoXY(24, 6); cout <<"  \\____/  \\____/ \\___/ \\_| \\_|\\____/ \\____/  \\___/ \\_| |_/\\_| \\_||___/";
     Create_A_Box_2(1, 11, 2, 30, 14, 14, 0, "INPUT A YEAR(0000-0000)");
     Create_A_Box_1(1, 14, 2, 14, 14, 14, 0, " RETURN BACK");
     ShowConsoleCursor(false);
@@ -139,38 +139,36 @@ void viewScoreBoard_Student(string username)
     ifs.open("../Txt_Csv/student_info.csv");
     string dummy;
     getline(ifs, dummy);
-    string first_name, last_name, student_class, student_ID, social_ID, DOB, gender;
-    while (!ifs.eof())
+
+    string first_line;
+    while (getline(ifs, first_line))
     {
-        getline(ifs, student_ID, ',');
-        if (student_ID == username)
+        string temp;
+        stringstream ss(first_line);
+
+        getline(ss, temp, ',');
+        if (temp == username)
         {
-            user->student_ID = student_ID;
-            getline(ifs, social_ID, ',');
-            user->student_socialID = social_ID;
-            getline(ifs, first_name, ',');
-            user->student_fisrtname = first_name;
-            getline(ifs, last_name, ',');
-            user->student_lastname = last_name;
-            getline(ifs, gender, ',');
-            user->gender=stoi(gender);
-            getline(ifs, student_class, ',');
-            user->student_class.class_name = student_class;
-            getline(ifs, DOB, '\n');
-            getDate(user, DOB);
+            user->student_ID = temp;
+            getline(ss, temp, ',');
+            user->student_socialID = temp;
+            getline(ss, temp, ',');
+            user->student_fisrtname = temp;
+            getline(ss, temp, ',');
+            user->student_lastname = temp;
+            getline(ss, temp, ',');
+            user->gender = stoi(temp);
+            getline(ss, temp, ',');
+            user->student_class.class_name = temp;
+            getline(ss, temp, '\n');
+            getDate(user, temp);
             break;
         }
-        else
-            getline(ifs, dummy);
     }
     ifs.close();
-    // cout << "Choose a year(0000-0000): ";
-    // getline(cin, year);
-    year=getYearStr(username);
-    // cin.ignore();
-    int semester=getSemesterNum();
-    // cout << "Choose a semester(1->3): ";
-    // cin >> semester;
+
+    year = getYearStr(username);
+    int semester = getSemesterNum();
 
     char ch_semester = static_cast<char>(semester + 48);
     string filename = user->student_class.class_name + "_Semester" + ch_semester + "_" + year +  "_courses.csv";
@@ -180,29 +178,22 @@ void viewScoreBoard_Student(string username)
     ifs.open(filename);
     if (!ifs.is_open())
     {
-        // cout << "Input invalid\n";
-        // cout << "Please input again:\n";
-        // cout << "Choose a year(0000-0000): ";
-        // getline(cin, year);
-        // cin.ignore();
-        // cout << "Choose a semester(1->3): ";
-        // cin >> semester;
         system("cls");
         system("color E0");
         Create_A_Box_1(1, 7, 2, 35, 14, 14, 0, "INPUT INVALID! PLEASE INPUT AGAIN!");
-        year=getYearStr(username);
-        int semester=getSemesterNum();
+        year = getYearStr(username);
+        int semester = getSemesterNum();
         ch_semester = static_cast<char>(semester + 48);
         filename = user->student_class.class_name + "_Semester" + ch_semester + "_" + year +  "_courses.csv";
         filename = "../Txt_Csv/" + filename;
         ifs.open(filename);
     }
-    string line;
-    while (getline(ifs, line))
+    string second_line;
+    while (getline(ifs, second_line))
     {
         Course* new_course = new Course;
         string tmp;
-        stringstream ss(line);
+        stringstream ss(second_line);
         getline(ss, tmp, ',');
         new_course->course_ID = tmp;
         getline(ss, tmp, ',');
@@ -236,90 +227,109 @@ void viewScoreBoard_Student(string username)
         }
     }
     ifs.close();
-    // cout << setw(12) << left << "Courses" << setw(16) << right << "Midterm Mark" 
-    //     << setw(16) << right << "Final Mark" << setw(16) << right << "Other Mark" 
-    //     << setw(16) << right << "Total Mark" << "\n";
-    gotoXY(24, 1); cout <<"   _____  _____  _____ ______  _____ ______  _____   ___  ______ ______";
-    gotoXY(24, 2); cout <<"  /  ___|/  __ \\|  _  || ___ \\|  ___|| ___ \\|  _  | / _ \\ | ___ \\|  _  \\";
-    gotoXY(24, 3); cout <<"  \\ `--. | /  \\/| | | || |_/ /| |__  | |_/ /| | | |/ /_\\ \\| |_/ /| | | |";
-    gotoXY(24, 4); cout <<"   `--. \\| |    | | | ||    / |  __| | ___ \\| | | ||  _  ||    / | | | |";
-    gotoXY(24, 5); cout <<"  /\\__/ /| \\__/\\\\ \\_/ /| |\\ \\ | |___ | |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
-    gotoXY(24, 6); cout <<"  \\____/  \\____/ \\___/ \\_| \\_|\\____/ \\____/  \\___/ \\_| |_/\\_| \\_||___/";
-    // string student_id, fullname;
-    // float total, final1, midterm, other;
+
+    gotoXY(24, 1); cout << "   _____  _____  _____ ______  _____ ______  _____   ___  ______ ______";
+    gotoXY(24, 2); cout << "  /  ___|/  __ \\|  _  || ___ \\|  ___|| ___ \\|  _  | / _ \\ | ___ \\|  _  \\";
+    gotoXY(24, 3); cout << "  \\ `--. | /  \\/| | | || |_/ /| |__  | |_/ /| | | |/ /_\\ \\| |_/ /| | | |";
+    gotoXY(24, 4); cout << "   `--. \\| |    | | | ||    / |  __| | ___ \\| | | ||  _  ||    / | | | |";
+    gotoXY(24, 5); cout << "  /\\__/ /| \\__/\\\\ \\_/ /| |\\ \\ | |___ | |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
+    gotoXY(24, 6); cout << "  \\____/  \\____/ \\___/ \\_| \\_|\\____/ \\____/  \\___/ \\_| |_/\\_| \\_||___/";
+ 
     Course *check = class_course;
-    int y=8;
-    int y_coord=1;
-    while (check!=nullptr)
+    int y = 8;
+    int y_coord = 1;
+    while (check != nullptr)
     {
-        // cout << setw(12) << left << class_course->course_name;
         string filename1;
-        filename1 = check->course_ID + "_Semester" + ch_semester + "_" + year + "_Scoreboard.csv";
+        filename1 = check->course_ID + "_Semester" + ch_semester + "_" + check->class_name + "_" + year + "_student.csv";
         filename1 = "../Txt_Csv/" + filename1;
         ifstream ifs;
-        ifs.open(filename1);
-        Create_A_Box_1(1, y, 2, check->course_name.size()+1, 14, 14, 0, check->course_name);
-        // ifs.open("../Txt_Csv/" + class_course->course_ID + "_Semester" + ch_semester + "_" + year + "_Scoreboard.csv");
-        int counter = 0;
-        string student_id, fullname;
-        float total, final1, midterm, other;
-        getline(ifs, dummy);
-        string check2ndLine;
-        getline(ifs, check2ndLine);
-        if (check2ndLine == "")
-        {
-            
-            Create_A_Box_1(1, y_coord+10, 2, 30, 14, 14, 0, "THERE IS NO AVAILABLE VALUE!");
-            y_coord=y_coord+3;
-        }
-        ifs.close();
+        string student_id;
         ifs.open(filename1);
         getline(ifs, dummy);
-        string temp;
-        bool checkAvailable = false;
-        while (!ifs.eof())
+        
+        string third_line; int check_close = 0;
+        while (getline(ifs, third_line))
         {
-            getline(ifs, student_id, ',');
+            stringstream ss(third_line);
+            getline(ss, student_id, ',');
+
             if (student_id == username)
             {
-                checkAvailable = true;
-                getline(ifs, fullname, ',');
-                getline(ifs, temp, ',');
-                midterm = stof(temp);
-                getline(ifs, temp, ',');
-                final1 = stof(temp);
-                getline(ifs, temp, ',');
-                other = stof(temp);
-                getline(ifs, temp, '\n');
-                total = stof(temp);
-                printStudentInfo(y_coord ,counter, student_id, fullname, midterm, final1, other, total);
-                counter++;
-                y_coord=y_coord+3;
+                check_close = 1;
+                ifs.close();
+
+                string filename2;
+                filename2 = check->course_ID + "_Semester" + ch_semester + "_" + check->class_name + "_" + year + "_Scoreboard.csv";
+                filename2 = "../Txt_Csv/" + filename2;
+                ifstream ifs;
+                ifs.open(filename2);
+                Create_A_Box_1(1, y, 2, check->course_name.size() + 1, 14, 14, 0, check->course_name);
+
+                int counter = 0; int check_empty = 0;
+                string student_id_scoreboard, fullname;
+                float total, final1, midterm, other;
+                getline(ifs, dummy);
+                string check2ndLine;
+                getline(ifs, check2ndLine);
+                if (check2ndLine == "")
+                {
+                    Create_A_Box_1(1, y_coord + 10, 2, 30, 14, 14, 0, "THERE IS NO AVAILABLE VALUE!");
+                    y_coord = y_coord + 3;
+                    check_empty = 1;
+                }
+                ifs.close();
+
+                ifs.open(filename2);
+                getline(ifs, dummy);
+
+                bool checkAvailable = false;
+                string fourth_line;
+                while (getline(ifs, fourth_line))
+                {
+                    string temp;
+                    stringstream ss1(fourth_line);
+
+                    getline(ss1, temp, ',');
+                    student_id_scoreboard = temp;
+                    if (student_id_scoreboard == username)
+                    {
+                        checkAvailable = true;
+                        getline(ss1, temp, ',');
+                        fullname = temp;
+                        getline(ss1, temp, ',');
+                        midterm = stof(temp);
+                        getline(ss1, temp, ',');
+                        final1 = stof(temp);
+                        getline(ss1, temp, ',');
+                        other = stof(temp);
+                        getline(ss1, temp, '\n');
+                        total = stof(temp);
+                        printStudentInfo(y_coord ,counter, student_id_scoreboard, fullname, midterm, final1, other, total);
+                        counter++;
+                        y_coord = y_coord + 3;
+                        break;
+                    }
+                }
+                if (!check_empty && checkAvailable == false)
+                {
+                    Create_A_Box_1(1, y_coord + 10, 2, 30, 14, 14, 0, "THERE IS NO AVAILABLE VALUE!");
+                    y_coord = y_coord + 3;
+                }
+                y = y_coord + 13;
+                y_coord = y_coord + 6;
+                ifs.close();
+
                 break;
             }
-            else
-                getline(ifs, dummy);
         }
-        if (checkAvailable == false)
-        {
-            
-            Create_A_Box_1(1, y_coord+10, 2, 30, 14, 14, 0, "THERE IS NO AVAILABLE VALUE!");
-            y_coord=y_coord+3;
-        }
-        y=y_coord + 13;
-        y_coord = y_coord + 6;
-        ifs.close();
+
+        if (!check_close)
+            ifs.close();
+
         check = check->course_next;
     }
-    // cout << "0. Return back" << "\nYour input is: ";
-    // int opt = 1;
-    // cin >> opt;
-
-    // while (opt != 0)
-    // {
-    //     cout << "Please input again: ";
-    //     cin >> opt;
-    // }
+    
     Create_A_Box_1(1, y, 2, 14, 14, 14, 0, " RETURN BACK");
     SetColor1(15,0);
     for (int i = 1 + 1; i <= 14; ++i)

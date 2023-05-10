@@ -1,12 +1,14 @@
 #include "../Header/Staff.h"
 #include "../Header/Design.h"
 
+Student* getStudentCourseFromFile(Year* &year_head, Semester* &semester_head, Course* &course_head);
+
 Student* getStudentCourseFromFile(Year* &year_head, Semester* &semester_head, Course* &course_head)
 {
     ifstream ifs;
     //convert semester_head->Semester_Ord to string
     char ch_semester = static_cast<char>(semester_head->Semester_Ord + 48);
-    string filename = "../Txt_Csv/" + course_head->course_ID + "_Semester" + ch_semester + "_" + year_head->year_name  + "_student.csv";
+    string filename = "../Txt_Csv/" + course_head->course_ID + "_Semester" + ch_semester + "_" + course_head->class_name + "_" + year_head->year_name  + "_student.csv";
     ifs.open(filename);
     if (!ifs.is_open())
     {

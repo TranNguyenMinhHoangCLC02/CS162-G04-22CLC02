@@ -7,12 +7,12 @@ int getSemesterNum()
     resizeConsole(1920,920);
     system("color E0");
     SetColor1(14, 0);
-    gotoXY(24, 1); cout <<"   _____  _____  _____ ______  _____ ______  _____   ___  ______ ______";
-    gotoXY(24, 2); cout <<"  /  ___|/  __ \\|  _  || ___ \\|  ___|| ___ \\|  _  | / _ \\ | ___ \\|  _  \\";
-    gotoXY(24, 3); cout <<"  \\ `--. | /  \\/| | | || |_/ /| |__  | |_/ /| | | |/ /_\\ \\| |_/ /| | | |";
-    gotoXY(24, 4); cout <<"   `--. \\| |    | | | ||    / |  __| | ___ \\| | | ||  _  ||    / | | | |";
-    gotoXY(24, 5); cout <<"  /\\__/ /| \\__/\\\\ \\_/ /| |\\ \\ | |___ | |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
-    gotoXY(24, 6); cout <<"  \\____/  \\____/ \\___/ \\_| \\_|\\____/ \\____/  \\___/ \\_| |_/\\_| \\_||___/";
+    // gotoXY(24, 1); cout <<"   _____  _____  _____ ______  _____ ______  _____   ___  ______ ______";
+    // gotoXY(24, 2); cout <<"  /  ___|/  __ \\|  _  || ___ \\|  ___|| ___ \\|  _  | / _ \\ | ___ \\|  _  \\";
+    // gotoXY(24, 3); cout <<"  \\ `--. | /  \\/| | | || |_/ /| |__  | |_/ /| | | |/ /_\\ \\| |_/ /| | | |";
+    // gotoXY(24, 4); cout <<"   `--. \\| |    | | | ||    / |  __| | ___ \\| | | ||  _  ||    / | | | |";
+    // gotoXY(24, 5); cout <<"  /\\__/ /| \\__/\\\\ \\_/ /| |\\ \\ | |___ | |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
+    // gotoXY(24, 6); cout <<"  \\____/  \\____/ \\___/ \\_| \\_|\\____/ \\____/  \\___/ \\_| |_/\\_| \\_||___/";
     Create_A_Box_1(50, 8, 2, 20, 14, 14, 0, " CHOOSE A SEMESTER");
     Create_A_Box_1(57, 11, 2, 6, 14, 14, 0, "  1");
     Create_A_Box_1(57, 14, 2, 6, 14, 14, 0, "  2");
@@ -219,7 +219,7 @@ void viewScoreBoard_Class(string username, Year *&year_head, Class *class_head)
     while (check != nullptr)
     {
         string filename1;
-        filename1 = check->course_ID + "_Semester" + char_semester + "_" + year_head->year_name + "_Scoreboard.csv";
+        filename1 = check->course_ID + "_Semester" + char_semester + "_" + check->class_name + "_" + year_head->year_name + "_Scoreboard.csv";
         filename1 = "../Txt_Csv/" + filename1;
         ifstream ifs;
         ifs.open(filename1);
@@ -241,18 +241,23 @@ void viewScoreBoard_Class(string username, Year *&year_head, Class *class_head)
         ifs.close();
         ifs.open(filename1);
         getline(ifs, dummy);
-        string temp;
-        while (!ifs.eof())
+        string line;
+        while (getline(ifs, line))
         {
-            getline(ifs, student_id, ',');
-            getline(ifs, fullname, ',');
-            getline(ifs, temp, ',');
+            string temp;
+            stringstream ss(line);
+
+            getline(ss, temp, ',');
+            student_id = temp;
+            getline(ss, temp, ',');
+            fullname = temp;
+            getline(ss, temp, ',');
             midterm = stof(temp);
-            getline(ifs, temp, ',');
+            getline(ss, temp, ',');
             final1 = stof(temp);
-            getline(ifs, temp, ',');
+            getline(ss, temp, ',');
             other = stof(temp);
-            getline(ifs, temp, '\n');
+            getline(ss, temp, '\n');
             total = stof(temp);
             printStudentInfo(y_coord ,counter, student_id, fullname, midterm, final1, other, total);
             counter++;
@@ -264,15 +269,7 @@ void viewScoreBoard_Class(string username, Year *&year_head, Class *class_head)
         ifs.close();
         check = check->course_next;
     }
-    // cout << "0. Return back" << "\nYour input is: ";
-    // int opt = 1;
-    // cin >> opt;
-
-    // while (opt != 0)
-    // {
-    //     cout << "Please input again: ";
-    //     cin >> opt;
-    // }
+    
     Create_A_Box_1(1, y, 2, 14, 14, 14, 0, " RETURN BACK");
     SetColor1(15,0);
     for (int i = 1 + 1; i <= 14; ++i)

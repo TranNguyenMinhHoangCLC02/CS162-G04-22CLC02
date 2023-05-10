@@ -376,12 +376,12 @@ void student_info(string username)
     Create_A_Box_4(111,10,2,30,14,14,0,"STUDENT ID",id);
     Create_A_Box_4(111,15,2,30,14,14,0,"FULL NAME",fullname);
     Create_A_Box_4(111,20,2,30,14,14,0,"SOCIAL ID",social);
-    Create_A_Box_4(111,25,2,30,14,14,0,"CLASS",class_room);
-    Create_A_Box_4(111,30,2,30,14,14,0,"GENDER",gender);
-    Create_A_Box_4(111,35,2,30,14,14,0,"DATE OF BIRTH",dob);
+    Create_A_Box_4(111,25,2,15,14,14,0,"CLASS",class_room);
+    Create_A_Box_4(130,25,2,11,14,14,0,"GENDER",gender);
+    Create_A_Box_4(111,30,2,30,14,14,0,"DATE OF BIRTH",dob);
     ShowConsoleCursor(false);
 
-    Create_A_Box_1(135,40,2,20,15,14,0,"    RETURN BACK");
+    Create_A_Box_1(135,35,2,20,15,14,0,"    RETURN BACK");
 
     bool flag = true;
     
@@ -392,11 +392,11 @@ void student_info(string username)
             SetColor1(15,0);
             for (int i = 136; i <= 154; ++i)
             {
-                gotoXY(i, 41);
+                gotoXY(i, 36);
                 std::cout << " ";
             }
 
-            gotoXY(136, 41);
+            gotoXY(136, 36);
             std::cout << "    RETURN BACK";
             ShowConsoleCursor(false);
             flag = false;

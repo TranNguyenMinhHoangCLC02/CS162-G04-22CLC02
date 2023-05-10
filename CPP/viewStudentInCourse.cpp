@@ -40,9 +40,10 @@ void viewStudentInCourse(string username, Year* &year_head, Semester* &semester_
             i = i+2;
         }
     }
-    
-    SetColor1(15,0);
-    Create_A_Box_3(60,15 + numStudents,2,30);
+
+    gotoXY(60, 15);
+    Create_A_Box_1(60, 15 + numStudents, 2, 30, 14, 14, 0, "          RETURN BACK");
+    SetColor1(15, 0);
     for (int i = 61; i <= 89; ++i)
     {
         gotoXY(i, 16 + numStudents);
@@ -50,6 +51,7 @@ void viewStudentInCourse(string username, Year* &year_head, Semester* &semester_
     }
     gotoXY(61,15 + numStudents + 1); 
     std::cout << "          RETURN BACK";
+    ShowConsoleCursor(false);
 
     while (true)
     {
